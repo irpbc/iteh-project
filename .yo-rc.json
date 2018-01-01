@@ -1,0 +1,87 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "irpbc.iteh",
+      "nativeLanguage": "sr"
+    },
+    "jhipsterVersion": "4.13.0",
+    "baseName": "ItehProject",
+    "packageName": "irpbc.iteh",
+    "packageFolder": "irpbc/iteh",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "hibernateCache": "hazelcast",
+    "clusteredHttpSession": false,
+    "websocket": "spring-websocket",
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": "elasticsearch",
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "gradle",
+    "enableSocialSignIn": true,
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "5685357e841a33e204b86a8b87fce1d7d84d85f7",
+    "clientFramework": "angularX",
+    "useSass": true,
+    "clientPackageManager": "yarn",
+    "applicationType": "monolith",
+    "testFrameworks": [
+      "protractor"
+    ],
+    "jhiPrefix": "jhi",
+    "otherModules": [
+      {
+        "name": "generator-jhipster-primeng",
+        "version": "2.0.18"
+      },
+      {
+        "name": "generator-jhipster-elasticsearch-reindexer",
+        "version": "1.0.2"
+      },
+      {
+        "name": "generator-jhipster-pages",
+        "version": "2.0.1"
+      },
+      {
+        "name": "generator-jhipster-primeng-charts",
+        "version": "0.0.3"
+      },
+      {
+        "name": "generator-jhipster-nav-element",
+        "version": "1.4.16"
+      },
+      {
+        "name": "generator-jhipster-primeng-entity",
+        "version": "1.0.2"
+      },
+      {
+        "name": "generator-jhipster-pace",
+        "version": "0.1.3"
+      },
+      {
+        "name": "generator-jhipster-entity-audit",
+        "version": "3.1.0"
+      },
+      {
+        "name": "generator-jhipster-multitenancy",
+        "version": "0.9.5"
+      },
+      {
+        "name": "generator-jhipster-clarity",
+        "version": "0.0.1"
+      },
+      {
+        "name": "generator-jhipster-google-maps",
+        "version": "0.0.1"
+      }
+    ],
+    "enableTranslation": true,
+    "nativeLanguage": "sr",
+    "languages": [
+      "sr",
+      "en"
+    ]
+  }
+}
