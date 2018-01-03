@@ -21,7 +21,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
-import java.time.format.DateTimeFormatter;
 
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -77,9 +76,9 @@ public class AuditResourceIntTest {
     public void initTest() {
         auditEventRepository.deleteAll();
         auditEvent = new PersistentAuditEvent();
-        auditEvent.setAuditEventType(SAMPLE_TYPE);
-        auditEvent.setPrincipal(SAMPLE_PRINCIPAL);
-        auditEvent.setAuditEventDate(SAMPLE_TIMESTAMP);
+        auditEvent.setEventType(SAMPLE_TYPE);
+        auditEvent.setUserId(SAMPLE_PRINCIPAL);
+        auditEvent.setEventDate(SAMPLE_TIMESTAMP);
     }
 
     @Test

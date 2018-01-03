@@ -43,11 +43,11 @@ public class UserDTO {
     @Size(min = 2, max = 6)
     private String langKey;
 
-    private String createdBy;
+    private Long createdBy;
 
     private Instant createdDate;
 
-    private String lastModifiedBy;
+    private Long lastModifiedBy;
 
     private Instant lastModifiedDate;
 
@@ -67,9 +67,9 @@ public class UserDTO {
         this.imageUrl = user.getImageUrl();
         this.langKey = user.getLangKey();
         this.createdBy = user.getCreatedBy();
-        this.createdDate = user.getCreatedDate();
-        this.lastModifiedBy = user.getLastModifiedBy();
-        this.lastModifiedDate = user.getLastModifiedDate();
+        this.createdDate = user.getCreatedAt();
+        this.lastModifiedBy = user.getUpdatedBy();
+        this.lastModifiedDate = user.getUpdatedAt();
         this.authorities = user.getAuthorities().stream()
             .map(Authority::getName)
             .collect(Collectors.toSet());
@@ -139,11 +139,11 @@ public class UserDTO {
         this.langKey = langKey;
     }
 
-    public String getCreatedBy() {
+    public Long getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(String createdBy) {
+    public void setCreatedBy(Long createdBy) {
         this.createdBy = createdBy;
     }
 
@@ -155,11 +155,11 @@ public class UserDTO {
         this.createdDate = createdDate;
     }
 
-    public String getLastModifiedBy() {
+    public Long getLastModifiedBy() {
         return lastModifiedBy;
     }
 
-    public void setLastModifiedBy(String lastModifiedBy) {
+    public void setLastModifiedBy(Long lastModifiedBy) {
         this.lastModifiedBy = lastModifiedBy;
     }
 

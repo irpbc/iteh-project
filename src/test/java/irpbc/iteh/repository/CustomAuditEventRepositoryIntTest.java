@@ -57,22 +57,22 @@ public class CustomAuditEventRepositoryIntTest {
         Instant oneHourAgo = Instant.now().minusSeconds(3600);
 
         testUserEvent = new PersistentAuditEvent();
-        testUserEvent.setPrincipal("test-user");
-        testUserEvent.setAuditEventType("test-type");
-        testUserEvent.setAuditEventDate(oneHourAgo);
+        testUserEvent.setUserId("test-user");
+        testUserEvent.setEventType("test-type");
+        testUserEvent.setEventDate(oneHourAgo);
         Map<String, String> data = new HashMap<>();
         data.put("test-key", "test-value");
         testUserEvent.setData(data);
 
         testOldUserEvent = new PersistentAuditEvent();
-        testOldUserEvent.setPrincipal("test-user");
-        testOldUserEvent.setAuditEventType("test-type");
-        testOldUserEvent.setAuditEventDate(oneHourAgo.minusSeconds(10000));
+        testOldUserEvent.setUserId("test-user");
+        testOldUserEvent.setEventType("test-type");
+        testOldUserEvent.setEventDate(oneHourAgo.minusSeconds(10000));
 
         testOtherUserEvent = new PersistentAuditEvent();
-        testOtherUserEvent.setPrincipal("other-test-user");
-        testOtherUserEvent.setAuditEventType("test-type");
-        testOtherUserEvent.setAuditEventDate(oneHourAgo);
+        testOtherUserEvent.setUserId("other-test-user");
+        testOtherUserEvent.setEventType("test-type");
+        testOtherUserEvent.setEventDate(oneHourAgo);
     }
 
     @Test
@@ -81,14 +81,14 @@ public class CustomAuditEventRepositoryIntTest {
         persistenceAuditEventRepository.save(testOldUserEvent);
 
         List<AuditEvent> events =
-            customAuditEventRepository.find(Date.from(testUserEvent.getAuditEventDate().minusSeconds(3600)));
+            customAuditEventRepository.find(Date.from(testUserEvent.getEventDate().minusSeconds(3600)));
         assertThat(events).hasSize(1);
         AuditEvent event = events.get(0);
-        assertThat(event.getPrincipal()).isEqualTo(testUserEvent.getPrincipal());
-        assertThat(event.getType()).isEqualTo(testUserEvent.getAuditEventType());
+        assertThat(event.getPrincipal()).isEqualTo(testUserEvent.getUserId());
+        assertThat(event.getType()).isEqualTo(testUserEvent.getEventType());
         assertThat(event.getData()).containsKey("test-key");
         assertThat(event.getData().get("test-key").toString()).isEqualTo("test-value");
-        assertThat(event.getTimestamp()).isEqualTo(Date.from(testUserEvent.getAuditEventDate()));
+        assertThat(event.getTimestamp()).isEqualTo(Date.from(testUserEvent.getEventDate()));
     }
 
     @Test
@@ -98,14 +98,14 @@ public class CustomAuditEventRepositoryIntTest {
         persistenceAuditEventRepository.save(testOtherUserEvent);
 
         List<AuditEvent> events = customAuditEventRepository
-            .find("test-user", Date.from(testUserEvent.getAuditEventDate().minusSeconds(3600)));
+            .find("test-user", Date.from(testUserEvent.getEventDate().minusSeconds(3600)));
         assertThat(events).hasSize(1);
         AuditEvent event = events.get(0);
-        assertThat(event.getPrincipal()).isEqualTo(testUserEvent.getPrincipal());
-        assertThat(event.getType()).isEqualTo(testUserEvent.getAuditEventType());
+        assertThat(event.getPrincipal()).isEqualTo(testUserEvent.getUserId());
+        assertThat(event.getType()).isEqualTo(testUserEvent.getEventType());
         assertThat(event.getData()).containsKey("test-key");
         assertThat(event.getData().get("test-key").toString()).isEqualTo("test-value");
-        assertThat(event.getTimestamp()).isEqualTo(Date.from(testUserEvent.getAuditEventDate()));
+        assertThat(event.getTimestamp()).isEqualTo(Date.from(testUserEvent.getEventDate()));
     }
 
     @Test
@@ -134,24 +134,24 @@ public class CustomAuditEventRepositoryIntTest {
         persistenceAuditEventRepository.save(testUserEvent);
         persistenceAuditEventRepository.save(testOldUserEvent);
 
-        testOtherUserEvent.setAuditEventType(testUserEvent.getAuditEventType());
+        testOtherUserEvent.setEventType(testUserEvent.getEventType());
         persistenceAuditEventRepository.save(testOtherUserEvent);
 
         PersistentAuditEvent testUserOtherTypeEvent = new PersistentAuditEvent();
-        testUserOtherTypeEvent.setPrincipal(testUserEvent.getPrincipal());
-        testUserOtherTypeEvent.setAuditEventType("test-other-type");
-        testUserOtherTypeEvent.setAuditEventDate(testUserEvent.getAuditEventDate());
+        testUserOtherTypeEvent.setUserId(testUserEvent.getUserId());
+        testUserOtherTypeEvent.setEventType("test-other-type");
+        testUserOtherTypeEvent.setEventDate(testUserEvent.getEventDate());
         persistenceAuditEventRepository.save(testUserOtherTypeEvent);
 
         List<AuditEvent> events = customAuditEventRepository.find("test-user",
-            Date.from(testUserEvent.getAuditEventDate().minusSeconds(3600)), "test-type");
+            Date.from(testUserEvent.getEventDate().minusSeconds(3600)), "test-type");
         assertThat(events).hasSize(1);
         AuditEvent event = events.get(0);
-        assertThat(event.getPrincipal()).isEqualTo(testUserEvent.getPrincipal());
-        assertThat(event.getType()).isEqualTo(testUserEvent.getAuditEventType());
+        assertThat(event.getPrincipal()).isEqualTo(testUserEvent.getUserId());
+        assertThat(event.getType()).isEqualTo(testUserEvent.getEventType());
         assertThat(event.getData()).containsKey("test-key");
         assertThat(event.getData().get("test-key").toString()).isEqualTo("test-value");
-        assertThat(event.getTimestamp()).isEqualTo(Date.from(testUserEvent.getAuditEventDate()));
+        assertThat(event.getTimestamp()).isEqualTo(Date.from(testUserEvent.getEventDate()));
     }
 
     @Test
@@ -163,11 +163,11 @@ public class CustomAuditEventRepositoryIntTest {
         List<PersistentAuditEvent> persistentAuditEvents = persistenceAuditEventRepository.findAll();
         assertThat(persistentAuditEvents).hasSize(1);
         PersistentAuditEvent persistentAuditEvent = persistentAuditEvents.get(0);
-        assertThat(persistentAuditEvent.getPrincipal()).isEqualTo(event.getPrincipal());
-        assertThat(persistentAuditEvent.getAuditEventType()).isEqualTo(event.getType());
+        assertThat(persistentAuditEvent.getUserId()).isEqualTo(event.getPrincipal());
+        assertThat(persistentAuditEvent.getEventType()).isEqualTo(event.getType());
         assertThat(persistentAuditEvent.getData()).containsKey("test-key");
         assertThat(persistentAuditEvent.getData().get("test-key")).isEqualTo("test-value");
-        assertThat(persistentAuditEvent.getAuditEventDate()).isEqualTo(event.getTimestamp().toInstant());
+        assertThat(persistentAuditEvent.getEventDate()).isEqualTo(event.getTimestamp().toInstant());
     }
 
     @Test
@@ -183,13 +183,13 @@ public class CustomAuditEventRepositoryIntTest {
         List<PersistentAuditEvent> persistentAuditEvents = persistenceAuditEventRepository.findAll();
         assertThat(persistentAuditEvents).hasSize(1);
         PersistentAuditEvent persistentAuditEvent = persistentAuditEvents.get(0);
-        assertThat(persistentAuditEvent.getPrincipal()).isEqualTo(event.getPrincipal());
-        assertThat(persistentAuditEvent.getAuditEventType()).isEqualTo(event.getType());
+        assertThat(persistentAuditEvent.getUserId()).isEqualTo(event.getPrincipal());
+        assertThat(persistentAuditEvent.getEventType()).isEqualTo(event.getType());
         assertThat(persistentAuditEvent.getData()).containsKey("test-key");
         String actualData = persistentAuditEvent.getData().get("test-key");
         assertThat(actualData.length()).isEqualTo(EVENT_DATA_COLUMN_MAX_LENGTH);
         assertThat(actualData).isSubstringOf(largeData);
-        assertThat(persistentAuditEvent.getAuditEventDate()).isEqualTo(event.getTimestamp().toInstant());
+        assertThat(persistentAuditEvent.getEventDate()).isEqualTo(event.getTimestamp().toInstant());
     }
 
     @Test

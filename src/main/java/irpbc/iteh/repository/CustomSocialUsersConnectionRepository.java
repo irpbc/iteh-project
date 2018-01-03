@@ -25,7 +25,7 @@ public class CustomSocialUsersConnectionRepository implements UsersConnectionRep
         List<SocialUserConnection> socialUserConnections =
             socialUserConnectionRepository.findAllByProviderIdAndProviderUserId(key.getProviderId(), key.getProviderUserId());
         return socialUserConnections.stream()
-            .map(SocialUserConnection::getUserId)
+            .map(c -> c.getUserId().toString())
             .collect(Collectors.toList());
     }
 
@@ -34,7 +34,7 @@ public class CustomSocialUsersConnectionRepository implements UsersConnectionRep
         List<SocialUserConnection> socialUserConnections =
             socialUserConnectionRepository.findAllByProviderIdAndProviderUserIdIn(providerId, providerUserIds);
         return socialUserConnections.stream()
-            .map(SocialUserConnection::getUserId)
+            .map(c -> c.getUserId().toString())
             .collect(Collectors.toSet());
     }
 
@@ -43,6 +43,6 @@ public class CustomSocialUsersConnectionRepository implements UsersConnectionRep
         if (userId == null) {
             throw new IllegalArgumentException("userId cannot be null");
         }
-        return new CustomSocialConnectionRepository(userId, socialUserConnectionRepository, connectionFactoryLocator);
+        return new CustomSocialConnectionRepository(Long.parseLong(userId), socialUserConnectionRepository, connectionFactoryLocator);
     }
 }

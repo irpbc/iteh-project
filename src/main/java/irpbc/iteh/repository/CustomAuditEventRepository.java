@@ -46,7 +46,7 @@ public class CustomAuditEventRepository implements AuditEventRepository {
     @Override
     public List<AuditEvent> find(Date after) {
         Iterable<PersistentAuditEvent> persistentAuditEvents =
-            persistenceAuditEventRepository.findByAuditEventDateAfter(after.toInstant());
+            persistenceAuditEventRepository.findByEventDateAfter(after.toInstant());
         return auditEventConverter.convertToAuditEvent(persistentAuditEvents);
     }
 
@@ -56,18 +56,18 @@ public class CustomAuditEventRepository implements AuditEventRepository {
         if (principal == null && after == null) {
             persistentAuditEvents = persistenceAuditEventRepository.findAll();
         } else if (after == null) {
-            persistentAuditEvents = persistenceAuditEventRepository.findByPrincipal(principal);
+            persistentAuditEvents = persistenceAuditEventRepository.findByUserId(Long.parseLong(principal));
         } else {
-            persistentAuditEvents =
-                persistenceAuditEventRepository.findByPrincipalAndAuditEventDateAfter(principal, after.toInstant());
+            persistentAuditEvents = persistenceAuditEventRepository
+                .findByEventDateAfter(after.toInstant());
         }
         return auditEventConverter.convertToAuditEvent(persistentAuditEvents);
     }
 
     @Override
     public List<AuditEvent> find(String principal, Date after, String type) {
-        Iterable<PersistentAuditEvent> persistentAuditEvents =
-            persistenceAuditEventRepository.findByPrincipalAndAuditEventDateAfterAndAuditEventType(principal, after.toInstant(), type);
+        Iterable<PersistentAuditEvent> persistentAuditEvents = persistenceAuditEventRepository
+                .findByUserIdAndEventDateAfterAndEventType(Long.parseLong(principal), after.toInstant(), type);
         return auditEventConverter.convertToAuditEvent(persistentAuditEvents);
     }
 
@@ -78,9 +78,9 @@ public class CustomAuditEventRepository implements AuditEventRepository {
             !Constants.ANONYMOUS_USER.equals(event.getPrincipal())) {
 
             PersistentAuditEvent persistentAuditEvent = new PersistentAuditEvent();
-            persistentAuditEvent.setPrincipal(event.getPrincipal());
-            persistentAuditEvent.setAuditEventType(event.getType());
-            persistentAuditEvent.setAuditEventDate(event.getTimestamp().toInstant());
+            persistentAuditEvent.setUserId(Long.parseLong(event.getPrincipal()));
+            persistentAuditEvent.setEventType(event.getType());
+            persistentAuditEvent.setEventDate(event.getTimestamp().toInstant());
             Map<String, String> eventData = auditEventConverter.convertDataToStrings(event.getData());
             persistentAuditEvent.setData(truncate(eventData));
             persistenceAuditEventRepository.save(persistentAuditEvent);

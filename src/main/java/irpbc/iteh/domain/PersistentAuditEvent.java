@@ -13,7 +13,7 @@ import java.util.Map;
  * @see org.springframework.boot.actuate.audit.AuditEvent
  */
 @Entity
-@Table(name = "jhi_persistent_audit_event")
+@Table(name = "persistent_audit_event")
 public class PersistentAuditEvent implements Serializable {
 
     @Id
@@ -23,18 +23,18 @@ public class PersistentAuditEvent implements Serializable {
 
     @NotNull
     @Column(nullable = false)
-    private String principal;
+    private Long userId;
 
-    @Column(name = "event_date")
-    private Instant auditEventDate;
+    @Column(name = "date")
+    private Instant eventDate;
 
-    @Column(name = "event_type")
-    private String auditEventType;
+    @Column(name = "type")
+    private String eventType;
 
     @ElementCollection
     @MapKeyColumn(name = "name")
     @Column(name = "value")
-    @CollectionTable(name = "jhi_persistent_audit_evt_data", joinColumns=@JoinColumn(name="event_id"))
+    @CollectionTable(name = "persistent_audit_evt_data", joinColumns=@JoinColumn(name="event_id"))
     private Map<String, String> data = new HashMap<>();
 
     public Long getId() {
@@ -45,28 +45,28 @@ public class PersistentAuditEvent implements Serializable {
         this.id = id;
     }
 
-    public String getPrincipal() {
-        return principal;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setPrincipal(String principal) {
-        this.principal = principal;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public Instant getAuditEventDate() {
-        return auditEventDate;
+    public Instant getEventDate() {
+        return eventDate;
     }
 
-    public void setAuditEventDate(Instant auditEventDate) {
-        this.auditEventDate = auditEventDate;
+    public void setEventDate(Instant eventDate) {
+        this.eventDate = eventDate;
     }
 
-    public String getAuditEventType() {
-        return auditEventType;
+    public String getEventType() {
+        return eventType;
     }
 
-    public void setAuditEventType(String auditEventType) {
-        this.auditEventType = auditEventType;
+    public void setEventType(String eventType) {
+        this.eventType = eventType;
     }
 
     public Map<String, String> getData() {

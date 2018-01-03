@@ -59,9 +59,15 @@ public class AccountResource {
         if (!checkPasswordLength(managedUserVM.getPassword())) {
             throw new InvalidPasswordException();
         }
-        userRepository.findOneByLogin(managedUserVM.getLogin().toLowerCase()).ifPresent(u -> {throw new LoginAlreadyUsedException();});
-        userRepository.findOneByEmailIgnoreCase(managedUserVM.getEmail()).ifPresent(u -> {throw new EmailAlreadyUsedException();});
-        User user = userService.registerUser(managedUserVM, managedUserVM.getPassword());
+        if (userRepository.findOneByLogin(managedUserVM.getLogin().toLowerCase()) == null) {
+            throw new LoginAlreadyUsedException();
+        }
+
+        User user = userRepository.findOneByEmailIgnoreCase(managedUserVM.getEmail());
+        if (user != null) {
+            throw new EmailAlreadyUsedException();
+        }
+        user = userService.registerUser(managedUserVM, managedUserVM.getPassword());
         mailService.sendActivationEmail(user);
     }
 
@@ -74,8 +80,8 @@ public class AccountResource {
     @GetMapping("/activate")
     @Timed
     public void activateAccount(@RequestParam(value = "key") String key) {
-        Optional<User> user = userService.activateRegistration(key);
-        if (!user.isPresent()) {
+        User user = userService.activateRegistration(key);
+        if (user == null) {
             throw new InternalServerErrorException("No user was found for this reset key");
         }
     }
@@ -102,9 +108,11 @@ public class AccountResource {
     @GetMapping("/account")
     @Timed
     public UserDTO getAccount() {
-        return userService.getUserWithAuthorities()
-            .map(UserDTO::new)
-            .orElseThrow(() -> new InternalServerErrorException("User could not be found"));
+        User user = userService.getUserWithAuthorities();
+        if (user != null) {
+            return new UserDTO(user);
+        }
+        throw new InternalServerErrorException("User could not be found");
     }
 
     /**
@@ -117,13 +125,15 @@ public class AccountResource {
     @PostMapping("/account")
     @Timed
     public void saveAccount(@Valid @RequestBody UserDTO userDTO) {
-        final String userLogin = SecurityUtils.getCurrentUserLogin().orElseThrow(() -> new InternalServerErrorException("Current user login not found"));
-        Optional<User> existingUser = userRepository.findOneByEmailIgnoreCase(userDTO.getEmail());
-        if (existingUser.isPresent() && (!existingUser.get().getLogin().equalsIgnoreCase(userLogin))) {
+
+        final Long userId = SecurityUtils.getCurrentUserId();
+
+        User existingUser = userRepository.findOneByEmailIgnoreCase(userDTO.getEmail());
+        if (existingUser != null && !existingUser.getId().equals(userId)) {
             throw new EmailAlreadyUsedException();
         }
-        Optional<User> user = userRepository.findOneByLogin(userLogin);
-        if (!user.isPresent()) {
+        User user = userRepository.findOne(userId);
+        if (user == null) {
             throw new InternalServerErrorException("User could not be found");
         }
         userService.updateUser(userDTO.getFirstName(), userDTO.getLastName(), userDTO.getEmail(),
@@ -154,10 +164,11 @@ public class AccountResource {
     @PostMapping(path = "/account/reset-password/init")
     @Timed
     public void requestPasswordReset(@RequestBody String mail) {
-       mailService.sendPasswordResetMail(
-           userService.requestPasswordReset(mail)
-               .orElseThrow(EmailNotFoundException::new)
-       );
+        User user = userService.requestPasswordReset(mail);
+        if (user == null) {
+            throw new EmailNotFoundException();
+        }
+        mailService.sendPasswordResetMail(user);
     }
 
     /**
@@ -173,10 +184,10 @@ public class AccountResource {
         if (!checkPasswordLength(keyAndPassword.getNewPassword())) {
             throw new InvalidPasswordException();
         }
-        Optional<User> user =
-            userService.completePasswordReset(keyAndPassword.getNewPassword(), keyAndPassword.getKey());
+        User user = userService
+            .completePasswordReset(keyAndPassword.getNewPassword(), keyAndPassword.getKey());
 
-        if (!user.isPresent()) {
+        if (user != null) {
             throw new InternalServerErrorException("No user was found for this reset key");
         }
     }

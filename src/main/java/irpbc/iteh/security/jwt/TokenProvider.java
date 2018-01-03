@@ -6,6 +6,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 
+import irpbc.iteh.security.MyUserDetails;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,6 +24,7 @@ public class TokenProvider {
     private final Logger log = LoggerFactory.getLogger(TokenProvider.class);
 
     private static final String AUTHORITIES_KEY = "auth";
+    private static final String USER_ID_KEY = "uid";
 
     private String secretKey;
 
@@ -60,8 +62,11 @@ public class TokenProvider {
             validity = new Date(now + this.tokenValidityInMilliseconds);
         }
 
+        MyUserDetails principal = (MyUserDetails) authentication.getPrincipal();
+
         return Jwts.builder()
-            .setSubject(authentication.getName())
+            .setSubject(principal.getLogin())
+            .claim(USER_ID_KEY, principal.getUserId())
             .claim(AUTHORITIES_KEY, authorities)
             .signWith(SignatureAlgorithm.HS512, secretKey)
             .setExpiration(validity)
@@ -79,7 +84,9 @@ public class TokenProvider {
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
 
-        User principal = new User(claims.getSubject(), "", authorities);
+        MyUserDetails principal = new MyUserDetails(
+            claims.get(USER_ID_KEY, Long.class), claims.getSubject(), "", authorities
+        );
 
         return new UsernamePasswordAuthenticationToken(principal, token, authorities);
     }

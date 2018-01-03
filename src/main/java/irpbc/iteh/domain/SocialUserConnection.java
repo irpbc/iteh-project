@@ -12,19 +12,13 @@ import java.util.Objects;
  * A Social user.
  */
 @Entity
-@Table(name = "jhi_social_user_connection")
+@Table(name = "social_user_connection")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class SocialUserConnection implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class SocialUserConnection extends AbstractEntity {
 
     @NotNull
     @Column(name = "user_id", length = 255, nullable = false)
-    private String userId;
+    private Long userId;
 
     @NotNull
     @Column(name = "provider_id", length = 255, nullable = false)
@@ -61,7 +55,7 @@ public class SocialUserConnection implements Serializable {
     private Long expireTime;
 
     public SocialUserConnection() {}
-    public SocialUserConnection(String userId,
+    public SocialUserConnection(Long userId,
                                 String providerId,
                                 String providerUserId,
                                 Long rank,
@@ -85,19 +79,11 @@ public class SocialUserConnection implements Serializable {
         this.expireTime = expireTime;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -182,32 +168,9 @@ public class SocialUserConnection implements Serializable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        SocialUserConnection user = (SocialUserConnection) o;
-
-        if (!id.equals(user.id)) {
-            return false;
-        }
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
-    }
-
-    @Override
     public String toString() {
         return "SocialUserConnection{" +
-            "id=" + id +
+            "id=" + getId() +
             ", userId=" + userId +
             ", providerId='" + providerId + '\'' +
             ", providerUserId='" + providerUserId + '\'' +

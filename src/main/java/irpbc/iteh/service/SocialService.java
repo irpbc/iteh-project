@@ -84,15 +84,15 @@ public class SocialService {
             log.error("Cannot create social user because email and login are null");
             throw new IllegalArgumentException("Email and login cannot be null");
         }
-        if (StringUtils.isBlank(email) && userRepository.findOneByLogin(userName).isPresent()) {
+        if (StringUtils.isBlank(email) && userRepository.findOneByLogin(userName) != null) {
             log.error("Cannot create social user because email is null and login already exist, login -> {}", userName);
             throw new IllegalArgumentException("Email cannot be null with an existing login");
         }
         if (!StringUtils.isBlank(email)) {
-            Optional<User> user = userRepository.findOneByEmailIgnoreCase(email);
-            if (user.isPresent()) {
+            User user = userRepository.findOneByEmailIgnoreCase(email);
+            if (user != null) {
                 log.info("User already exist associate the connection to this account");
-                return user.get();
+                return user;
             }
         }
 

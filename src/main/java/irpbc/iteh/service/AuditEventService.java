@@ -38,7 +38,7 @@ public class AuditEventService {
     }
 
     public Page<AuditEvent> findByDates(Instant fromDate, Instant toDate, Pageable pageable) {
-        return persistenceAuditEventRepository.findAllByAuditEventDateBetween(fromDate, toDate, pageable)
+        return persistenceAuditEventRepository.findAllByEventDateBetween(fromDate, toDate, pageable)
             .map(auditEventConverter::convertToAuditEvent);
     }
 
