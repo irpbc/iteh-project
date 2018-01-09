@@ -31,7 +31,9 @@
     "sockjs-client": "1.1.4",
     "webstomp-client": "1.0.6",
     "tether": "1.4.0",
-    "zone.js": "0.8.16"
+    "zone.js": "0.8.16",
+    "@angular/animations": "^4.3.0",
+    "primeng": "^4.2.1"
   },
   "devDependencies": {
     "@angular/cli": "1.6.0",

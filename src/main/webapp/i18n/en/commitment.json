@@ -1,0 +1,24 @@
+{
+    "itehProjectApp": {
+        "commitment" : {
+            "home": {
+                "title": "Commitments",
+                "createLabel": "Create a new Commitment",
+                "createOrEditLabel": "Create or edit a Commitment",
+                "search": "Search for Commitment"
+            },
+            "created": "A new Commitment is created with identifier {{ param }}",
+            "updated": "A Commitment is updated with identifier {{ param }}",
+            "deleted": "A Commitment is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Commitment {{ id }}?"
+            },
+            "detail": {
+                "title": "Commitment"
+            },
+            "name": "Name",
+            "maxPoints": "Max Points",
+            "course": "Course"
+        }
+    }
+}

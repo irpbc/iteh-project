@@ -1,0 +1,25 @@
+{
+    "itehProjectApp": {
+        "examPeriod" : {
+            "home": {
+                "title": "Exam Periods",
+                "createLabel": "Create a new Exam Period",
+                "createOrEditLabel": "Create or edit a Exam Period",
+                "search": "Search for Exam Period"
+            },
+            "created": "A new Exam Period is created with identifier {{ param }}",
+            "updated": "A Exam Period is updated with identifier {{ param }}",
+            "deleted": "A Exam Period is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Exam Period {{ id }}?"
+            },
+            "detail": {
+                "title": "Exam Period"
+            },
+            "name": "Name",
+            "startDate": "Start Date",
+            "endDate": "End Date",
+            "year": "Year"
+        }
+    }
+}

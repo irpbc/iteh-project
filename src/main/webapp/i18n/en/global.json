@@ -7,6 +7,19 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entities",
+                "course": "Course",
+                "schoolYear": "School Year",
+                "student": "Student",
+                "courseEnrollment": "Course Enrollment",
+                "schoolYearEnrollment": "School Year Enrollment",
+                "commitment": "Commitment",
+                "studentCommitment": "Student Commitment",
+                "lecturer": "Lecturer",
+                "examPeriod": "Exam Period",
+                "exam": "Exam",
+                "studentExam": "Student Exam",
+                "semester": "Semester",
+                "optionalCourseGroup": "Optional Course Group",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

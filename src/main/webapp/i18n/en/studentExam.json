@@ -1,0 +1,26 @@
+{
+    "itehProjectApp": {
+        "studentExam" : {
+            "home": {
+                "title": "Student Exams",
+                "createLabel": "Create a new Student Exam",
+                "createOrEditLabel": "Create or edit a Student Exam",
+                "search": "Search for Student Exam"
+            },
+            "created": "A new Student Exam is created with identifier {{ param }}",
+            "updated": "A Student Exam is updated with identifier {{ param }}",
+            "deleted": "A Student Exam is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Student Exam {{ id }}?"
+            },
+            "detail": {
+                "title": "Student Exam"
+            },
+            "attended": "Attended",
+            "grade": "Grade",
+            "student": "Student",
+            "exam": "Exam",
+            "evaluatedBy": "Evaluated By"
+        }
+    }
+}

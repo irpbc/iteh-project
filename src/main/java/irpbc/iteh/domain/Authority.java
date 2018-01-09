@@ -2,6 +2,8 @@ package irpbc.iteh.domain;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.boot.actuate.autoconfigure.ShellProperties;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -32,6 +34,11 @@ public class Authority implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Authority name(String name) {
+        this.name = name;
+        return this;
     }
 
     @Override

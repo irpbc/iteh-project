@@ -27,6 +27,12 @@
     minimist "^1.2.0"
     rxjs "^5.5.2"
 
+"@angular/animations@^4.3.0":
+  version "4.4.6"
+  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-4.4.6.tgz#fa661899a8a4e38cb7c583c7a5c97ce65d592a35"
+  dependencies:
+    tslib "^1.7.1"
+
 "@angular/cli@1.6.0":
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/@angular/cli/-/cli-1.6.0.tgz#eba521f6a8e4c2db628300baddbc4da13ca96998"
@@ -7707,6 +7713,10 @@ pretty-error@^2.0.2:
   dependencies:
     renderkid "^2.0.1"
     utila "~0.4"
+
+primeng@^4.2.1:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/primeng/-/primeng-4.3.0.tgz#687ecd1e1a158cf0e8742efc7da9b9338cd470c3"
 
 private@^0.1.6, private@~0.1.5:
   version "0.1.8"

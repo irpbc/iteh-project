@@ -1,0 +1,26 @@
+{
+    "itehProjectApp": {
+        "lecturer" : {
+            "home": {
+                "title": "Lecturers",
+                "createLabel": "Kreiraj novi Lecturer",
+                "createOrEditLabel": "Kreirajte ili izmenite Lecturer",
+                "search": "Potražite Lecturer"
+            },
+            "created": "Kreiran je novi Lecturer pod nazivom {{ param }}",
+            "updated": "Lecturer pod nazivom {{ param }} je ažuriran",
+            "deleted": "Lecturer pod nazivom {{ param }} je obrisan",
+            "delete": {
+                "question": "Da li ste sigurni da želite da obrišete Lecturer pod nazivom {{ id }}?"
+            },
+            "detail": {
+                "title": "Lecturer"
+            },
+            "login": "Login",
+            "email": "Email",
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "courses": "Courses"
+        }
+    }
+}

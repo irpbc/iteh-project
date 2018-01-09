@@ -1,0 +1,46 @@
+
+<div *ngIf="schoolYearEnrollment">
+    <h2><span jhiTranslate="itehProjectApp.schoolYearEnrollment.detail.title">School Year Enrollment</span> {{schoolYearEnrollment.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="itehProjectApp.schoolYearEnrollment.averageGrade">Average Grade</span></dt>
+        <dd>
+            <span>{{schoolYearEnrollment.averageGrade}}</span>
+        </dd>
+        <dt><span jhiTranslate="itehProjectApp.schoolYearEnrollment.espbPointsDeclared">Espb Points Declared</span></dt>
+        <dd>
+            <span>{{schoolYearEnrollment.espbPointsDeclared}}</span>
+        </dd>
+        <dt><span jhiTranslate="itehProjectApp.schoolYearEnrollment.espbPointsAttained">Espb Points Attained</span></dt>
+        <dd>
+            <span>{{schoolYearEnrollment.espbPointsAttained}}</span>
+        </dd>
+        <dt><span jhiTranslate="itehProjectApp.schoolYearEnrollment.student">Student</span></dt>
+        <dd>
+            <div *ngIf="schoolYearEnrollment.studentId">
+                <a [routerLink]="['/student', schoolYearEnrollment.studentId]">{{schoolYearEnrollment.studentId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="itehProjectApp.schoolYearEnrollment.year">Year</span></dt>
+        <dd>
+            <div *ngIf="schoolYearEnrollment.yearId">
+                <a [routerLink]="['/school-year', schoolYearEnrollment.yearId]">{{schoolYearEnrollment.yearId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'school-year-enrollment/'+ schoolYearEnrollment.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

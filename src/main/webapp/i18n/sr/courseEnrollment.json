@@ -1,0 +1,26 @@
+{
+    "itehProjectApp": {
+        "courseEnrollment" : {
+            "home": {
+                "title": "Course Enrollments",
+                "createLabel": "Kreiraj novi Course Enrollment",
+                "createOrEditLabel": "Kreirajte ili izmenite Course Enrollment",
+                "search": "Potražite Course Enrollment"
+            },
+            "created": "Kreiran je novi Course Enrollment pod nazivom {{ param }}",
+            "updated": "Course Enrollment pod nazivom {{ param }} je ažuriran",
+            "deleted": "Course Enrollment pod nazivom {{ param }} je obrisan",
+            "delete": {
+                "question": "Da li ste sigurni da želite da obrišete Course Enrollment pod nazivom {{ id }}?"
+            },
+            "detail": {
+                "title": "Course Enrollment"
+            },
+            "totalPoints": "Total Points",
+            "grade": "Grade",
+            "completed": "Completed",
+            "yearEnrollment": "Year Enrollment",
+            "course": "Course"
+        }
+    }
+}

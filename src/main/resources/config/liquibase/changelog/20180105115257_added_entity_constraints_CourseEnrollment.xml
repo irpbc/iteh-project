@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity CourseEnrollment.
+    -->
+    <changeSet id="20180105115257-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="year_enrollment_id"
+                                 baseTableName="course_enrollment"
+                                 constraintName="fk_course_enrollment_year_enrollment_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="school_year_enrollment"/>
+
+        <addForeignKeyConstraint baseColumnNames="course_id"
+                                 baseTableName="course_enrollment"
+                                 constraintName="fk_course_enrollment_course_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="course"/>
+
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,24 @@
+{
+    "itehProjectApp": {
+        "exam" : {
+            "home": {
+                "title": "Exams",
+                "createLabel": "Kreiraj novi Exam",
+                "createOrEditLabel": "Kreirajte ili izmenite Exam",
+                "search": "Potražite Exam"
+            },
+            "created": "Kreiran je novi Exam pod nazivom {{ param }}",
+            "updated": "Exam pod nazivom {{ param }} je ažuriran",
+            "deleted": "Exam pod nazivom {{ param }} je obrisan",
+            "delete": {
+                "question": "Da li ste sigurni da želite da obrišete Exam pod nazivom {{ id }}?"
+            },
+            "detail": {
+                "title": "Exam"
+            },
+            "time": "Time",
+            "period": "Period",
+            "course": "Course"
+        }
+    }
+}

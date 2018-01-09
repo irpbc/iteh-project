@@ -1,0 +1,32 @@
+
+<div *ngIf="optionalCourseGroup">
+    <h2><span jhiTranslate="itehProjectApp.optionalCourseGroup.detail.title">Optional Course Group</span> {{optionalCourseGroup.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="itehProjectApp.optionalCourseGroup.name">Name</span></dt>
+        <dd>
+            <span>{{optionalCourseGroup.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="itehProjectApp.optionalCourseGroup.semester">Semester</span></dt>
+        <dd>
+            <div *ngIf="optionalCourseGroup.semesterId">
+                <a [routerLink]="['/semester', optionalCourseGroup.semesterId]">{{optionalCourseGroup.semesterId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'optional-course-group/'+ optionalCourseGroup.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

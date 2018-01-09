@@ -1,0 +1,23 @@
+{
+    "itehProjectApp": {
+        "semester" : {
+            "home": {
+                "title": "Semesters",
+                "createLabel": "Kreiraj novi Semester",
+                "createOrEditLabel": "Kreirajte ili izmenite Semester",
+                "search": "Potražite Semester"
+            },
+            "created": "Kreiran je novi Semester pod nazivom {{ param }}",
+            "updated": "Semester pod nazivom {{ param }} je ažuriran",
+            "deleted": "Semester pod nazivom {{ param }} je obrisan",
+            "delete": {
+                "question": "Da li ste sigurni da želite da obrišete Semester pod nazivom {{ id }}?"
+            },
+            "detail": {
+                "title": "Semester"
+            },
+            "name": "Name",
+            "year": "Year"
+        }
+    }
+}

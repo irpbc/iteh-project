@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity OptionalCourseGroup.
+    -->
+    <changeSet id="20180105115306-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="semester_id"
+                                 baseTableName="optional_course_group"
+                                 constraintName="fk_optional_course_group_semester_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="semester"/>
+
+    </changeSet>
+</databaseChangeLog>

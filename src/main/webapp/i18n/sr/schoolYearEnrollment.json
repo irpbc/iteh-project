@@ -1,0 +1,26 @@
+{
+    "itehProjectApp": {
+        "schoolYearEnrollment" : {
+            "home": {
+                "title": "School Year Enrollments",
+                "createLabel": "Kreiraj novi School Year Enrollment",
+                "createOrEditLabel": "Kreirajte ili izmenite School Year Enrollment",
+                "search": "Potražite School Year Enrollment"
+            },
+            "created": "Kreiran je novi School Year Enrollment pod nazivom {{ param }}",
+            "updated": "School Year Enrollment pod nazivom {{ param }} je ažuriran",
+            "deleted": "School Year Enrollment pod nazivom {{ param }} je obrisan",
+            "delete": {
+                "question": "Da li ste sigurni da želite da obrišete School Year Enrollment pod nazivom {{ id }}?"
+            },
+            "detail": {
+                "title": "School Year Enrollment"
+            },
+            "averageGrade": "Average Grade",
+            "espbPointsDeclared": "Espb Points Declared",
+            "espbPointsAttained": "Espb Points Attained",
+            "student": "Student",
+            "year": "Year"
+        }
+    }
+}

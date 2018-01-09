@@ -1,0 +1,86 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="mySchoolYearEnrollmentLabel" jhiTranslate="itehProjectApp.schoolYearEnrollment.home.createOrEditLabel">Create or edit a School Year Enrollment</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!schoolYearEnrollment.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id" [(ngModel)]="schoolYearEnrollment.id" readonly>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="itehProjectApp.schoolYearEnrollment.averageGrade" for="field_averageGrade">Average Grade</label>
+            <p-spinner name="averageGrade" id="field_averageGrade" [(ngModel)]="schoolYearEnrollment.averageGrade" min="6" max="10"></p-spinner>
+            <div [hidden]="!(editForm.controls.averageGrade?.dirty && editForm.controls.averageGrade?.invalid)">
+                <small class="form-text text-danger" [hidden]="!editForm.controls.averageGrade?.errors?.min" jhiTranslate="entity.validation.min" translateValues="{ min: 6 }">
+                    This field should be at least 6.
+                </small>
+                <small class="form-text text-danger" [hidden]="!editForm.controls.averageGrade?.errors?.max" jhiTranslate="entity.validation.max" translateValues="{ max: 10 }">
+                    This field cannot be more than 10.
+                </small>
+                <small class="form-text text-danger" [hidden]="!editForm.controls.averageGrade?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="itehProjectApp.schoolYearEnrollment.espbPointsDeclared" for="field_espbPointsDeclared">Espb Points Declared</label>
+            <p-spinner name="espbPointsDeclared" id="field_espbPointsDeclared" [(ngModel)]="schoolYearEnrollment.espbPointsDeclared" required></p-spinner>
+            <div [hidden]="!(editForm.controls.espbPointsDeclared?.dirty && editForm.controls.espbPointsDeclared?.invalid)">
+                <small class="form-text text-danger" [hidden]="!editForm.controls.espbPointsDeclared?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger" [hidden]="!editForm.controls.espbPointsDeclared?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="itehProjectApp.schoolYearEnrollment.espbPointsAttained" for="field_espbPointsAttained">Espb Points Attained</label>
+            <p-spinner name="espbPointsAttained" id="field_espbPointsAttained" [(ngModel)]="schoolYearEnrollment.espbPointsAttained" required></p-spinner>
+            <div [hidden]="!(editForm.controls.espbPointsAttained?.dirty && editForm.controls.espbPointsAttained?.invalid)">
+                <small class="form-text text-danger" [hidden]="!editForm.controls.espbPointsAttained?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger" [hidden]="!editForm.controls.espbPointsAttained?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="itehProjectApp.schoolYearEnrollment.student" for="field_student">Student</label>
+            <select class="form-control" id="field_student" name="student" [(ngModel)]="schoolYearEnrollment.studentId" required>
+                <option *ngIf="!editForm.value.student" [ngValue]="null" selected></option>
+                <option [ngValue]="studentOption.id" *ngFor="let studentOption of students; trackBy: trackStudentById">{{studentOption.id}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.student?.dirty && editForm.controls.student?.invalid)">
+            <small class="form-text text-danger" [hidden]="!editForm.controls.student?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="itehProjectApp.schoolYearEnrollment.year" for="field_year">Year</label>
+            <select class="form-control" id="field_year" name="year" [(ngModel)]="schoolYearEnrollment.yearId" required>
+                <option *ngIf="!editForm.value.year" [ngValue]="null" selected></option>
+                <option [ngValue]="schoolYearOption.id" *ngFor="let schoolYearOption of schoolyears; trackBy: trackSchoolYearById">{{schoolYearOption.id}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.year?.dirty && editForm.controls.year?.invalid)">
+            <small class="form-text text-danger" [hidden]="!editForm.controls.year?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

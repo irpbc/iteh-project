@@ -1,0 +1,56 @@
+
+<div *ngIf="course">
+    <h2><span jhiTranslate="itehProjectApp.course.detail.title">Course</span> {{course.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="itehProjectApp.course.name">Name</span></dt>
+        <dd>
+            <span>{{course.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="itehProjectApp.course.espbPoints">Espb Points</span></dt>
+        <dd>
+            <span>{{course.espbPoints}}</span>
+        </dd>
+        <dt><span jhiTranslate="itehProjectApp.course.yearOfStudies">Year Of Studies</span></dt>
+        <dd>
+            <span>{{course.yearOfStudies}}</span>
+        </dd>
+        <dt><span jhiTranslate="itehProjectApp.course.optional">Optional</span></dt>
+        <dd>
+            <span>{{course.optional}}</span>
+        </dd>
+        <dt><span jhiTranslate="itehProjectApp.course.semester">Semester</span></dt>
+        <dd>
+            <div *ngIf="course.semesterId">
+                <a [routerLink]="['/semester', course.semesterId]">{{course.semesterId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="itehProjectApp.course.optionalGroup">Optional Group</span></dt>
+        <dd>
+            <div *ngIf="course.optionalGroupId">
+                <a [routerLink]="['/optional-course-group', course.optionalGroupId]">{{course.optionalGroupId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="itehProjectApp.course.lecturers">Lecturers</span></dt>
+        <dd>
+            <span *ngFor="let lecturers of course.lecturers; let last = last">
+                <a [routerLink]="['/lecturer', lecturers?.id ]">{{lecturers.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'course/'+ course.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

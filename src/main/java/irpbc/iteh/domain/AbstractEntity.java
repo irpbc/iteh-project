@@ -34,6 +34,11 @@ public abstract class AbstractEntity implements Serializable {
         this.id = id;
     }
 
+    public AbstractEntity id(Long id) {
+        this.id = id;
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -16,9 +16,7 @@ import java.util.stream.Collectors;
 /**
  * A DTO representing a user, with his authorities.
  */
-public class UserDTO {
-
-    private Long id;
+public class UserDTO extends AbstractEntityDTO {
 
     @NotBlank
     @Pattern(regexp = Constants.LOGIN_REGEX)
@@ -43,45 +41,7 @@ public class UserDTO {
     @Size(min = 2, max = 6)
     private String langKey;
 
-    private Long createdBy;
-
-    private Instant createdDate;
-
-    private Long lastModifiedBy;
-
-    private Instant lastModifiedDate;
-
     private Set<String> authorities;
-
-    public UserDTO() {
-        // Empty constructor needed for Jackson.
-    }
-
-    public UserDTO(User user) {
-        this.id = user.getId();
-        this.login = user.getLogin();
-        this.firstName = user.getFirstName();
-        this.lastName = user.getLastName();
-        this.email = user.getEmail();
-        this.activated = user.getActivated();
-        this.imageUrl = user.getImageUrl();
-        this.langKey = user.getLangKey();
-        this.createdBy = user.getCreatedBy();
-        this.createdDate = user.getCreatedAt();
-        this.lastModifiedBy = user.getUpdatedBy();
-        this.lastModifiedDate = user.getUpdatedAt();
-        this.authorities = user.getAuthorities().stream()
-            .map(Authority::getName)
-            .collect(Collectors.toSet());
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getLogin() {
         return login;
@@ -139,44 +99,56 @@ public class UserDTO {
         this.langKey = langKey;
     }
 
-    public Long getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(Long createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public Instant getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Instant createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public Long getLastModifiedBy() {
-        return lastModifiedBy;
-    }
-
-    public void setLastModifiedBy(Long lastModifiedBy) {
-        this.lastModifiedBy = lastModifiedBy;
-    }
-
-    public Instant getLastModifiedDate() {
-        return lastModifiedDate;
-    }
-
-    public void setLastModifiedDate(Instant lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
-    }
-
     public Set<String> getAuthorities() {
         return authorities;
     }
 
     public void setAuthorities(Set<String> authorities) {
         this.authorities = authorities;
+    }
+
+    public UserDTO id(Long id) {
+        return (UserDTO) super.id(id);
+    }
+
+    public UserDTO login(String login) {
+        this.login = login;
+        return this;
+    }
+
+    public UserDTO firstName(String firstName) {
+        this.firstName = firstName;
+        return this;
+    }
+
+    public UserDTO lastName(String lastName) {
+        this.lastName = lastName;
+        return this;
+    }
+
+    public UserDTO email(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public UserDTO imageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+        return this;
+    }
+
+    public UserDTO activated(boolean activated) {
+        this.activated = activated;
+        return this;
+    }
+
+    public UserDTO langKey(String langKey) {
+        this.langKey = langKey;
+        return this;
+    }
+
+    public UserDTO authorities(Set<String> authorities) {
+        this.authorities = authorities;
+        return this;
     }
 
     @Override
@@ -189,10 +161,6 @@ public class UserDTO {
             ", imageUrl='" + imageUrl + '\'' +
             ", activated=" + activated +
             ", langKey='" + langKey + '\'' +
-            ", createdBy=" + createdBy +
-            ", createdDate=" + createdDate +
-            ", lastModifiedBy='" + lastModifiedBy + '\'' +
-            ", lastModifiedDate=" + lastModifiedDate +
             ", authorities=" + authorities +
             "}";
     }

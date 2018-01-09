@@ -1,0 +1,28 @@
+{
+    "itehProjectApp": {
+        "course" : {
+            "home": {
+                "title": "Courses",
+                "createLabel": "Kreiraj novi Course",
+                "createOrEditLabel": "Kreirajte ili izmenite Course",
+                "search": "Potražite Course"
+            },
+            "created": "Kreiran je novi Course pod nazivom {{ param }}",
+            "updated": "Course pod nazivom {{ param }} je ažuriran",
+            "deleted": "Course pod nazivom {{ param }} je obrisan",
+            "delete": {
+                "question": "Da li ste sigurni da želite da obrišete Course pod nazivom {{ id }}?"
+            },
+            "detail": {
+                "title": "Course"
+            },
+            "name": "Name",
+            "espbPoints": "Espb Points",
+            "yearOfStudies": "Year Of Studies",
+            "optional": "Optional",
+            "semester": "Semester",
+            "optionalGroup": "Optional Group",
+            "lecturers": "Lecturers"
+        }
+    }
+}

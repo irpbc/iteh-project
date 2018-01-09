@@ -1,0 +1,113 @@
+
+entity Course {
+	id Long
+    name String required maxlength(255)
+    espbPoints Integer required
+    yearOfStudies Integer required
+    optional Boolean required
+}
+
+entity SchoolYear {
+	startDate LocalDate required
+    endDate LocalDate required
+}
+
+entity Student {
+    firstName String required maxlength(50)
+    lastName String required  maxlength(50)
+}
+
+entity CourseEnrollment {
+	totalPoints BigDecimal required
+	grade Integer min(6) max(10)
+    completed Boolean required
+}
+
+entity SchoolYearEnrollment {
+	averageGrade BigDecimal min(6) max(10)
+    espbPointsDeclared Integer required
+    espbPointsAttained Integer required
+}
+
+entity Commitment {
+	name String required maxlength(255)
+    maxPoints BigDecimal required
+}
+
+entity StudentCommitment {
+	points BigDecimal
+}
+
+entity Lecturer {
+	login String required maxlength(50)
+    email String required maxlength(100)
+	firstName String required maxlength(50)
+    lastName String required maxlength(50)
+}
+
+entity ExamPeriod {
+	name String required maxlength(100)
+    startDate LocalDate required
+    endDate LocalDate required
+}
+
+entity Exam {
+	time Instant required
+}
+
+entity StudentExam {
+	attended Boolean
+    grade Integer min(6) max(10)
+}
+
+entity Semester {
+	name String required maxlength(100)
+}
+
+entity OptionalCourseGroup {
+	name String required maxlength(100)
+}
+
+relationship ManyToOne {
+    Course{semester required} to Semester
+    Course{optionalGroup} to OptionalCourseGroup
+
+	SchoolYearEnrollment{student required} to Student
+    SchoolYearEnrollment{year required} to SchoolYear
+
+    CourseEnrollment{yearEnrollment required} to SchoolYearEnrollment
+    CourseEnrollment{course required} to Course
+    
+    Commitment{course required} to Course
+ 	   
+    StudentCommitment{enrollment required} to CourseEnrollment
+    StudentCommitment{commitment required} to Commitment
+    StudentCommitment{evaluatedBy} to Lecturer
+    
+    Exam{period required} to ExamPeriod
+    Exam{course required} to Course
+    
+    StudentExam{student required} to Student
+    StudentExam{exam required} to Exam
+    StudentExam{evaluatedBy} to Lecturer
+    
+    ExamPeriod{year required} to SchoolYear
+    
+    Semester{year required} to SchoolYear
+    
+    OptionalCourseGroup{semester required} to Semester
+}
+
+relationship ManyToMany {
+	Course{lecturers} to Lecturer{courses}
+}
+
+// Set pagination options
+paginate * with pagination
+
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceClass
+// Set an angular suffix
+//angularSuffix * with mySuffix

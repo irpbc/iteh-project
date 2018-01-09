@@ -1,0 +1,25 @@
+{
+    "itehProjectApp": {
+        "examPeriod" : {
+            "home": {
+                "title": "Exam Periods",
+                "createLabel": "Kreiraj novi Exam Period",
+                "createOrEditLabel": "Kreirajte ili izmenite Exam Period",
+                "search": "Potražite Exam Period"
+            },
+            "created": "Kreiran je novi Exam Period pod nazivom {{ param }}",
+            "updated": "Exam Period pod nazivom {{ param }} je ažuriran",
+            "deleted": "Exam Period pod nazivom {{ param }} je obrisan",
+            "delete": {
+                "question": "Da li ste sigurni da želite da obrišete Exam Period pod nazivom {{ id }}?"
+            },
+            "detail": {
+                "title": "Exam Period"
+            },
+            "name": "Name",
+            "startDate": "Start Date",
+            "endDate": "End Date",
+            "year": "Year"
+        }
+    }
+}

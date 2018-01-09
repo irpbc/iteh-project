@@ -1,0 +1,26 @@
+{
+    "itehProjectApp": {
+        "schoolYearEnrollment" : {
+            "home": {
+                "title": "School Year Enrollments",
+                "createLabel": "Create a new School Year Enrollment",
+                "createOrEditLabel": "Create or edit a School Year Enrollment",
+                "search": "Search for School Year Enrollment"
+            },
+            "created": "A new School Year Enrollment is created with identifier {{ param }}",
+            "updated": "A School Year Enrollment is updated with identifier {{ param }}",
+            "deleted": "A School Year Enrollment is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete School Year Enrollment {{ id }}?"
+            },
+            "detail": {
+                "title": "School Year Enrollment"
+            },
+            "averageGrade": "Average Grade",
+            "espbPointsDeclared": "Espb Points Declared",
+            "espbPointsAttained": "Espb Points Attained",
+            "student": "Student",
+            "year": "Year"
+        }
+    }
+}

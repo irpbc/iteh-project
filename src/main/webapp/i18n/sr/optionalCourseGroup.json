@@ -1,0 +1,23 @@
+{
+    "itehProjectApp": {
+        "optionalCourseGroup" : {
+            "home": {
+                "title": "Optional Course Groups",
+                "createLabel": "Kreiraj novi Optional Course Group",
+                "createOrEditLabel": "Kreirajte ili izmenite Optional Course Group",
+                "search": "Potražite Optional Course Group"
+            },
+            "created": "Kreiran je novi Optional Course Group pod nazivom {{ param }}",
+            "updated": "Optional Course Group pod nazivom {{ param }} je ažuriran",
+            "deleted": "Optional Course Group pod nazivom {{ param }} je obrisan",
+            "delete": {
+                "question": "Da li ste sigurni da želite da obrišete Optional Course Group pod nazivom {{ id }}?"
+            },
+            "detail": {
+                "title": "Optional Course Group"
+            },
+            "name": "Name",
+            "semester": "Semester"
+        }
+    }
+}

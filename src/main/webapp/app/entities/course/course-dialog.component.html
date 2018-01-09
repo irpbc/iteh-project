@@ -1,0 +1,93 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myCourseLabel" jhiTranslate="itehProjectApp.course.home.createOrEditLabel">Create or edit a Course</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!course.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id" [(ngModel)]="course.id" readonly pInputText>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="itehProjectApp.course.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name" [(ngModel)]="course.name" required maxlength="255" pInputText>
+            <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                <small class="form-text text-danger" [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger" [hidden]="!editForm.controls.name?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 255 }">
+                   This field cannot be longer than 255 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="itehProjectApp.course.espbPoints" for="field_espbPoints">Espb Points</label>
+            <p-spinner name="espbPoints" id="field_espbPoints" [(ngModel)]="course.espbPoints" required></p-spinner>
+            <div [hidden]="!(editForm.controls.espbPoints?.dirty && editForm.controls.espbPoints?.invalid)">
+                <small class="form-text text-danger" [hidden]="!editForm.controls.espbPoints?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger" [hidden]="!editForm.controls.espbPoints?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="itehProjectApp.course.yearOfStudies" for="field_yearOfStudies">Year Of Studies</label>
+            <p-spinner name="yearOfStudies" id="field_yearOfStudies" [(ngModel)]="course.yearOfStudies" required></p-spinner>
+            <div [hidden]="!(editForm.controls.yearOfStudies?.dirty && editForm.controls.yearOfStudies?.invalid)">
+                <small class="form-text text-danger" [hidden]="!editForm.controls.yearOfStudies?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger" [hidden]="!editForm.controls.yearOfStudies?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="itehProjectApp.course.optional" for="field_optional">Optional</label>
+            <p-checkbox name="undefined" id="undefined" [(ngModel)]="undefined"></p-checkbox>
+            <div [hidden]="!(editForm.controls.optional?.dirty && editForm.controls.optional?.invalid)">
+                <small class="form-text text-danger" [hidden]="!editForm.controls.optional?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="itehProjectApp.course.semester" for="field_semester">Semester</label>
+            <select class="form-control" id="field_semester" name="semester" [(ngModel)]="course.semesterId" required>
+                <option *ngIf="!editForm.value.semester" [ngValue]="null" selected></option>
+                <option [ngValue]="semesterOption.id" *ngFor="let semesterOption of semesters; trackBy: trackSemesterById">{{semesterOption.id}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.semester?.dirty && editForm.controls.semester?.invalid)">
+            <small class="form-text text-danger" [hidden]="!editForm.controls.semester?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="itehProjectApp.course.optionalGroup" for="field_optionalGroup">Optional Group</label>
+            <select class="form-control" id="field_optionalGroup" name="optionalGroup" [(ngModel)]="course.optionalGroupId">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="optionalCourseGroupOption.id" *ngFor="let optionalCourseGroupOption of optionalcoursegroups; trackBy: trackOptionalCourseGroupById">{{optionalCourseGroupOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="itehProjectApp.course.lecturers" for="field_lecturers">Lecturers</label>
+            <select class="form-control" id="field_lecturers" multiple name="lecturers" [(ngModel)]="course.lecturers">
+                <option [ngValue]="getSelected(course.lecturers, lecturerOption)" *ngFor="let lecturerOption of lecturers; trackBy: trackLecturerById">{{lecturerOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

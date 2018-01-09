@@ -8,8 +8,10 @@ import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.Email;
+import org.springframework.boot.actuate.autoconfigure.ShellProperties;
 import org.springframework.data.elasticsearch.annotations.Document;
 
+import javax.jws.soap.SOAPBinding;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -26,14 +28,14 @@ import java.time.Instant;
  */
 @Entity
 @Table(name = "user")
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName = "user")
-public class User extends AbstractAuditingEntity {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(discriminatorType = DiscriminatorType.CHAR, name = "dics")
+public class User extends AbstractEntity {
 
     @NotNull
     @Pattern(regexp = Constants.LOGIN_REGEX)
     @Size(min = 1, max = 100)
-    @Column(length = 100, unique = true, nullable = false)
+    @Column(name = "login", length = 100, unique = true, nullable = false)
     private String login;
 
     @JsonIgnore
@@ -52,11 +54,11 @@ public class User extends AbstractAuditingEntity {
 
     @Email
     @Size(min = 5, max = 100)
-    @Column(length = 100, unique = true)
+    @Column(name = "email", length = 100, unique = true)
     private String email;
 
     @NotNull
-    @Column(nullable = false)
+    @Column(name = "activated", nullable = false)
     private boolean activated = false;
 
     @Size(min = 2, max = 6)
@@ -90,25 +92,44 @@ public class User extends AbstractAuditingEntity {
     @BatchSize(size = 20)
     private Set<Authority> authorities = new HashSet<>();
 
+    @Override
+    public User id(Long id) {
+        return (User) super.id(id);
+    }
+
     public String getLogin() {
         return login;
     }
 
-    // Lowercase the login before saving it in database
+    public User login(String login) {
+        this.login = login;
+        return this;
+    }
+
     public void setLogin(String login) {
-        this.login = login.toLowerCase();
+        this.login = login;
     }
 
-    public String getPassword() {
-        return password;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public User email(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getFirstName() {
         return firstName;
+    }
+
+    public User firstName(String firstName) {
+        this.firstName = firstName;
+        return this;
     }
 
     public void setFirstName(String firstName) {
@@ -119,24 +140,26 @@ public class User extends AbstractAuditingEntity {
         return lastName;
     }
 
+    public User lastName(String lastName) {
+        this.lastName = lastName;
+        return this;
+    }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getPassword() {
+        return password;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public User password(String password) {
+        this.password = password;
+        return this;
     }
 
     public boolean getActivated() {
@@ -147,28 +170,9 @@ public class User extends AbstractAuditingEntity {
         this.activated = activated;
     }
 
-    public String getActivationKey() {
-        return activationKey;
-    }
-
-    public void setActivationKey(String activationKey) {
-        this.activationKey = activationKey;
-    }
-
-    public String getResetKey() {
-        return resetKey;
-    }
-
-    public void setResetKey(String resetKey) {
-        this.resetKey = resetKey;
-    }
-
-    public Instant getResetDate() {
-        return resetDate;
-    }
-
-    public void setResetDate(Instant resetDate) {
-        this.resetDate = resetDate;
+    public User activated(boolean activated) {
+        this.activated = activated;
+        return this;
     }
 
     public String getLangKey() {
@@ -179,12 +183,84 @@ public class User extends AbstractAuditingEntity {
         this.langKey = langKey;
     }
 
+    public User langKey(String langKey) {
+        this.langKey = langKey;
+        return this;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public User imageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+        return this;
+    }
+
+    public String getActivationKey() {
+        return activationKey;
+    }
+
+    public void setActivationKey(String activationKey) {
+        this.activationKey = activationKey;
+    }
+
+    public User activationKey(String activationKey) {
+        this.activationKey = activationKey;
+        return this;
+    }
+
+    public String getResetKey() {
+        return resetKey;
+    }
+
+    public void setResetKey(String resetKey) {
+        this.resetKey = resetKey;
+    }
+
+    public User resetKey(String resetKey) {
+        this.resetKey = resetKey;
+        return this;
+    }
+
+    public Instant getResetDate() {
+        return resetDate;
+    }
+
+    public void setResetDate(Instant resetDate) {
+        this.resetDate = resetDate;
+    }
+
+    public User resetDate(Instant resetDate) {
+        this.resetDate = resetDate;
+        return this;
+    }
+
     public Set<Authority> getAuthorities() {
         return authorities;
     }
 
     public void setAuthorities(Set<Authority> authorities) {
         this.authorities = authorities;
+    }
+
+    public User authorities(Set<Authority> authorities) {
+        this.authorities = authorities;
+        return this;
+    }
+
+    public User addAuthority(Authority authority) {
+        this.authorities.add(authority);
+        return this;
+    }
+
+    public User removeAuthority(Authority authority) {
+        this.authorities.remove(authority);
+        return this;
     }
 
     @Override

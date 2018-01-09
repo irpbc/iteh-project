@@ -1,0 +1,23 @@
+{
+    "itehProjectApp": {
+        "optionalCourseGroup" : {
+            "home": {
+                "title": "Optional Course Groups",
+                "createLabel": "Create a new Optional Course Group",
+                "createOrEditLabel": "Create or edit a Optional Course Group",
+                "search": "Search for Optional Course Group"
+            },
+            "created": "A new Optional Course Group is created with identifier {{ param }}",
+            "updated": "A Optional Course Group is updated with identifier {{ param }}",
+            "deleted": "A Optional Course Group is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Optional Course Group {{ id }}?"
+            },
+            "detail": {
+                "title": "Optional Course Group"
+            },
+            "name": "Name",
+            "semester": "Semester"
+        }
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "itehProjectApp": {
+        "studentExam" : {
+            "home": {
+                "title": "Student Exams",
+                "createLabel": "Kreiraj novi Student Exam",
+                "createOrEditLabel": "Kreirajte ili izmenite Student Exam",
+                "search": "Potražite Student Exam"
+            },
+            "created": "Kreiran je novi Student Exam pod nazivom {{ param }}",
+            "updated": "Student Exam pod nazivom {{ param }} je ažuriran",
+            "deleted": "Student Exam pod nazivom {{ param }} je obrisan",
+            "delete": {
+                "question": "Da li ste sigurni da želite da obrišete Student Exam pod nazivom {{ id }}?"
+            },
+            "detail": {
+                "title": "Student Exam"
+            },
+            "attended": "Attended",
+            "grade": "Grade",
+            "student": "Student",
+            "exam": "Exam",
+            "evaluatedBy": "Evaluated By"
+        }
+    }
+}

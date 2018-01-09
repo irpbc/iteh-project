@@ -108,9 +108,9 @@ public class AccountResource {
     @GetMapping("/account")
     @Timed
     public UserDTO getAccount() {
-        User user = userService.getUserWithAuthorities();
+        UserDTO user = userService.getUserWithAuthorities();
         if (user != null) {
-            return new UserDTO(user);
+            return user;
         }
         throw new InternalServerErrorException("User could not be found");
     }

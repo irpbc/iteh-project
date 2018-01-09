@@ -1,0 +1,32 @@
+
+<div *ngIf="semester">
+    <h2><span jhiTranslate="itehProjectApp.semester.detail.title">Semester</span> {{semester.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="itehProjectApp.semester.name">Name</span></dt>
+        <dd>
+            <span>{{semester.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="itehProjectApp.semester.year">Year</span></dt>
+        <dd>
+            <div *ngIf="semester.yearId">
+                <a [routerLink]="['/school-year', semester.yearId]">{{semester.yearId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'semester/'+ semester.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

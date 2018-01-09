@@ -1,0 +1,38 @@
+
+<div *ngIf="lecturer">
+    <h2><span jhiTranslate="itehProjectApp.lecturer.detail.title">Lecturer</span> {{lecturer.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="itehProjectApp.lecturer.login">Login</span></dt>
+        <dd>
+            <span>{{lecturer.login}}</span>
+        </dd>
+        <dt><span jhiTranslate="itehProjectApp.lecturer.email">Email</span></dt>
+        <dd>
+            <span>{{lecturer.email}}</span>
+        </dd>
+        <dt><span jhiTranslate="itehProjectApp.lecturer.firstName">First Name</span></dt>
+        <dd>
+            <span>{{lecturer.firstName}}</span>
+        </dd>
+        <dt><span jhiTranslate="itehProjectApp.lecturer.lastName">Last Name</span></dt>
+        <dd>
+            <span>{{lecturer.lastName}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'lecturer/'+ lecturer.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

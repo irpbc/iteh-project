@@ -1,0 +1,25 @@
+{
+    "itehProjectApp": {
+        "studentCommitment" : {
+            "home": {
+                "title": "Student Commitments",
+                "createLabel": "Create a new Student Commitment",
+                "createOrEditLabel": "Create or edit a Student Commitment",
+                "search": "Search for Student Commitment"
+            },
+            "created": "A new Student Commitment is created with identifier {{ param }}",
+            "updated": "A Student Commitment is updated with identifier {{ param }}",
+            "deleted": "A Student Commitment is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Student Commitment {{ id }}?"
+            },
+            "detail": {
+                "title": "Student Commitment"
+            },
+            "points": "Points",
+            "enrollment": "Enrollment",
+            "commitment": "Commitment",
+            "evaluatedBy": "Evaluated By"
+        }
+    }
+}

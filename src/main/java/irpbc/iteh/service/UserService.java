@@ -8,6 +8,7 @@ import irpbc.iteh.repository.UserRepository;
 import irpbc.iteh.repository.search.UserSearchRepository;
 import irpbc.iteh.security.AuthoritiesConstants;
 import irpbc.iteh.security.SecurityUtils;
+import irpbc.iteh.service.mapper.UserMapper;
 import irpbc.iteh.service.util.RandomUtil;
 import irpbc.iteh.service.dto.UserDTO;
 
@@ -38,19 +39,22 @@ public class UserService {
     private static final String USERS_CACHE = "users";
 
     private final UserRepository userRepository;
-
+    private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
-
     private final SocialService socialService;
-
     private final UserSearchRepository userSearchRepository;
-
     private final AuthorityRepository authorityRepository;
-
     private final CacheManager cacheManager;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, SocialService socialService, UserSearchRepository userSearchRepository, AuthorityRepository authorityRepository, CacheManager cacheManager) {
+    public UserService(UserRepository userRepository,
+                       UserMapper userMapper,
+                       PasswordEncoder passwordEncoder,
+                       SocialService socialService,
+                       UserSearchRepository userSearchRepository,
+                       AuthorityRepository authorityRepository,
+                       CacheManager cacheManager) {
         this.userRepository = userRepository;
+        this.userMapper = userMapper;
         this.passwordEncoder = passwordEncoder;
         this.socialService = socialService;
         this.userSearchRepository = userSearchRepository;
@@ -197,7 +201,7 @@ public class UserService {
                 log.debug("Changed Information for User: {}", user);
                 return user;
             })
-            .map(UserDTO::new);
+            .map(userMapper::toDto);
     }
 
     public void deleteUser(String login) {
@@ -219,12 +223,14 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public Page<UserDTO> getAllManagedUsers(Pageable pageable) {
-        return userRepository.findAllByLoginNot(pageable, Constants.ANONYMOUS_USER).map(UserDTO::new);
+        return userRepository
+            .findAllByLoginNot(pageable, Constants.ANONYMOUS_USER)
+            .map(userMapper::toDto);
     }
 
     @Transactional(readOnly = true)
-    public User getUserWithAuthoritiesByLogin(String login) {
-        return userRepository.findOneWithAuthoritiesByLogin(login);
+    public UserDTO getUserWithAuthoritiesByLogin(String login) {
+        return userMapper.toDto(userRepository.findOneWithAuthoritiesByLogin(login));
     }
 
     @Transactional(readOnly = true)
@@ -233,8 +239,9 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public User getUserWithAuthorities() {
-        return userRepository.findOneWithAuthoritiesById(SecurityUtils.getCurrentUserId());
+    public UserDTO getUserWithAuthorities() {
+        return userMapper.toDto(userRepository
+            .findOneWithAuthoritiesById(SecurityUtils.getCurrentUserId()));
     }
 
     /**

@@ -1,0 +1,24 @@
+{
+    "itehProjectApp": {
+        "commitment" : {
+            "home": {
+                "title": "Commitments",
+                "createLabel": "Kreiraj novi Commitment",
+                "createOrEditLabel": "Kreirajte ili izmenite Commitment",
+                "search": "Potražite Commitment"
+            },
+            "created": "Kreiran je novi Commitment pod nazivom {{ param }}",
+            "updated": "Commitment pod nazivom {{ param }} je ažuriran",
+            "deleted": "Commitment pod nazivom {{ param }} je obrisan",
+            "delete": {
+                "question": "Da li ste sigurni da želite da obrišete Commitment pod nazivom {{ id }}?"
+            },
+            "detail": {
+                "title": "Commitment"
+            },
+            "name": "Name",
+            "maxPoints": "Max Points",
+            "course": "Course"
+        }
+    }
+}

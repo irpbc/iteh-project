@@ -1,0 +1,40 @@
+
+<div *ngIf="examPeriod">
+    <h2><span jhiTranslate="itehProjectApp.examPeriod.detail.title">Exam Period</span> {{examPeriod.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="itehProjectApp.examPeriod.name">Name</span></dt>
+        <dd>
+            <span>{{examPeriod.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="itehProjectApp.examPeriod.startDate">Start Date</span></dt>
+        <dd>
+            <span>{{examPeriod.startDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="itehProjectApp.examPeriod.endDate">End Date</span></dt>
+        <dd>
+            <span>{{examPeriod.endDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="itehProjectApp.examPeriod.year">Year</span></dt>
+        <dd>
+            <div *ngIf="examPeriod.yearId">
+                <a [routerLink]="['/school-year', examPeriod.yearId]">{{examPeriod.yearId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'exam-period/'+ examPeriod.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
