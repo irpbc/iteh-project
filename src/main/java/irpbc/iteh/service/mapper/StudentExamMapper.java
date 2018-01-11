@@ -9,12 +9,14 @@ import org.mapstruct.*;
  * Mapper for the entity StudentExam and its DTO StudentExamDTO.
  */
 @Mapper(componentModel = "spring", config = EntityMapperConfig.class,
-    uses = {StudentMapper.class, ExamMapper.class, LecturerMapper.class})
+    uses = {UserMapper.class, ExamMapper.class})
 public interface StudentExamMapper extends EntityMapper<StudentExamDTO, StudentExam> {
 
     @Mapping(source = "student.id", target = "studentId")
+    @Mapping(source = "student.fullName", target = "studentFullName")
     @Mapping(source = "exam.id", target = "examId")
     @Mapping(source = "evaluatedBy.id", target = "evaluatedById")
+    @Mapping(source = "evaluatedBy.fullName", target = "evaluatedByFullName")
     StudentExamDTO toDto(StudentExam studentExam); 
 
     @Mapping(source = "studentId", target = "student")

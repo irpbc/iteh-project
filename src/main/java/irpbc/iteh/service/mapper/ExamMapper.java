@@ -13,7 +13,9 @@ import org.mapstruct.*;
 public interface ExamMapper extends EntityMapper<ExamDTO, Exam> {
 
     @Mapping(source = "period.id", target = "periodId")
+    @Mapping(source = "period.name", target = "periodName")
     @Mapping(source = "course.id", target = "courseId")
+    @Mapping(source = "course.name", target = "courseName")
     ExamDTO toDto(Exam exam); 
 
     @Mapping(source = "periodId", target = "period")

@@ -33,7 +33,7 @@ public class StudentCommitment extends AbstractEntity {
     private Commitment commitment;
 
     @ManyToOne
-    private Lecturer evaluatedBy;
+    private User evaluatedBy;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
 
@@ -76,17 +76,17 @@ public class StudentCommitment extends AbstractEntity {
         this.commitment = commitment;
     }
 
-    public Lecturer getEvaluatedBy() {
+    public User getEvaluatedBy() {
         return evaluatedBy;
     }
 
-    public StudentCommitment evaluatedBy(Lecturer lecturer) {
-        this.evaluatedBy = lecturer;
+    public StudentCommitment evaluatedBy(User user) {
+        this.evaluatedBy = user;
         return this;
     }
 
-    public void setEvaluatedBy(Lecturer lecturer) {
-        this.evaluatedBy = lecturer;
+    public void setEvaluatedBy(User user) {
+        this.evaluatedBy = user;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

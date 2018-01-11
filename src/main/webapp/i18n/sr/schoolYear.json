@@ -16,6 +16,7 @@
             "detail": {
                 "title": "School Year"
             },
+            "name": "Name",
             "startDate": "Start Date",
             "endDate": "End Date"
         }

@@ -1,27 +1,19 @@
 package irpbc.iteh.domain;
 
-import irpbc.iteh.config.Constants;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.apache.commons.lang3.StringUtils;
+import irpbc.iteh.config.Constants;
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.Email;
-import org.springframework.boot.actuate.autoconfigure.ShellProperties;
-import org.springframework.data.elasticsearch.annotations.Document;
 
-import javax.jws.soap.SOAPBinding;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Objects;
-import java.util.Set;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A user.
@@ -31,6 +23,11 @@ import java.time.Instant;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.CHAR, name = "dics")
 public class User extends AbstractEntity {
+
+    @NotNull
+    @Column(name = "type", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private UserType userType;
 
     @NotNull
     @Pattern(regexp = Constants.LOGIN_REGEX)
@@ -51,6 +48,11 @@ public class User extends AbstractEntity {
     @Size(max = 50)
     @Column(name = "last_name", length = 50)
     private String lastName;
+
+    @NotNull
+    @Size(max = 100)
+    @Column(name = "full_name", length = 100, nullable = false)
+    private String fullName;
 
     @Email
     @Size(min = 5, max = 100)
@@ -82,6 +84,11 @@ public class User extends AbstractEntity {
     @Column(name = "reset_date")
     private Instant resetDate = null;
 
+    @ManyToMany(mappedBy = "lecturers")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Course> courses = new HashSet<>();
+
     @JsonIgnore
     @ManyToMany
     @JoinTable(
@@ -92,9 +99,17 @@ public class User extends AbstractEntity {
     @BatchSize(size = 20)
     private Set<Authority> authorities = new HashSet<>();
 
-    @Override
-    public User id(Long id) {
-        return (User) super.id(id);
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public User userType(UserType userType) {
+        this.userType = userType;
+        return this;
+    }
+
+    public void setUserType(UserType userType) {
+        this.userType = userType;
     }
 
     public String getLogin() {
@@ -147,6 +162,19 @@ public class User extends AbstractEntity {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public User fullName(String fullName) {
+        this.fullName = fullName;
+        return this;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getPassword() {
@@ -261,6 +289,31 @@ public class User extends AbstractEntity {
     public User removeAuthority(Authority authority) {
         this.authorities.remove(authority);
         return this;
+    }
+
+    public Set<Course> getCourses() {
+        return courses;
+    }
+
+    public User courses(Set<Course> courses) {
+        this.courses = courses;
+        return this;
+    }
+
+    public User addCourses(Course course) {
+        this.courses.add(course);
+        course.getLecturers().add(this);
+        return this;
+    }
+
+    public User removeCourses(Course course) {
+        this.courses.remove(course);
+        course.getLecturers().remove(this);
+        return this;
+    }
+
+    public void setCourses(Set<Course> courses) {
+        this.courses = courses;
     }
 
     @Override

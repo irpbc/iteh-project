@@ -16,9 +16,13 @@ public class StudentExamDTO extends AbstractEntityDTO {
 
     private Long studentId;
 
+    private String studentFullName;
+
     private Long examId;
 
     private Long evaluatedById;
+
+    private String evaluatedByFullName;
 
     public Boolean isAttended() {
         return attended;
@@ -40,8 +44,16 @@ public class StudentExamDTO extends AbstractEntityDTO {
         return studentId;
     }
 
-    public void setStudentId(Long studentId) {
-        this.studentId = studentId;
+    public void setStudentId(Long userId) {
+        this.studentId = userId;
+    }
+
+    public String getStudentFullName() {
+        return studentFullName;
+    }
+
+    public void setStudentFullName(String userFullName) {
+        this.studentFullName = userFullName;
     }
 
     public Long getExamId() {
@@ -56,8 +68,16 @@ public class StudentExamDTO extends AbstractEntityDTO {
         return evaluatedById;
     }
 
-    public void setEvaluatedById(Long lecturerId) {
-        this.evaluatedById = lecturerId;
+    public void setEvaluatedById(Long userId) {
+        this.evaluatedById = userId;
+    }
+
+    public String getEvaluatedByFullName() {
+        return evaluatedByFullName;
+    }
+
+    public void setEvaluatedByFullName(String userFullName) {
+        this.evaluatedByFullName = userFullName;
     }
 
     @Override

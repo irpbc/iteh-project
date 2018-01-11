@@ -2,9 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { ItehProjectSharedModule } from '../../shared';
-import { CheckboxModule } from 'primeng/primeng';
-import { InputTextModule } from 'primeng/primeng';
-import { SpinnerModule } from 'primeng/primeng';
+import { ItehProjectAdminModule } from '../../admin/admin.module';
 import {
     CourseService,
     CoursePopupService,
@@ -27,6 +25,7 @@ const ENTITY_STATES = [
 @NgModule({
     imports: [
         ItehProjectSharedModule,
+        ItehProjectAdminModule,
         RouterModule.forChild(ENTITY_STATES)
     ],
     declarations: [

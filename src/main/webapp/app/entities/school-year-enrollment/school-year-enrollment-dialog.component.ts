@@ -9,7 +9,7 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { SchoolYearEnrollment } from './school-year-enrollment.model';
 import { SchoolYearEnrollmentPopupService } from './school-year-enrollment-popup.service';
 import { SchoolYearEnrollmentService } from './school-year-enrollment.service';
-import { Student, StudentService } from '../student';
+import { User, UserService } from '../../shared';
 import { SchoolYear, SchoolYearService } from '../school-year';
 import { ResponseWrapper } from '../../shared';
 
@@ -22,7 +22,7 @@ export class SchoolYearEnrollmentDialogComponent implements OnInit {
     schoolYearEnrollment: SchoolYearEnrollment;
     isSaving: boolean;
 
-    students: Student[];
+    users: User[];
 
     schoolyears: SchoolYear[];
 
@@ -30,7 +30,7 @@ export class SchoolYearEnrollmentDialogComponent implements OnInit {
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private schoolYearEnrollmentService: SchoolYearEnrollmentService,
-        private studentService: StudentService,
+        private userService: UserService,
         private schoolYearService: SchoolYearService,
         private eventManager: JhiEventManager
     ) {
@@ -38,8 +38,8 @@ export class SchoolYearEnrollmentDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
-        this.studentService.query()
-            .subscribe((res: ResponseWrapper) => { this.students = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.userService.query()
+            .subscribe((res: ResponseWrapper) => { this.users = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         this.schoolYearService.query()
             .subscribe((res: ResponseWrapper) => { this.schoolyears = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
@@ -78,7 +78,7 @@ export class SchoolYearEnrollmentDialogComponent implements OnInit {
         this.jhiAlertService.error(error.message, null, null);
     }
 
-    trackStudentById(index: number, item: Student) {
+    trackUserById(index: number, item: User) {
         return item.id;
     }
 

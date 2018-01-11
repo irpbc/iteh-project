@@ -12,6 +12,7 @@ import org.mapstruct.*;
 public interface CommitmentMapper extends EntityMapper<CommitmentDTO, Commitment> {
 
     @Mapping(source = "course.id", target = "courseId")
+    @Mapping(source = "course.name", target = "courseName")
     CommitmentDTO toDto(Commitment commitment); 
 
     @Mapping(source = "courseId", target = "course")

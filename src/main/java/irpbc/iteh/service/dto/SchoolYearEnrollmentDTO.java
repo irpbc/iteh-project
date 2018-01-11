@@ -11,7 +11,9 @@ import java.util.Objects;
 /**
  * A DTO for the SchoolYearEnrollment entity.
  */
-public class SchoolYearEnrollmentDTO extends AbstractEntityDTO {
+public class SchoolYearEnrollmentDTO implements Serializable {
+
+    private Long id;
 
     @DecimalMin(value = "6")
     @DecimalMax(value = "10")
@@ -25,7 +27,19 @@ public class SchoolYearEnrollmentDTO extends AbstractEntityDTO {
 
     private Long studentId;
 
+    private String studentFullName;
+
     private Long yearId;
+
+    private String yearName;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public BigDecimal getAverageGrade() {
         return averageGrade;
@@ -55,8 +69,16 @@ public class SchoolYearEnrollmentDTO extends AbstractEntityDTO {
         return studentId;
     }
 
-    public void setStudentId(Long studentId) {
-        this.studentId = studentId;
+    public void setStudentId(Long userId) {
+        this.studentId = userId;
+    }
+
+    public String getStudentFullName() {
+        return studentFullName;
+    }
+
+    public void setStudentFullName(String userFullName) {
+        this.studentFullName = userFullName;
     }
 
     public Long getYearId() {
@@ -65,6 +87,35 @@ public class SchoolYearEnrollmentDTO extends AbstractEntityDTO {
 
     public void setYearId(Long schoolYearId) {
         this.yearId = schoolYearId;
+    }
+
+    public String getYearName() {
+        return yearName;
+    }
+
+    public void setYearName(String schoolYearName) {
+        this.yearName = schoolYearName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        SchoolYearEnrollmentDTO schoolYearEnrollmentDTO = (SchoolYearEnrollmentDTO) o;
+        if(schoolYearEnrollmentDTO.getId() == null || getId() == null) {
+            return false;
+        }
+        return Objects.equals(getId(), schoolYearEnrollmentDTO.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getId());
     }
 
     @Override

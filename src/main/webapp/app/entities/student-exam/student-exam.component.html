@@ -32,9 +32,9 @@
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="attended"><span jhiTranslate="itehProjectApp.studentExam.attended">Attended</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="grade"><span jhiTranslate="itehProjectApp.studentExam.grade">Grade</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="studentId"><span jhiTranslate="itehProjectApp.studentExam.student">Student</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="studentFullName"><span jhiTranslate="itehProjectApp.studentExam.student">Student</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="examId"><span jhiTranslate="itehProjectApp.studentExam.exam">Exam</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="evaluatedById"><span jhiTranslate="itehProjectApp.studentExam.evaluatedBy">Evaluated By</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="evaluatedByFullName"><span jhiTranslate="itehProjectApp.studentExam.evaluatedBy">Evaluated By</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -44,9 +44,7 @@
                 <td>{{studentExam.attended}}</td>
                 <td>{{studentExam.grade}}</td>
                 <td>
-                    <div *ngIf="studentExam.studentId">
-                        <a [routerLink]="['../student', studentExam.studentId  ]" >{{studentExam.studentId}}</a>
-                    </div>
+                    {{studentExam.studentFullName}}
                 </td>
                 <td>
                     <div *ngIf="studentExam.examId">
@@ -54,9 +52,7 @@
                     </div>
                 </td>
                 <td>
-                    <div *ngIf="studentExam.evaluatedById">
-                        <a [routerLink]="['../lecturer', studentExam.evaluatedById  ]" >{{studentExam.evaluatedById}}</a>
-                    </div>
+                    {{studentExam.evaluatedByFullName}}
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">

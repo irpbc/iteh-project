@@ -1,9 +1,6 @@
 package irpbc.iteh.service.dto;
 
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-
 import java.time.Instant;
 import javax.validation.constraints.*;
 import java.io.Serializable;
@@ -21,7 +18,11 @@ public class ExamDTO extends AbstractEntityDTO {
 
     private Long periodId;
 
+    private String periodName;
+
     private Long courseId;
+
+    private String courseName;
 
     public Instant getTime() {
         return time;
@@ -39,12 +40,28 @@ public class ExamDTO extends AbstractEntityDTO {
         this.periodId = examPeriodId;
     }
 
+    public String getPeriodName() {
+        return periodName;
+    }
+
+    public void setPeriodName(String examPeriodName) {
+        this.periodName = examPeriodName;
+    }
+
     public Long getCourseId() {
         return courseId;
     }
 
     public void setCourseId(Long courseId) {
         this.courseId = courseId;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
     }
 
     @Override

@@ -6,11 +6,7 @@ import irpbc.iteh.service.dto.UserDTO;
 import org.mapstruct.InheritConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -28,6 +24,9 @@ public interface UserMapper extends EntityMapper<UserDTO, User> {
     @Mapping(target = "resetKey", ignore = true)
     @Mapping(target = "resetDate", ignore = true)
     @Mapping(target = "activated", ignore = true)
+    @Mapping(target = "courses", ignore = true)
+    @Mapping(target = "fullName",
+        expression = "java(userDTO.getFirstName() + \" \" + userDTO.getLastName())")
     @InheritConfiguration
     User toEntity(UserDTO userDTO);
 

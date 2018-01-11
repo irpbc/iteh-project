@@ -6,7 +6,7 @@
             "relationshipValidateRules": "required",
             "relationshipName": "year",
             "otherEntityName": "schoolYear",
-            "otherEntityField": "id"
+            "otherEntityField": "name"
         }
     ],
     "fields": [

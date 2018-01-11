@@ -17,6 +17,7 @@
         "login": "Korisničko ime",
         "firstName": "Ime",
         "lastName": "Prezime",
+        "fullName": "Puno ime",
         "email": "Email",
         "activated": "Aktiviran",
         "deactivated": "Deaktiviran",

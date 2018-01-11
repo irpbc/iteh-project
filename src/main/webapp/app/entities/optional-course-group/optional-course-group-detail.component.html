@@ -11,7 +11,7 @@
         <dt><span jhiTranslate="itehProjectApp.optionalCourseGroup.semester">Semester</span></dt>
         <dd>
             <div *ngIf="optionalCourseGroup.semesterId">
-                <a [routerLink]="['/semester', optionalCourseGroup.semesterId]">{{optionalCourseGroup.semesterId}}</a>
+                <a [routerLink]="['/semester', optionalCourseGroup.semesterId]">{{optionalCourseGroup.semesterName}}</a>
             </div>
         </dd>
     </dl>

@@ -15,7 +15,7 @@
         <dt><span jhiTranslate="itehProjectApp.commitment.course">Course</span></dt>
         <dd>
             <div *ngIf="commitment.courseId">
-                <a [routerLink]="['/course', commitment.courseId]">{{commitment.courseId}}</a>
+                <a [routerLink]="['/course', commitment.courseId]">{{commitment.courseName}}</a>
             </div>
         </dd>
     </dl>

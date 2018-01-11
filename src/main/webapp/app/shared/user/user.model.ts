@@ -3,6 +3,7 @@ export class User {
     public login?: string;
     public firstName?: string;
     public lastName?: string;
+    public fullName?: string;
     public email?: string;
     public activated?: Boolean;
     public langKey?: string;

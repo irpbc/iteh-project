@@ -89,78 +89,78 @@ export class CourseDialogPage {
 
     setNameInput = function(name) {
         this.nameInput.sendKeys(name);
-    }
+    };
 
     getNameInput = function() {
         return this.nameInput.getAttribute('value');
-    }
+    };
 
     setEspbPointsInput = function(espbPoints) {
         this.espbPointsInput.sendKeys(espbPoints);
-    }
+    };
 
     getEspbPointsInput = function() {
         return this.espbPointsInput.getAttribute('value');
-    }
+    };
 
     setYearOfStudiesInput = function(yearOfStudies) {
         this.yearOfStudiesInput.sendKeys(yearOfStudies);
-    }
+    };
 
     getYearOfStudiesInput = function() {
         return this.yearOfStudiesInput.getAttribute('value');
-    }
+    };
 
     getOptionalInput = function() {
         return this.optionalInput;
-    }
+    };
     semesterSelectLastOption = function() {
         this.semesterSelect.all(by.tagName('option')).last().click();
-    }
+    };
 
     semesterSelectOption = function(option) {
         this.semesterSelect.sendKeys(option);
-    }
+    };
 
     getSemesterSelect = function() {
         return this.semesterSelect;
-    }
+    };
 
     getSemesterSelectedOption = function() {
         return this.semesterSelect.element(by.css('option:checked')).getText();
-    }
+    };
 
     optionalGroupSelectLastOption = function() {
         this.optionalGroupSelect.all(by.tagName('option')).last().click();
-    }
+    };
 
     optionalGroupSelectOption = function(option) {
         this.optionalGroupSelect.sendKeys(option);
-    }
+    };
 
     getOptionalGroupSelect = function() {
         return this.optionalGroupSelect;
-    }
+    };
 
     getOptionalGroupSelectedOption = function() {
         return this.optionalGroupSelect.element(by.css('option:checked')).getText();
-    }
+    };
 
     lecturersSelectLastOption = function() {
         this.lecturersSelect.all(by.tagName('option')).last().click();
-    }
+    };
 
     lecturersSelectOption = function(option) {
         this.lecturersSelect.sendKeys(option);
-    }
+    };
 
     getLecturersSelect = function() {
         return this.lecturersSelect;
-    }
+    };
 
     getLecturersSelectedOption = function() {
         return this.lecturersSelect.element(by.css('option:checked')).getText();
-    }
+    };
 
     save() {
         this.saveButton.click();

@@ -3,6 +3,13 @@
     "relationships": [],
     "fields": [
         {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
             "fieldName": "startDate",
             "fieldType": "LocalDate",
             "fieldValidateRules": [

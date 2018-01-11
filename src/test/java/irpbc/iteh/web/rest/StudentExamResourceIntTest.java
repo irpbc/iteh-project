@@ -3,7 +3,7 @@ package irpbc.iteh.web.rest;
 import irpbc.iteh.ItehProjectApp;
 
 import irpbc.iteh.domain.StudentExam;
-import irpbc.iteh.domain.Student;
+import irpbc.iteh.domain.User;
 import irpbc.iteh.domain.Exam;
 import irpbc.iteh.repository.StudentExamRepository;
 import irpbc.iteh.service.StudentExamService;
@@ -100,7 +100,7 @@ public class StudentExamResourceIntTest {
             .attended(DEFAULT_ATTENDED)
             .grade(DEFAULT_GRADE);
         // Add required entity
-        Student student = StudentResourceIntTest.createEntity(em);
+        User student = UserResourceIntTest.createEntity(em);
         em.persist(student);
         em.flush();
         studentExam.setStudent(student);

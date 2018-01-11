@@ -69,27 +69,27 @@ export class OptionalCourseGroupDialogPage {
 
     setNameInput = function(name) {
         this.nameInput.sendKeys(name);
-    }
+    };
 
     getNameInput = function() {
         return this.nameInput.getAttribute('value');
-    }
+    };
 
     semesterSelectLastOption = function() {
         this.semesterSelect.all(by.tagName('option')).last().click();
-    }
+    };
 
     semesterSelectOption = function(option) {
         this.semesterSelect.sendKeys(option);
-    }
+    };
 
     getSemesterSelect = function() {
         return this.semesterSelect;
-    }
+    };
 
     getSemesterSelectedOption = function() {
         return this.semesterSelect.element(by.css('option:checked')).getText();
-    }
+    };
 
     save() {
         this.saveButton.click();

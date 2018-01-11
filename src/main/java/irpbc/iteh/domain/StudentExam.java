@@ -32,14 +32,14 @@ public class StudentExam extends AbstractEntity {
 
     @ManyToOne(optional = false)
     @NotNull
-    private Student student;
+    private User student;
 
     @ManyToOne(optional = false)
     @NotNull
     private Exam exam;
 
     @ManyToOne
-    private Lecturer evaluatedBy;
+    private User evaluatedBy;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
 
@@ -69,17 +69,17 @@ public class StudentExam extends AbstractEntity {
         this.grade = grade;
     }
 
-    public Student getStudent() {
+    public User getStudent() {
         return student;
     }
 
-    public StudentExam student(Student student) {
-        this.student = student;
+    public StudentExam student(User user) {
+        this.student = user;
         return this;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
+    public void setStudent(User user) {
+        this.student = user;
     }
 
     public Exam getExam() {
@@ -95,17 +95,17 @@ public class StudentExam extends AbstractEntity {
         this.exam = exam;
     }
 
-    public Lecturer getEvaluatedBy() {
+    public User getEvaluatedBy() {
         return evaluatedBy;
     }
 
-    public StudentExam evaluatedBy(Lecturer lecturer) {
-        this.evaluatedBy = lecturer;
+    public StudentExam evaluatedBy(User user) {
+        this.evaluatedBy = user;
         return this;
     }
 
-    public void setEvaluatedBy(Lecturer lecturer) {
-        this.evaluatedBy = lecturer;
+    public void setEvaluatedBy(User user) {
+        this.evaluatedBy = user;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

@@ -34,7 +34,7 @@
             <th jhiSortBy="grade"><span jhiTranslate="itehProjectApp.courseEnrollment.grade">Grade</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="completed"><span jhiTranslate="itehProjectApp.courseEnrollment.completed">Completed</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="yearEnrollmentId"><span jhiTranslate="itehProjectApp.courseEnrollment.yearEnrollment">Year Enrollment</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="courseId"><span jhiTranslate="itehProjectApp.courseEnrollment.course">Course</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="courseName"><span jhiTranslate="itehProjectApp.courseEnrollment.course">Course</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -51,7 +51,7 @@
                 </td>
                 <td>
                     <div *ngIf="courseEnrollment.courseId">
-                        <a [routerLink]="['../course', courseEnrollment.courseId  ]" >{{courseEnrollment.courseId}}</a>
+                        <a [routerLink]="['../course', courseEnrollment.courseId  ]" >{{courseEnrollment.courseName}}</a>
                     </div>
                 </td>
                 <td class="text-right">

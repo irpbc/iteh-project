@@ -71,43 +71,43 @@ export class ExamDialogPage {
 
     setTimeInput = function(time) {
         this.timeInput.sendKeys(time);
-    }
+    };
 
     getTimeInput = function() {
         return this.timeInput.getAttribute('value');
-    }
+    };
 
     periodSelectLastOption = function() {
         this.periodSelect.all(by.tagName('option')).last().click();
-    }
+    };
 
     periodSelectOption = function(option) {
         this.periodSelect.sendKeys(option);
-    }
+    };
 
     getPeriodSelect = function() {
         return this.periodSelect;
-    }
+    };
 
     getPeriodSelectedOption = function() {
         return this.periodSelect.element(by.css('option:checked')).getText();
-    }
+    };
 
     courseSelectLastOption = function() {
         this.courseSelect.all(by.tagName('option')).last().click();
-    }
+    };
 
     courseSelectOption = function(option) {
         this.courseSelect.sendKeys(option);
-    }
+    };
 
     getCourseSelect = function() {
         return this.courseSelect;
-    }
+    };
 
     getCourseSelectedOption = function() {
         return this.courseSelect.element(by.css('option:checked')).getText();
-    }
+    };
 
     save() {
         this.saveButton.click();

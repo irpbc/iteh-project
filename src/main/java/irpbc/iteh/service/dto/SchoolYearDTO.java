@@ -1,7 +1,10 @@
 package irpbc.iteh.service.dto;
 
-import javax.validation.constraints.NotNull;
+
 import java.time.LocalDate;
+import javax.validation.constraints.*;
+import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * A DTO for the SchoolYear entity.
@@ -9,10 +12,21 @@ import java.time.LocalDate;
 public class SchoolYearDTO extends AbstractEntityDTO {
 
     @NotNull
+    private String name;
+
+    @NotNull
     private LocalDate startDate;
 
     @NotNull
     private LocalDate endDate;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public LocalDate getStartDate() {
         return startDate;
@@ -34,6 +48,7 @@ public class SchoolYearDTO extends AbstractEntityDTO {
     public String toString() {
         return "SchoolYearDTO{" +
             "id=" + getId() +
+            ", name='" + getName() + "'" +
             ", startDate='" + getStartDate() + "'" +
             ", endDate='" + getEndDate() + "'" +
             "}";

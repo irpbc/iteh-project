@@ -28,6 +28,8 @@ export class ExamPopupService {
 
             if (id) {
                 this.examService.find(id).subscribe((exam) => {
+                    exam.time = this.datePipe
+                        .transform(exam.time, 'yyyy-MM-ddTHH:mm:ss');
                     this.ngbModalRef = this.examModalRef(component, exam);
                     resolve(this.ngbModalRef);
                 });

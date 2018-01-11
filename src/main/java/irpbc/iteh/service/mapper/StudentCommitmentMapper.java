@@ -9,12 +9,14 @@ import org.mapstruct.*;
  * Mapper for the entity StudentCommitment and its DTO StudentCommitmentDTO.
  */
 @Mapper(componentModel = "spring", config = EntityMapperConfig.class,
-    uses = {CourseEnrollmentMapper.class, CommitmentMapper.class, LecturerMapper.class})
+    uses = {CourseEnrollmentMapper.class, CommitmentMapper.class, UserMapper.class})
 public interface StudentCommitmentMapper extends EntityMapper<StudentCommitmentDTO, StudentCommitment> {
 
     @Mapping(source = "enrollment.id", target = "enrollmentId")
     @Mapping(source = "commitment.id", target = "commitmentId")
+    @Mapping(source = "commitment.name", target = "commitmentName")
     @Mapping(source = "evaluatedBy.id", target = "evaluatedById")
+    @Mapping(source = "evaluatedBy.fullName", target = "evaluatedByFullName")
     StudentCommitmentDTO toDto(StudentCommitment studentCommitment); 
 
     @Mapping(source = "enrollmentId", target = "enrollment")

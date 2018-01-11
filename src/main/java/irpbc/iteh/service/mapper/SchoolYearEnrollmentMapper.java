@@ -8,16 +8,17 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity SchoolYearEnrollment and its DTO SchoolYearEnrollmentDTO.
  */
-@Mapper(componentModel = "spring", config = EntityMapperConfig.class,
-    uses = {StudentMapper.class, SchoolYearMapper.class})
+@Mapper(componentModel = "spring", uses = {UserMapper.class, SchoolYearMapper.class})
 public interface SchoolYearEnrollmentMapper extends EntityMapper<SchoolYearEnrollmentDTO, SchoolYearEnrollment> {
 
-    @Mapping(target = "studentId", source = "student.id")
-    @Mapping(target = "yearId", source = "year.id")
-    SchoolYearEnrollmentDTO toDto(SchoolYearEnrollment schoolYearEnrollment);
+    @Mapping(source = "student.id", target = "studentId")
+    @Mapping(source = "student.fullName", target = "studentFullName")
+    @Mapping(source = "year.id", target = "yearId")
+    @Mapping(source = "year.name", target = "yearName")
+    SchoolYearEnrollmentDTO toDto(SchoolYearEnrollment schoolYearEnrollment); 
 
-    @Mapping(target = "student", source = "studentId")
-    @Mapping(target = "year", source = "yearId")
+    @Mapping(source = "studentId", target = "student")
+    @Mapping(source = "yearId", target = "year")
     SchoolYearEnrollment toEntity(SchoolYearEnrollmentDTO schoolYearEnrollmentDTO);
 
     default SchoolYearEnrollment fromId(Long id) {

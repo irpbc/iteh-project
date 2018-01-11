@@ -13,13 +13,13 @@
             "relationshipValidateRules": "required",
             "relationshipName": "commitment",
             "otherEntityName": "commitment",
-            "otherEntityField": "id"
+            "otherEntityField": "name"
         },
         {
             "relationshipType": "many-to-one",
             "relationshipName": "evaluatedBy",
-            "otherEntityName": "lecturer",
-            "otherEntityField": "id"
+            "otherEntityName": "user",
+            "otherEntityField": "fullName"
         }
     ],
     "fields": [

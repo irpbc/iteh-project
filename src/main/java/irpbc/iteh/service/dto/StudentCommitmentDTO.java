@@ -13,7 +13,11 @@ public class StudentCommitmentDTO extends AbstractEntityDTO {
 
     private Long commitmentId;
 
+    private String commitmentName;
+
     private Long evaluatedById;
+
+    private String evaluatedByFullName;
 
     public BigDecimal getPoints() {
         return points;
@@ -39,12 +43,28 @@ public class StudentCommitmentDTO extends AbstractEntityDTO {
         this.commitmentId = commitmentId;
     }
 
+    public String getCommitmentName() {
+        return commitmentName;
+    }
+
+    public void setCommitmentName(String commitmentName) {
+        this.commitmentName = commitmentName;
+    }
+
     public Long getEvaluatedById() {
         return evaluatedById;
     }
 
-    public void setEvaluatedById(Long lecturerId) {
-        this.evaluatedById = lecturerId;
+    public void setEvaluatedById(Long userId) {
+        this.evaluatedById = userId;
+    }
+
+    public String getEvaluatedByFullName() {
+        return evaluatedByFullName;
+    }
+
+    public void setEvaluatedByFullName(String userFullName) {
+        this.evaluatedByFullName = userFullName;
     }
 
     @Override

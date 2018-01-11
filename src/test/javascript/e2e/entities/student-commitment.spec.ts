@@ -73,59 +73,59 @@ export class StudentCommitmentDialogPage {
 
     setPointsInput = function(points) {
         this.pointsInput.sendKeys(points);
-    }
+    };
 
     getPointsInput = function() {
         return this.pointsInput.getAttribute('value');
-    }
+    };
 
     enrollmentSelectLastOption = function() {
         this.enrollmentSelect.all(by.tagName('option')).last().click();
-    }
+    };
 
     enrollmentSelectOption = function(option) {
         this.enrollmentSelect.sendKeys(option);
-    }
+    };
 
     getEnrollmentSelect = function() {
         return this.enrollmentSelect;
-    }
+    };
 
     getEnrollmentSelectedOption = function() {
         return this.enrollmentSelect.element(by.css('option:checked')).getText();
-    }
+    };
 
     commitmentSelectLastOption = function() {
         this.commitmentSelect.all(by.tagName('option')).last().click();
-    }
+    };
 
     commitmentSelectOption = function(option) {
         this.commitmentSelect.sendKeys(option);
-    }
+    };
 
     getCommitmentSelect = function() {
         return this.commitmentSelect;
-    }
+    };
 
     getCommitmentSelectedOption = function() {
         return this.commitmentSelect.element(by.css('option:checked')).getText();
-    }
+    };
 
     evaluatedBySelectLastOption = function() {
         this.evaluatedBySelect.all(by.tagName('option')).last().click();
-    }
+    };
 
     evaluatedBySelectOption = function(option) {
         this.evaluatedBySelect.sendKeys(option);
-    }
+    };
 
     getEvaluatedBySelect = function() {
         return this.evaluatedBySelect;
-    }
+    };
 
     getEvaluatedBySelectedOption = function() {
         return this.evaluatedBySelect.element(by.css('option:checked')).getText();
-    }
+    };
 
     save() {
         this.saveButton.click();

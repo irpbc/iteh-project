@@ -31,8 +31,8 @@
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="time"><span jhiTranslate="itehProjectApp.exam.time">Time</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="periodId"><span jhiTranslate="itehProjectApp.exam.period">Period</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="courseId"><span jhiTranslate="itehProjectApp.exam.course">Course</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="periodName"><span jhiTranslate="itehProjectApp.exam.period">Period</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="courseName"><span jhiTranslate="itehProjectApp.exam.course">Course</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -42,12 +42,12 @@
                 <td>{{exam.time | date:'medium'}}</td>
                 <td>
                     <div *ngIf="exam.periodId">
-                        <a [routerLink]="['../exam-period', exam.periodId  ]" >{{exam.periodId}}</a>
+                        <a [routerLink]="['../exam-period', exam.periodId  ]" >{{exam.periodName}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="exam.courseId">
-                        <a [routerLink]="['../course', exam.courseId  ]" >{{exam.courseId}}</a>
+                        <a [routerLink]="['../course', exam.courseId  ]" >{{exam.courseName}}</a>
                     </div>
                 </td>
                 <td class="text-right">

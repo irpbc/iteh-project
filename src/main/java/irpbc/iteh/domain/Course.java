@@ -48,7 +48,7 @@ public class Course extends AbstractEntity {
     @JoinTable(name = "course_lecturers",
                joinColumns = @JoinColumn(name="courses_id", referencedColumnName="id"),
                inverseJoinColumns = @JoinColumn(name="lecturers_id", referencedColumnName="id"))
-    private Set<Lecturer> lecturers = new HashSet<>();
+    private Set<User> lecturers = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
 
@@ -130,28 +130,28 @@ public class Course extends AbstractEntity {
         this.optionalGroup = optionalCourseGroup;
     }
 
-    public Set<Lecturer> getLecturers() {
+    public Set<User> getLecturers() {
         return lecturers;
     }
 
-    public Course lecturers(Set<Lecturer> lecturers) {
+    public Course lecturers(Set<User> lecturers) {
         this.lecturers = lecturers;
         return this;
     }
 
-    public Course addLecturers(Lecturer lecturer) {
+    public Course addLecturers(User lecturer) {
         this.lecturers.add(lecturer);
         lecturer.getCourses().add(this);
         return this;
     }
 
-    public Course removeLecturers(Lecturer lecturer) {
+    public Course removeLecturers(User lecturer) {
         this.lecturers.remove(lecturer);
         lecturer.getCourses().remove(this);
         return this;
     }
 
-    public void setLecturers(Set<Lecturer> lecturers) {
+    public void setLecturers(Set<User> lecturers) {
         this.lecturers = lecturers;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove

@@ -29,6 +29,10 @@ public class UserDTO extends AbstractEntityDTO {
     @Size(max = 50)
     private String lastName;
 
+    @NotNull
+    @Size(max = 100)
+    private String fullName;
+
     @Email
     @Size(min = 5, max = 100)
     private String email;
@@ -65,6 +69,14 @@ public class UserDTO extends AbstractEntityDTO {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getEmail() {

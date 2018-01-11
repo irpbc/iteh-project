@@ -5,8 +5,8 @@
             "relationshipType": "many-to-one",
             "relationshipValidateRules": "required",
             "relationshipName": "student",
-            "otherEntityName": "student",
-            "otherEntityField": "id"
+            "otherEntityName": "user",
+            "otherEntityField": "fullName"
         },
         {
             "relationshipType": "many-to-one",
@@ -18,8 +18,8 @@
         {
             "relationshipType": "many-to-one",
             "relationshipName": "evaluatedBy",
-            "otherEntityName": "lecturer",
-            "otherEntityField": "id"
+            "otherEntityName": "user",
+            "otherEntityField": "fullName"
         }
     ],
     "fields": [

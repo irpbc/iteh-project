@@ -8,9 +8,8 @@ import { ItehProjectTestModule } from '../../../test.module';
 import { StudentExamDialogComponent } from '../../../../../../main/webapp/app/entities/student-exam/student-exam-dialog.component';
 import { StudentExamService } from '../../../../../../main/webapp/app/entities/student-exam/student-exam.service';
 import { StudentExam } from '../../../../../../main/webapp/app/entities/student-exam/student-exam.model';
-import { StudentService } from '../../../../../../main/webapp/app/entities/student';
+import { UserService } from '../../../../../../main/webapp/app/shared';
 import { ExamService } from '../../../../../../main/webapp/app/entities/exam';
-import { LecturerService } from '../../../../../../main/webapp/app/entities/lecturer';
 
 describe('Component Tests', () => {
 
@@ -26,9 +25,8 @@ describe('Component Tests', () => {
                 imports: [ItehProjectTestModule],
                 declarations: [StudentExamDialogComponent],
                 providers: [
-                    StudentService,
+                    UserService,
                     ExamService,
-                    LecturerService,
                     StudentExamService
                 ]
             })

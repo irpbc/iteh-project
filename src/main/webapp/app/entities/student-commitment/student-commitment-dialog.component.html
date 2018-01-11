@@ -2,48 +2,53 @@
 
     <div class="modal-header">
         <h4 class="modal-title" id="myStudentCommitmentLabel" jhiTranslate="itehProjectApp.studentCommitment.home.createOrEditLabel">Create or edit a Student Commitment</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="clear()">&times;</button>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
         <div class="form-group" [hidden]="!studentCommitment.id">
             <label for="id" jhiTranslate="global.field.id">ID</label>
-            <input type="text" class="form-control" id="id" name="id" [(ngModel)]="studentCommitment.id" readonly>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="studentCommitment.id" readonly />
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="itehProjectApp.studentCommitment.points" for="field_points">Points</label>
-            <p-spinner name="points" id="field_points" [(ngModel)]="studentCommitment.points"></p-spinner>
+            <input type="number" class="form-control" name="points" id="field_points"
+                [(ngModel)]="studentCommitment.points" />
         </div>
 
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="itehProjectApp.studentCommitment.enrollment" for="field_enrollment">Enrollment</label>
-            <select class="form-control" id="field_enrollment" name="enrollment" [(ngModel)]="studentCommitment.enrollmentId" required>
+            <select class="form-control" id="field_enrollment" name="enrollment" [(ngModel)]="studentCommitment.enrollmentId"  required>
                 <option *ngIf="!editForm.value.enrollment" [ngValue]="null" selected></option>
                 <option [ngValue]="courseEnrollmentOption.id" *ngFor="let courseEnrollmentOption of courseenrollments; trackBy: trackCourseEnrollmentById">{{courseEnrollmentOption.id}}</option>
             </select>
         </div>
         <div [hidden]="!(editForm.controls.enrollment?.dirty && editForm.controls.enrollment?.invalid)">
-            <small class="form-text text-danger" [hidden]="!editForm.controls.enrollment?.errors?.required" jhiTranslate="entity.validation.required">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.enrollment?.errors?.required" jhiTranslate="entity.validation.required">
                 This field is required.
             </small>
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="itehProjectApp.studentCommitment.commitment" for="field_commitment">Commitment</label>
-            <select class="form-control" id="field_commitment" name="commitment" [(ngModel)]="studentCommitment.commitmentId" required>
+            <select class="form-control" id="field_commitment" name="commitment" [(ngModel)]="studentCommitment.commitmentId"  required>
                 <option *ngIf="!editForm.value.commitment" [ngValue]="null" selected></option>
-                <option [ngValue]="commitmentOption.id" *ngFor="let commitmentOption of commitments; trackBy: trackCommitmentById">{{commitmentOption.id}}</option>
+                <option [ngValue]="commitmentOption.id" *ngFor="let commitmentOption of commitments; trackBy: trackCommitmentById">{{commitmentOption.name}}</option>
             </select>
         </div>
         <div [hidden]="!(editForm.controls.commitment?.dirty && editForm.controls.commitment?.invalid)">
-            <small class="form-text text-danger" [hidden]="!editForm.controls.commitment?.errors?.required" jhiTranslate="entity.validation.required">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.commitment?.errors?.required" jhiTranslate="entity.validation.required">
                 This field is required.
             </small>
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="itehProjectApp.studentCommitment.evaluatedBy" for="field_evaluatedBy">Evaluated By</label>
-            <select class="form-control" id="field_evaluatedBy" name="evaluatedBy" [(ngModel)]="studentCommitment.evaluatedById">
+            <select class="form-control" id="field_evaluatedBy" name="evaluatedBy" [(ngModel)]="studentCommitment.evaluatedById" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="lecturerOption.id" *ngFor="let lecturerOption of lecturers; trackBy: trackLecturerById">{{lecturerOption.id}}</option>
+                <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.fullName}}</option>
             </select>
         </div>
     </div>

@@ -14,6 +14,7 @@ public interface CourseEnrollmentMapper extends EntityMapper<CourseEnrollmentDTO
 
     @Mapping(source = "yearEnrollment.id", target = "yearEnrollmentId")
     @Mapping(source = "course.id", target = "courseId")
+    @Mapping(source = "course.name", target = "courseName")
     CourseEnrollmentDTO toDto(CourseEnrollment courseEnrollment); 
 
     @Mapping(source = "yearEnrollmentId", target = "yearEnrollment")

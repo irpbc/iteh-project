@@ -44,6 +44,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = ItehProjectApp.class)
 public class SchoolYearResourceIntTest {
 
+    private static final String DEFAULT_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_NAME = "BBBBBBBBBB";
+
     private static final LocalDate DEFAULT_START_DATE = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_START_DATE = LocalDate.now(ZoneId.systemDefault());
 
@@ -97,6 +100,7 @@ public class SchoolYearResourceIntTest {
      */
     public static SchoolYear createEntity(EntityManager em) {
         SchoolYear schoolYear = new SchoolYear()
+            .name(DEFAULT_NAME)
             .startDate(DEFAULT_START_DATE)
             .endDate(DEFAULT_END_DATE);
         return schoolYear;
@@ -124,6 +128,7 @@ public class SchoolYearResourceIntTest {
         List<SchoolYear> schoolYearList = schoolYearRepository.findAll();
         assertThat(schoolYearList).hasSize(databaseSizeBeforeCreate + 1);
         SchoolYear testSchoolYear = schoolYearList.get(schoolYearList.size() - 1);
+        assertThat(testSchoolYear.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testSchoolYear.getStartDate()).isEqualTo(DEFAULT_START_DATE);
         assertThat(testSchoolYear.getEndDate()).isEqualTo(DEFAULT_END_DATE);
 
@@ -150,6 +155,25 @@ public class SchoolYearResourceIntTest {
         // Validate the SchoolYear in the database
         List<SchoolYear> schoolYearList = schoolYearRepository.findAll();
         assertThat(schoolYearList).hasSize(databaseSizeBeforeCreate);
+    }
+
+    @Test
+    @Transactional
+    public void checkNameIsRequired() throws Exception {
+        int databaseSizeBeforeTest = schoolYearRepository.findAll().size();
+        // set the field null
+        schoolYear.setName(null);
+
+        // Create the SchoolYear, which fails.
+        SchoolYearDTO schoolYearDTO = schoolYearMapper.toDto(schoolYear);
+
+        restSchoolYearMockMvc.perform(post("/api/school-years")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(schoolYearDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<SchoolYear> schoolYearList = schoolYearRepository.findAll();
+        assertThat(schoolYearList).hasSize(databaseSizeBeforeTest);
     }
 
     @Test
@@ -201,6 +225,7 @@ public class SchoolYearResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(schoolYear.getId().intValue())))
+            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].startDate").value(hasItem(DEFAULT_START_DATE.toString())))
             .andExpect(jsonPath("$.[*].endDate").value(hasItem(DEFAULT_END_DATE.toString())));
     }
@@ -216,6 +241,7 @@ public class SchoolYearResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(schoolYear.getId().intValue()))
+            .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
             .andExpect(jsonPath("$.startDate").value(DEFAULT_START_DATE.toString()))
             .andExpect(jsonPath("$.endDate").value(DEFAULT_END_DATE.toString()));
     }
@@ -241,6 +267,7 @@ public class SchoolYearResourceIntTest {
         // Disconnect from session so that the updates on updatedSchoolYear are not directly saved in db
         em.detach(updatedSchoolYear);
         updatedSchoolYear
+            .name(UPDATED_NAME)
             .startDate(UPDATED_START_DATE)
             .endDate(UPDATED_END_DATE);
         SchoolYearDTO schoolYearDTO = schoolYearMapper.toDto(updatedSchoolYear);
@@ -254,6 +281,7 @@ public class SchoolYearResourceIntTest {
         List<SchoolYear> schoolYearList = schoolYearRepository.findAll();
         assertThat(schoolYearList).hasSize(databaseSizeBeforeUpdate);
         SchoolYear testSchoolYear = schoolYearList.get(schoolYearList.size() - 1);
+        assertThat(testSchoolYear.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testSchoolYear.getStartDate()).isEqualTo(UPDATED_START_DATE);
         assertThat(testSchoolYear.getEndDate()).isEqualTo(UPDATED_END_DATE);
 
@@ -315,6 +343,7 @@ public class SchoolYearResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(schoolYear.getId().intValue())))
+            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].startDate").value(hasItem(DEFAULT_START_DATE.toString())))
             .andExpect(jsonPath("$.[*].endDate").value(hasItem(DEFAULT_END_DATE.toString())));
     }

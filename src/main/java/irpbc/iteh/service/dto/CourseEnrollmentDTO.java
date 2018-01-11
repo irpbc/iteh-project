@@ -27,6 +27,8 @@ public class CourseEnrollmentDTO extends AbstractEntityDTO {
 
     private Long courseId;
 
+    private String courseName;
+
     public BigDecimal getTotalPoints() {
         return totalPoints;
     }
@@ -65,6 +67,14 @@ public class CourseEnrollmentDTO extends AbstractEntityDTO {
 
     public void setCourseId(Long courseId) {
         this.courseId = courseId;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
     }
 
     @Override

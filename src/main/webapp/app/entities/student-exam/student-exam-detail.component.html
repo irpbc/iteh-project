@@ -14,9 +14,7 @@
         </dd>
         <dt><span jhiTranslate="itehProjectApp.studentExam.student">Student</span></dt>
         <dd>
-            <div *ngIf="studentExam.studentId">
-                <a [routerLink]="['/student', studentExam.studentId]">{{studentExam.studentId}}</a>
-            </div>
+            {{studentExam.studentFullName}}
         </dd>
         <dt><span jhiTranslate="itehProjectApp.studentExam.exam">Exam</span></dt>
         <dd>
@@ -26,9 +24,7 @@
         </dd>
         <dt><span jhiTranslate="itehProjectApp.studentExam.evaluatedBy">Evaluated By</span></dt>
         <dd>
-            <div *ngIf="studentExam.evaluatedById">
-                <a [routerLink]="['/lecturer', studentExam.evaluatedById]">{{studentExam.evaluatedById}}</a>
-            </div>
+            {{studentExam.evaluatedByFullName}}
         </dd>
     </dl>
 

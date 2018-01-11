@@ -30,6 +30,7 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="name"><span jhiTranslate="itehProjectApp.schoolYear.name">Name</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="startDate"><span jhiTranslate="itehProjectApp.schoolYear.startDate">Start Date</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="endDate"><span jhiTranslate="itehProjectApp.schoolYear.endDate">End Date</span> <span class="fa fa-sort"></span></th>
             <th></th>
@@ -38,6 +39,7 @@
             <tbody>
             <tr *ngFor="let schoolYear of schoolYears ;trackBy: trackId">
                 <td><a [routerLink]="['../school-year', schoolYear.id ]">{{schoolYear.id}}</a></td>
+                <td>{{schoolYear.name}}</td>
                 <td>{{schoolYear.startDate | date:'mediumDate'}}</td>
                 <td>{{schoolYear.endDate | date:'mediumDate'}}</td>
                 <td class="text-right">

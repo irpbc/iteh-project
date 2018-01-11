@@ -10,7 +10,7 @@ import { CourseService } from '../../../../../../main/webapp/app/entities/course
 import { Course } from '../../../../../../main/webapp/app/entities/course/course.model';
 import { SemesterService } from '../../../../../../main/webapp/app/entities/semester';
 import { OptionalCourseGroupService } from '../../../../../../main/webapp/app/entities/optional-course-group';
-import { LecturerService } from '../../../../../../main/webapp/app/entities/lecturer';
+import { UserService } from '../../../../../../main/webapp/app/shared';
 
 describe('Component Tests', () => {
 
@@ -28,7 +28,7 @@ describe('Component Tests', () => {
                 providers: [
                     SemesterService,
                     OptionalCourseGroupService,
-                    LecturerService,
+                    UserService,
                     CourseService
                 ]
             })

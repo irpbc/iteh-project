@@ -9,11 +9,13 @@ import org.mapstruct.*;
  * Mapper for the entity Course and its DTO CourseDTO.
  */
 @Mapper(componentModel = "spring", config = EntityMapperConfig.class,
-    uses = {SemesterMapper.class, OptionalCourseGroupMapper.class, LecturerMapper.class})
+    uses = {SemesterMapper.class, OptionalCourseGroupMapper.class, UserMapper.class})
 public interface CourseMapper extends EntityMapper<CourseDTO, Course> {
 
     @Mapping(source = "semester.id", target = "semesterId")
+    @Mapping(source = "semester.name", target = "semesterName")
     @Mapping(source = "optionalGroup.id", target = "optionalGroupId")
+    @Mapping(source = "optionalGroup.name", target = "optionalGroupName")
     CourseDTO toDto(Course course); 
 
     @Mapping(source = "semesterId", target = "semester")

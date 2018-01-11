@@ -5,15 +5,15 @@
             "relationshipType": "many-to-one",
             "relationshipValidateRules": "required",
             "relationshipName": "student",
-            "otherEntityName": "student",
-            "otherEntityField": "id"
+            "otherEntityName": "user",
+            "otherEntityField": "fullName"
         },
         {
             "relationshipType": "many-to-one",
             "relationshipValidateRules": "required",
             "relationshipName": "year",
             "otherEntityName": "schoolYear",
-            "otherEntityField": "id"
+            "otherEntityField": "name"
         }
     ],
     "fields": [

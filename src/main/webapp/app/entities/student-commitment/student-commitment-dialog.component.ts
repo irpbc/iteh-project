@@ -11,7 +11,7 @@ import { StudentCommitmentPopupService } from './student-commitment-popup.servic
 import { StudentCommitmentService } from './student-commitment.service';
 import { CourseEnrollment, CourseEnrollmentService } from '../course-enrollment';
 import { Commitment, CommitmentService } from '../commitment';
-import { Lecturer, LecturerService } from '../lecturer';
+import { User, UserService } from '../../shared';
 import { ResponseWrapper } from '../../shared';
 
 @Component({
@@ -27,7 +27,7 @@ export class StudentCommitmentDialogComponent implements OnInit {
 
     commitments: Commitment[];
 
-    lecturers: Lecturer[];
+    users: User[];
 
     constructor(
         public activeModal: NgbActiveModal,
@@ -35,7 +35,7 @@ export class StudentCommitmentDialogComponent implements OnInit {
         private studentCommitmentService: StudentCommitmentService,
         private courseEnrollmentService: CourseEnrollmentService,
         private commitmentService: CommitmentService,
-        private lecturerService: LecturerService,
+        private userService: UserService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -46,8 +46,8 @@ export class StudentCommitmentDialogComponent implements OnInit {
             .subscribe((res: ResponseWrapper) => { this.courseenrollments = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         this.commitmentService.query()
             .subscribe((res: ResponseWrapper) => { this.commitments = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
-        this.lecturerService.query()
-            .subscribe((res: ResponseWrapper) => { this.lecturers = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.userService.query()
+            .subscribe((res: ResponseWrapper) => { this.users = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {
@@ -92,7 +92,7 @@ export class StudentCommitmentDialogComponent implements OnInit {
         return item.id;
     }
 
-    trackLecturerById(index: number, item: Lecturer) {
+    trackUserById(index: number, item: User) {
         return item.id;
     }
 }

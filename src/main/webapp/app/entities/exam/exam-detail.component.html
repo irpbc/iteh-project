@@ -11,13 +11,13 @@
         <dt><span jhiTranslate="itehProjectApp.exam.period">Period</span></dt>
         <dd>
             <div *ngIf="exam.periodId">
-                <a [routerLink]="['/exam-period', exam.periodId]">{{exam.periodId}}</a>
+                <a [routerLink]="['/exam-period', exam.periodId]">{{exam.periodName}}</a>
             </div>
         </dd>
         <dt><span jhiTranslate="itehProjectApp.exam.course">Course</span></dt>
         <dd>
             <div *ngIf="exam.courseId">
-                <a [routerLink]="['/course', exam.courseId]">{{exam.courseId}}</a>
+                <a [routerLink]="['/course', exam.courseId]">{{exam.courseName}}</a>
             </div>
         </dd>
     </dl>

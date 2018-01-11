@@ -17,14 +17,12 @@
         <dt><span jhiTranslate="itehProjectApp.studentCommitment.commitment">Commitment</span></dt>
         <dd>
             <div *ngIf="studentCommitment.commitmentId">
-                <a [routerLink]="['/commitment', studentCommitment.commitmentId]">{{studentCommitment.commitmentId}}</a>
+                <a [routerLink]="['/commitment', studentCommitment.commitmentId]">{{studentCommitment.commitmentName}}</a>
             </div>
         </dd>
         <dt><span jhiTranslate="itehProjectApp.studentCommitment.evaluatedBy">Evaluated By</span></dt>
         <dd>
-            <div *ngIf="studentCommitment.evaluatedById">
-                <a [routerLink]="['/lecturer', studentCommitment.evaluatedById]">{{studentCommitment.evaluatedById}}</a>
-            </div>
+            {{studentCommitment.evaluatedByFullName}}
         </dd>
     </dl>
 

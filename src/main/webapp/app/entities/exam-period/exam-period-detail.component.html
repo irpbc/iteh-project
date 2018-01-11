@@ -19,7 +19,7 @@
         <dt><span jhiTranslate="itehProjectApp.examPeriod.year">Year</span></dt>
         <dd>
             <div *ngIf="examPeriod.yearId">
-                <a [routerLink]="['/school-year', examPeriod.yearId]">{{examPeriod.yearId}}</a>
+                <a [routerLink]="['/school-year', examPeriod.yearId]">{{examPeriod.yearName}}</a>
             </div>
         </dd>
     </dl>

@@ -6,14 +6,14 @@
             "relationshipValidateRules": "required",
             "relationshipName": "period",
             "otherEntityName": "examPeriod",
-            "otherEntityField": "id"
+            "otherEntityField": "name"
         },
         {
             "relationshipType": "many-to-one",
             "relationshipValidateRules": "required",
             "relationshipName": "course",
             "otherEntityName": "course",
-            "otherEntityField": "id"
+            "otherEntityField": "name"
         }
     ],
     "fields": [

@@ -31,6 +31,8 @@ describe('SchoolYear e2e test', () => {
 
     it('should create and save SchoolYears', () => {
         schoolYearComponentsPage.clickOnCreateButton();
+        schoolYearDialogPage.setNameInput('name');
+        expect(schoolYearDialogPage.getNameInput()).toMatch('name');
         schoolYearDialogPage.setStartDateInput('2000-12-31');
         expect(schoolYearDialogPage.getStartDateInput()).toMatch('2000-12-31');
         schoolYearDialogPage.setEndDateInput('2000-12-31');
@@ -61,6 +63,7 @@ export class SchoolYearDialogPage {
     modalTitle = element(by.css('h4#mySchoolYearLabel'));
     saveButton = element(by.css('.modal-footer .btn.btn-primary'));
     closeButton = element(by.css('button.close'));
+    nameInput = element(by.css('input#field_name'));
     startDateInput = element(by.css('input#field_startDate'));
     endDateInput = element(by.css('input#field_endDate'));
 
@@ -68,21 +71,29 @@ export class SchoolYearDialogPage {
         return this.modalTitle.getAttribute('jhiTranslate');
     }
 
+    setNameInput = function(name) {
+        this.nameInput.sendKeys(name);
+    };
+
+    getNameInput = function() {
+        return this.nameInput.getAttribute('value');
+    };
+
     setStartDateInput = function(startDate) {
         this.startDateInput.sendKeys(startDate);
-    }
+    };
 
     getStartDateInput = function() {
         return this.startDateInput.getAttribute('value');
-    }
+    };
 
     setEndDateInput = function(endDate) {
         this.endDateInput.sendKeys(endDate);
-    }
+    };
 
     getEndDateInput = function() {
         return this.endDateInput.getAttribute('value');
-    }
+    };
 
     save() {
         this.saveButton.click();

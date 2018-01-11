@@ -6,7 +6,7 @@
             "relationshipValidateRules": "required",
             "relationshipName": "semester",
             "otherEntityName": "semester",
-            "otherEntityField": "id"
+            "otherEntityField": "name"
         }
     ],
     "fields": [

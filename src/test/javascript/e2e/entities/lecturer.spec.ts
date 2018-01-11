@@ -76,35 +76,35 @@ export class LecturerDialogPage {
 
     setLoginInput = function(login) {
         this.loginInput.sendKeys(login);
-    }
+    };
 
     getLoginInput = function() {
         return this.loginInput.getAttribute('value');
-    }
+    };
 
     setEmailInput = function(email) {
         this.emailInput.sendKeys(email);
-    }
+    };
 
     getEmailInput = function() {
         return this.emailInput.getAttribute('value');
-    }
+    };
 
     setFirstNameInput = function(firstName) {
         this.firstNameInput.sendKeys(firstName);
-    }
+    };
 
     getFirstNameInput = function() {
         return this.firstNameInput.getAttribute('value');
-    }
+    };
 
     setLastNameInput = function(lastName) {
         this.lastNameInput.sendKeys(lastName);
-    }
+    };
 
     getLastNameInput = function() {
         return this.lastNameInput.getAttribute('value');
-    }
+    };
 
     save() {
         this.saveButton.click();

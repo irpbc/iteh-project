@@ -6,6 +6,7 @@ export class Commitment implements BaseEntity {
         public name?: string,
         public maxPoints?: number,
         public courseId?: number,
+        public courseName?: string
     ) {
     }
 }

@@ -9,9 +9,8 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { StudentExam } from './student-exam.model';
 import { StudentExamPopupService } from './student-exam-popup.service';
 import { StudentExamService } from './student-exam.service';
-import { Student, StudentService } from '../student';
+import { User, UserService } from '../../shared';
 import { Exam, ExamService } from '../exam';
-import { Lecturer, LecturerService } from '../lecturer';
 import { ResponseWrapper } from '../../shared';
 
 @Component({
@@ -23,31 +22,26 @@ export class StudentExamDialogComponent implements OnInit {
     studentExam: StudentExam;
     isSaving: boolean;
 
-    students: Student[];
+    users: User[];
 
     exams: Exam[];
-
-    lecturers: Lecturer[];
 
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private studentExamService: StudentExamService,
-        private studentService: StudentService,
+        private userService: UserService,
         private examService: ExamService,
-        private lecturerService: LecturerService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
-        this.studentService.query()
-            .subscribe((res: ResponseWrapper) => { this.students = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.userService.query()
+            .subscribe((res: ResponseWrapper) => { this.users = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         this.examService.query()
             .subscribe((res: ResponseWrapper) => { this.exams = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
-        this.lecturerService.query()
-            .subscribe((res: ResponseWrapper) => { this.lecturers = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {
@@ -84,15 +78,11 @@ export class StudentExamDialogComponent implements OnInit {
         this.jhiAlertService.error(error.message, null, null);
     }
 
-    trackStudentById(index: number, item: Student) {
+    trackUserById(index: number, item: User) {
         return item.id;
     }
 
     trackExamById(index: number, item: Exam) {
-        return item.id;
-    }
-
-    trackLecturerById(index: number, item: Lecturer) {
         return item.id;
     }
 }

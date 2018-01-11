@@ -77,59 +77,59 @@ export class SchoolYearEnrollmentDialogPage {
 
     setAverageGradeInput = function(averageGrade) {
         this.averageGradeInput.sendKeys(averageGrade);
-    }
+    };
 
     getAverageGradeInput = function() {
         return this.averageGradeInput.getAttribute('value');
-    }
+    };
 
     setEspbPointsDeclaredInput = function(espbPointsDeclared) {
         this.espbPointsDeclaredInput.sendKeys(espbPointsDeclared);
-    }
+    };
 
     getEspbPointsDeclaredInput = function() {
         return this.espbPointsDeclaredInput.getAttribute('value');
-    }
+    };
 
     setEspbPointsAttainedInput = function(espbPointsAttained) {
         this.espbPointsAttainedInput.sendKeys(espbPointsAttained);
-    }
+    };
 
     getEspbPointsAttainedInput = function() {
         return this.espbPointsAttainedInput.getAttribute('value');
-    }
+    };
 
     studentSelectLastOption = function() {
         this.studentSelect.all(by.tagName('option')).last().click();
-    }
+    };
 
     studentSelectOption = function(option) {
         this.studentSelect.sendKeys(option);
-    }
+    };
 
     getStudentSelect = function() {
         return this.studentSelect;
-    }
+    };
 
     getStudentSelectedOption = function() {
         return this.studentSelect.element(by.css('option:checked')).getText();
-    }
+    };
 
     yearSelectLastOption = function() {
         this.yearSelect.all(by.tagName('option')).last().click();
-    }
+    };
 
     yearSelectOption = function(option) {
         this.yearSelect.sendKeys(option);
-    }
+    };
 
     getYearSelect = function() {
         return this.yearSelect;
-    }
+    };
 
     getYearSelectedOption = function() {
         return this.yearSelect.element(by.css('option:checked')).getText();
-    }
+    };
 
     save() {
         this.saveButton.click();

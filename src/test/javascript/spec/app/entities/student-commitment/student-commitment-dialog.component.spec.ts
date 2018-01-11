@@ -10,7 +10,7 @@ import { StudentCommitmentService } from '../../../../../../main/webapp/app/enti
 import { StudentCommitment } from '../../../../../../main/webapp/app/entities/student-commitment/student-commitment.model';
 import { CourseEnrollmentService } from '../../../../../../main/webapp/app/entities/course-enrollment';
 import { CommitmentService } from '../../../../../../main/webapp/app/entities/commitment';
-import { LecturerService } from '../../../../../../main/webapp/app/entities/lecturer';
+import { UserService } from '../../../../../../main/webapp/app/shared';
 
 describe('Component Tests', () => {
 
@@ -28,7 +28,7 @@ describe('Component Tests', () => {
                 providers: [
                     CourseEnrollmentService,
                     CommitmentService,
-                    LecturerService,
+                    UserService,
                     StudentCommitmentService
                 ]
             })

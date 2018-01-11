@@ -2,24 +2,29 @@
 
     <div class="modal-header">
         <h4 class="modal-title" id="myExamLabel" jhiTranslate="itehProjectApp.exam.home.createOrEditLabel">Create or edit a Exam</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="clear()">&times;</button>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
         <div class="form-group" [hidden]="!exam.id">
             <label for="id" jhiTranslate="global.field.id">ID</label>
-            <input type="text" class="form-control" id="id" name="id" [(ngModel)]="exam.id" readonly>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="exam.id" readonly />
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="itehProjectApp.exam.time" for="field_time">Time</label>
             <div class="d-flex">
-                <p-calendar name="time" id="field_time" [(ngModel)]="exam.time" showButtonBar="true" showIcon="true" monthNavigator="true" yearNavigator="true" showTime="true" required></p-calendar>
+                <input id="field_time" type="datetime-local" class="form-control" name="time" [(ngModel)]="exam.time"
+                required/>
             </div>
             <div [hidden]="!(editForm.controls.time?.dirty && editForm.controls.time?.invalid)">
-                <small class="form-text text-danger" [hidden]="!editForm.controls.time?.errors?.required" jhiTranslate="entity.validation.required">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.time?.errors?.required" jhiTranslate="entity.validation.required">
                    This field is required.
                 </small>
-                <small class="form-text text-danger" [hidden]="!editForm.controls.time?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.time?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
                     This field should be a date and time.
                 </small>
             </div>
@@ -27,25 +32,27 @@
 
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="itehProjectApp.exam.period" for="field_period">Period</label>
-            <select class="form-control" id="field_period" name="period" [(ngModel)]="exam.periodId" required>
+            <select class="form-control" id="field_period" name="period" [(ngModel)]="exam.periodId"  required>
                 <option *ngIf="!editForm.value.period" [ngValue]="null" selected></option>
-                <option [ngValue]="examPeriodOption.id" *ngFor="let examPeriodOption of examperiods; trackBy: trackExamPeriodById">{{examPeriodOption.id}}</option>
+                <option [ngValue]="examPeriodOption.id" *ngFor="let examPeriodOption of examperiods; trackBy: trackExamPeriodById">{{examPeriodOption.name}}</option>
             </select>
         </div>
         <div [hidden]="!(editForm.controls.period?.dirty && editForm.controls.period?.invalid)">
-            <small class="form-text text-danger" [hidden]="!editForm.controls.period?.errors?.required" jhiTranslate="entity.validation.required">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.period?.errors?.required" jhiTranslate="entity.validation.required">
                 This field is required.
             </small>
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="itehProjectApp.exam.course" for="field_course">Course</label>
-            <select class="form-control" id="field_course" name="course" [(ngModel)]="exam.courseId" required>
+            <select class="form-control" id="field_course" name="course" [(ngModel)]="exam.courseId"  required>
                 <option *ngIf="!editForm.value.course" [ngValue]="null" selected></option>
-                <option [ngValue]="courseOption.id" *ngFor="let courseOption of courses; trackBy: trackCourseById">{{courseOption.id}}</option>
+                <option [ngValue]="courseOption.id" *ngFor="let courseOption of courses; trackBy: trackCourseById">{{courseOption.name}}</option>
             </select>
         </div>
         <div [hidden]="!(editForm.controls.course?.dirty && editForm.controls.course?.invalid)">
-            <small class="form-text text-danger" [hidden]="!editForm.controls.course?.errors?.required" jhiTranslate="entity.validation.required">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.course?.errors?.required" jhiTranslate="entity.validation.required">
                 This field is required.
             </small>
         </div>

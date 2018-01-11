@@ -2,8 +2,6 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { ItehProjectSharedModule } from '../../shared';
-import { InputTextModule } from 'primeng/primeng';
-import { SpinnerModule } from 'primeng/primeng';
 import {
     CommitmentService,
     CommitmentPopupService,

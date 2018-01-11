@@ -8,7 +8,7 @@ import { ItehProjectTestModule } from '../../../test.module';
 import { SchoolYearEnrollmentDialogComponent } from '../../../../../../main/webapp/app/entities/school-year-enrollment/school-year-enrollment-dialog.component';
 import { SchoolYearEnrollmentService } from '../../../../../../main/webapp/app/entities/school-year-enrollment/school-year-enrollment.service';
 import { SchoolYearEnrollment } from '../../../../../../main/webapp/app/entities/school-year-enrollment/school-year-enrollment.model';
-import { StudentService } from '../../../../../../main/webapp/app/entities/student';
+import { UserService } from '../../../../../../main/webapp/app/shared';
 import { SchoolYearService } from '../../../../../../main/webapp/app/entities/school-year';
 
 describe('Component Tests', () => {
@@ -25,7 +25,7 @@ describe('Component Tests', () => {
                 imports: [ItehProjectTestModule],
                 declarations: [SchoolYearEnrollmentDialogComponent],
                 providers: [
-                    StudentService,
+                    UserService,
                     SchoolYearService,
                     SchoolYearEnrollmentService
                 ]

@@ -11,7 +11,7 @@ import { CoursePopupService } from './course-popup.service';
 import { CourseService } from './course.service';
 import { Semester, SemesterService } from '../semester';
 import { OptionalCourseGroup, OptionalCourseGroupService } from '../optional-course-group';
-import { Lecturer, LecturerService } from '../lecturer';
+import { User, UserService } from '../../shared';
 import { ResponseWrapper } from '../../shared';
 
 @Component({
@@ -27,7 +27,7 @@ export class CourseDialogComponent implements OnInit {
 
     optionalcoursegroups: OptionalCourseGroup[];
 
-    lecturers: Lecturer[];
+    users: User[];
 
     constructor(
         public activeModal: NgbActiveModal,
@@ -35,7 +35,7 @@ export class CourseDialogComponent implements OnInit {
         private courseService: CourseService,
         private semesterService: SemesterService,
         private optionalCourseGroupService: OptionalCourseGroupService,
-        private lecturerService: LecturerService,
+        private userService: UserService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -46,8 +46,8 @@ export class CourseDialogComponent implements OnInit {
             .subscribe((res: ResponseWrapper) => { this.semesters = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         this.optionalCourseGroupService.query()
             .subscribe((res: ResponseWrapper) => { this.optionalcoursegroups = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
-        this.lecturerService.query()
-            .subscribe((res: ResponseWrapper) => { this.lecturers = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.userService.query()
+            .subscribe((res: ResponseWrapper) => { this.users = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {
@@ -92,7 +92,7 @@ export class CourseDialogComponent implements OnInit {
         return item.id;
     }
 
-    trackLecturerById(index: number, item: Lecturer) {
+    trackUserById(index: number, item: User) {
         return item.id;
     }
 

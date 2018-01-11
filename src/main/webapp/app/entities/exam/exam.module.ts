@@ -2,7 +2,6 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { ItehProjectSharedModule } from '../../shared';
-import { CalendarModule } from 'primeng/primeng';
 import {
     ExamService,
     ExamPopupService,

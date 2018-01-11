@@ -22,6 +22,8 @@ public class CommitmentDTO extends AbstractEntityDTO {
 
     private Long courseId;
 
+    private String courseName;
+
     public String getName() {
         return name;
     }
@@ -44,6 +46,14 @@ public class CommitmentDTO extends AbstractEntityDTO {
 
     public void setCourseId(Long courseId) {
         this.courseId = courseId;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
     }
 
     @Override

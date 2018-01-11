@@ -24,7 +24,7 @@
                                  baseTableName="student_commitment"
                                  constraintName="fk_student_commitment_evaluated_by_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="lecturer"/>
+                                 referencedTableName="user"/>
 
     </changeSet>
 </databaseChangeLog>

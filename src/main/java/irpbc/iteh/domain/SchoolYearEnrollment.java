@@ -38,7 +38,7 @@ public class SchoolYearEnrollment extends AbstractEntity {
 
     @ManyToOne(optional = false)
     @NotNull
-    private Student student;
+    private User student;
 
     @ManyToOne(optional = false)
     @NotNull
@@ -85,16 +85,16 @@ public class SchoolYearEnrollment extends AbstractEntity {
         this.espbPointsAttained = espbPointsAttained;
     }
 
-    public Student getStudent() {
+    public User getStudent() {
         return student;
     }
 
-    public SchoolYearEnrollment student(Student student) {
+    public SchoolYearEnrollment student(User student) {
         this.student = student;
         return this;
     }
 
-    public void setStudent(Student student) {
+    public void setStudent(User student) {
         this.student = student;
     }
 

@@ -27,9 +27,13 @@ public class CourseDTO extends AbstractEntityDTO {
 
     private Long semesterId;
 
+    private String semesterName;
+
     private Long optionalGroupId;
 
-    private Set<LecturerDTO> lecturers = new HashSet<>();
+    private String optionalGroupName;
+
+    private Set<UserDTO> lecturers = new HashSet<>();
 
     public String getName() {
         return name;
@@ -71,6 +75,14 @@ public class CourseDTO extends AbstractEntityDTO {
         this.semesterId = semesterId;
     }
 
+    public String getSemesterName() {
+        return semesterName;
+    }
+
+    public void setSemesterName(String semesterName) {
+        this.semesterName = semesterName;
+    }
+
     public Long getOptionalGroupId() {
         return optionalGroupId;
     }
@@ -79,11 +91,19 @@ public class CourseDTO extends AbstractEntityDTO {
         this.optionalGroupId = optionalCourseGroupId;
     }
 
-    public Set<LecturerDTO> getLecturers() {
+    public String getOptionalGroupName() {
+        return optionalGroupName;
+    }
+
+    public void setOptionalGroupName(String optionalCourseGroupName) {
+        this.optionalGroupName = optionalCourseGroupName;
+    }
+
+    public Set<UserDTO> getLecturers() {
         return lecturers;
     }
 
-    public void setLecturers(Set<LecturerDTO> lecturers) {
+    public void setLecturers(Set<UserDTO> lecturers) {
         this.lecturers = lecturers;
     }
 

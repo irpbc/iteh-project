@@ -34,8 +34,8 @@
             <th jhiSortBy="espbPoints"><span jhiTranslate="itehProjectApp.course.espbPoints">Espb Points</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="yearOfStudies"><span jhiTranslate="itehProjectApp.course.yearOfStudies">Year Of Studies</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="optional"><span jhiTranslate="itehProjectApp.course.optional">Optional</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="semesterId"><span jhiTranslate="itehProjectApp.course.semester">Semester</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="optionalGroupId"><span jhiTranslate="itehProjectApp.course.optionalGroup">Optional Group</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="semesterName"><span jhiTranslate="itehProjectApp.course.semester">Semester</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="optionalGroupName"><span jhiTranslate="itehProjectApp.course.optionalGroup">Optional Group</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -48,12 +48,12 @@
                 <td>{{course.optional}}</td>
                 <td>
                     <div *ngIf="course.semesterId">
-                        <a [routerLink]="['../semester', course.semesterId  ]" >{{course.semesterId}}</a>
+                        <a [routerLink]="['../semester', course.semesterId  ]" >{{course.semesterName}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="course.optionalGroupId">
-                        <a [routerLink]="['../optional-course-group', course.optionalGroupId  ]" >{{course.optionalGroupId}}</a>
+                        <a [routerLink]="['../optional-course-group', course.optionalGroupId  ]" >{{course.optionalGroupName}}</a>
                     </div>
                 </td>
                 <td class="text-right">

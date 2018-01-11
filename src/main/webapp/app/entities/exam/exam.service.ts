@@ -80,6 +80,7 @@ export class ExamService {
     private convert(exam: Exam): Exam {
         const copy: Exam = Object.assign({}, exam);
 
+        copy.time = this.dateUtils.toDate(exam.time);
         return copy;
     }
 }

@@ -22,6 +22,10 @@ public class SchoolYear extends AbstractEntity {
     private Long id;
 
     @NotNull
+    @Column(name = "name", nullable = false)
+    private String name;
+
+    @NotNull
     @Column(name = "start_date", nullable = false)
     private LocalDate startDate;
 
@@ -30,6 +34,18 @@ public class SchoolYear extends AbstractEntity {
     private LocalDate endDate;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+    public String getName() {
+        return name;
+    }
+
+    public SchoolYear name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public LocalDate getStartDate() {
         return startDate;
@@ -62,6 +78,7 @@ public class SchoolYear extends AbstractEntity {
     public String toString() {
         return "SchoolYear{" +
             "id=" + getId() +
+            ", name='" + getName() + "'" +
             ", startDate='" + getStartDate() + "'" +
             ", endDate='" + getEndDate() + "'" +
             "}";

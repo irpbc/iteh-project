@@ -6,7 +6,9 @@ export class StudentCommitment implements BaseEntity {
         public points?: number,
         public enrollmentId?: number,
         public commitmentId?: number,
+        public commitmentName?: number,
         public evaluatedById?: number,
+        public evaluatedByFullName?: number,
     ) {
     }
 }

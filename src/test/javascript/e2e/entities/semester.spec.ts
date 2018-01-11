@@ -69,27 +69,27 @@ export class SemesterDialogPage {
 
     setNameInput = function(name) {
         this.nameInput.sendKeys(name);
-    }
+    };
 
     getNameInput = function() {
         return this.nameInput.getAttribute('value');
-    }
+    };
 
     yearSelectLastOption = function() {
         this.yearSelect.all(by.tagName('option')).last().click();
-    }
+    };
 
     yearSelectOption = function(option) {
         this.yearSelect.sendKeys(option);
-    }
+    };
 
     getYearSelect = function() {
         return this.yearSelect;
-    }
+    };
 
     getYearSelectedOption = function() {
         return this.yearSelect.element(by.css('option:checked')).getText();
-    }
+    };
 
     save() {
         this.saveButton.click();

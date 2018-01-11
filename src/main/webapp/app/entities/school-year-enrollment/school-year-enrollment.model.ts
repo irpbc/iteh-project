@@ -7,7 +7,9 @@ export class SchoolYearEnrollment implements BaseEntity {
         public espbPointsDeclared?: number,
         public espbPointsAttained?: number,
         public studentId?: number,
+        public studentFullName?: number,
         public yearId?: number,
+        public yearName?: number,
     ) {
     }
 }

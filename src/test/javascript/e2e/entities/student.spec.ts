@@ -35,6 +35,8 @@ describe('Student e2e test', () => {
         expect(studentDialogPage.getFirstNameInput()).toMatch('firstName');
         studentDialogPage.setLastNameInput('lastName');
         expect(studentDialogPage.getLastNameInput()).toMatch('lastName');
+        studentDialogPage.setFullNameInput('fullName');
+        expect(studentDialogPage.getFullNameInput()).toMatch('fullName');
         studentDialogPage.save();
         expect(studentDialogPage.getSaveButton().isPresent()).toBeFalsy();
     });
@@ -63,6 +65,7 @@ export class StudentDialogPage {
     closeButton = element(by.css('button.close'));
     firstNameInput = element(by.css('input#field_firstName'));
     lastNameInput = element(by.css('input#field_lastName'));
+    fullNameInput = element(by.css('input#field_fullName'));
 
     getModalTitle() {
         return this.modalTitle.getAttribute('jhiTranslate');
@@ -70,19 +73,27 @@ export class StudentDialogPage {
 
     setFirstNameInput = function(firstName) {
         this.firstNameInput.sendKeys(firstName);
-    }
+    };
 
     getFirstNameInput = function() {
         return this.firstNameInput.getAttribute('value');
-    }
+    };
 
     setLastNameInput = function(lastName) {
         this.lastNameInput.sendKeys(lastName);
-    }
+    };
 
     getLastNameInput = function() {
         return this.lastNameInput.getAttribute('value');
-    }
+    };
+
+    setFullNameInput = function(fullName) {
+        this.fullNameInput.sendKeys(fullName);
+    };
+
+    getFullNameInput = function() {
+        return this.fullNameInput.getAttribute('value');
+    };
 
     save() {
         this.saveButton.click();

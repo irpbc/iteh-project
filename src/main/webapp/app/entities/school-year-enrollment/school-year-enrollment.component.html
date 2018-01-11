@@ -33,8 +33,8 @@
             <th jhiSortBy="averageGrade"><span jhiTranslate="itehProjectApp.schoolYearEnrollment.averageGrade">Average Grade</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="espbPointsDeclared"><span jhiTranslate="itehProjectApp.schoolYearEnrollment.espbPointsDeclared">Espb Points Declared</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="espbPointsAttained"><span jhiTranslate="itehProjectApp.schoolYearEnrollment.espbPointsAttained">Espb Points Attained</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="studentId"><span jhiTranslate="itehProjectApp.schoolYearEnrollment.student">Student</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="yearId"><span jhiTranslate="itehProjectApp.schoolYearEnrollment.year">Year</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="studentFullName"><span jhiTranslate="itehProjectApp.schoolYearEnrollment.student">Student</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="yearName"><span jhiTranslate="itehProjectApp.schoolYearEnrollment.year">Year</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -45,13 +45,11 @@
                 <td>{{schoolYearEnrollment.espbPointsDeclared}}</td>
                 <td>{{schoolYearEnrollment.espbPointsAttained}}</td>
                 <td>
-                    <div *ngIf="schoolYearEnrollment.studentId">
-                        <a [routerLink]="['../student', schoolYearEnrollment.studentId  ]" >{{schoolYearEnrollment.studentId}}</a>
-                    </div>
+                    {{schoolYearEnrollment.studentFullName}}
                 </td>
                 <td>
                     <div *ngIf="schoolYearEnrollment.yearId">
-                        <a [routerLink]="['../school-year', schoolYearEnrollment.yearId  ]" >{{schoolYearEnrollment.yearId}}</a>
+                        <a [routerLink]="['../school-year', schoolYearEnrollment.yearId  ]" >{{schoolYearEnrollment.yearName}}</a>
                     </div>
                 </td>
                 <td class="text-right">

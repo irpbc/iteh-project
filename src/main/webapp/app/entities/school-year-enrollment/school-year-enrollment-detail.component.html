@@ -18,14 +18,12 @@
         </dd>
         <dt><span jhiTranslate="itehProjectApp.schoolYearEnrollment.student">Student</span></dt>
         <dd>
-            <div *ngIf="schoolYearEnrollment.studentId">
-                <a [routerLink]="['/student', schoolYearEnrollment.studentId]">{{schoolYearEnrollment.studentId}}</a>
-            </div>
+            {{schoolYearEnrollment.studentFullName}}
         </dd>
         <dt><span jhiTranslate="itehProjectApp.schoolYearEnrollment.year">Year</span></dt>
         <dd>
             <div *ngIf="schoolYearEnrollment.yearId">
-                <a [routerLink]="['/school-year', schoolYearEnrollment.yearId]">{{schoolYearEnrollment.yearId}}</a>
+                <a [routerLink]="['/school-year', schoolYearEnrollment.yearId]">{{schoolYearEnrollment.yearName}}</a>
             </div>
         </dd>
     </dl>

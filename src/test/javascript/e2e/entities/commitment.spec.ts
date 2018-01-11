@@ -72,35 +72,35 @@ export class CommitmentDialogPage {
 
     setNameInput = function(name) {
         this.nameInput.sendKeys(name);
-    }
+    };
 
     getNameInput = function() {
         return this.nameInput.getAttribute('value');
-    }
+    };
 
     setMaxPointsInput = function(maxPoints) {
         this.maxPointsInput.sendKeys(maxPoints);
-    }
+    };
 
     getMaxPointsInput = function() {
         return this.maxPointsInput.getAttribute('value');
-    }
+    };
 
     courseSelectLastOption = function() {
         this.courseSelect.all(by.tagName('option')).last().click();
-    }
+    };
 
     courseSelectOption = function(option) {
         this.courseSelect.sendKeys(option);
-    }
+    };
 
     getCourseSelect = function() {
         return this.courseSelect;
-    }
+    };
 
     getCourseSelectedOption = function() {
         return this.courseSelect.element(by.css('option:checked')).getText();
-    }
+    };
 
     save() {
         this.saveButton.click();

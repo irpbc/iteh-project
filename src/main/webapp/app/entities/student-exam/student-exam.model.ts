@@ -6,8 +6,10 @@ export class StudentExam implements BaseEntity {
         public attended?: boolean,
         public grade?: number,
         public studentId?: number,
+        public studentFullName?: number,
         public examId?: number,
         public evaluatedById?: number,
+        public evaluatedByFullName?: number,
     ) {
         this.attended = false;
     }

@@ -2,7 +2,6 @@ package irpbc.iteh.service.mapper;
 
 import irpbc.iteh.domain.AbstractEntity;
 import irpbc.iteh.service.dto.AbstractEntityDTO;
-import org.mapstruct.Mapping;
 
 import java.util.List;
 

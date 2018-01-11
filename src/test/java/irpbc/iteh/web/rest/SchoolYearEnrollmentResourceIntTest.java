@@ -3,7 +3,7 @@ package irpbc.iteh.web.rest;
 import irpbc.iteh.ItehProjectApp;
 
 import irpbc.iteh.domain.SchoolYearEnrollment;
-import irpbc.iteh.domain.Student;
+import irpbc.iteh.domain.User;
 import irpbc.iteh.domain.SchoolYear;
 import irpbc.iteh.repository.SchoolYearEnrollmentRepository;
 import irpbc.iteh.service.SchoolYearEnrollmentService;
@@ -105,7 +105,7 @@ public class SchoolYearEnrollmentResourceIntTest {
             .espbPointsDeclared(DEFAULT_ESPB_POINTS_DECLARED)
             .espbPointsAttained(DEFAULT_ESPB_POINTS_ATTAINED);
         // Add required entity
-        Student student = StudentResourceIntTest.createEntity(em);
+        User student = UserResourceIntTest.createEntity(em);
         em.persist(student);
         em.flush();
         schoolYearEnrollment.setStudent(student);

@@ -83,62 +83,62 @@ export class StudentExamDialogPage {
 
     getAttendedInput = function() {
         return this.attendedInput;
-    }
+    };
     setGradeInput = function(grade) {
         this.gradeInput.sendKeys(grade);
-    }
+    };
 
     getGradeInput = function() {
         return this.gradeInput.getAttribute('value');
-    }
+    };
 
     studentSelectLastOption = function() {
         this.studentSelect.all(by.tagName('option')).last().click();
-    }
+    };
 
     studentSelectOption = function(option) {
         this.studentSelect.sendKeys(option);
-    }
+    };
 
     getStudentSelect = function() {
         return this.studentSelect;
-    }
+    };
 
     getStudentSelectedOption = function() {
         return this.studentSelect.element(by.css('option:checked')).getText();
-    }
+    };
 
     examSelectLastOption = function() {
         this.examSelect.all(by.tagName('option')).last().click();
-    }
+    };
 
     examSelectOption = function(option) {
         this.examSelect.sendKeys(option);
-    }
+    };
 
     getExamSelect = function() {
         return this.examSelect;
-    }
+    };
 
     getExamSelectedOption = function() {
         return this.examSelect.element(by.css('option:checked')).getText();
-    }
+    };
 
     evaluatedBySelectLastOption = function() {
         this.evaluatedBySelect.all(by.tagName('option')).last().click();
-    }
+    };
 
     evaluatedBySelectOption = function(option) {
         this.evaluatedBySelect.sendKeys(option);
-    }
+    };
 
     getEvaluatedBySelect = function() {
         return this.evaluatedBySelect;
-    }
+    };
 
     getEvaluatedBySelectedOption = function() {
         return this.evaluatedBySelect.element(by.css('option:checked')).getText();
-    }
+    };
 
     save() {
         this.saveButton.click();

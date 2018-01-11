@@ -32,8 +32,8 @@
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="points"><span jhiTranslate="itehProjectApp.studentCommitment.points">Points</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="enrollmentId"><span jhiTranslate="itehProjectApp.studentCommitment.enrollment">Enrollment</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="commitmentId"><span jhiTranslate="itehProjectApp.studentCommitment.commitment">Commitment</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="evaluatedById"><span jhiTranslate="itehProjectApp.studentCommitment.evaluatedBy">Evaluated By</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="commitmentName"><span jhiTranslate="itehProjectApp.studentCommitment.commitment">Commitment</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="evaluatedByFullName"><span jhiTranslate="itehProjectApp.studentCommitment.evaluatedBy">Evaluated By</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -48,13 +48,11 @@
                 </td>
                 <td>
                     <div *ngIf="studentCommitment.commitmentId">
-                        <a [routerLink]="['../commitment', studentCommitment.commitmentId  ]" >{{studentCommitment.commitmentId}}</a>
+                        <a [routerLink]="['../commitment', studentCommitment.commitmentId  ]" >{{studentCommitment.commitmentName}}</a>
                     </div>
                 </td>
                 <td>
-                    <div *ngIf="studentCommitment.evaluatedById">
-                        <a [routerLink]="['../lecturer', studentCommitment.evaluatedById  ]" >{{studentCommitment.evaluatedById}}</a>
-                    </div>
+                    {{studentCommitment.evaluatedByFullName}}
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">

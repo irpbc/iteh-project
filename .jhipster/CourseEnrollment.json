@@ -13,7 +13,7 @@
             "relationshipValidateRules": "required",
             "relationshipName": "course",
             "otherEntityName": "course",
-            "otherEntityField": "id"
+            "otherEntityField": "name"
         }
     ],
     "fields": [

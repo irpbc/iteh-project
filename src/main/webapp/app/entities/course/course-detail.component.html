@@ -23,19 +23,19 @@
         <dt><span jhiTranslate="itehProjectApp.course.semester">Semester</span></dt>
         <dd>
             <div *ngIf="course.semesterId">
-                <a [routerLink]="['/semester', course.semesterId]">{{course.semesterId}}</a>
+                <a [routerLink]="['/semester', course.semesterId]">{{course.semesterName}}</a>
             </div>
         </dd>
         <dt><span jhiTranslate="itehProjectApp.course.optionalGroup">Optional Group</span></dt>
         <dd>
             <div *ngIf="course.optionalGroupId">
-                <a [routerLink]="['/optional-course-group', course.optionalGroupId]">{{course.optionalGroupId}}</a>
+                <a [routerLink]="['/optional-course-group', course.optionalGroupId]">{{course.optionalGroupName}}</a>
             </div>
         </dd>
         <dt><span jhiTranslate="itehProjectApp.course.lecturers">Lecturers</span></dt>
         <dd>
             <span *ngFor="let lecturers of course.lecturers; let last = last">
-                <a [routerLink]="['/lecturer', lecturers?.id ]">{{lecturers.id}}</a>{{last ? '' : ', '}}
+                {{lecturers.fullName}}{{last ? '' : ', '}}
             </span>
         </dd>
     </dl>

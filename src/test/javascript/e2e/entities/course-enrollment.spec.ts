@@ -84,54 +84,54 @@ export class CourseEnrollmentDialogPage {
 
     setTotalPointsInput = function(totalPoints) {
         this.totalPointsInput.sendKeys(totalPoints);
-    }
+    };
 
     getTotalPointsInput = function() {
         return this.totalPointsInput.getAttribute('value');
-    }
+    };
 
     setGradeInput = function(grade) {
         this.gradeInput.sendKeys(grade);
-    }
+    };
 
     getGradeInput = function() {
         return this.gradeInput.getAttribute('value');
-    }
+    };
 
     getCompletedInput = function() {
         return this.completedInput;
-    }
+    };
     yearEnrollmentSelectLastOption = function() {
         this.yearEnrollmentSelect.all(by.tagName('option')).last().click();
-    }
+    };
 
     yearEnrollmentSelectOption = function(option) {
         this.yearEnrollmentSelect.sendKeys(option);
-    }
+    };
 
     getYearEnrollmentSelect = function() {
         return this.yearEnrollmentSelect;
-    }
+    };
 
     getYearEnrollmentSelectedOption = function() {
         return this.yearEnrollmentSelect.element(by.css('option:checked')).getText();
-    }
+    };
 
     courseSelectLastOption = function() {
         this.courseSelect.all(by.tagName('option')).last().click();
-    }
+    };
 
     courseSelectOption = function(option) {
         this.courseSelect.sendKeys(option);
-    }
+    };
 
     getCourseSelect = function() {
         return this.courseSelect;
-    }
+    };
 
     getCourseSelectedOption = function() {
         return this.courseSelect.element(by.css('option:checked')).getText();
-    }
+    };
 
     save() {
         this.saveButton.click();
