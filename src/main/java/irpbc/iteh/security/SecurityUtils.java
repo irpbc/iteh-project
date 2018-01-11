@@ -16,7 +16,7 @@ public final class SecurityUtils {
     }
 
     /**
-     * Get the login of the current user.
+     * Get the id of the current user.
      *
      * @return the login of the current user
      */
@@ -26,6 +26,21 @@ public final class SecurityUtils {
         if (authentication != null && authentication.getPrincipal() instanceof MyUserDetails) {
             MyUserDetails springSecurityUser = (MyUserDetails) authentication.getPrincipal();
             return springSecurityUser.getUserId();
+        }
+        return null;
+    }
+
+    /**
+     * Get the login of the current user.
+     *
+     * @return the login of the current user
+     */
+    public static String getCurrentUserLogin() {
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        Authentication authentication = securityContext.getAuthentication();
+        if (authentication != null && authentication.getPrincipal() instanceof MyUserDetails) {
+            MyUserDetails springSecurityUser = (MyUserDetails) authentication.getPrincipal();
+            return springSecurityUser.getLogin();
         }
         return null;
     }

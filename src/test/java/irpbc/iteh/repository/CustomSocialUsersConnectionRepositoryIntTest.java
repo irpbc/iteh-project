@@ -314,7 +314,7 @@ public class CustomSocialUsersConnectionRepositoryIntTest {
 
     private SocialUserConnection insertTwitterConnection() {
         return createExistingSocialUserConnection(
-            "1",
+            1L,
             "twitter",
             "1",
             1L,
@@ -330,7 +330,7 @@ public class CustomSocialUsersConnectionRepositoryIntTest {
 
     private SocialUserConnection insertFacebookConnection() {
         return createExistingSocialUserConnection(
-            "1",
+            1L,
             "facebook",
             "9",
             1L,
@@ -345,7 +345,7 @@ public class CustomSocialUsersConnectionRepositoryIntTest {
 
     private SocialUserConnection insertFacebookConnection2() {
         return createExistingSocialUserConnection(
-            "1",
+            1L,
             "facebook",
             "10",
             2L,
@@ -360,7 +360,7 @@ public class CustomSocialUsersConnectionRepositoryIntTest {
 
     private SocialUserConnection insertFacebookConnection3() {
         return createExistingSocialUserConnection(
-            "2",
+            2L,
             "facebook",
             "11", 2L,
             null,
@@ -374,7 +374,7 @@ public class CustomSocialUsersConnectionRepositoryIntTest {
 
     private SocialUserConnection insertFacebookConnectionSameFacebookUser() {
         return createExistingSocialUserConnection(
-            "2",
+            2L,
             "facebook",
             "9",
             1L,
@@ -387,7 +387,7 @@ public class CustomSocialUsersConnectionRepositoryIntTest {
             System.currentTimeMillis() + 3600000);
     }
 
-    private SocialUserConnection createExistingSocialUserConnection(String userId,
+    private SocialUserConnection createExistingSocialUserConnection(Long userId,
                                                                     String providerId,
                                                                     String providerUserId,
                                                                     Long rank,

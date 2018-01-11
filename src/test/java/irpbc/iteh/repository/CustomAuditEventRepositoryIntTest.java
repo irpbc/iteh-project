@@ -57,7 +57,7 @@ public class CustomAuditEventRepositoryIntTest {
         Instant oneHourAgo = Instant.now().minusSeconds(3600);
 
         testUserEvent = new PersistentAuditEvent();
-        testUserEvent.setUserId("test-user");
+        testUserEvent.setUserId(10L);
         testUserEvent.setEventType("test-type");
         testUserEvent.setEventDate(oneHourAgo);
         Map<String, String> data = new HashMap<>();
@@ -65,12 +65,12 @@ public class CustomAuditEventRepositoryIntTest {
         testUserEvent.setData(data);
 
         testOldUserEvent = new PersistentAuditEvent();
-        testOldUserEvent.setUserId("test-user");
+        testOldUserEvent.setUserId(11L);
         testOldUserEvent.setEventType("test-type");
         testOldUserEvent.setEventDate(oneHourAgo.minusSeconds(10000));
 
         testOtherUserEvent = new PersistentAuditEvent();
-        testOtherUserEvent.setUserId("other-test-user");
+        testOtherUserEvent.setUserId(12L);
         testOtherUserEvent.setEventType("test-type");
         testOtherUserEvent.setEventDate(oneHourAgo);
     }

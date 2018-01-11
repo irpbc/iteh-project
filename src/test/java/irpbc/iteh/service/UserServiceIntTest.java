@@ -6,7 +6,6 @@ import irpbc.iteh.domain.User;
 import irpbc.iteh.repository.UserRepository;
 import irpbc.iteh.service.dto.UserDTO;
 import irpbc.iteh.service.util.RandomUtil;
-
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
-import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -60,14 +58,14 @@ public class UserServiceIntTest {
     @Transactional
     public void assertThatUserMustExistToResetPassword() {
         userRepository.saveAndFlush(user);
-        Optional<User> maybeUser = userService.requestPasswordReset("invalid.login@localhost");
-        assertThat(maybeUser).isNotPresent();
+        User maybeUser = userService.requestPasswordReset("invalid.login@localhost");
+        assertThat(maybeUser).isNull();
 
         maybeUser = userService.requestPasswordReset(user.getEmail());
-        assertThat(maybeUser).isPresent();
-        assertThat(maybeUser.orElse(null).getEmail()).isEqualTo(user.getEmail());
-        assertThat(maybeUser.orElse(null).getResetDate()).isNotNull();
-        assertThat(maybeUser.orElse(null).getResetKey()).isNotNull();
+        assertThat(maybeUser).isNotNull();
+        assertThat(maybeUser.getEmail()).isEqualTo(user.getEmail());
+        assertThat(maybeUser.getResetDate()).isNotNull();
+        assertThat(maybeUser.getResetKey()).isNotNull();
     }
 
     @Test
@@ -76,8 +74,8 @@ public class UserServiceIntTest {
         user.setActivated(false);
         userRepository.saveAndFlush(user);
 
-        Optional<User> maybeUser = userService.requestPasswordReset(user.getLogin());
-        assertThat(maybeUser).isNotPresent();
+        User maybeUser = userService.requestPasswordReset(user.getLogin());
+        assertThat(maybeUser).isNull();
         userRepository.delete(user);
     }
 
@@ -91,8 +89,8 @@ public class UserServiceIntTest {
         user.setResetKey(resetKey);
         userRepository.saveAndFlush(user);
 
-        Optional<User> maybeUser = userService.completePasswordReset("johndoe2", user.getResetKey());
-        assertThat(maybeUser).isNotPresent();
+        User maybeUser = userService.completePasswordReset("johndoe2", user.getResetKey());
+        assertThat(maybeUser).isNull();
         userRepository.delete(user);
     }
 
@@ -105,8 +103,8 @@ public class UserServiceIntTest {
         user.setResetKey("1234");
         userRepository.saveAndFlush(user);
 
-        Optional<User> maybeUser = userService.completePasswordReset("johndoe2", user.getResetKey());
-        assertThat(maybeUser).isNotPresent();
+        User maybeUser = userService.completePasswordReset("johndoe2", user.getResetKey());
+        assertThat(maybeUser).isNull();
         userRepository.delete(user);
     }
 
@@ -121,11 +119,11 @@ public class UserServiceIntTest {
         user.setResetKey(resetKey);
         userRepository.saveAndFlush(user);
 
-        Optional<User> maybeUser = userService.completePasswordReset("johndoe2", user.getResetKey());
-        assertThat(maybeUser).isPresent();
-        assertThat(maybeUser.orElse(null).getResetDate()).isNull();
-        assertThat(maybeUser.orElse(null).getResetKey()).isNull();
-        assertThat(maybeUser.orElse(null).getPassword()).isNotEqualTo(oldPassword);
+        User maybeUser = userService.completePasswordReset("johndoe2", user.getResetKey());
+        assertThat(maybeUser).isNotNull();
+        assertThat(maybeUser.getResetDate()).isNull();
+        assertThat(maybeUser.getResetKey()).isNull();
+        assertThat(maybeUser.getPassword()).isNotEqualTo(oldPassword);
 
         userRepository.delete(user);
     }
@@ -136,7 +134,6 @@ public class UserServiceIntTest {
         Instant now = Instant.now();
         user.setActivated(false);
         User dbUser = userRepository.saveAndFlush(user);
-        dbUser.setCreatedAt(now.minus(4, ChronoUnit.DAYS));
         userRepository.saveAndFlush(user);
         List<User> users = userRepository.findAllByActivatedIsFalseAndCreatedAtBefore(now.minus(3, ChronoUnit.DAYS));
         assertThat(users).isNotEmpty();
@@ -149,7 +146,7 @@ public class UserServiceIntTest {
     @Transactional
     public void assertThatAnonymousUserIsNotGet() {
         user.setLogin(Constants.ANONYMOUS_USER);
-        if (!userRepository.findOneByLogin(Constants.ANONYMOUS_USER).isPresent()) {
+        if (userRepository.findOneByLogin(Constants.ANONYMOUS_USER) == null) {
             userRepository.saveAndFlush(user);
         }
         final PageRequest pageable = new PageRequest(0, (int) userRepository.count());
@@ -165,12 +162,11 @@ public class UserServiceIntTest {
         user.setActivated(false);
         userRepository.saveAndFlush(user);
         // Let the audit first set the creation date but then update it
-        user.setCreatedAt(Instant.now().minus(30, ChronoUnit.DAYS));
         userRepository.saveAndFlush(user);
 
-        assertThat(userRepository.findOneByLogin("johndoe")).isPresent();
+        assertThat(userRepository.findOneByLogin("johndoe")).isNotNull();
         userService.removeNotActivatedUsers();
-        assertThat(userRepository.findOneByLogin("johndoe")).isNotPresent();
+        assertThat(userRepository.findOneByLogin("johndoe")).isNull();
     }
 
 }

@@ -11,9 +11,7 @@ import java.util.Objects;
 /**
  * A DTO for the SchoolYearEnrollment entity.
  */
-public class SchoolYearEnrollmentDTO implements Serializable {
-
-    private Long id;
+public class SchoolYearEnrollmentDTO extends AbstractEntityDTO {
 
     @DecimalMin(value = "6")
     @DecimalMax(value = "10")
@@ -32,14 +30,6 @@ public class SchoolYearEnrollmentDTO implements Serializable {
     private Long yearId;
 
     private String yearName;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public BigDecimal getAverageGrade() {
         return averageGrade;
@@ -95,27 +85,6 @@ public class SchoolYearEnrollmentDTO implements Serializable {
 
     public void setYearName(String schoolYearName) {
         this.yearName = schoolYearName;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        SchoolYearEnrollmentDTO schoolYearEnrollmentDTO = (SchoolYearEnrollmentDTO) o;
-        if(schoolYearEnrollmentDTO.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), schoolYearEnrollmentDTO.getId());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(getId());
     }
 
     @Override

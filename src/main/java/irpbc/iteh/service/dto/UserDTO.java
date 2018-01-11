@@ -5,6 +5,7 @@ import irpbc.iteh.config.Constants;
 import irpbc.iteh.domain.Authority;
 import irpbc.iteh.domain.User;
 
+import irpbc.iteh.domain.UserType;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -17,6 +18,8 @@ import java.util.stream.Collectors;
  * A DTO representing a user, with his authorities.
  */
 public class UserDTO extends AbstractEntityDTO {
+
+    private UserType userType;
 
     @NotBlank
     @Pattern(regexp = Constants.LOGIN_REGEX)
@@ -46,6 +49,14 @@ public class UserDTO extends AbstractEntityDTO {
     private String langKey;
 
     private Set<String> authorities;
+
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public void setUserType(UserType userType) {
+        this.userType = userType;
+    }
 
     public String getLogin() {
         return login;

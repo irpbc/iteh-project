@@ -12,7 +12,7 @@
                                  baseTableName="school_year_enrollment"
                                  constraintName="fk_school_year_enrollment_student_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="jhi_user"/>
+                                 referencedTableName="user"/>
 
         <addForeignKeyConstraint baseColumnNames="year_id"
                                  baseTableName="school_year_enrollment"

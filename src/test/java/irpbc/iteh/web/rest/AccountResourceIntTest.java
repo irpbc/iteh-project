@@ -1,20 +1,18 @@
 package irpbc.iteh.web.rest;
 
-import irpbc.iteh.config.Constants;
 import irpbc.iteh.ItehProjectApp;
-import irpbc.iteh.domain.Authority;
+import irpbc.iteh.config.Constants;
 import irpbc.iteh.domain.User;
 import irpbc.iteh.repository.AuthorityRepository;
 import irpbc.iteh.repository.UserRepository;
 import irpbc.iteh.security.AuthoritiesConstants;
 import irpbc.iteh.service.MailService;
+import irpbc.iteh.service.UserService;
 import irpbc.iteh.service.dto.UserDTO;
 import irpbc.iteh.web.rest.errors.ExceptionTranslator;
 import irpbc.iteh.web.rest.vm.KeyAndPasswordVM;
 import irpbc.iteh.web.rest.vm.ManagedUserVM;
-import irpbc.iteh.service.UserService;
 import org.apache.commons.lang3.RandomStringUtils;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,17 +28,18 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
-import java.time.Instant;
-import java.time.LocalDate;
 
-import java.util.*;
+import java.time.Instant;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.hasItem;
 import static org.mockito.Matchers.anyObject;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
@@ -120,12 +119,10 @@ public class AccountResourceIntTest {
 
     @Test
     public void testGetExistingAccount() throws Exception {
-        Set<Authority> authorities = new HashSet<>();
-        Authority authority = new Authority();
-        authority.setName(AuthoritiesConstants.ADMIN);
-        authorities.add(authority);
+        Set<String> authorities = new HashSet<>();
+        authorities.add(AuthoritiesConstants.ADMIN);
 
-        User user = new User();
+        UserDTO user = new UserDTO();
         user.setLogin("test");
         user.setFirstName("john");
         user.setLastName("doe");
@@ -133,7 +130,7 @@ public class AccountResourceIntTest {
         user.setImageUrl("http://placehold.it/50x50");
         user.setLangKey("en");
         user.setAuthorities(authorities);
-        when(mockUserService.getUserWithAuthorities()).thenReturn(Optional.of(user));
+        when(mockUserService.getUserWithAuthorities()).thenReturn(user);
 
         restUserMockMvc.perform(get("/api/account")
             .accept(MediaType.APPLICATION_JSON))
@@ -150,7 +147,7 @@ public class AccountResourceIntTest {
 
     @Test
     public void testGetUnknownAccount() throws Exception {
-        when(mockUserService.getUserWithAuthorities()).thenReturn(Optional.empty());
+        when(mockUserService.getUserWithAuthorities()).thenReturn(null);
 
         restUserMockMvc.perform(get("/api/account")
             .accept(MediaType.APPLICATION_JSON))
@@ -177,8 +174,8 @@ public class AccountResourceIntTest {
                 .content(TestUtil.convertObjectToJsonBytes(validUser)))
             .andExpect(status().isCreated());
 
-        Optional<User> user = userRepository.findOneByLogin("joe");
-        assertThat(user.isPresent()).isTrue();
+        User user = userRepository.findOneByLogin("joe");
+        assertThat(user).isNull();
     }
 
     @Test
@@ -201,8 +198,8 @@ public class AccountResourceIntTest {
                 .content(TestUtil.convertObjectToJsonBytes(invalidUser)))
             .andExpect(status().isBadRequest());
 
-        Optional<User> user = userRepository.findOneByEmailIgnoreCase("funky@example.com");
-        assertThat(user.isPresent()).isFalse();
+        User user = userRepository.findOneByEmailIgnoreCase("funky@example.com");
+        assertThat(user).isNull();
     }
 
     @Test
@@ -225,8 +222,8 @@ public class AccountResourceIntTest {
                 .content(TestUtil.convertObjectToJsonBytes(invalidUser)))
             .andExpect(status().isBadRequest());
 
-        Optional<User> user = userRepository.findOneByLogin("bob");
-        assertThat(user.isPresent()).isFalse();
+        User user = userRepository.findOneByLogin("bob");
+        assertThat(user).isNull();
     }
 
     @Test
@@ -249,8 +246,8 @@ public class AccountResourceIntTest {
                 .content(TestUtil.convertObjectToJsonBytes(invalidUser)))
             .andExpect(status().isBadRequest());
 
-        Optional<User> user = userRepository.findOneByLogin("bob");
-        assertThat(user.isPresent()).isFalse();
+        User user = userRepository.findOneByLogin("bob");
+        assertThat(user).isNull();
     }
 
     @Test
@@ -273,8 +270,8 @@ public class AccountResourceIntTest {
                 .content(TestUtil.convertObjectToJsonBytes(invalidUser)))
             .andExpect(status().isBadRequest());
 
-        Optional<User> user = userRepository.findOneByLogin("bob");
-        assertThat(user.isPresent()).isFalse();
+        User user = userRepository.findOneByLogin("bob");
+        assertThat(user).isNull();
     }
 
     @Test
@@ -302,10 +299,6 @@ public class AccountResourceIntTest {
         duplicatedUser.setActivated(validUser.isActivated());
         duplicatedUser.setImageUrl(validUser.getImageUrl());
         duplicatedUser.setLangKey(validUser.getLangKey());
-        duplicatedUser.setCreatedBy(validUser.getCreatedBy());
-        duplicatedUser.setCreatedDate(validUser.getCreatedDate());
-        duplicatedUser.setLastModifiedBy(validUser.getLastModifiedBy());
-        duplicatedUser.setLastModifiedDate(validUser.getLastModifiedDate());
         duplicatedUser.setAuthorities(new HashSet<>(validUser.getAuthorities()));
 
         // Good user
@@ -322,8 +315,8 @@ public class AccountResourceIntTest {
                 .content(TestUtil.convertObjectToJsonBytes(duplicatedUser)))
             .andExpect(status().is4xxClientError());
 
-        Optional<User> userDup = userRepository.findOneByEmailIgnoreCase("alicejr@example.com");
-        assertThat(userDup.isPresent()).isFalse();
+        User userDup = userRepository.findOneByEmailIgnoreCase("alicejr@example.com");
+        assertThat(userDup).isNull();
     }
 
     @Test
@@ -351,10 +344,6 @@ public class AccountResourceIntTest {
         duplicatedUser.setActivated(validUser.isActivated());
         duplicatedUser.setImageUrl(validUser.getImageUrl());
         duplicatedUser.setLangKey(validUser.getLangKey());
-        duplicatedUser.setCreatedBy(validUser.getCreatedBy());
-        duplicatedUser.setCreatedDate(validUser.getCreatedDate());
-        duplicatedUser.setLastModifiedBy(validUser.getLastModifiedBy());
-        duplicatedUser.setLastModifiedDate(validUser.getLastModifiedDate());
         duplicatedUser.setAuthorities(new HashSet<>(validUser.getAuthorities()));
 
         // Good user
@@ -382,10 +371,6 @@ public class AccountResourceIntTest {
         userWithUpperCaseEmail.setActivated(validUser.isActivated());
         userWithUpperCaseEmail.setImageUrl(validUser.getImageUrl());
         userWithUpperCaseEmail.setLangKey(validUser.getLangKey());
-        userWithUpperCaseEmail.setCreatedBy(validUser.getCreatedBy());
-        userWithUpperCaseEmail.setCreatedDate(validUser.getCreatedDate());
-        userWithUpperCaseEmail.setLastModifiedBy(validUser.getLastModifiedBy());
-        userWithUpperCaseEmail.setLastModifiedDate(validUser.getLastModifiedDate());
         userWithUpperCaseEmail.setAuthorities(new HashSet<>(validUser.getAuthorities()));
 
         restMvc.perform(
@@ -394,8 +379,8 @@ public class AccountResourceIntTest {
                 .content(TestUtil.convertObjectToJsonBytes(userWithUpperCaseEmail)))
             .andExpect(status().is4xxClientError());
 
-        Optional<User> userDup = userRepository.findOneByLogin("johnjr");
-        assertThat(userDup.isPresent()).isFalse();
+        User userDup = userRepository.findOneByLogin("johnjr");
+        assertThat(userDup).isNull();
     }
 
     @Test
@@ -418,9 +403,9 @@ public class AccountResourceIntTest {
                 .content(TestUtil.convertObjectToJsonBytes(validUser)))
             .andExpect(status().isCreated());
 
-        Optional<User> userDup = userRepository.findOneByLogin("badguy");
-        assertThat(userDup.isPresent()).isTrue();
-        assertThat(userDup.get().getAuthorities()).hasSize(1)
+        User userDup = userRepository.findOneByLogin("badguy");
+        assertThat(userDup).isNotNull();
+        assertThat(userDup.getAuthorities()).hasSize(1)
             .containsExactly(authorityRepository.findOne(AuthoritiesConstants.USER));
     }
 
@@ -440,7 +425,7 @@ public class AccountResourceIntTest {
         restMvc.perform(get("/api/activate?key={activationKey}", activationKey))
             .andExpect(status().isOk());
 
-        user = userRepository.findOneByLogin(user.getLogin()).orElse(null);
+        user = userRepository.findOneByLogin(user.getLogin());
         assertThat(user.getActivated()).isTrue();
     }
 
@@ -479,7 +464,7 @@ public class AccountResourceIntTest {
                 .content(TestUtil.convertObjectToJsonBytes(userDTO)))
             .andExpect(status().isOk());
 
-        User updatedUser = userRepository.findOneByLogin(user.getLogin()).orElse(null);
+        User updatedUser = userRepository.findOneByLogin(user.getLogin());
         assertThat(updatedUser.getFirstName()).isEqualTo(userDTO.getFirstName());
         assertThat(updatedUser.getLastName()).isEqualTo(userDTO.getLastName());
         assertThat(updatedUser.getEmail()).isEqualTo(userDTO.getEmail());
@@ -518,7 +503,7 @@ public class AccountResourceIntTest {
                 .content(TestUtil.convertObjectToJsonBytes(userDTO)))
             .andExpect(status().isBadRequest());
 
-        assertThat(userRepository.findOneByEmailIgnoreCase("invalid email")).isNotPresent();
+        assertThat(userRepository.findOneByEmailIgnoreCase("invalid email")).isNull();
     }
 
     @Test
@@ -557,7 +542,7 @@ public class AccountResourceIntTest {
                 .content(TestUtil.convertObjectToJsonBytes(userDTO)))
             .andExpect(status().isBadRequest());
 
-        User updatedUser = userRepository.findOneByLogin("save-existing-email").orElse(null);
+        User updatedUser = userRepository.findOneByLogin("save-existing-email");
         assertThat(updatedUser.getEmail()).isEqualTo("save-existing-email@example.com");
     }
 
@@ -589,7 +574,7 @@ public class AccountResourceIntTest {
                 .content(TestUtil.convertObjectToJsonBytes(userDTO)))
             .andExpect(status().isOk());
 
-        User updatedUser = userRepository.findOneByLogin("save-existing-email-and-login").orElse(null);
+        User updatedUser = userRepository.findOneByLogin("save-existing-email-and-login");
         assertThat(updatedUser.getEmail()).isEqualTo("save-existing-email-and-login@example.com");
     }
 
@@ -606,7 +591,7 @@ public class AccountResourceIntTest {
         restMvc.perform(post("/api/account/change-password").content("new password"))
             .andExpect(status().isOk());
 
-        User updatedUser = userRepository.findOneByLogin("change-password").orElse(null);
+        User updatedUser = userRepository.findOneByLogin("change-password");
         assertThat(passwordEncoder.matches("new password", updatedUser.getPassword())).isTrue();
     }
 
@@ -623,7 +608,7 @@ public class AccountResourceIntTest {
         restMvc.perform(post("/api/account/change-password").content("new"))
             .andExpect(status().isBadRequest());
 
-        User updatedUser = userRepository.findOneByLogin("change-password-too-small").orElse(null);
+        User updatedUser = userRepository.findOneByLogin("change-password-too-small");
         assertThat(updatedUser.getPassword()).isEqualTo(user.getPassword());
     }
 
@@ -640,7 +625,7 @@ public class AccountResourceIntTest {
         restMvc.perform(post("/api/account/change-password").content(RandomStringUtils.random(101)))
             .andExpect(status().isBadRequest());
 
-        User updatedUser = userRepository.findOneByLogin("change-password-too-long").orElse(null);
+        User updatedUser = userRepository.findOneByLogin("change-password-too-long");
         assertThat(updatedUser.getPassword()).isEqualTo(user.getPassword());
     }
 
@@ -657,7 +642,7 @@ public class AccountResourceIntTest {
         restMvc.perform(post("/api/account/change-password").content(RandomStringUtils.random(0)))
             .andExpect(status().isBadRequest());
 
-        User updatedUser = userRepository.findOneByLogin("change-password-empty").orElse(null);
+        User updatedUser = userRepository.findOneByLogin("change-password-empty");
         assertThat(updatedUser.getPassword()).isEqualTo(user.getPassword());
     }
 
@@ -720,7 +705,7 @@ public class AccountResourceIntTest {
                 .content(TestUtil.convertObjectToJsonBytes(keyAndPassword)))
             .andExpect(status().isOk());
 
-        User updatedUser = userRepository.findOneByLogin(user.getLogin()).orElse(null);
+        User updatedUser = userRepository.findOneByLogin(user.getLogin());
         assertThat(passwordEncoder.matches(keyAndPassword.getNewPassword(), updatedUser.getPassword())).isTrue();
     }
 
@@ -745,7 +730,7 @@ public class AccountResourceIntTest {
                 .content(TestUtil.convertObjectToJsonBytes(keyAndPassword)))
             .andExpect(status().isBadRequest());
 
-        User updatedUser = userRepository.findOneByLogin(user.getLogin()).orElse(null);
+        User updatedUser = userRepository.findOneByLogin(user.getLogin());
         assertThat(passwordEncoder.matches(keyAndPassword.getNewPassword(), updatedUser.getPassword())).isFalse();
     }
 

@@ -36,7 +36,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Transactional
 public class AuditResourceIntTest {
 
-    private static final String SAMPLE_PRINCIPAL = "SAMPLE_PRINCIPAL";
+    private static final Long SAMPLE_PRINCIPAL = 42L;
     private static final String SAMPLE_TYPE = "SAMPLE_TYPE";
     private static final Instant SAMPLE_TIMESTAMP = Instant.parse("2015-08-04T10:11:30Z");
     private static final long SECONDS_PER_DAY = 60 * 60 * 24;

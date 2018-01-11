@@ -23,13 +23,12 @@ spring:
         type: none
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:h2:mem:ItehProject;DB_CLOSE_DELAY=-1
-        name:
-        username:
-        password:
+        url: jdbc:mysql://localhost:3306/iteh_project?useUnicode=true&characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull
+        username: root
+        password: root
     jpa:
-        database-platform: io.github.jhipster.domain.util.FixedH2Dialect
-        database: H2
+        database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+        database: MYSQL
         open-in-view: false
         show-sql: false
         hibernate:

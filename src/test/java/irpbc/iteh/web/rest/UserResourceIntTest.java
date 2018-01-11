@@ -327,10 +327,6 @@ public class UserResourceIntTest {
         managedUserVM.setActivated(updatedUser.getActivated());
         managedUserVM.setImageUrl(UPDATED_IMAGEURL);
         managedUserVM.setLangKey(UPDATED_LANGKEY);
-        managedUserVM.setCreatedBy(updatedUser.getCreatedBy());
-        managedUserVM.setCreatedDate(updatedUser.getCreatedAt());
-        managedUserVM.setLastModifiedBy(updatedUser.getUpdatedBy());
-        managedUserVM.setLastModifiedDate(updatedUser.getUpdatedAt());
         managedUserVM.setAuthorities(Collections.singleton(AuthoritiesConstants.USER));
 
         restUserMockMvc.perform(put("/api/users")
@@ -370,10 +366,6 @@ public class UserResourceIntTest {
         managedUserVM.setActivated(updatedUser.getActivated());
         managedUserVM.setImageUrl(UPDATED_IMAGEURL);
         managedUserVM.setLangKey(UPDATED_LANGKEY);
-        managedUserVM.setCreatedBy(updatedUser.getCreatedBy());
-        managedUserVM.setCreatedDate(updatedUser.getCreatedAt());
-        managedUserVM.setLastModifiedBy(updatedUser.getUpdatedBy());
-        managedUserVM.setLastModifiedDate(updatedUser.getUpdatedAt());
         managedUserVM.setAuthorities(Collections.singleton(AuthoritiesConstants.USER));
 
         restUserMockMvc.perform(put("/api/users")
@@ -425,10 +417,6 @@ public class UserResourceIntTest {
         managedUserVM.setActivated(updatedUser.getActivated());
         managedUserVM.setImageUrl(updatedUser.getImageUrl());
         managedUserVM.setLangKey(updatedUser.getLangKey());
-        managedUserVM.setCreatedBy(updatedUser.getCreatedBy());
-        managedUserVM.setCreatedDate(updatedUser.getCreatedAt());
-        managedUserVM.setLastModifiedBy(updatedUser.getUpdatedBy());
-        managedUserVM.setLastModifiedDate(updatedUser.getUpdatedAt());
         managedUserVM.setAuthorities(Collections.singleton(AuthoritiesConstants.USER));
 
         restUserMockMvc.perform(put("/api/users")
@@ -469,10 +457,6 @@ public class UserResourceIntTest {
         managedUserVM.setActivated(updatedUser.getActivated());
         managedUserVM.setImageUrl(updatedUser.getImageUrl());
         managedUserVM.setLangKey(updatedUser.getLangKey());
-        managedUserVM.setCreatedBy(updatedUser.getCreatedBy());
-        managedUserVM.setCreatedDate(updatedUser.getCreatedAt());
-        managedUserVM.setLastModifiedBy(updatedUser.getUpdatedBy());
-        managedUserVM.setLastModifiedDate(updatedUser.getUpdatedAt());
         managedUserVM.setAuthorities(Collections.singleton(AuthoritiesConstants.USER));
 
         restUserMockMvc.perform(put("/api/users")
@@ -528,8 +512,8 @@ public class UserResourceIntTest {
 
     @Test
     public void testUserFromId() {
-        assertThat(userMapper.userFromId(DEFAULT_ID).getId()).isEqualTo(DEFAULT_ID);
-        assertThat(userMapper.userFromId(null)).isNull();
+        assertThat(userMapper.fromId(DEFAULT_ID).getId()).isEqualTo(DEFAULT_ID);
+        assertThat(userMapper.fromId(null)).isNull();
     }
 
     @Test
@@ -543,11 +527,9 @@ public class UserResourceIntTest {
         userDTO.setActivated(true);
         userDTO.setImageUrl(DEFAULT_IMAGEURL);
         userDTO.setLangKey(DEFAULT_LANGKEY);
-        userDTO.setCreatedBy(DEFAULT_LOGIN);
-        userDTO.setLastModifiedBy(DEFAULT_LOGIN);
         userDTO.setAuthorities(Collections.singleton(AuthoritiesConstants.USER));
 
-        User user = userMapper.userDTOToUser(userDTO);
+        User user = userMapper.toEntity(userDTO);
         assertThat(user.getId()).isEqualTo(DEFAULT_ID);
         assertThat(user.getLogin()).isEqualTo(DEFAULT_LOGIN);
         assertThat(user.getFirstName()).isEqualTo(DEFAULT_FIRSTNAME);
@@ -556,27 +538,19 @@ public class UserResourceIntTest {
         assertThat(user.getActivated()).isEqualTo(true);
         assertThat(user.getImageUrl()).isEqualTo(DEFAULT_IMAGEURL);
         assertThat(user.getLangKey()).isEqualTo(DEFAULT_LANGKEY);
-        assertThat(user.getCreatedBy()).isNull();
-        assertThat(user.getCreatedAt()).isNotNull();
-        assertThat(user.getUpdatedBy()).isNull();
-        assertThat(user.getUpdatedAt()).isNotNull();
         assertThat(user.getAuthorities()).extracting("name").containsExactly(AuthoritiesConstants.USER);
     }
 
     @Test
     public void testUserToUserDTO() {
         user.setId(DEFAULT_ID);
-        user.setCreatedBy(DEFAULT_LOGIN);
-        user.setCreatedAt(Instant.now());
-        user.setUpdatedBy(DEFAULT_LOGIN);
-        user.setUpdatedAt(Instant.now());
         Set<Authority> authorities = new HashSet<>();
         Authority authority = new Authority();
         authority.setName(AuthoritiesConstants.USER);
         authorities.add(authority);
         user.setAuthorities(authorities);
 
-        UserDTO userDTO = userMapper.userToUserDTO(user);
+        UserDTO userDTO = userMapper.toDto(user);
 
         assertThat(userDTO.getId()).isEqualTo(DEFAULT_ID);
         assertThat(userDTO.getLogin()).isEqualTo(DEFAULT_LOGIN);
@@ -586,10 +560,6 @@ public class UserResourceIntTest {
         assertThat(userDTO.isActivated()).isEqualTo(true);
         assertThat(userDTO.getImageUrl()).isEqualTo(DEFAULT_IMAGEURL);
         assertThat(userDTO.getLangKey()).isEqualTo(DEFAULT_LANGKEY);
-        assertThat(userDTO.getCreatedBy()).isEqualTo(DEFAULT_LOGIN);
-        assertThat(userDTO.getCreatedDate()).isEqualTo(user.getCreatedAt());
-        assertThat(userDTO.getLastModifiedBy()).isEqualTo(DEFAULT_LOGIN);
-        assertThat(userDTO.getLastModifiedDate()).isEqualTo(user.getUpdatedAt());
         assertThat(userDTO.getAuthorities()).containsExactly(AuthoritiesConstants.USER);
         assertThat(userDTO.toString()).isNotNull();
     }
