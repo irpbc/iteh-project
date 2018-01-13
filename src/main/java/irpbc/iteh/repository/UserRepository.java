@@ -19,8 +19,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     User findOneByActivationKey(String activationKey);
 
-    List<User> findAllByActivatedIsFalseAndCreatedAtBefore(Instant dateTime);
-
     User findOneByResetKey(String resetKey);
 
     User findOneByEmailIgnoreCase(String email);

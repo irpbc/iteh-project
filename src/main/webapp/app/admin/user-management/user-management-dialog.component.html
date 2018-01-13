@@ -103,7 +103,9 @@
         <div class="form-group">
             <label jhiTranslate="userManagement.profiles">Profiles</label>
             <select class="form-control" multiple name="authority" [(ngModel)]="user.authorities">
-                <option *ngFor="let authority of authorities" [value]="authority">{{authority}}</option>
+                <option *ngFor="let authority of authorities" [value]="authority">
+                    {{"userManagement.roles." + authority | translate }}
+                </option>
             </select>
         </div>
     </div>

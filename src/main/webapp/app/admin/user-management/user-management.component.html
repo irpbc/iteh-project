@@ -16,9 +16,6 @@
                 <th></th>
                 <th jhiSortBy="langKey"> <span jhiTranslate="userManagement.langKey">Lang Key</span> <span class="fa fa-sort"></span></th>
                 <th><span jhiTranslate="userManagement.profiles">Profiles</span></th>
-                <th jhiSortBy="createdAt"><span jhiTranslate="userManagement.createdAt">Created Date</span> <span class="fa fa-sort"></span></th>
-                <th jhiSortBy="updatedBy"><span jhiTranslate="userManagement.updatedBy">Last Modified By</span> <span class="fa fa-sort"></span></th>
-                <th jhiSortBy="updatedAt"><span jhiTranslate="userManagement.updatedAt">Last Modified Date</span> <span class="fa fa-sort"></span></th>
                 <th></th>
             </tr>
             </thead>
@@ -36,12 +33,9 @@
                 <td>{{user.langKey}}</td>
                 <td>
                     <div *ngFor="let authority of user.authorities">
-                        <span class="badge badge-info">{{ authority }}</span>
+                        <span class="badge badge-info" jhiTranslate="userManagement.roles.{{authority}}"></span>
                     </div>
                 </td>
-                <td>{{user.createdAt | date:'dd/MM/yy HH:mm'}}</td>
-                <td>{{user.updatedBy}}</td>
-                <td>{{user.updatedAt | date:'dd/MM/yy HH:mm'}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

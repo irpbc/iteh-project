@@ -18,10 +18,6 @@ import java.time.LocalDate;
 @Document(indexName = "examperiod")
 public class ExamPeriod extends AbstractEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @NotNull
     @Size(max = 100)
     @Column(name = "name", length = 100, nullable = false)

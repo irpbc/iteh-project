@@ -17,10 +17,6 @@ import javax.validation.constraints.Size;
 @Document(indexName = "optionalcoursegroup")
 public class OptionalCourseGroup extends AbstractEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @NotNull
     @Size(max = 100)
     @Column(name = "name", length = 100, nullable = false)

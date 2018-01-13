@@ -19,10 +19,6 @@ import java.math.BigDecimal;
 @Document(indexName = "schoolyearenrollment")
 public class SchoolYearEnrollment extends AbstractEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @DecimalMin(value = "6")
     @DecimalMax(value = "10")
     @Column(name = "average_grade", precision=10, scale=2)

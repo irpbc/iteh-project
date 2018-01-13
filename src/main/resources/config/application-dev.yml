@@ -71,6 +71,10 @@ spring:
         cache-seconds: 1
     thymeleaf:
         cache: false
+    social:
+        facebook:
+            client-id: 1982107162003069
+            client-secret: 4b3709b423796de0e3d219d75efd9901
 
 liquibase:
     contexts: dev

@@ -18,10 +18,6 @@ import javax.validation.constraints.NotNull;
 @Document(indexName = "studentexam")
 public class StudentExam extends AbstractEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @Column(name = "attended")
     private Boolean attended;
 

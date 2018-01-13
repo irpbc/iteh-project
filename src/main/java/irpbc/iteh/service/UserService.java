@@ -104,6 +104,7 @@ public class UserService {
         Authority authority = authorityRepository.findOne(AuthoritiesConstants.USER);
         Set<Authority> authorities = new HashSet<>();
         String encryptedPassword = passwordEncoder.encode(password);
+        newUser.setUserType(userDTO.getUserType());
         newUser.setLogin(userDTO.getLogin());
         // new user gets initially a generated password
         newUser.setPassword(encryptedPassword);
@@ -126,6 +127,7 @@ public class UserService {
 
     public User createUser(UserDTO userDTO) {
         User user = new User();
+        user.setUserType(userDTO.getUserType());
         user.setLogin(userDTO.getLogin());
         user.setFirstName(userDTO.getFirstName());
         user.setLastName(userDTO.getLastName());
@@ -184,6 +186,7 @@ public class UserService {
         return Optional.of(userRepository
             .findOne(userDTO.getId()))
             .map(user -> {
+                user.setUserType(userDTO.getUserType());
                 user.setLogin(userDTO.getLogin());
                 user.setFirstName(userDTO.getFirstName());
                 user.setLastName(userDTO.getLastName());
@@ -224,7 +227,7 @@ public class UserService {
     @Transactional(readOnly = true)
     public Page<UserDTO> getAllManagedUsers(Pageable pageable) {
         return userRepository
-            .findAllByLoginNot(pageable, Constants.ANONYMOUS_USER)
+            .findAll(pageable)
             .map(userMapper::toDto);
     }
 
@@ -245,25 +248,11 @@ public class UserService {
     }
 
     /**
-     * Not activated users should be automatically deleted after 3 days.
-     * <p>
-     * This is scheduled to get fired everyday, at 01:00 (am).
-     */
-    @Scheduled(cron = "0 0 1 * * ?")
-    public void removeNotActivatedUsers() {
-        List<User> users = userRepository.findAllByActivatedIsFalseAndCreatedAtBefore(Instant.now().minus(3, ChronoUnit.DAYS));
-        for (User user : users) {
-            log.debug("Deleting not activated user {}", user.getLogin());
-            userRepository.delete(user);
-            userSearchRepository.delete(user);
-            cacheManager.getCache(USERS_CACHE).evict(user.getLogin());
-        }
-    }
-
-    /**
      * @return a list of all the authorities
      */
     public List<String> getAuthorities() {
-        return authorityRepository.findAll().stream().map(Authority::getName).collect(Collectors.toList());
+        return authorityRepository.findAll().stream()
+            .map(Authority::getName)
+            .collect(Collectors.toList());
     }
 }

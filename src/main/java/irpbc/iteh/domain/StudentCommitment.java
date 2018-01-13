@@ -17,10 +17,6 @@ import java.math.BigDecimal;
 @Document(indexName = "studentcommitment")
 public class StudentCommitment extends AbstractEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @Column(name = "points", precision=10, scale=2)
     private BigDecimal points;
 

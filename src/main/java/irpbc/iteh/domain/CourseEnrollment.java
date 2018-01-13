@@ -19,10 +19,6 @@ import java.math.BigDecimal;
 @Document(indexName = "courseenrollment")
 public class CourseEnrollment extends AbstractEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @NotNull
     @Column(name = "total_points", precision=10, scale=2, nullable = false)
     private BigDecimal totalPoints;

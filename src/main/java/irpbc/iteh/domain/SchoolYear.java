@@ -17,10 +17,6 @@ import java.time.LocalDate;
 @Document(indexName = "schoolyear")
 public class SchoolYear extends AbstractEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @NotNull
     @Column(name = "name", nullable = false)
     private String name;

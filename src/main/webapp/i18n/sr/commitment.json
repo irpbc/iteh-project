@@ -16,9 +16,9 @@
             "detail": {
                 "title": "Commitment"
             },
-            "name": "Name",
-            "maxPoints": "Max Points",
-            "course": "Course"
+            "name": "Ime",
+            "maxPoints": "Max poena",
+            "course": "Predmet"
         }
     }
 }

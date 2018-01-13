@@ -17,12 +17,8 @@ import java.time.Instant;
 @Document(indexName = "exam")
 public class Exam extends AbstractEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @NotNull
-    @Column(name = "jhi_time", nullable = false)
+    @Column(name = "time", nullable = false)
     private Instant time;
 
     @ManyToOne(optional = false)

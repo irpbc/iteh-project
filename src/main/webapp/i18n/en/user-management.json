@@ -26,6 +26,14 @@
         "createdBy": "Created by",
         "createdDate": "Created date",
         "lastModifiedBy": "Modified by",
-        "lastModifiedDate": "Modified date"
+        "lastModifiedDate": "Modified date",
+
+        "roles": {
+            "ROLE_USER": "User",
+            "ROLE_ADMIN": "Administrator",
+            "ROLE_SERVICE": "Service",
+            "ROLE_LECTURER": "Lecturer",
+            "ROLE_STUDENT": "Student"
+        }
     }
 }

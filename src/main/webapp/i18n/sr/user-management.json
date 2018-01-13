@@ -26,6 +26,14 @@
         "createdBy": "Korisnika kreirao",
         "createdDate": "Datum kreiranja",
         "lastModifiedBy": "Korisnika izmenio",
-        "lastModifiedDate": "Datum izmene"
+        "lastModifiedDate": "Datum izmene",
+
+        "roles": {
+            "ROLE_USER": "Korisnik",
+            "ROLE_ADMIN": "Administrator",
+            "ROLE_SERVICE": "Službenik",
+            "ROLE_LECTURER": "Nastavnik",
+            "ROLE_STUDENT": "Student"
+        }
     }
 }

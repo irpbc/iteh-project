@@ -16,15 +16,13 @@
         <sql>
             CREATE TABLE user (
                 id BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-                created_at TIMESTAMP NOT NULL DEFAULT current_timestamp,
-                updated_at TIMESTAMP NOT NULL DEFAULT current_timestamp,
-                created_by BIGINT NOT NULL,
-                updated_by BIGINT NOT NULL,
 
+                type VARCHAR(3) NOT NULL,
                 login VARCHAR(100) UNIQUE NOT NULL,
                 password_hash VARCHAR(60) NOT NULL,
-                first_name VARCHAR(100) NOT NULL,
-                last_name VARCHAR(100) NOT NULL,
+                first_name VARCHAR(50) NOT NULL,
+                last_name VARCHAR(50) NOT NULL,
+                full_name VARCHAR(100) NOT NULL,
                 email VARCHAR(100) UNIQUE NOT NULL,
                 image_url VARCHAR(255),
                 activated BOOL NOT NULL DEFAULT FALSE,
@@ -32,9 +30,6 @@
                 activation_key VARCHAR(20),
                 reset_key VARCHAR(20),
                 reset_date TIMESTAMP,
-
-                FOREIGN KEY fk_user_created_by (created_by) REFERENCES user(id),
-                FOREIGN KEY fk_user_updated_by (updated_by) REFERENCES user(id),
 
                 UNIQUE INDEX idx_user_login (login),
                 UNIQUE INDEX idx_user_email (email)
@@ -60,11 +55,7 @@
         <loadData tableName="user" file="config/liquibase/users.csv"
                   encoding="UTF-8" separator=";">
             <column name="activated" type="boolean"/>
-            <column name="created_at" type="timestamp"/>
         </loadData>
-
-        <dropDefaultValue tableName="user" columnName="created_at"/>
-        <dropDefaultValue tableName="user" columnName="updated_at"/>
 
         <loadData tableName="authority" file="config/liquibase/authorities.csv"
                   encoding="UTF-8" separator=";"/>
