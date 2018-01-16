@@ -13,7 +13,6 @@ import {
     ExamPeriodDeleteDialogComponent,
     examPeriodRoute,
     examPeriodPopupRoute,
-    ExamPeriodResolvePagingParams,
 } from './';
 
 const ENTITY_STATES = [
@@ -44,7 +43,6 @@ const ENTITY_STATES = [
     providers: [
         ExamPeriodService,
         ExamPeriodPopupService,
-        ExamPeriodResolvePagingParams,
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

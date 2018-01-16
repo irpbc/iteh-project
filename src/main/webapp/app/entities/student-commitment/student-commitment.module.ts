@@ -14,7 +14,6 @@ import {
     StudentCommitmentDeleteDialogComponent,
     studentCommitmentRoute,
     studentCommitmentPopupRoute,
-    StudentCommitmentResolvePagingParams,
 } from './';
 
 const ENTITY_STATES = [
@@ -46,7 +45,6 @@ const ENTITY_STATES = [
     providers: [
         StudentCommitmentService,
         StudentCommitmentPopupService,
-        StudentCommitmentResolvePagingParams,
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

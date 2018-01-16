@@ -1,35 +1,17 @@
-import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
-import { JhiPaginationUtil } from 'ng-jhipster';
+import { Routes } from '@angular/router';
 
-import { UserRouteAccessService } from '../../shared';
+import { ResolvePagingParams, UserRouteAccessService } from '../../shared';
 import { SemesterComponent } from './semester.component';
 import { SemesterDetailComponent } from './semester-detail.component';
 import { SemesterPopupComponent } from './semester-dialog.component';
 import { SemesterDeletePopupComponent } from './semester-delete-dialog.component';
-
-@Injectable()
-export class SemesterResolvePagingParams implements Resolve<any> {
-
-    constructor(private paginationUtil: JhiPaginationUtil) {}
-
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        const page = route.queryParams['page'] ? route.queryParams['page'] : '1';
-        const sort = route.queryParams['sort'] ? route.queryParams['sort'] : 'id,asc';
-        return {
-            page: this.paginationUtil.parsePage(page),
-            predicate: this.paginationUtil.parsePredicate(sort),
-            ascending: this.paginationUtil.parseAscending(sort)
-      };
-    }
-}
 
 export const semesterRoute: Routes = [
     {
         path: 'semester',
         component: SemesterComponent,
         resolve: {
-            'pagingParams': SemesterResolvePagingParams
+            'pagingParams': ResolvePagingParams
         },
         data: {
             authorities: ['ROLE_USER'],

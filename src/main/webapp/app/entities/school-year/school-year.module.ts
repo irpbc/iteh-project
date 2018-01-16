@@ -13,7 +13,6 @@ import {
     SchoolYearDeleteDialogComponent,
     schoolYearRoute,
     schoolYearPopupRoute,
-    SchoolYearResolvePagingParams,
 } from './';
 
 const ENTITY_STATES = [
@@ -44,7 +43,6 @@ const ENTITY_STATES = [
     providers: [
         SchoolYearService,
         SchoolYearPopupService,
-        SchoolYearResolvePagingParams,
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

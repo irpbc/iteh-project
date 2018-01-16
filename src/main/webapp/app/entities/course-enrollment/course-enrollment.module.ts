@@ -13,7 +13,6 @@ import {
     CourseEnrollmentDeleteDialogComponent,
     courseEnrollmentRoute,
     courseEnrollmentPopupRoute,
-    CourseEnrollmentResolvePagingParams,
 } from './';
 
 const ENTITY_STATES = [
@@ -44,7 +43,6 @@ const ENTITY_STATES = [
     providers: [
         CourseEnrollmentService,
         CourseEnrollmentPopupService,
-        CourseEnrollmentResolvePagingParams,
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

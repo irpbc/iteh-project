@@ -13,7 +13,6 @@ import {
     CommitmentDeleteDialogComponent,
     commitmentRoute,
     commitmentPopupRoute,
-    CommitmentResolvePagingParams,
 } from './';
 
 const ENTITY_STATES = [
@@ -44,7 +43,6 @@ const ENTITY_STATES = [
     providers: [
         CommitmentService,
         CommitmentPopupService,
-        CommitmentResolvePagingParams,
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

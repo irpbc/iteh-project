@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActivate } from '@angular/router';
-
-import { JhiPaginationUtil } from 'ng-jhipster';
+import { CanActivate, Routes } from '@angular/router';
 
 import { UserMgmtComponent } from './user-management.component';
 import { UserMgmtDetailComponent } from './user-management-detail.component';
 import { UserDialogComponent } from './user-management-dialog.component';
 import { UserDeleteDialogComponent } from './user-management-delete-dialog.component';
 
-import { Principal } from '../../shared';
+import { Principal, ResolvePagingParams } from '../../shared';
 
 @Injectable()
 export class UserResolve implements CanActivate {
@@ -20,28 +18,12 @@ export class UserResolve implements CanActivate {
     }
 }
 
-@Injectable()
-export class UserResolvePagingParams implements Resolve<any> {
-
-    constructor(private paginationUtil: JhiPaginationUtil) {}
-
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        const page = route.queryParams['page'] ? route.queryParams['page'] : '1';
-        const sort = route.queryParams['sort'] ? route.queryParams['sort'] : 'id,asc';
-        return {
-            page: this.paginationUtil.parsePage(page),
-            predicate: this.paginationUtil.parsePredicate(sort),
-            ascending: this.paginationUtil.parseAscending(sort)
-        };
-    }
-}
-
 export const userMgmtRoute: Routes = [
     {
         path: 'user-management',
         component: UserMgmtComponent,
         resolve: {
-            'pagingParams': UserResolvePagingParams
+            'pagingParams': ResolvePagingParams
         },
         data: {
             pageTitle: 'userManagement.home.title'

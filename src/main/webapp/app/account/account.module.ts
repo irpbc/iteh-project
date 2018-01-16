@@ -2,21 +2,21 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { ItehProjectSharedModule } from '../shared';
+import { Register } from "./register/register.service";
 
 import {
-    Register,
     ActivateService,
     PasswordService,
     PasswordResetInitService,
     PasswordResetFinishService,
     PasswordStrengthBarComponent,
-    RegisterComponent,
+    // RegisterComponent,
     ActivateComponent,
     PasswordComponent,
     PasswordResetInitComponent,
     PasswordResetFinishComponent,
     SettingsComponent,
-    SocialRegisterComponent,
+    // SocialRegisterComponent,
     SocialAuthComponent,
     accountState
 } from './';
@@ -27,10 +27,10 @@ import {
         RouterModule.forChild(accountState)
     ],
     declarations: [
-        SocialRegisterComponent,
+        // SocialRegisterComponent,
         SocialAuthComponent,
         ActivateComponent,
-        RegisterComponent,
+        // RegisterComponent,
         PasswordComponent,
         PasswordStrengthBarComponent,
         PasswordResetInitComponent,

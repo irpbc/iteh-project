@@ -11,6 +11,7 @@ import { CoursePopupService } from './course-popup.service';
 import { CourseService } from './course.service';
 import { Semester, SemesterService } from '../semester';
 import { OptionalCourseGroup, OptionalCourseGroupService } from '../optional-course-group';
+import { BaseEntity } from '../../shared';
 import { User, UserService } from '../../shared';
 import { ResponseWrapper } from '../../shared';
 
@@ -84,15 +85,7 @@ export class CourseDialogComponent implements OnInit {
         this.jhiAlertService.error(error.message, null, null);
     }
 
-    trackSemesterById(index: number, item: Semester) {
-        return item.id;
-    }
-
-    trackOptionalCourseGroupById(index: number, item: OptionalCourseGroup) {
-        return item.id;
-    }
-
-    trackUserById(index: number, item: User) {
+    trackById(index: number, item: BaseEntity) {
         return item.id;
     }
 

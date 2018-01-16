@@ -1,6 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { JhiTrackerService } from './../shared/tracker/tracker.service';
+import { JhiTrackerService } from '../shared/tracker/tracker.service';
 
 import { ItehProjectSharedModule } from '../shared';
 /* jhipster-needle-add-admin-module-import - JHipster will add admin modules imports here */
@@ -27,7 +27,6 @@ import {
     JhiMetricsService,
     JhiTrackerComponent,
     LogsService,
-    UserResolvePagingParams,
     UserResolve,
     UserModalService
 } from './';
@@ -68,7 +67,6 @@ import {
         JhiMetricsService,
         LogsService,
         JhiTrackerService,
-        UserResolvePagingParams,
         UserResolve,
         UserModalService
     ],

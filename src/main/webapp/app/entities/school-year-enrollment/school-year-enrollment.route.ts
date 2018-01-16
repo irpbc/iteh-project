@@ -1,35 +1,17 @@
-import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
-import { JhiPaginationUtil } from 'ng-jhipster';
+import { Routes } from '@angular/router';
 
-import { UserRouteAccessService } from '../../shared';
+import { ResolvePagingParams, UserRouteAccessService } from '../../shared';
 import { SchoolYearEnrollmentComponent } from './school-year-enrollment.component';
 import { SchoolYearEnrollmentDetailComponent } from './school-year-enrollment-detail.component';
 import { SchoolYearEnrollmentPopupComponent } from './school-year-enrollment-dialog.component';
 import { SchoolYearEnrollmentDeletePopupComponent } from './school-year-enrollment-delete-dialog.component';
-
-@Injectable()
-export class SchoolYearEnrollmentResolvePagingParams implements Resolve<any> {
-
-    constructor(private paginationUtil: JhiPaginationUtil) {}
-
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        const page = route.queryParams['page'] ? route.queryParams['page'] : '1';
-        const sort = route.queryParams['sort'] ? route.queryParams['sort'] : 'id,asc';
-        return {
-            page: this.paginationUtil.parsePage(page),
-            predicate: this.paginationUtil.parsePredicate(sort),
-            ascending: this.paginationUtil.parseAscending(sort)
-      };
-    }
-}
 
 export const schoolYearEnrollmentRoute: Routes = [
     {
         path: 'school-year-enrollment',
         component: SchoolYearEnrollmentComponent,
         resolve: {
-            'pagingParams': SchoolYearEnrollmentResolvePagingParams
+            'pagingParams': ResolvePagingParams
         },
         data: {
             authorities: ['ROLE_USER'],

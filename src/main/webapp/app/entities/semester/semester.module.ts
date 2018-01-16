@@ -14,7 +14,6 @@ import {
     SemesterDeleteDialogComponent,
     semesterRoute,
     semesterPopupRoute,
-    SemesterResolvePagingParams,
 } from './';
 
 const ENTITY_STATES = [
@@ -45,7 +44,6 @@ const ENTITY_STATES = [
     providers: [
         SemesterService,
         SemesterPopupService,
-        SemesterResolvePagingParams,
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

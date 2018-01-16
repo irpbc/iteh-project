@@ -17,6 +17,7 @@ import {
     HasAnyAuthorityDirective,
     JhiSocialComponent,
     SocialService,
+    ResolvePagingParams
 } from './';
 
 @NgModule({
@@ -33,6 +34,7 @@ import {
         LoginService,
         LoginModalService,
         AccountService,
+        ResolvePagingParams,
         StateStorageService,
         Principal,
         CSRFService,
