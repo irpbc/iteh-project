@@ -2,19 +2,19 @@
     "itehProjectApp": {
         "exam" : {
             "home": {
-                "title": "Exams",
-                "createLabel": "Kreiraj novi Exam",
-                "createOrEditLabel": "Kreirajte ili izmenite Exam",
-                "search": "Potražite Exam"
+                "title": "Ispiti",
+                "createLabel": "Kreiraj novi Ispit",
+                "createOrEditLabel": "Kreirajte ili izmenite Ispit",
+                "search": "Potražite Ispite"
             },
-            "created": "Kreiran je novi Exam pod nazivom {{ param }}",
-            "updated": "Exam pod nazivom {{ param }} je ažuriran",
-            "deleted": "Exam pod nazivom {{ param }} je obrisan",
+            "created": "Kreiran je novi Ispit pod nazivom {{ param }}",
+            "updated": "Ispit pod nazivom {{ param }} je ažuriran",
+            "deleted": "Ispit pod nazivom {{ param }} je obrisan",
             "delete": {
-                "question": "Da li ste sigurni da želite da obrišete Exam pod nazivom {{ id }}?"
+                "question": "Da li ste sigurni da želite da obrišete Ispit pod nazivom {{ id }}?"
             },
             "detail": {
-                "title": "Exam"
+                "title": "Ispit"
             },
             "time": "Time",
             "period": "Period",

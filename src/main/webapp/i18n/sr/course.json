@@ -2,27 +2,27 @@
     "itehProjectApp": {
         "course" : {
             "home": {
-                "title": "Courses",
-                "createLabel": "Kreiraj novi Course",
-                "createOrEditLabel": "Kreirajte ili izmenite Course",
-                "search": "Potražite Course"
+                "title": "Predmeti",
+                "createLabel": "Kreiraj novi Predmet",
+                "createOrEditLabel": "Kreirajte ili izmenite Predmet",
+                "search": "Potražite Predmet"
             },
-            "created": "Kreiran je novi Course pod nazivom {{ param }}",
-            "updated": "Course pod nazivom {{ param }} je ažuriran",
-            "deleted": "Course pod nazivom {{ param }} je obrisan",
+            "created": "Kreiran je novi Predmet pod nazivom {{ param }}",
+            "updated": "Predmet pod nazivom {{ param }} je ažuriran",
+            "deleted": "Predmet pod nazivom {{ param }} je obrisan",
             "delete": {
-                "question": "Da li ste sigurni da želite da obrišete Course pod nazivom {{ id }}?"
+                "question": "Da li ste sigurni da želite da obrišete Predmet pod nazivom {{ id }}?"
             },
             "detail": {
-                "title": "Course"
+                "title": "Predmet"
             },
-            "name": "Name",
-            "espbPoints": "Espb Points",
-            "yearOfStudies": "Year Of Studies",
-            "optional": "Optional",
-            "semester": "Semester",
-            "optionalGroup": "Optional Group",
-            "lecturers": "Lecturers"
+            "name": "Ime",
+            "espbPoints": "ESPB Poena",
+            "yearOfStudies": "Godina",
+            "optional": "Izborni",
+            "semester": "Semestar",
+            "optionalGroup": "Izborna grupa",
+            "lecturers": "Nastavnici"
         }
     }
 }

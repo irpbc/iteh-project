@@ -1,0 +1,39 @@
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { RouterModule } from '@angular/router';
+
+import { ItehProjectSharedModule } from '../../../shared';
+import {DataListModule} from 'primeng/components/datalist/datalist';
+import {DialogModule} from 'primeng/components/dialog/dialog';
+import {ButtonModule} from 'primeng/components/button/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {GrowlModule} from 'primeng/components/growl/growl';
+import {BrowserService} from './service/browser.service';
+import {APP_BASE_HREF} from '@angular/common';
+
+import {
+    DataListDemoComponent,
+    datalistDemoRoute
+} from './';
+
+const primeng_STATES = [
+    datalistDemoRoute
+];
+
+@NgModule({
+    imports: [
+        ItehProjectSharedModule,
+        ButtonModule,
+        DataListModule,
+        DialogModule,
+        BrowserAnimationsModule,
+        GrowlModule,
+        RouterModule.forRoot(primeng_STATES, { useHash: true })
+    ],
+    declarations: [
+        DataListDemoComponent
+    ],
+    providers: [{provide: APP_BASE_HREF, useValue: '/'}, BrowserService],
+
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+})
+export class ItehProjectDataListDemoModule {}
