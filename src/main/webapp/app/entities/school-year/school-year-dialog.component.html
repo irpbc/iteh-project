@@ -12,49 +12,18 @@
             <input type="text" class="form-control" id="id" name="id"
                    [(ngModel)]="schoolYear.id" readonly />
         </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="itehProjectApp.schoolYear.name" for="field_name">Name</label>
-            <input type="text" class="form-control" name="name" id="field_name"
-                [(ngModel)]="schoolYear.name" required/>
-            <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
-                   This field is required.
-                </small>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="itehProjectApp.schoolYear.startDate" for="field_startDate">Start Date</label>
-            <div class="input-group">
-                <input id="field_startDate" type="text" class="form-control" name="startDate" ngbDatepicker  #startDateDp="ngbDatepicker" [(ngModel)]="schoolYear.startDate"
-                required/>
-                <span class="input-group-btn">
-                    <button type="button" class="btn btn-secondary" (click)="startDateDp.toggle()"><i class="fa fa-calendar"></i></button>
-                </span>
-            </div>
-            <div [hidden]="!(editForm.controls.startDate?.dirty && editForm.controls.startDate?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.startDate?.errors?.required" jhiTranslate="entity.validation.required">
-                   This field is required.
-                </small>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="itehProjectApp.schoolYear.endDate" for="field_endDate">End Date</label>
-            <div class="input-group">
-                <input id="field_endDate" type="text" class="form-control" name="endDate" ngbDatepicker  #endDateDp="ngbDatepicker" [(ngModel)]="schoolYear.endDate"
-                required/>
-                <span class="input-group-btn">
-                    <button type="button" class="btn btn-secondary" (click)="endDateDp.toggle()"><i class="fa fa-calendar"></i></button>
-                </span>
-            </div>
-            <div [hidden]="!(editForm.controls.endDate?.dirty && editForm.controls.endDate?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.endDate?.errors?.required" jhiTranslate="entity.validation.required">
-                   This field is required.
-                </small>
-            </div>
-        </div>
+
+        <field-input [form]="editForm" [entityName]="'schoolYear'" [object]="schoolYear"
+                     [field]="'name'" [type]="'STRING'" [required]="true">
+        </field-input>
+
+        <field-input [form]="editForm" [entityName]="'schoolYear'" [object]="schoolYear"
+                     [field]="'startDate'" [type]="'DATE'" [required]="true">
+        </field-input>
+
+        <field-input [form]="editForm" [entityName]="'schoolYear'" [object]="schoolYear"
+                     [field]="'endDate'" [type]="'DATE'" [required]="true">
+        </field-input>
 
     </div>
     <div class="modal-footer">

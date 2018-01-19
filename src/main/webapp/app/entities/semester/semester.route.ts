@@ -14,7 +14,7 @@ export const semesterRoute: Routes = [
             'pagingParams': ResolvePagingParams
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_SERVICE'],
             pageTitle: 'itehProjectApp.semester.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -22,7 +22,7 @@ export const semesterRoute: Routes = [
         path: 'semester/:id',
         component: SemesterDetailComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_SERVICE'],
             pageTitle: 'itehProjectApp.semester.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -34,7 +34,7 @@ export const semesterPopupRoute: Routes = [
         path: 'semester-new',
         component: SemesterPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_SERVICE'],
             pageTitle: 'itehProjectApp.semester.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -44,7 +44,7 @@ export const semesterPopupRoute: Routes = [
         path: 'semester/:id/edit',
         component: SemesterPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_SERVICE'],
             pageTitle: 'itehProjectApp.semester.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -54,7 +54,7 @@ export const semesterPopupRoute: Routes = [
         path: 'semester/:id/delete',
         component: SemesterDeletePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_SERVICE'],
             pageTitle: 'itehProjectApp.semester.home.title'
         },
         canActivate: [UserRouteAccessService],

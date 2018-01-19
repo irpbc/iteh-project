@@ -12,6 +12,6 @@ import org.mapstruct.MappingInheritanceStrategy;
 @MapperConfig(componentModel = "spring", mappingInheritanceStrategy = MappingInheritanceStrategy.AUTO_INHERIT_FROM_CONFIG)
 public interface EntityMapperConfig {
 
-    @Mapping(target = "id", ignore = true)
+    //@Mapping(target = "id", ignore = true)
     AbstractEntity toEntity(AbstractEntityDTO dto);
 }

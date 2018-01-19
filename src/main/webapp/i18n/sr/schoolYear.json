@@ -2,23 +2,23 @@
     "itehProjectApp": {
         "schoolYear" : {
             "home": {
-                "title": "School Years",
-                "createLabel": "Kreiraj novi School Year",
-                "createOrEditLabel": "Kreirajte ili izmenite School Year",
-                "search": "Potražite School Year"
+                "title": "Školske godine",
+                "createLabel": "Kreiraj novu Školsku godinu",
+                "createOrEditLabel": "Kreirajte ili izmenite Školsku godinu",
+                "search": "Potražite Školske godine"
             },
-            "created": "Kreiran je novi School Year pod nazivom {{ param }}",
-            "updated": "School Year pod nazivom {{ param }} je ažuriran",
-            "deleted": "School Year pod nazivom {{ param }} je obrisan",
+            "created": "Kreirana je nova Školska godina pod nazivom {{ param }}",
+            "updated": "Školska godina pod nazivom {{ param }} je ažurirana",
+            "deleted": "Školska godina pod nazivom {{ param }} je obrisana",
             "delete": {
-                "question": "Da li ste sigurni da želite da obrišete School Year pod nazivom {{ id }}?"
+                "question": "Da li ste sigurni da želite da obrišete Školsku godinu pod nazivom {{ id }}?"
             },
             "detail": {
-                "title": "School Year"
+                "title": "Školska godina"
             },
-            "name": "Name",
-            "startDate": "Start Date",
-            "endDate": "End Date"
+            "name": "Ime",
+            "startDate": "Datum početka",
+            "endDate": "Datum završetka"
         }
     }
 }
