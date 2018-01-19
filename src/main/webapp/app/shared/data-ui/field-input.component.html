@@ -1,0 +1,86 @@
+<div class="form-group" [ngSwitch]="type">
+
+    <!-- Label -->
+    <label class="form-control-label" jhiTranslate="itehProjectApp.{{entityName}}.{{field}}"
+           for="field_{{field}}">{{field}}</label>
+
+    <!-- Text input -->
+    <input *ngSwitchCase="'STRING'"
+           type="text" class="form-control" [name]="field" id="field_{{field}}"
+           [(ngModel)]="object[field]"
+           [required]="required" [minlength]="minLength" [maxlength]="maxLength"/>
+
+    <!-- Integer input -->
+    <input *ngSwitchCase="'INTEGER'"
+           type="number" step="1" class="form-control" [name]="field" id="field_{{field}}"
+           [(ngModel)]="object[field]" [required]="required" [min]="min"
+           [max]="max"/>
+
+    <!-- Decimal input -->
+    <input *ngSwitchCase="'DECIMAL'"
+           type="number" class="form-control" [name]="field" id="field_{{field}}"
+           [(ngModel)]="object[field]"
+           [required]="required" [min]="min" [max]="max"/>
+
+    <!-- Date input - using ngbDatepicker -->
+    <div *ngSwitchCase="'DATE'" class="input-group">
+        <input ngbDatepicker id="field_{{field}}" type="text" class="form-control" [name]="field"
+               #picker="ngbDatepicker" [(ngModel)]="object[field]" [required]="required"/>
+        <span class="input-group-btn">
+             <button type="button" class="btn btn-secondary" (click)="picker.toggle()">
+                 <i class="fa fa-calendar"></i>
+             </button>
+        </span>
+    </div>
+
+    <!-- Date/time input - using ??? -->
+    <div *ngSwitchCase="'DATETIME'" class="d-flex">
+        <input id="field_{{field}}" type="datetime-local" class="form-control" [name]="field"
+               [(ngModel)]="object[field]" [required]="required"/>
+    </div>
+
+    <!-- Relationship to one -->
+    <select *ngSwitchCase="'REL_TO_ONE'" class="form-control" id="field_{{field}}"
+            [name]="field" [(ngModel)]="object[field + 'Id']" [required]="required">
+        <option *ngIf="!form.value[field]" [ngValue]="null" selected></option>
+        <option *ngFor="let option of options; trackBy: trackById" [ngValue]="option.id">
+            {{getOptionName(option)}}
+        </option>
+    </select>
+
+    <!-- Relationship to many -->
+    <select *ngSwitchCase="'REL_TO_MANY'" class="form-control" id="field_{{field}}" multiple
+            [name]="field" [(ngModel)]="object[field]" [required]="required">
+        <option *ngFor="let option of options; trackBy: trackById" [ngValue]="getSelected(object[field], option)">
+            {{getOptionName(option)}}
+        </option>
+    </select>
+
+    <div [hidden]="!(form.controls[field]?.dirty && form.controls[field]?.invalid)">
+        <small *ngIf="required" class="form-text text-danger"
+               [hidden]="!form.controls[field]?.errors?.required" jhiTranslate="entity.validation.required">
+            entity.validation.required
+        </small>
+        <small *ngIf="maxLength" class="form-text text-danger"
+               [hidden]="!form.controls[field]?.errors?.maxlength" jhiTranslate="entity.validation.maxlength"
+               translateValues="{ max: {{maxLength}} }">
+            entity.validation.maxlength
+        </small>
+        <small *ngIf="minLength" class="form-text text-danger"
+               [hidden]="!form.controls[field]?.errors?.minlength" jhiTranslate="entity.validation.minlength"
+               translateValues="{ min: {{minLength}} }">
+            entity.validation.minlength
+        </small>
+        <small *ngIf="max" class="form-text text-danger"
+               [hidden]="!form.controls[field]?.errors?.max" jhiTranslate="entity.validation.max"
+               translateValues="{ max: {{max}} }">
+            entity.validation.max
+        </small>
+        <small *ngIf="minLength" class="form-text text-danger"
+               [hidden]="!form.controls[field]?.errors?.min" jhiTranslate="entity.validation.min"
+               translateValues="{ min: {{min}} }">
+            entity.validation.min
+        </small>
+    </div>
+
+</div>

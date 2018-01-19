@@ -17,7 +17,8 @@ import {
     HasAnyAuthorityDirective,
     JhiSocialComponent,
     SocialService,
-    ResolvePagingParams
+    ResolvePagingParams,
+    FieldInputComponent
 } from './';
 
 @NgModule({
@@ -28,6 +29,7 @@ import {
     declarations: [
         JhiSocialComponent,
         JhiLoginModalComponent,
+        FieldInputComponent,
         HasAnyAuthorityDirective
     ],
     providers: [
@@ -49,10 +51,10 @@ import {
         ItehProjectSharedCommonModule,
         JhiSocialComponent,
         JhiLoginModalComponent,
+        FieldInputComponent,
         HasAnyAuthorityDirective,
         DatePipe
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
-
 })
 export class ItehProjectSharedModule {}
