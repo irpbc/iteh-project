@@ -2,22 +2,22 @@
     "itehProjectApp": {
         "semester" : {
             "home": {
-                "title": "Semesters",
-                "createLabel": "Kreiraj novi Semester",
-                "createOrEditLabel": "Kreirajte ili izmenite Semester",
-                "search": "Potražite Semester"
+                "title": "Semestri",
+                "createLabel": "Kreiraj novi Semestar",
+                "createOrEditLabel": "Kreirajte ili izmenite Semestar",
+                "search": "Potražite Semestre"
             },
-            "created": "Kreiran je novi Semester pod nazivom {{ param }}",
-            "updated": "Semester pod nazivom {{ param }} je ažuriran",
-            "deleted": "Semester pod nazivom {{ param }} je obrisan",
+            "created": "Kreiran je novi Semestar pod nazivom {{ param }}",
+            "updated": "Semestar pod nazivom {{ param }} je ažuriran",
+            "deleted": "Semestar pod nazivom {{ param }} je obrisan",
             "delete": {
-                "question": "Da li ste sigurni da želite da obrišete Semester pod nazivom {{ id }}?"
+                "question": "Da li ste sigurni da želite da obrišete Semestar pod nazivom {{ id }}?"
             },
             "detail": {
-                "title": "Semester"
+                "title": "Semestar"
             },
-            "name": "Name",
-            "year": "Year"
+            "name": "Ime",
+            "year": "Školska godina"
         }
     }
 }

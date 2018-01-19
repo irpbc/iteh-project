@@ -31,7 +31,7 @@
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="name"><span jhiTranslate="itehProjectApp.semester.name">Name</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="yearId"><span jhiTranslate="itehProjectApp.semester.year">Year</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="yearName"><span jhiTranslate="itehProjectApp.semester.year">Year</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -41,7 +41,7 @@
                 <td>{{semester.name}}</td>
                 <td>
                     <div *ngIf="semester.yearId">
-                        <a [routerLink]="['../school-year', semester.yearId  ]" >{{semester.yearId}}</a>
+                        <a [routerLink]="['../school-year', semester.yearId  ]" >{{semester.yearName}}</a>
                     </div>
                 </td>
                 <td class="text-right">

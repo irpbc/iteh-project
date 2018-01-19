@@ -5,6 +5,7 @@ export class Semester implements BaseEntity {
         public id?: number,
         public name?: string,
         public yearId?: number,
+        public yearName?: string,
     ) {
     }
 }

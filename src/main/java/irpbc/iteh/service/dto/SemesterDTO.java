@@ -1,11 +1,7 @@
 package irpbc.iteh.service.dto;
 
-
-import javax.validation.constraints.*;
-import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Objects;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * A DTO for the Semester entity.
@@ -17,6 +13,7 @@ public class SemesterDTO extends AbstractEntityDTO {
     private String name;
 
     private Long yearId;
+    private String yearName;
 
     public String getName() {
         return name;
@@ -32,6 +29,14 @@ public class SemesterDTO extends AbstractEntityDTO {
 
     public void setYearId(Long schoolYearId) {
         this.yearId = schoolYearId;
+    }
+
+    public String getYearName() {
+        return yearName;
+    }
+
+    public void setYearName(String yearName) {
+        this.yearName = yearName;
     }
 
     @Override

@@ -13,7 +13,8 @@ import org.mapstruct.*;
 public interface SemesterMapper extends EntityMapper<SemesterDTO, Semester> {
 
     @Mapping(source = "year.id", target = "yearId")
-    SemesterDTO toDto(Semester semester); 
+    @Mapping(source = "year.name", target = "yearName")
+    SemesterDTO toDto(Semester semester);
 
     @Mapping(source = "yearId", target = "year")
     Semester toEntity(SemesterDTO semesterDTO);
