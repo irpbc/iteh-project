@@ -16,12 +16,6 @@
         </dd>
     </dl>
 
-    <button type="submit"
-            (click)="previousState()"
-            class="btn btn-info">
-        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
-    </button>
-
     <button type="button"
             [routerLink]="['/', { outlets: { popup: 'optional-course-group/'+ optionalCourseGroup.id + '/edit'} }]"
             replaceUrl="true"
