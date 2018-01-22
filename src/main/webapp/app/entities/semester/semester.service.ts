@@ -5,9 +5,10 @@ import { SERVER_API_URL } from '../../app.constants';
 
 import { Semester } from './semester.model';
 import { ResponseWrapper, createRequestOption } from '../../shared';
+import { EntityService } from '../../shared';
 
 @Injectable()
-export class SemesterService {
+export class SemesterService implements EntityService<Semester> {
 
     private resourceUrl = SERVER_API_URL + 'api/semesters';
     private resourceSearchUrl = SERVER_API_URL + 'api/_search/semesters';

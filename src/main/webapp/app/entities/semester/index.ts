@@ -1,5 +1,4 @@
 export * from './semester.model';
-export * from './semester-popup.service';
 export * from './semester.service';
 export * from './semester-dialog.component';
 export * from './semester-delete-dialog.component';

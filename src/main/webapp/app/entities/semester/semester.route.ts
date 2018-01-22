@@ -3,8 +3,8 @@ import { Routes } from '@angular/router';
 import { ResolvePagingParams, UserRouteAccessService } from '../../shared';
 import { SemesterComponent } from './semester.component';
 import { SemesterDetailComponent } from './semester-detail.component';
-import { SemesterPopupComponent } from './semester-dialog.component';
-import { SemesterDeletePopupComponent } from './semester-delete-dialog.component';
+import { SemesterDialogComponent } from './semester-dialog.component';
+import { SemesterDeleteDialogComponent } from './semester-delete-dialog.component';
 
 export const semesterRoute: Routes = [
     {
@@ -32,7 +32,7 @@ export const semesterRoute: Routes = [
 export const semesterPopupRoute: Routes = [
     {
         path: 'semester-new',
-        component: SemesterPopupComponent,
+        component: SemesterDialogComponent,
         data: {
             authorities: ['ROLE_SERVICE'],
             pageTitle: 'itehProjectApp.semester.home.title'
@@ -42,7 +42,7 @@ export const semesterPopupRoute: Routes = [
     },
     {
         path: 'semester/:id/edit',
-        component: SemesterPopupComponent,
+        component: SemesterDialogComponent,
         data: {
             authorities: ['ROLE_SERVICE'],
             pageTitle: 'itehProjectApp.semester.home.title'
@@ -52,7 +52,7 @@ export const semesterPopupRoute: Routes = [
     },
     {
         path: 'semester/:id/delete',
-        component: SemesterDeletePopupComponent,
+        component: SemesterDeleteDialogComponent,
         data: {
             authorities: ['ROLE_SERVICE'],
             pageTitle: 'itehProjectApp.semester.home.title'
