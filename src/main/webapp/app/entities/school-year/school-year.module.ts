@@ -4,12 +4,9 @@ import { RouterModule } from '@angular/router';
 import { ItehProjectSharedModule } from '../../shared';
 import {
     SchoolYearService,
-    SchoolYearPopupService,
     SchoolYearComponent,
     SchoolYearDetailComponent,
     SchoolYearDialogComponent,
-    SchoolYearPopupComponent,
-    SchoolYearDeletePopupComponent,
     SchoolYearDeleteDialogComponent,
     schoolYearRoute,
     schoolYearPopupRoute,
@@ -30,19 +27,14 @@ const ENTITY_STATES = [
         SchoolYearDetailComponent,
         SchoolYearDialogComponent,
         SchoolYearDeleteDialogComponent,
-        SchoolYearPopupComponent,
-        SchoolYearDeletePopupComponent,
     ],
     entryComponents: [
         SchoolYearComponent,
         SchoolYearDialogComponent,
-        SchoolYearPopupComponent,
         SchoolYearDeleteDialogComponent,
-        SchoolYearDeletePopupComponent,
     ],
     providers: [
         SchoolYearService,
-        SchoolYearPopupService,
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

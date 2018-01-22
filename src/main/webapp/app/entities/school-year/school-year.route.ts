@@ -3,8 +3,8 @@ import { Routes } from '@angular/router';
 import { ResolvePagingParams, UserRouteAccessService } from '../../shared';
 import { SchoolYearComponent } from './school-year.component';
 import { SchoolYearDetailComponent } from './school-year-detail.component';
-import { SchoolYearPopupComponent } from './school-year-dialog.component';
-import { SchoolYearDeletePopupComponent } from './school-year-delete-dialog.component';
+import { SchoolYearDialogComponent } from './school-year-dialog.component';
+import { SchoolYearDeleteDialogComponent } from './school-year-delete-dialog.component';
 
 export const schoolYearRoute: Routes = [
     {
@@ -32,7 +32,7 @@ export const schoolYearRoute: Routes = [
 export const schoolYearPopupRoute: Routes = [
     {
         path: 'school-year-new',
-        component: SchoolYearPopupComponent,
+        component: SchoolYearDialogComponent,
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'itehProjectApp.schoolYear.home.title'
@@ -42,7 +42,7 @@ export const schoolYearPopupRoute: Routes = [
     },
     {
         path: 'school-year/:id/edit',
-        component: SchoolYearPopupComponent,
+        component: SchoolYearDialogComponent,
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'itehProjectApp.schoolYear.home.title'
@@ -52,7 +52,7 @@ export const schoolYearPopupRoute: Routes = [
     },
     {
         path: 'school-year/:id/delete',
-        component: SchoolYearDeletePopupComponent,
+        component: SchoolYearDeleteDialogComponent,
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'itehProjectApp.schoolYear.home.title'
