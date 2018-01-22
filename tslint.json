@@ -57,10 +57,7 @@
             "check-else",
             "check-whitespace"
         ],
-        "quotemark": [
-            true,
-            "single"
-        ],
+        "quotemark": [false],
         "radix": true,
         "semicolon": [
             "always"
