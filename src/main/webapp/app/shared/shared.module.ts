@@ -18,7 +18,9 @@ import {
     JhiSocialComponent,
     SocialService,
     ResolvePagingParams,
-    FieldInputComponent
+    FieldInputComponent,
+    DeleteDialogComponent,
+    EntityEditDialogComponent
 } from './';
 
 @NgModule({
@@ -30,6 +32,8 @@ import {
         JhiSocialComponent,
         JhiLoginModalComponent,
         FieldInputComponent,
+        DeleteDialogComponent,
+        EntityEditDialogComponent,
         HasAnyAuthorityDirective
     ],
     providers: [
@@ -52,6 +56,8 @@ import {
         JhiSocialComponent,
         JhiLoginModalComponent,
         FieldInputComponent,
+        DeleteDialogComponent,
+        EntityEditDialogComponent,
         HasAnyAuthorityDirective,
         DatePipe
     ],

@@ -76,7 +76,7 @@
                translateValues="{ max: {{max}} }">
             entity.validation.max
         </small>
-        <small *ngIf="minLength" class="form-text text-danger"
+        <small *ngIf="min" class="form-text text-danger"
                [hidden]="!form.controls[field]?.errors?.min" jhiTranslate="entity.validation.min"
                translateValues="{ min: {{min}} }">
             entity.validation.min

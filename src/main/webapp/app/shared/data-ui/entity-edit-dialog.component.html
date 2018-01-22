@@ -1,0 +1,38 @@
+<ng-template #content>
+    <form name="editForm" role="form" novalidate (ngSubmit)="_save()" #editForm="ngForm">
+
+        <div class="modal-header">
+            <h4 class="modal-title" id="mySchoolYearLabel"
+                jhiTranslate="itehProjectApp.{{entityName}}.home.createOrEditLabel">
+            </h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="_clear()">&times;
+            </button>
+        </div>
+
+        <div class="modal-body">
+            <jhi-alert-error></jhi-alert-error>
+            <div class="form-group" [hidden]="!object.id">
+                <label for="id" jhiTranslate="global.field.id">ID</label>
+                <input type="text" class="form-control" id="id" name="id"
+                       [(ngModel)]="object.id" readonly/>
+            </div>
+
+            <field-input *ngFor="let fieldDef of fieldDefs"
+                         [form]="editForm" [entityName]="entityName" [object]="object"
+                         [field]="fieldDef.name" [type]="fieldDef.type" [required]="fieldDef.required"
+                         [min]="fieldDef.min" [max]="fieldDef.max"
+                         [minLength]="fieldDef.minLength" [maxLength]="fieldDef.maxLength"
+                         [options]="fieldDef.options" [optionNameField]="fieldDef.optionNameField">
+            </field-input>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="_clear()">
+                <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+            </button>
+            <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+            </button>
+        </div>
+    </form>
+</ng-template>

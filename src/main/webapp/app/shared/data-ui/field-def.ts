@@ -17,4 +17,7 @@ export interface FieldDef {
     max?: number;
     minLength?: number;
     maxLength?: number;
+
+    options?: any[];
+    optionNameField?: string;
 }

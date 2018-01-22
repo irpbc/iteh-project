@@ -32,7 +32,7 @@ export class FieldInputComponent implements OnInit {
 
     }
 
-    trackById(option: any): number {
+    trackById(index: number, option: any): number {
         return option.id;
     }
 
