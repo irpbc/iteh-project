@@ -1,8 +1,8 @@
 <div>
     <h2>
-        <span jhiTranslate="userManagement.home.title">Users</span>
+        <span jhiTranslate="itehProjectApp.user.home.title">Users</span>
         <button class="btn btn-primary float-right jh-create-entity" [routerLink]="['/', { outlets: { popup: ['user-management-new'] } }]">
-            <span class="fa fa-plus"></span> <span jhiTranslate="userManagement.home.createLabel">Create a new User</span>
+            <span class="fa fa-plus"></span> <span jhiTranslate="itehProjectApp.user.home.createLabel">Create a new User</span>
         </button>
     </h2>
     <jhi-alert></jhi-alert>
@@ -10,31 +10,29 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-                <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
-                <th jhiSortBy="login"><span jhiTranslate="userManagement.login">Login</span> <span class="fa fa-sort"></span></th>
-                <th jhiSortBy="email"><span jhiTranslate="userManagement.email">Email</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="login"><span jhiTranslate="itehProjectApp.user.login">Login</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="lastName"><span jhiTranslate="itehProjectApp.user.lastName">Email</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="firstName"><span jhiTranslate="itehProjectApp.user.firstName">Email</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="email"><span jhiTranslate="itehProjectApp.user.email">Email</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="userType"><span jhiTranslate="itehProjectApp.user.userType">Type</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="langKey"> <span jhiTranslate="itehProjectApp.user.langKey">Lang Key</span> <span class="fa fa-sort"></span></th>
                 <th></th>
-                <th jhiSortBy="langKey"> <span jhiTranslate="userManagement.langKey">Lang Key</span> <span class="fa fa-sort"></span></th>
-                <th><span jhiTranslate="userManagement.profiles">Profiles</span></th>
                 <th></th>
             </tr>
             </thead>
             <tbody *ngIf ="users">
             <tr *ngFor="let user of users; trackBy: trackIdentity">
-                <td><a [routerLink]="['../user-management', user.login]">{{user.id}}</a></td>
-                <td>{{user.login}}</td>
+                <td><a [routerLink]="['../user-management', user.login]">{{user.login}}</a></td>
+                <td>{{user.lastName}}</td>
+                <td>{{user.firstName}}</td>
                 <td>{{user.email}}</td>
-                <td>
-                    <button class="btn btn-danger btn-sm" (click)="setActive(user, true)" *ngIf="!user.activated"
-                            jhiTranslate="userManagement.deactivated">Deactivated</button>
-                    <button class="btn btn-success btn-sm" (click)="setActive(user, false)" *ngIf="user.activated"
-                            [disabled]="currentAccount.login === user.login" jhiTranslate="userManagement.activated">Activated</button>
-                </td>
+                <td>{{'itehProjectApp.user.types.' + user.userType | translate}}</td>
                 <td>{{user.langKey}}</td>
                 <td>
-                    <div *ngFor="let authority of user.authorities">
-                        <span class="badge badge-info" jhiTranslate="userManagement.roles.{{authority}}"></span>
-                    </div>
+                    <button class="btn btn-danger btn-sm" (click)="setActive(user, true)" *ngIf="!user.activated"
+                            jhiTranslate="itehProjectApp.user.deactivated">Deactivated</button>
+                    <button class="btn btn-success btn-sm" (click)="setActive(user, false)" *ngIf="user.activated"
+                            [disabled]="currentAccount.login === user.login" jhiTranslate="itehProjectApp.user.activated">Activated</button>
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">

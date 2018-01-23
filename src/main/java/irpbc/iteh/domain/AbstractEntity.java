@@ -51,6 +51,6 @@ public abstract class AbstractEntity implements Serializable {
 
     @Override
     public int hashCode() {
-        return id.hashCode();
+        return Objects.hashCode(id);
     }
 }

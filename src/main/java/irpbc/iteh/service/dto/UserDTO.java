@@ -32,8 +32,6 @@ public class UserDTO extends AbstractEntityDTO {
     @Size(max = 50)
     private String lastName;
 
-    @NotNull
-    @Size(max = 100)
     private String fullName;
 
     @Email

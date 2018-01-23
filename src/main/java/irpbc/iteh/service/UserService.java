@@ -1,30 +1,30 @@
 package irpbc.iteh.service;
 
+import irpbc.iteh.config.Constants;
 import irpbc.iteh.domain.Authority;
 import irpbc.iteh.domain.User;
 import irpbc.iteh.repository.AuthorityRepository;
-import irpbc.iteh.config.Constants;
 import irpbc.iteh.repository.UserRepository;
 import irpbc.iteh.repository.search.UserSearchRepository;
 import irpbc.iteh.security.AuthoritiesConstants;
 import irpbc.iteh.security.SecurityUtils;
+import irpbc.iteh.service.dto.UserDTO;
 import irpbc.iteh.service.mapper.UserMapper;
 import irpbc.iteh.service.util.RandomUtil;
-import irpbc.iteh.service.dto.UserDTO;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.CacheManager;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
-import java.time.temporal.ChronoUnit;
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -98,39 +98,40 @@ public class UserService {
         return user;
     }
 
-    public User registerUser(UserDTO userDTO, String password) {
-
-        User newUser = new User();
-        Authority authority = authorityRepository.findOne(AuthoritiesConstants.USER);
-        Set<Authority> authorities = new HashSet<>();
-        String encryptedPassword = passwordEncoder.encode(password);
-        newUser.setUserType(userDTO.getUserType());
-        newUser.setLogin(userDTO.getLogin());
-        // new user gets initially a generated password
-        newUser.setPassword(encryptedPassword);
-        newUser.setFirstName(userDTO.getFirstName());
-        newUser.setLastName(userDTO.getLastName());
-        newUser.setEmail(userDTO.getEmail());
-        newUser.setImageUrl(userDTO.getImageUrl());
-        newUser.setLangKey(userDTO.getLangKey());
-        // new user is not active
-        newUser.setActivated(false);
-        // new user gets registration key
-        newUser.setActivationKey(RandomUtil.generateActivationKey());
-        authorities.add(authority);
-        newUser.setAuthorities(authorities);
-        userRepository.save(newUser);
-        userSearchRepository.save(newUser);
-        log.debug("Created Information for User: {}", newUser);
-        return newUser;
-    }
-
     public User createUser(UserDTO userDTO) {
+
+        Set<String> authSet = new HashSet<>();
+        switch (userDTO.getUserType()) {
+            case ST:
+                authSet.add(AuthoritiesConstants.STUDENT);
+                authSet.add(AuthoritiesConstants.USER);
+                break;
+            case LC:
+                authSet.add(AuthoritiesConstants.LECTURER);
+                authSet.add(AuthoritiesConstants.USER);
+                break;
+            case SR:
+                authSet.add(AuthoritiesConstants.SERVICE);
+                authSet.add(AuthoritiesConstants.LECTURER);
+                authSet.add(AuthoritiesConstants.STUDENT);
+                authSet.add(AuthoritiesConstants.USER);
+                break;
+            case AD:
+                authSet.add(AuthoritiesConstants.ADMIN);
+                authSet.add(AuthoritiesConstants.LECTURER);
+                authSet.add(AuthoritiesConstants.SERVICE);
+                authSet.add(AuthoritiesConstants.STUDENT);
+                authSet.add(AuthoritiesConstants.USER);
+                break;
+        }
+        userDTO.setAuthorities(authSet);
+
         User user = new User();
         user.setUserType(userDTO.getUserType());
         user.setLogin(userDTO.getLogin());
         user.setFirstName(userDTO.getFirstName());
         user.setLastName(userDTO.getLastName());
+        user.fullName(userDTO.getFirstName() + ' ' + userDTO.getLastName());
         user.setEmail(userDTO.getEmail());
         user.setImageUrl(userDTO.getImageUrl());
         if (userDTO.getLangKey() == null) {
@@ -190,6 +191,7 @@ public class UserService {
                 user.setLogin(userDTO.getLogin());
                 user.setFirstName(userDTO.getFirstName());
                 user.setLastName(userDTO.getLastName());
+                user.fullName(userDTO.getFirstName() + ' ' + userDTO.getLastName());
                 user.setEmail(userDTO.getEmail());
                 user.setImageUrl(userDTO.getImageUrl());
                 user.setActivated(userDTO.isActivated());

@@ -5,7 +5,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
 
 import { UserModalService } from './user-modal.service';
-import { JhiLanguageHelper, User, UserService } from '../../shared';
+import { JhiLanguageHelper, User, UserType, UserService, CREATABLE_TYPES } from '../../shared';
 
 @Component({
     selector: 'jhi-user-mgmt-dialog',
@@ -16,6 +16,7 @@ export class UserMgmtDialogComponent implements OnInit {
     user: User;
     languages: any[];
     authorities: any[];
+    userTypes: UserType[];
     isSaving: Boolean;
 
     constructor(
@@ -26,13 +27,15 @@ export class UserMgmtDialogComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.isSaving = false;
+        this.isSaving    = false;
         this.authorities = [];
+
+        this.userTypes = CREATABLE_TYPES;
+        console.log(this.userTypes);
+
+        this.languages   = this.languageHelper.getAll();
         this.userService.authorities().subscribe((authorities) => {
             this.authorities = authorities;
-        });
-        this.languageHelper.getAll().then((languages) => {
-            this.languages = languages;
         });
     }
 

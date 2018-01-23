@@ -1,45 +1,35 @@
 <div *ngIf="user">
     <h2>
-        <span jhiTranslate="userManagement.detail.title">User</span> [<b>{{user.login}}</b>]
+        <span jhiTranslate="itehProjectApp.user.detail.title">User</span> [<b>{{user.login}}</b>]
     </h2>
     <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="userManagement.login">Login</span></dt>
+        <dt><span jhiTranslate="itehProjectApp.user.login">Login</span></dt>
         <dd>
             <span>{{user.login}}</span>
             <jhi-boolean
                 [value]="user.activated"
-                [textTrue]="'userManagement.activated' | translate"
-                [textFalse]="'userManagement.deactivated' | translate">
+                [textTrue]="'itehProjectApp.user.activated' | translate"
+                [textFalse]="'itehProjectApp.user.deactivated' | translate">
             </jhi-boolean>
         </dd>
-        <dt><span jhiTranslate="userManagement.firstName">First Name</span></dt>
+        <dt><span jhiTranslate="itehProjectApp.user.firstName">First Name</span></dt>
         <dd>{{user.firstName}}</dd>
-        <dt><span jhiTranslate="userManagement.lastName">Last Name</span></dt>
+        <dt><span jhiTranslate="itehProjectApp.user.lastName">Last Name</span></dt>
         <dd>{{user.lastName}}</dd>
-        <dt><span jhiTranslate="userManagement.email">Email</span></dt>
+        <dt><span jhiTranslate="itehProjectApp.user.email">Email</span></dt>
         <dd>{{user.email}}</dd>
-        <dt><span jhiTranslate="userManagement.langKey">Lang Key</span></dt>
+        <dt><span jhiTranslate="itehProjectApp.user.langKey">Lang Key</span></dt>
         <dd>{{user.langKey}}</dd>
-        <dt><span jhiTranslate="userManagement.createdBy">Created By</span></dt>
-        <dd>{{user.createdBy}}</dd>
-        <dt><span jhiTranslate="userManagement.createdAt">Created Date</span></dt>
-        <dd>{{user.createdAt | date:'dd/MM/yy HH:mm' }}</dd>
-        <dt><span jhiTranslate="userManagement.updatedBy">Last Modified By</span></dt>
-        <dd>{{user.updatedBy}}</dd>
-        <dt><span jhiTranslate="userManagement.updatedAt">Last Modified Date</span></dt>
-        <dd>{{user.updatedAt | date:'dd/MM/yy HH:mm'}}</dd>
-        <dt><span jhiTranslate="userManagement.profiles">Profiles</span></dt>
-        <dd>
-            <ul class="list-unstyled">
-                <li *ngFor="let authority of user.authorities">
-                    <span class="badge badge-info">{{authority}}</span>
-                </li>
-            </ul>
-        </dd>
+        <dt><span jhiTranslate="itehProjectApp.user.userType">Type</span></dt>
+        <dd>{{'itehProjectApp.user.types.' + user.userType | translate}}</dd>
     </dl>
-    <button type="submit"
-            routerLink="/user-management"
-            class="btn btn-info">
+
+    <button type="submit" routerLink="/user-management" class="btn btn-info">
         <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" [routerLink]="['/', { outlets: { popup: 'user-management/'+ user.login + '/edit'} }]"
+            replaceUrl="true" queryParamsHandling="merge" class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
     </button>
 </div>

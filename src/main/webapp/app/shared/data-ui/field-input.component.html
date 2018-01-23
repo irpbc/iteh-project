@@ -8,13 +8,13 @@
     <input *ngSwitchCase="'STRING'"
            type="text" class="form-control" [name]="field" id="field_{{field}}"
            [(ngModel)]="object[field]"
-           [required]="required" [minlength]="minLength" [maxlength]="maxLength"/>
+           [required]="required" [minlength]="minLength" [maxlength]="maxLength"
+           [email]="email" [pattern]="pattern"/>
 
     <!-- Integer input -->
     <input *ngSwitchCase="'INTEGER'"
            type="number" step="1" class="form-control" [name]="field" id="field_{{field}}"
-           [(ngModel)]="object[field]" [required]="required" [min]="min"
-           [max]="max"/>
+           [(ngModel)]="object[field]" [required]="required" [min]="min" [max]="max"/>
 
     <!-- Decimal input -->
     <input *ngSwitchCase="'DECIMAL'"

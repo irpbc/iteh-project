@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { errorRoute, navbarRoute } from './layouts';
+import { errorRoute } from './layouts';
 
 const LAYOUT_ROUTES = [
-    navbarRoute,
     ...errorRoute
 ];
 
@@ -15,4 +14,5 @@ const LAYOUT_ROUTES = [
         RouterModule
     ]
 })
-export class ItehProjectAppRoutingModule {}
+export class ItehProjectAppRoutingModule {
+}

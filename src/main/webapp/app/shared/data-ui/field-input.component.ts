@@ -19,6 +19,10 @@ export class FieldInputComponent implements OnInit {
     @Input() public max: number;
     @Input() public minLength: number;
     @Input() public maxLength: number;
+    @Input() public email: boolean;
+    @Input() public pattern: string;
+
+    @Input() public disabled: boolean;
 
     @Input() public options: any[];
     @Input() public optionNameField: string;

@@ -85,7 +85,6 @@ public class WebsocketConfiguration extends AbstractWebSocketMessageBrokerConfig
                 Principal principal = request.getPrincipal();
                 if (principal == null) {
                     Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-                    authorities.add(new SimpleGrantedAuthority(AuthoritiesConstants.ANONYMOUS));
                     principal = new AnonymousAuthenticationToken("WebsocketConfiguration", "anonymous", authorities);
                 }
                 return principal;

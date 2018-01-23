@@ -3,8 +3,8 @@ import { MockBackend } from '@angular/http/testing';
 import { ConnectionBackend, RequestOptions, BaseRequestOptions, Http, Response, ResponseOptions } from '@angular/http';
 import { JhiDateUtils } from 'ng-jhipster';
 
-import { UserService, User } from './../../../../../../main/webapp/app/shared';
-import { SERVER_API_URL } from './../../../../../../main/webapp/app/app.constants';
+import { UserService, User, UserType } from '../../../../../../main/webapp/app/shared';
+import { SERVER_API_URL } from '../../../../../../main/webapp/app/app.constants';
 
 describe('Service Tests', () => {
 
@@ -52,7 +52,7 @@ describe('Service Tests', () => {
                 });
 
                 this.lastConnection.mockRespond(new Response(new ResponseOptions({
-                    body: JSON.stringify(new User(1, 'user')),
+                    body: JSON.stringify(new User(1, UserType.AD, 'user')),
                 })));
 
                 expect(entity).toBeDefined();

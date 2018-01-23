@@ -22,11 +22,9 @@ export class SettingsComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.languages = this.languageHelper.getAll();
         this.principal.identity().then((account) => {
             this.settingsAccount = this.copyAccount(account);
-        });
-        this.languageHelper.getAll().then((languages) => {
-            this.languages = languages;
         });
     }
 

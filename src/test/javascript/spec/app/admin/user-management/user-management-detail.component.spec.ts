@@ -6,6 +6,7 @@ import { ItehProjectTestModule } from '../../../test.module';
 import { MockActivatedRoute } from '../../../helpers/mock-route.service';
 import { UserMgmtDetailComponent } from '../../../../../../main/webapp/app/admin/user-management/user-management-detail.component';
 import { UserService, User } from '../../../../../../main/webapp/app/shared';
+import { UserType } from '../../../../../../main/webapp/app/shared/user/user.model';
 
 describe('Component Tests', () => {
 
@@ -41,7 +42,7 @@ describe('Component Tests', () => {
                 // GIVEN
 
                 spyOn(service, 'find').and
-                    .returnValue(Observable.of(new User(1, 'user', 'first', 'last', 'first@last.com', true, 'en', ['ROLE_USER'], 'admin', null, null, null)));
+                    .returnValue(Observable.of(new User(1, UserType.AD, 'user', 'first', 'last', 'first@last.com', true, 'en', ['ROLE_USER'], 'admin', null, null, null)));
 
                 // WHEN
                 comp.ngOnInit();
@@ -50,6 +51,7 @@ describe('Component Tests', () => {
                 expect(service.find).toHaveBeenCalledWith('user');
                 expect(comp.user).toEqual(jasmine.objectContaining({
                     id: 1,
+                    userType: UserType.AD,
                     login: 'user',
                     firstName: 'first',
                     lastName: 'last',

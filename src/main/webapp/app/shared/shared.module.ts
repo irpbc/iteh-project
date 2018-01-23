@@ -11,7 +11,7 @@ import {
     StateStorageService,
     LoginService,
     LoginModalService,
-    JhiLoginModalComponent,
+    LoginComponent,
     Principal,
     JhiTrackerService,
     HasAnyAuthorityDirective,
@@ -19,6 +19,7 @@ import {
     SocialService,
     ResolvePagingParams,
     FieldInputComponent,
+    CheckboxInputComponent,
     DeleteDialogComponent,
     EntityEditDialogComponent
 } from './';
@@ -30,8 +31,9 @@ import {
     ],
     declarations: [
         JhiSocialComponent,
-        JhiLoginModalComponent,
+        LoginComponent,
         FieldInputComponent,
+        CheckboxInputComponent,
         DeleteDialogComponent,
         EntityEditDialogComponent,
         HasAnyAuthorityDirective
@@ -50,12 +52,13 @@ import {
         UserService,
         DatePipe
     ],
-    entryComponents: [JhiLoginModalComponent],
+    entryComponents: [LoginComponent],
     exports: [
         ItehProjectSharedCommonModule,
         JhiSocialComponent,
-        JhiLoginModalComponent,
+        LoginComponent,
         FieldInputComponent,
+        CheckboxInputComponent,
         DeleteDialogComponent,
         EntityEditDialogComponent,
         HasAnyAuthorityDirective,

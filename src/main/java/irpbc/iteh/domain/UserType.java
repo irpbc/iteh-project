@@ -5,5 +5,9 @@ package irpbc.iteh.domain;
  */
 public enum UserType {
 
-    ST, LC, AD, SY
+    ST,
+    LC,
+    SR,
+    AD,
+    SY
 }

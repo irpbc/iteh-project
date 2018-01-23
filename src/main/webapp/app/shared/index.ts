@@ -27,6 +27,7 @@ export * from './social/social.service';
 export * from './social/social.component';
 export * from './entity/entity.service';
 export * from './data-ui/field-input.component';
+export * from './data-ui/checkbox-input.component';
 export * from './data-ui/field-def';
 export * from './data-ui/delete-dialog.component';
 export * from './data-ui/entity-edit-dialog.component';
