@@ -20,6 +20,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
+import static org.elasticsearch.index.query.QueryBuilders.*;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.List;
@@ -60,19 +62,6 @@ public class UserService {
         this.userSearchRepository = userSearchRepository;
         this.authorityRepository = authorityRepository;
         this.cacheManager = cacheManager;
-    }
-
-    public User activateRegistration(String key) {
-        log.debug("Activating user for activation key {}", key);
-        User user = userRepository.findOneByActivationKey(key);
-
-        // activate given user for the registration key.
-        user.setActivated(true);
-        user.setActivationKey(null);
-        userSearchRepository.save(user);
-        cacheManager.getCache(USERS_CACHE).evict(user.getLogin());
-        log.debug("Activated user: {}", user);
-        return user;
     }
 
     public User completePasswordReset(String newPassword, String key) {
@@ -233,9 +222,36 @@ public class UserService {
             .map(userMapper::toDto);
     }
 
+    /**
+     * Get one user by id.
+     *
+     * @param id the id of the entity
+     * @return the entity
+     */
+    @Transactional(readOnly = true)
+    public UserDTO findOne(Long id) {
+        log.debug("Request to get User : {}", id);
+        User user = userRepository.findOne(id);
+        return userMapper.toDto(user);
+    }
+
     @Transactional(readOnly = true)
     public UserDTO getUserWithAuthoritiesByLogin(String login) {
         return userMapper.toDto(userRepository.findOneWithAuthoritiesByLogin(login));
+    }
+
+    /**
+     * Search for the user corresponding to the query.
+     *
+     * @param query the query of the search
+     * @param pageable the pagination information
+     * @return the list of entities
+     */
+    @Transactional(readOnly = true)
+    public Page<UserDTO> search(String query, Pageable pageable) {
+        log.debug("Request to search for a page of Users for query {}", query);
+        Page<User> result = userSearchRepository.search(queryStringQuery(query), pageable);
+        return result.map(userMapper::toDto);
     }
 
     @Transactional(readOnly = true)

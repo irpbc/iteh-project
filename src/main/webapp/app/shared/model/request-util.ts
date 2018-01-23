@@ -10,7 +10,14 @@ export const createRequestOption = (req?: any): BaseRequestOptions => {
             params.paramsMap.set('sort', req.sort);
         }
         params.set('query', req.query);
-        params.set('filter', req.filter);
+
+        if (req.filter) {
+            for (const key in req.filter) {
+                if (req.filter.hasOwnProperty(key)) {
+                    params.set(key, req.filter[key]);
+                }
+            }
+        }
 
         options.params = params;
     }

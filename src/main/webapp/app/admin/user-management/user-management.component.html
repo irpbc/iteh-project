@@ -1,6 +1,30 @@
 <div>
     <h2>
-        <span jhiTranslate="itehProjectApp.user.home.title">Users</span>
+        <span jhiTranslate="itehProjectApp.user.home.title"></span>
+        <div class="btn-group" role="group">
+            <div class="btn-group btn-group-toggle" ngbRadioGroup [(ngModel)]="userType">
+                <label ngbButtonLabel class="btn-primary">
+                    <input ngbButton type="radio" [value]="null"/>
+                    {{'itehProjectApp.user.types.all' | translate}}
+                </label>
+                <label ngbButtonLabel class="btn-primary">
+                    <input ngbButton type="radio" value="ST"/>
+                    {{'itehProjectApp.user.types.ST' | translate}}
+                </label>
+                <label ngbButtonLabel class="btn-primary">
+                    <input ngbButton type="radio" value="LC"/>
+                    {{'itehProjectApp.user.types.LC' | translate}}
+                </label>
+                <label ngbButtonLabel class="btn-primary">
+                    <input ngbButton type="radio" value="SR"/>
+                    {{'itehProjectApp.user.types.SR' | translate}}
+                </label>
+                <label ngbButtonLabel class="btn-primary">
+                    <input ngbButton type="radio" value="AD"/>
+                    {{'itehProjectApp.user.types.AD' | translate}}
+                </label>
+            </div>
+        </div>
         <button class="btn btn-primary float-right jh-create-entity" [routerLink]="['/', { outlets: { popup: ['user-management-new'] } }]">
             <span class="fa fa-plus"></span> <span jhiTranslate="itehProjectApp.user.home.createLabel">Create a new User</span>
         </button>
@@ -20,7 +44,7 @@
                 <th></th>
             </tr>
             </thead>
-            <tbody *ngIf ="users">
+            <tbody *ngIf="users">
             <tr *ngFor="let user of users; trackBy: trackIdentity">
                 <td><a [routerLink]="['../user-management', user.login]">{{user.login}}</a></td>
                 <td>{{user.lastName}}</td>

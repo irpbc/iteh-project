@@ -7,7 +7,9 @@ import irpbc.iteh.repository.UserRepository;
 import irpbc.iteh.repository.search.UserSearchRepository;
 import irpbc.iteh.security.AuthoritiesConstants;
 import irpbc.iteh.service.MailService;
+import irpbc.iteh.service.UserQueryService;
 import irpbc.iteh.service.UserService;
+import irpbc.iteh.service.dto.UserCriteria;
 import irpbc.iteh.service.dto.UserDTO;
 import irpbc.iteh.web.rest.errors.BadRequestAlertException;
 import irpbc.iteh.web.rest.errors.EmailAlreadyUsedException;
@@ -69,14 +71,21 @@ public class UserResource {
 
     private final UserService userService;
 
+    private final UserQueryService userQueryService;
+
     private final MailService mailService;
 
     private final UserSearchRepository userSearchRepository;
 
-    public UserResource(UserRepository userRepository, UserService userService, MailService mailService, UserSearchRepository userSearchRepository) {
+    public UserResource(UserRepository userRepository,
+                        UserService userService,
+                        MailService mailService,
+                        UserSearchRepository userSearchRepository,
+                        UserQueryService userQueryService) {
 
         this.userRepository = userRepository;
         this.userService = userService;
+        this.userQueryService = userQueryService;
         this.mailService = mailService;
         this.userSearchRepository = userSearchRepository;
     }
@@ -147,12 +156,14 @@ public class UserResource {
      * GET /users : get all users.
      *
      * @param pageable the pagination information
-     * @return the ResponseEntity with status 200 (OK) and with body all users
+     * @param criteria the criterias which the requested entities should match
+     * @return the ResponseEntity with status 200 (OK) and the list of users in body
      */
     @GetMapping("/users")
     @Timed
-    public ResponseEntity<List<UserDTO>> getAllUsers(Pageable pageable) {
-        final Page<UserDTO> page = userService.getAllManagedUsers(pageable);
+    public ResponseEntity<List<UserDTO>> getAllUsers(UserCriteria criteria, Pageable pageable) {
+        log.debug("REST request to get Users by criteria: {}", criteria);
+        Page<UserDTO> page = userQueryService.findByCriteria(criteria, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/users");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

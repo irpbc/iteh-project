@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
-import { ITEMS_PER_PAGE, Principal, User, UserService, ResponseWrapper } from '../../shared';
+import { ITEMS_PER_PAGE, Principal, User, UserType, UserService, ResponseWrapper } from '../../shared';
 
 @Component({
     selector: 'jhi-user-mgmt',
@@ -24,15 +24,15 @@ export class UserMgmtComponent implements OnInit, OnDestroy {
     previousPage: any;
     reverse: any;
 
-    constructor(
-        private userService: UserService,
-        private alertService: JhiAlertService,
-        private principal: Principal,
-        private parseLinks: JhiParseLinks,
-        private activatedRoute: ActivatedRoute,
-        private router: Router,
-        private eventManager: JhiEventManager
-    ) {
+    private _userType: UserType;
+
+    constructor(private userService: UserService,
+                private alertService: JhiAlertService,
+                private principal: Principal,
+                private parseLinks: JhiParseLinks,
+                private activatedRoute: ActivatedRoute,
+                private router: Router,
+                private eventManager: JhiEventManager) {
         this.itemsPerPage = ITEMS_PER_PAGE;
         this.routeData = this.activatedRoute.data.subscribe((data) => {
             this.page = data['pagingParams'].page;
@@ -75,13 +75,33 @@ export class UserMgmtComponent implements OnInit, OnDestroy {
     }
 
     loadAll() {
-        this.userService.query({
+        this.userService.query(this.withFilter({
             page: this.page - 1,
             size: this.itemsPerPage,
-            sort: this.sort()}).subscribe(
+            sort: this.sort()
+        })).subscribe(
             (res: ResponseWrapper) => this.onSuccess(res.json, res.headers),
             (res: ResponseWrapper) => this.onError(res.json)
         );
+    }
+
+    withFilter(query: any) {
+        if (this._userType) {
+            query.filter = {
+                'userType.equals': this._userType
+            };
+        }
+        return query;
+    }
+
+    get userType(): UserType {
+        return this._userType;
+    }
+
+    set userType(value: UserType) {
+        console.log('--- userType promenjen u ' + value);
+        this._userType = value;
+        this.loadAll();
     }
 
     trackIdentity(index, item: User) {

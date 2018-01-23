@@ -45,21 +45,6 @@ public class AccountResource {
     }
 
     /**
-     * GET  /activate : activate the registered user.
-     *
-     * @param key the activation key
-     * @throws RuntimeException 500 (Internal Server Error) if the user couldn't be activated
-     */
-    @GetMapping("/activate")
-    @Timed
-    public void activateAccount(@RequestParam(value = "key") String key) {
-        User user = userService.activateRegistration(key);
-        if (user == null) {
-            throw new InternalServerErrorException("No user was found for this reset key");
-        }
-    }
-
-    /**
      * GET  /authenticate : check if the user is authenticated, and return its login.
      *
      * @param request the HTTP request
