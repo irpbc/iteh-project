@@ -38,7 +38,9 @@ apply plugin: 'idea'
 
 idea {
     module {
-        generatedSourceDirs += file("$buildDir/generated/source/apt")
+        File dir = file("$buildDir/generated/source/apt")
+        sourceDirs += dir
+        generatedSourceDirs += dir
     }
 }
 
