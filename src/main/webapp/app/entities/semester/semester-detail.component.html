@@ -1,14 +1,14 @@
 
 <div *ngIf="semester">
-    <h2><span jhiTranslate="itehProjectApp.semester.detail.title">Semester</span> {{semester.id}}</h2>
+    <h2><span jhiTranslate="app.semester.detail.title">Semester</span> {{semester.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="itehProjectApp.semester.name">Name</span></dt>
+        <dt><span jhiTranslate="app.semester.name">Name</span></dt>
         <dd>
             <span>{{semester.name}}</span>
         </dd>
-        <dt><span jhiTranslate="itehProjectApp.semester.year">Year</span></dt>
+        <dt><span jhiTranslate="app.semester.year">Year</span></dt>
         <dd>
             <div *ngIf="semester.yearId">
                 <a [routerLink]="['/school-year', semester.yearId]">{{semester.yearId}}</a>

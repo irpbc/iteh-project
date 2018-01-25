@@ -15,7 +15,7 @@ export const schoolYearRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.schoolYear.home.title'
+            pageTitle: 'app.schoolYear.home.title'
         },
         canActivate: [UserRouteAccessService]
     }, {
@@ -23,7 +23,7 @@ export const schoolYearRoute: Routes = [
         component: SchoolYearDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.schoolYear.home.title'
+            pageTitle: 'app.schoolYear.home.title'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -35,7 +35,7 @@ export const schoolYearPopupRoute: Routes = [
         component: SchoolYearDialogComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.schoolYear.home.title'
+            pageTitle: 'app.schoolYear.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -45,7 +45,7 @@ export const schoolYearPopupRoute: Routes = [
         component: SchoolYearDialogComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.schoolYear.home.title'
+            pageTitle: 'app.schoolYear.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -55,7 +55,7 @@ export const schoolYearPopupRoute: Routes = [
         component: SchoolYearDeleteDialogComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.schoolYear.home.title'
+            pageTitle: 'app.schoolYear.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

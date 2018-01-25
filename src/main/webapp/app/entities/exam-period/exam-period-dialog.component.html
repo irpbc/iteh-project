@@ -1,7 +1,7 @@
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
 
     <div class="modal-header">
-        <h4 class="modal-title" id="myExamPeriodLabel" jhiTranslate="itehProjectApp.examPeriod.home.createOrEditLabel">Create or edit a Exam Period</h4>
+        <h4 class="modal-title" id="myExamPeriodLabel" jhiTranslate="app.examPeriod.home.createOrEditLabel">Create or edit a Exam Period</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 (click)="clear()">&times;</button>
     </div>
@@ -13,7 +13,7 @@
                    [(ngModel)]="examPeriod.id" readonly />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="itehProjectApp.examPeriod.name" for="field_name">Name</label>
+            <label class="form-control-label" jhiTranslate="app.examPeriod.name" for="field_name">Name</label>
             <input type="text" class="form-control" name="name" id="field_name"
                 [(ngModel)]="examPeriod.name" required maxlength="100"/>
             <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
@@ -28,7 +28,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="itehProjectApp.examPeriod.startDate" for="field_startDate">Start Date</label>
+            <label class="form-control-label" jhiTranslate="app.examPeriod.startDate" for="field_startDate">Start Date</label>
             <div class="input-group">
                 <input id="field_startDate" type="text" class="form-control" name="startDate" ngbDatepicker  #startDateDp="ngbDatepicker" [(ngModel)]="examPeriod.startDate"
                 required/>
@@ -44,7 +44,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="itehProjectApp.examPeriod.endDate" for="field_endDate">End Date</label>
+            <label class="form-control-label" jhiTranslate="app.examPeriod.endDate" for="field_endDate">End Date</label>
             <div class="input-group">
                 <input id="field_endDate" type="text" class="form-control" name="endDate" ngbDatepicker  #endDateDp="ngbDatepicker" [(ngModel)]="examPeriod.endDate"
                 required/>
@@ -61,7 +61,7 @@
         </div>
 
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="itehProjectApp.examPeriod.year" for="field_year">Year</label>
+            <label class="form-control-label" jhiTranslate="app.examPeriod.year" for="field_year">Year</label>
             <select class="form-control" id="field_year" name="year" [(ngModel)]="examPeriod.yearId"  required>
                 <option *ngIf="!editForm.value.year" [ngValue]="null" selected></option>
                 <option [ngValue]="schoolYearOption.id" *ngFor="let schoolYearOption of schoolyears; trackBy: trackSchoolYearById">{{schoolYearOption.name}}</option>

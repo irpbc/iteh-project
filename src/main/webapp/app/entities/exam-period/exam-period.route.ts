@@ -15,7 +15,7 @@ export const examPeriodRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.examPeriod.home.title'
+            pageTitle: 'app.examPeriod.home.title'
         },
         canActivate: [UserRouteAccessService]
     }, {
@@ -23,7 +23,7 @@ export const examPeriodRoute: Routes = [
         component: ExamPeriodDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.examPeriod.home.title'
+            pageTitle: 'app.examPeriod.home.title'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -35,7 +35,7 @@ export const examPeriodPopupRoute: Routes = [
         component: ExamPeriodPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.examPeriod.home.title'
+            pageTitle: 'app.examPeriod.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -45,7 +45,7 @@ export const examPeriodPopupRoute: Routes = [
         component: ExamPeriodPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.examPeriod.home.title'
+            pageTitle: 'app.examPeriod.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -55,7 +55,7 @@ export const examPeriodPopupRoute: Routes = [
         component: ExamPeriodDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.examPeriod.home.title'
+            pageTitle: 'app.examPeriod.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

@@ -1,38 +1,38 @@
 
 <div *ngIf="course">
-    <h2><span jhiTranslate="itehProjectApp.course.detail.title">Course</span> {{course.id}}</h2>
+    <h2><span jhiTranslate="app.course.detail.title">Course</span> {{course.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="itehProjectApp.course.name">Name</span></dt>
+        <dt><span jhiTranslate="app.course.name">Name</span></dt>
         <dd>
             <span>{{course.name}}</span>
         </dd>
-        <dt><span jhiTranslate="itehProjectApp.course.espbPoints">Espb Points</span></dt>
+        <dt><span jhiTranslate="app.course.espbPoints">Espb Points</span></dt>
         <dd>
             <span>{{course.espbPoints}}</span>
         </dd>
-        <dt><span jhiTranslate="itehProjectApp.course.yearOfStudies">Year Of Studies</span></dt>
+        <dt><span jhiTranslate="app.course.yearOfStudies">Year Of Studies</span></dt>
         <dd>
             <span>{{course.yearOfStudies}}</span>
         </dd>
-        <dt><span jhiTranslate="itehProjectApp.course.optional">Optional</span></dt>
+        <dt><span jhiTranslate="app.course.optional">Optional</span></dt>
         <dd>
             <span>{{course.optional}}</span>
         </dd>
-        <dt><span jhiTranslate="itehProjectApp.course.semester">Semester</span></dt>
+        <dt><span jhiTranslate="app.course.semester">Semester</span></dt>
         <dd>
             <div *ngIf="course.semesterId">
                 <a [routerLink]="['/semester', course.semesterId]">{{course.semesterName}}</a>
             </div>
         </dd>
-        <dt><span jhiTranslate="itehProjectApp.course.optionalGroup">Optional Group</span></dt>
+        <dt><span jhiTranslate="app.course.optionalGroup">Optional Group</span></dt>
         <dd>
             <div *ngIf="course.optionalGroupId">
                 <a [routerLink]="['/optional-course-group', course.optionalGroupId]">{{course.optionalGroupName}}</a>
             </div>
         </dd>
-        <dt><span jhiTranslate="itehProjectApp.course.lecturers">Lecturers</span></dt>
+        <dt><span jhiTranslate="app.course.lecturers">Lecturers</span></dt>
         <dd>
             <span *ngFor="let lecturers of course.lecturers; let last = last">
                 {{lecturers.fullName}}{{last ? '' : ', '}}

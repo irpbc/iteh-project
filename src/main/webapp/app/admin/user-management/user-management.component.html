@@ -1,32 +1,32 @@
 <div>
     <h2>
-        <span jhiTranslate="itehProjectApp.user.home.title"></span>
+        <span jhiTranslate="app.user.home.title"></span>
         <div class="btn-group" role="group">
             <div class="btn-group btn-group-toggle" ngbRadioGroup [(ngModel)]="userType">
                 <label ngbButtonLabel class="btn-primary">
                     <input ngbButton type="radio" [value]="null"/>
-                    {{'itehProjectApp.user.types.all' | translate}}
+                    {{'app.user.types.all' | translate}}
                 </label>
                 <label ngbButtonLabel class="btn-primary">
                     <input ngbButton type="radio" value="ST"/>
-                    {{'itehProjectApp.user.types.ST' | translate}}
+                    {{'app.user.types.ST' | translate}}
                 </label>
                 <label ngbButtonLabel class="btn-primary">
                     <input ngbButton type="radio" value="LC"/>
-                    {{'itehProjectApp.user.types.LC' | translate}}
+                    {{'app.user.types.LC' | translate}}
                 </label>
                 <label ngbButtonLabel class="btn-primary">
                     <input ngbButton type="radio" value="SR"/>
-                    {{'itehProjectApp.user.types.SR' | translate}}
+                    {{'app.user.types.SR' | translate}}
                 </label>
                 <label ngbButtonLabel class="btn-primary">
                     <input ngbButton type="radio" value="AD"/>
-                    {{'itehProjectApp.user.types.AD' | translate}}
+                    {{'app.user.types.AD' | translate}}
                 </label>
             </div>
         </div>
         <button class="btn btn-primary float-right jh-create-entity" [routerLink]="['/', { outlets: { popup: ['user-management-new'] } }]">
-            <span class="fa fa-plus"></span> <span jhiTranslate="itehProjectApp.user.home.createLabel">Create a new User</span>
+            <span class="fa fa-plus"></span> <span jhiTranslate="app.user.home.createLabel">Create a new User</span>
         </button>
     </h2>
     <jhi-alert></jhi-alert>
@@ -34,12 +34,12 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-                <th jhiSortBy="login"><span jhiTranslate="itehProjectApp.user.login">Login</span> <span class="fa fa-sort"></span></th>
-                <th jhiSortBy="lastName"><span jhiTranslate="itehProjectApp.user.lastName">Email</span> <span class="fa fa-sort"></span></th>
-                <th jhiSortBy="firstName"><span jhiTranslate="itehProjectApp.user.firstName">Email</span> <span class="fa fa-sort"></span></th>
-                <th jhiSortBy="email"><span jhiTranslate="itehProjectApp.user.email">Email</span> <span class="fa fa-sort"></span></th>
-                <th jhiSortBy="userType"><span jhiTranslate="itehProjectApp.user.userType">Type</span> <span class="fa fa-sort"></span></th>
-                <th jhiSortBy="langKey"> <span jhiTranslate="itehProjectApp.user.langKey">Lang Key</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="login"><span jhiTranslate="app.user.login">Login</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="lastName"><span jhiTranslate="app.user.lastName">Email</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="firstName"><span jhiTranslate="app.user.firstName">Email</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="email"><span jhiTranslate="app.user.email">Email</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="userType"><span jhiTranslate="app.user.userType">Type</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="langKey"> <span jhiTranslate="app.user.langKey">Lang Key</span> <span class="fa fa-sort"></span></th>
                 <th></th>
                 <th></th>
             </tr>
@@ -50,13 +50,13 @@
                 <td>{{user.lastName}}</td>
                 <td>{{user.firstName}}</td>
                 <td>{{user.email}}</td>
-                <td>{{'itehProjectApp.user.types.' + user.userType | translate}}</td>
+                <td>{{'app.user.types.' + user.userType | translate}}</td>
                 <td>{{user.langKey}}</td>
                 <td>
                     <button class="btn btn-danger btn-sm" (click)="setActive(user, true)" *ngIf="!user.activated"
-                            jhiTranslate="itehProjectApp.user.deactivated">Deactivated</button>
+                            jhiTranslate="app.user.deactivated">Deactivated</button>
                     <button class="btn btn-success btn-sm" (click)="setActive(user, false)" *ngIf="user.activated"
-                            [disabled]="currentAccount.login === user.login" jhiTranslate="itehProjectApp.user.activated">Activated</button>
+                            [disabled]="currentAccount.login === user.login" jhiTranslate="app.user.activated">Activated</button>
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">

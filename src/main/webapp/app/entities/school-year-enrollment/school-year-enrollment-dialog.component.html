@@ -1,7 +1,7 @@
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
 
     <div class="modal-header">
-        <h4 class="modal-title" id="mySchoolYearEnrollmentLabel" jhiTranslate="itehProjectApp.schoolYearEnrollment.home.createOrEditLabel">Create or edit a School Year Enrollment</h4>
+        <h4 class="modal-title" id="mySchoolYearEnrollmentLabel" jhiTranslate="app.schoolYearEnrollment.home.createOrEditLabel">Create or edit a School Year Enrollment</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 (click)="clear()">&times;</button>
     </div>
@@ -13,7 +13,7 @@
                    [(ngModel)]="schoolYearEnrollment.id" readonly />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="itehProjectApp.schoolYearEnrollment.averageGrade" for="field_averageGrade">Average Grade</label>
+            <label class="form-control-label" jhiTranslate="app.schoolYearEnrollment.averageGrade" for="field_averageGrade">Average Grade</label>
             <input type="number" class="form-control" name="averageGrade" id="field_averageGrade"
                 [(ngModel)]="schoolYearEnrollment.averageGrade" min="6" max="10"/>
             <div [hidden]="!(editForm.controls.averageGrade?.dirty && editForm.controls.averageGrade?.invalid)">
@@ -32,7 +32,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="itehProjectApp.schoolYearEnrollment.espbPointsDeclared" for="field_espbPointsDeclared">Espb Points Declared</label>
+            <label class="form-control-label" jhiTranslate="app.schoolYearEnrollment.espbPointsDeclared" for="field_espbPointsDeclared">Espb Points Declared</label>
             <input type="number" class="form-control" name="espbPointsDeclared" id="field_espbPointsDeclared"
                 [(ngModel)]="schoolYearEnrollment.espbPointsDeclared" required/>
             <div [hidden]="!(editForm.controls.espbPointsDeclared?.dirty && editForm.controls.espbPointsDeclared?.invalid)">
@@ -47,7 +47,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="itehProjectApp.schoolYearEnrollment.espbPointsAttained" for="field_espbPointsAttained">Espb Points Attained</label>
+            <label class="form-control-label" jhiTranslate="app.schoolYearEnrollment.espbPointsAttained" for="field_espbPointsAttained">Espb Points Attained</label>
             <input type="number" class="form-control" name="espbPointsAttained" id="field_espbPointsAttained"
                 [(ngModel)]="schoolYearEnrollment.espbPointsAttained" required/>
             <div [hidden]="!(editForm.controls.espbPointsAttained?.dirty && editForm.controls.espbPointsAttained?.invalid)">
@@ -63,7 +63,7 @@
         </div>
 
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="itehProjectApp.schoolYearEnrollment.student" for="field_student">Student</label>
+            <label class="form-control-label" jhiTranslate="app.schoolYearEnrollment.student" for="field_student">Student</label>
             <select class="form-control" id="field_student" name="student" [(ngModel)]="schoolYearEnrollment.studentId"  required>
                 <option *ngIf="!editForm.value.student" [ngValue]="null" selected></option>
                 <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.fullName}}</option>
@@ -76,7 +76,7 @@
             </small>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="itehProjectApp.schoolYearEnrollment.year" for="field_year">Year</label>
+            <label class="form-control-label" jhiTranslate="app.schoolYearEnrollment.year" for="field_year">Year</label>
             <select class="form-control" id="field_year" name="year" [(ngModel)]="schoolYearEnrollment.yearId"  required>
                 <option *ngIf="!editForm.value.year" [ngValue]="null" selected></option>
                 <option [ngValue]="schoolYearOption.id" *ngFor="let schoolYearOption of schoolyears; trackBy: trackSchoolYearById">{{schoolYearOption.name}}</option>

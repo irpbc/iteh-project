@@ -1,26 +1,26 @@
 
 <div *ngIf="studentCommitment">
-    <h2><span jhiTranslate="itehProjectApp.studentCommitment.detail.title">Student Commitment</span> {{studentCommitment.id}}</h2>
+    <h2><span jhiTranslate="app.studentCommitment.detail.title">Student Commitment</span> {{studentCommitment.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="itehProjectApp.studentCommitment.points">Points</span></dt>
+        <dt><span jhiTranslate="app.studentCommitment.points">Points</span></dt>
         <dd>
             <span>{{studentCommitment.points}}</span>
         </dd>
-        <dt><span jhiTranslate="itehProjectApp.studentCommitment.enrollment">Enrollment</span></dt>
+        <dt><span jhiTranslate="app.studentCommitment.enrollment">Enrollment</span></dt>
         <dd>
             <div *ngIf="studentCommitment.enrollmentId">
                 <a [routerLink]="['/course-enrollment', studentCommitment.enrollmentId]">{{studentCommitment.enrollmentId}}</a>
             </div>
         </dd>
-        <dt><span jhiTranslate="itehProjectApp.studentCommitment.commitment">Commitment</span></dt>
+        <dt><span jhiTranslate="app.studentCommitment.commitment">Commitment</span></dt>
         <dd>
             <div *ngIf="studentCommitment.commitmentId">
                 <a [routerLink]="['/commitment', studentCommitment.commitmentId]">{{studentCommitment.commitmentName}}</a>
             </div>
         </dd>
-        <dt><span jhiTranslate="itehProjectApp.studentCommitment.evaluatedBy">Evaluated By</span></dt>
+        <dt><span jhiTranslate="app.studentCommitment.evaluatedBy">Evaluated By</span></dt>
         <dd>
             {{studentCommitment.evaluatedByFullName}}
         </dd>

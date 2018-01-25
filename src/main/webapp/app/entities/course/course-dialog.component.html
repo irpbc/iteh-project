@@ -1,7 +1,7 @@
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
 
     <div class="modal-header">
-        <h4 class="modal-title" id="myCourseLabel" jhiTranslate="itehProjectApp.course.home.createOrEditLabel">Create or edit a Course</h4>
+        <h4 class="modal-title" id="myCourseLabel" jhiTranslate="app.course.home.createOrEditLabel">Create or edit a Course</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 (click)="clear()">&times;</button>
     </div>
@@ -13,7 +13,7 @@
                    [(ngModel)]="course.id" readonly />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="itehProjectApp.course.name" for="field_name">Name</label>
+            <label class="form-control-label" jhiTranslate="app.course.name" for="field_name">Name</label>
             <input type="text" class="form-control" name="name" id="field_name"
                 [(ngModel)]="course.name" required maxlength="255"/>
             <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
@@ -28,7 +28,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="itehProjectApp.course.espbPoints" for="field_espbPoints">Espb Points</label>
+            <label class="form-control-label" jhiTranslate="app.course.espbPoints" for="field_espbPoints">Espb Points</label>
             <input type="number" class="form-control" name="espbPoints" id="field_espbPoints"
                 [(ngModel)]="course.espbPoints" required/>
             <div [hidden]="!(editForm.controls.espbPoints?.dirty && editForm.controls.espbPoints?.invalid)">
@@ -43,7 +43,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="itehProjectApp.course.yearOfStudies" for="field_yearOfStudies">Year Of Studies</label>
+            <label class="form-control-label" jhiTranslate="app.course.yearOfStudies" for="field_yearOfStudies">Year Of Studies</label>
             <input type="number" class="form-control" name="yearOfStudies" id="field_yearOfStudies"
                 [(ngModel)]="course.yearOfStudies" required/>
             <div [hidden]="!(editForm.controls.yearOfStudies?.dirty && editForm.controls.yearOfStudies?.invalid)">
@@ -58,7 +58,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="itehProjectApp.course.optional" for="field_optional">Optional</label>
+            <label class="form-control-label" jhiTranslate="app.course.optional" for="field_optional">Optional</label>
             <input type="checkbox" class="form-control" name="optional" id="field_optional"
                 [(ngModel)]="course.optional" />
             <div [hidden]="!(editForm.controls.optional?.dirty && editForm.controls.optional?.invalid)">
@@ -70,7 +70,7 @@
         </div>
 
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="itehProjectApp.course.semester" for="field_semester">Semester</label>
+            <label class="form-control-label" jhiTranslate="app.course.semester" for="field_semester">Semester</label>
             <select class="form-control" id="field_semester" name="semester" [(ngModel)]="course.semesterId"  required>
                 <option *ngIf="!editForm.value.semester" [ngValue]="null" selected></option>
                 <option [ngValue]="semesterOption.id" *ngFor="let semesterOption of semesters; trackBy: trackSemesterById">{{semesterOption.name}}</option>
@@ -83,14 +83,14 @@
             </small>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="itehProjectApp.course.optionalGroup" for="field_optionalGroup">Optional Group</label>
+            <label class="form-control-label" jhiTranslate="app.course.optionalGroup" for="field_optionalGroup">Optional Group</label>
             <select class="form-control" id="field_optionalGroup" name="optionalGroup" [(ngModel)]="course.optionalGroupId" >
                 <option [ngValue]="null"></option>
                 <option [ngValue]="optionalCourseGroupOption.id" *ngFor="let optionalCourseGroupOption of optionalcoursegroups; trackBy: trackOptionalCourseGroupById">{{optionalCourseGroupOption.name}}</option>
             </select>
         </div>
         <div class="form-group">
-            <label jhiTranslate="itehProjectApp.course.lecturers" for="field_lecturers">Lecturers</label>
+            <label jhiTranslate="app.course.lecturers" for="field_lecturers">Lecturers</label>
             <select class="form-control" id="field_lecturers" multiple name="lecturers" [(ngModel)]="course.lecturers">
                 <option [ngValue]="getSelected(course.lecturers, userOption)" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.fullName}}</option>
             </select>

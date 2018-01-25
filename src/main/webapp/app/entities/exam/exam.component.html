@@ -1,9 +1,9 @@
 <div>
     <h2>
-        <span jhiTranslate="itehProjectApp.exam.home.title">Exams</span>
+        <span jhiTranslate="app.exam.home.title">Exams</span>
         <button class="btn btn-primary float-right jh-create-entity create-exam" [routerLink]="['/', { outlets: { popup: ['exam-new'] } }]">
             <span class="fa fa-plus"></span>
-            <span class="hidden-sm-down"  jhiTranslate="itehProjectApp.exam.home.createLabel">
+            <span class="hidden-sm-down"  jhiTranslate="app.exam.home.createLabel">
             Create new Exam
             </span>
         </button>
@@ -13,7 +13,7 @@
         <div class="col-sm-12">
             <form name="searchForm" class="form-inline">
                 <div class="input-group w-100 mt-3">
-                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'itehProjectApp.exam.home.search' | translate }}">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'app.exam.home.search' | translate }}">
                     <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
                         <span class="fa fa-search"></span>
                     </button>
@@ -30,9 +30,9 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="time"><span jhiTranslate="itehProjectApp.exam.time">Time</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="periodName"><span jhiTranslate="itehProjectApp.exam.period">Period</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="courseName"><span jhiTranslate="itehProjectApp.exam.course">Course</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="time"><span jhiTranslate="app.exam.time">Time</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="periodName"><span jhiTranslate="app.exam.period">Period</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="courseName"><span jhiTranslate="app.exam.course">Course</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>

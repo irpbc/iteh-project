@@ -18,14 +18,14 @@ describe('Semester e2e test', () => {
     it('should load Semesters', () => {
         navBarPage.goToEntity('semester');
         semesterComponentsPage = new SemesterComponentsPage();
-        expect(semesterComponentsPage.getTitle()).toMatch(/itehProjectApp.semester.home.title/);
+        expect(semesterComponentsPage.getTitle()).toMatch(/app.semester.home.title/);
 
     });
 
     it('should load create Semester dialog', () => {
         semesterComponentsPage.clickOnCreateButton();
         semesterDialogPage = new SemesterDialogPage();
-        expect(semesterDialogPage.getModalTitle()).toMatch(/itehProjectApp.semester.home.createOrEditLabel/);
+        expect(semesterDialogPage.getModalTitle()).toMatch(/app.semester.home.createOrEditLabel/);
         semesterDialogPage.close();
     });
 

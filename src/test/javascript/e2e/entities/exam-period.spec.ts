@@ -18,14 +18,14 @@ describe('ExamPeriod e2e test', () => {
     it('should load ExamPeriods', () => {
         navBarPage.goToEntity('exam-period');
         examPeriodComponentsPage = new ExamPeriodComponentsPage();
-        expect(examPeriodComponentsPage.getTitle()).toMatch(/itehProjectApp.examPeriod.home.title/);
+        expect(examPeriodComponentsPage.getTitle()).toMatch(/app.examPeriod.home.title/);
 
     });
 
     it('should load create ExamPeriod dialog', () => {
         examPeriodComponentsPage.clickOnCreateButton();
         examPeriodDialogPage = new ExamPeriodDialogPage();
-        expect(examPeriodDialogPage.getModalTitle()).toMatch(/itehProjectApp.examPeriod.home.createOrEditLabel/);
+        expect(examPeriodDialogPage.getModalTitle()).toMatch(/app.examPeriod.home.createOrEditLabel/);
         examPeriodDialogPage.close();
     });
 

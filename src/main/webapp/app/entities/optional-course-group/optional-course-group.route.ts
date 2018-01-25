@@ -15,7 +15,7 @@ export const optionalCourseGroupRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.optionalCourseGroup.home.title'
+            pageTitle: 'app.optionalCourseGroup.home.title'
         },
         canActivate: [UserRouteAccessService]
     }, {
@@ -23,7 +23,7 @@ export const optionalCourseGroupRoute: Routes = [
         component: OptionalCourseGroupDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.optionalCourseGroup.home.title'
+            pageTitle: 'app.optionalCourseGroup.home.title'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -35,7 +35,7 @@ export const optionalCourseGroupPopupRoute: Routes = [
         component: OptionalCourseGroupPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.optionalCourseGroup.home.title'
+            pageTitle: 'app.optionalCourseGroup.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -45,7 +45,7 @@ export const optionalCourseGroupPopupRoute: Routes = [
         component: OptionalCourseGroupPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.optionalCourseGroup.home.title'
+            pageTitle: 'app.optionalCourseGroup.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -55,7 +55,7 @@ export const optionalCourseGroupPopupRoute: Routes = [
         component: OptionalCourseGroupDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.optionalCourseGroup.home.title'
+            pageTitle: 'app.optionalCourseGroup.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

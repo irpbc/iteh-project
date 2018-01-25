@@ -1,27 +1,27 @@
 <div *ngIf="user">
     <h2>
-        <span jhiTranslate="itehProjectApp.user.detail.title">User</span> [<b>{{user.login}}</b>]
+        <span jhiTranslate="app.user.detail.title">User</span> [<b>{{user.login}}</b>]
     </h2>
     <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="itehProjectApp.user.login">Login</span></dt>
+        <dt><span jhiTranslate="app.user.login">Login</span></dt>
         <dd>
             <span>{{user.login}}</span>
             <jhi-boolean
                 [value]="user.activated"
-                [textTrue]="'itehProjectApp.user.activated' | translate"
-                [textFalse]="'itehProjectApp.user.deactivated' | translate">
+                [textTrue]="'app.user.activated' | translate"
+                [textFalse]="'app.user.deactivated' | translate">
             </jhi-boolean>
         </dd>
-        <dt><span jhiTranslate="itehProjectApp.user.firstName">First Name</span></dt>
+        <dt><span jhiTranslate="app.user.firstName">First Name</span></dt>
         <dd>{{user.firstName}}</dd>
-        <dt><span jhiTranslate="itehProjectApp.user.lastName">Last Name</span></dt>
+        <dt><span jhiTranslate="app.user.lastName">Last Name</span></dt>
         <dd>{{user.lastName}}</dd>
-        <dt><span jhiTranslate="itehProjectApp.user.email">Email</span></dt>
+        <dt><span jhiTranslate="app.user.email">Email</span></dt>
         <dd>{{user.email}}</dd>
-        <dt><span jhiTranslate="itehProjectApp.user.langKey">Lang Key</span></dt>
+        <dt><span jhiTranslate="app.user.langKey">Lang Key</span></dt>
         <dd>{{user.langKey}}</dd>
-        <dt><span jhiTranslate="itehProjectApp.user.userType">Type</span></dt>
-        <dd>{{'itehProjectApp.user.types.' + user.userType | translate}}</dd>
+        <dt><span jhiTranslate="app.user.userType">Type</span></dt>
+        <dd>{{'app.user.types.' + user.userType | translate}}</dd>
     </dl>
 
     <button type="submit" routerLink="/user-management" class="btn btn-info">

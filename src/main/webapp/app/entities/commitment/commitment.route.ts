@@ -15,7 +15,7 @@ export const commitmentRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.commitment.home.title'
+            pageTitle: 'app.commitment.home.title'
         },
         canActivate: [UserRouteAccessService]
     }, {
@@ -23,7 +23,7 @@ export const commitmentRoute: Routes = [
         component: CommitmentDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.commitment.home.title'
+            pageTitle: 'app.commitment.home.title'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -35,7 +35,7 @@ export const commitmentPopupRoute: Routes = [
         component: CommitmentPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.commitment.home.title'
+            pageTitle: 'app.commitment.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -45,7 +45,7 @@ export const commitmentPopupRoute: Routes = [
         component: CommitmentPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.commitment.home.title'
+            pageTitle: 'app.commitment.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -55,7 +55,7 @@ export const commitmentPopupRoute: Routes = [
         component: CommitmentDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.commitment.home.title'
+            pageTitle: 'app.commitment.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

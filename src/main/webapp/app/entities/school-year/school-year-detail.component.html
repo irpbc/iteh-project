@@ -1,18 +1,18 @@
 
 <div *ngIf="schoolYear">
-    <h2><span jhiTranslate="itehProjectApp.schoolYear.detail.title">School Year</span> {{schoolYear.id}}</h2>
+    <h2><span jhiTranslate="app.schoolYear.detail.title">School Year</span> {{schoolYear.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="itehProjectApp.schoolYear.name">Name</span></dt>
+        <dt><span jhiTranslate="app.schoolYear.name">Name</span></dt>
         <dd>
             <span>{{schoolYear.name}}</span>
         </dd>
-        <dt><span jhiTranslate="itehProjectApp.schoolYear.startDate">Start Date</span></dt>
+        <dt><span jhiTranslate="app.schoolYear.startDate">Start Date</span></dt>
         <dd>
             <span>{{schoolYear.startDate | date:'mediumDate'}}</span>
         </dd>
-        <dt><span jhiTranslate="itehProjectApp.schoolYear.endDate">End Date</span></dt>
+        <dt><span jhiTranslate="app.schoolYear.endDate">End Date</span></dt>
         <dd>
             <span>{{schoolYear.endDate | date:'mediumDate'}}</span>
         </dd>

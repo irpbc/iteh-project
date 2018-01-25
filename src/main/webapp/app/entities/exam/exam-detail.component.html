@@ -1,20 +1,20 @@
 
 <div *ngIf="exam">
-    <h2><span jhiTranslate="itehProjectApp.exam.detail.title">Exam</span> {{exam.id}}</h2>
+    <h2><span jhiTranslate="app.exam.detail.title">Exam</span> {{exam.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="itehProjectApp.exam.time">Time</span></dt>
+        <dt><span jhiTranslate="app.exam.time">Time</span></dt>
         <dd>
             <span>{{exam.time | date:'medium'}}</span>
         </dd>
-        <dt><span jhiTranslate="itehProjectApp.exam.period">Period</span></dt>
+        <dt><span jhiTranslate="app.exam.period">Period</span></dt>
         <dd>
             <div *ngIf="exam.periodId">
                 <a [routerLink]="['/exam-period', exam.periodId]">{{exam.periodName}}</a>
             </div>
         </dd>
-        <dt><span jhiTranslate="itehProjectApp.exam.course">Course</span></dt>
+        <dt><span jhiTranslate="app.exam.course">Course</span></dt>
         <dd>
             <div *ngIf="exam.courseId">
                 <a [routerLink]="['/course', exam.courseId]">{{exam.courseName}}</a>

@@ -15,7 +15,7 @@ export const semesterRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_SERVICE'],
-            pageTitle: 'itehProjectApp.semester.home.title'
+            pageTitle: 'app.semester.home.title'
         },
         canActivate: [UserRouteAccessService]
     }, {
@@ -23,7 +23,7 @@ export const semesterRoute: Routes = [
         component: SemesterDetailComponent,
         data: {
             authorities: ['ROLE_SERVICE'],
-            pageTitle: 'itehProjectApp.semester.home.title'
+            pageTitle: 'app.semester.home.title'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -35,7 +35,7 @@ export const semesterPopupRoute: Routes = [
         component: SemesterDialogComponent,
         data: {
             authorities: ['ROLE_SERVICE'],
-            pageTitle: 'itehProjectApp.semester.home.title'
+            pageTitle: 'app.semester.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -45,7 +45,7 @@ export const semesterPopupRoute: Routes = [
         component: SemesterDialogComponent,
         data: {
             authorities: ['ROLE_SERVICE'],
-            pageTitle: 'itehProjectApp.semester.home.title'
+            pageTitle: 'app.semester.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -55,7 +55,7 @@ export const semesterPopupRoute: Routes = [
         component: SemesterDeleteDialogComponent,
         data: {
             authorities: ['ROLE_SERVICE'],
-            pageTitle: 'itehProjectApp.semester.home.title'
+            pageTitle: 'app.semester.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

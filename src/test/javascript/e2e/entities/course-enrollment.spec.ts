@@ -18,14 +18,14 @@ describe('CourseEnrollment e2e test', () => {
     it('should load CourseEnrollments', () => {
         navBarPage.goToEntity('course-enrollment');
         courseEnrollmentComponentsPage = new CourseEnrollmentComponentsPage();
-        expect(courseEnrollmentComponentsPage.getTitle()).toMatch(/itehProjectApp.courseEnrollment.home.title/);
+        expect(courseEnrollmentComponentsPage.getTitle()).toMatch(/app.courseEnrollment.home.title/);
 
     });
 
     it('should load create CourseEnrollment dialog', () => {
         courseEnrollmentComponentsPage.clickOnCreateButton();
         courseEnrollmentDialogPage = new CourseEnrollmentDialogPage();
-        expect(courseEnrollmentDialogPage.getModalTitle()).toMatch(/itehProjectApp.courseEnrollment.home.createOrEditLabel/);
+        expect(courseEnrollmentDialogPage.getModalTitle()).toMatch(/app.courseEnrollment.home.createOrEditLabel/);
         courseEnrollmentDialogPage.close();
     });
 

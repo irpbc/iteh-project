@@ -15,7 +15,7 @@ export const examRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.exam.home.title'
+            pageTitle: 'app.exam.home.title'
         },
         canActivate: [UserRouteAccessService]
     }, {
@@ -23,7 +23,7 @@ export const examRoute: Routes = [
         component: ExamDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.exam.home.title'
+            pageTitle: 'app.exam.home.title'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -35,7 +35,7 @@ export const examPopupRoute: Routes = [
         component: ExamPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.exam.home.title'
+            pageTitle: 'app.exam.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -45,7 +45,7 @@ export const examPopupRoute: Routes = [
         component: ExamPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.exam.home.title'
+            pageTitle: 'app.exam.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -55,7 +55,7 @@ export const examPopupRoute: Routes = [
         component: ExamDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.exam.home.title'
+            pageTitle: 'app.exam.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

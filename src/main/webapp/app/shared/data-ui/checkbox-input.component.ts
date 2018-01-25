@@ -9,7 +9,7 @@ import { ControlContainer, NgForm } from '@angular/forms';
             <label class="form-check-label" for="{{field}}">
                 <input class="form-check-input" [disabled]="disableCreate && object.id === null" type="checkbox" id="{{field}}"
                        name="{{field}}" [(ngModel)]="object[field]">
-                <span jhiTranslate="itehProjectApp.{{entityName}}.{{field}}"></span>
+                <span jhiTranslate="app.{{entityName}}.{{field}}"></span>
             </label>
         </div>`,
 })

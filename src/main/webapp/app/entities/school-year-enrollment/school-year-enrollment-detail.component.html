@@ -1,26 +1,26 @@
 
 <div *ngIf="schoolYearEnrollment">
-    <h2><span jhiTranslate="itehProjectApp.schoolYearEnrollment.detail.title">School Year Enrollment</span> {{schoolYearEnrollment.id}}</h2>
+    <h2><span jhiTranslate="app.schoolYearEnrollment.detail.title">School Year Enrollment</span> {{schoolYearEnrollment.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="itehProjectApp.schoolYearEnrollment.averageGrade">Average Grade</span></dt>
+        <dt><span jhiTranslate="app.schoolYearEnrollment.averageGrade">Average Grade</span></dt>
         <dd>
             <span>{{schoolYearEnrollment.averageGrade}}</span>
         </dd>
-        <dt><span jhiTranslate="itehProjectApp.schoolYearEnrollment.espbPointsDeclared">Espb Points Declared</span></dt>
+        <dt><span jhiTranslate="app.schoolYearEnrollment.espbPointsDeclared">Espb Points Declared</span></dt>
         <dd>
             <span>{{schoolYearEnrollment.espbPointsDeclared}}</span>
         </dd>
-        <dt><span jhiTranslate="itehProjectApp.schoolYearEnrollment.espbPointsAttained">Espb Points Attained</span></dt>
+        <dt><span jhiTranslate="app.schoolYearEnrollment.espbPointsAttained">Espb Points Attained</span></dt>
         <dd>
             <span>{{schoolYearEnrollment.espbPointsAttained}}</span>
         </dd>
-        <dt><span jhiTranslate="itehProjectApp.schoolYearEnrollment.student">Student</span></dt>
+        <dt><span jhiTranslate="app.schoolYearEnrollment.student">Student</span></dt>
         <dd>
             {{schoolYearEnrollment.studentFullName}}
         </dd>
-        <dt><span jhiTranslate="itehProjectApp.schoolYearEnrollment.year">Year</span></dt>
+        <dt><span jhiTranslate="app.schoolYearEnrollment.year">Year</span></dt>
         <dd>
             <div *ngIf="schoolYearEnrollment.yearId">
                 <a [routerLink]="['/school-year', schoolYearEnrollment.yearId]">{{schoolYearEnrollment.yearName}}</a>

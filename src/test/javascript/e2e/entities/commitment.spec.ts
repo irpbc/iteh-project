@@ -18,14 +18,14 @@ describe('Commitment e2e test', () => {
     it('should load Commitments', () => {
         navBarPage.goToEntity('commitment');
         commitmentComponentsPage = new CommitmentComponentsPage();
-        expect(commitmentComponentsPage.getTitle()).toMatch(/itehProjectApp.commitment.home.title/);
+        expect(commitmentComponentsPage.getTitle()).toMatch(/app.commitment.home.title/);
 
     });
 
     it('should load create Commitment dialog', () => {
         commitmentComponentsPage.clickOnCreateButton();
         commitmentDialogPage = new CommitmentDialogPage();
-        expect(commitmentDialogPage.getModalTitle()).toMatch(/itehProjectApp.commitment.home.createOrEditLabel/);
+        expect(commitmentDialogPage.getModalTitle()).toMatch(/app.commitment.home.createOrEditLabel/);
         commitmentDialogPage.close();
     });
 

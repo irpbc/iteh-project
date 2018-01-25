@@ -1,9 +1,9 @@
 <div>
     <h2>
-        <span jhiTranslate="itehProjectApp.course.home.title">Courses</span>
+        <span jhiTranslate="app.course.home.title">Courses</span>
         <button class="btn btn-primary float-right jh-create-entity create-course" [routerLink]="['/', { outlets: { popup: ['course-new'] } }]">
             <span class="fa fa-plus"></span>
-            <span class="hidden-sm-down"  jhiTranslate="itehProjectApp.course.home.createLabel">
+            <span class="hidden-sm-down"  jhiTranslate="app.course.home.createLabel">
             Create new Course
             </span>
         </button>
@@ -13,7 +13,7 @@
         <div class="col-sm-12">
             <form name="searchForm" class="form-inline">
                 <div class="input-group w-100 mt-3">
-                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'itehProjectApp.course.home.search' | translate }}">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'app.course.home.search' | translate }}">
                     <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
                         <span class="fa fa-search"></span>
                     </button>
@@ -30,12 +30,12 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="name"><span jhiTranslate="itehProjectApp.course.name">Name</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="espbPoints"><span jhiTranslate="itehProjectApp.course.espbPoints">Espb Points</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="yearOfStudies"><span jhiTranslate="itehProjectApp.course.yearOfStudies">Year Of Studies</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="optional"><span jhiTranslate="itehProjectApp.course.optional">Optional</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="semesterName"><span jhiTranslate="itehProjectApp.course.semester">Semester</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="optionalGroupName"><span jhiTranslate="itehProjectApp.course.optionalGroup">Optional Group</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="name"><span jhiTranslate="app.course.name">Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="espbPoints"><span jhiTranslate="app.course.espbPoints">Espb Points</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="yearOfStudies"><span jhiTranslate="app.course.yearOfStudies">Year Of Studies</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="optional"><span jhiTranslate="app.course.optional">Optional</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="semesterName"><span jhiTranslate="app.course.semester">Semester</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="optionalGroupName"><span jhiTranslate="app.course.optionalGroup">Optional Group</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>

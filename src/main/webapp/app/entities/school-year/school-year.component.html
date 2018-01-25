@@ -1,9 +1,9 @@
 <div>
     <h2>
-        <span jhiTranslate="itehProjectApp.schoolYear.home.title">School Years</span>
+        <span jhiTranslate="app.schoolYear.home.title">School Years</span>
         <button class="btn btn-primary float-right jh-create-entity create-school-year" [routerLink]="['/', { outlets: { popup: ['school-year-new'] } }]">
             <span class="fa fa-plus"></span>
-            <span class="hidden-sm-down"  jhiTranslate="itehProjectApp.schoolYear.home.createLabel">
+            <span class="hidden-sm-down"  jhiTranslate="app.schoolYear.home.createLabel">
             Create new School Year
             </span>
         </button>
@@ -13,7 +13,7 @@
         <div class="col-sm-12">
             <form name="searchForm" class="form-inline">
                 <div class="input-group w-100 mt-3">
-                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'itehProjectApp.schoolYear.home.search' | translate }}">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'app.schoolYear.home.search' | translate }}">
                     <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
                         <span class="fa fa-search"></span>
                     </button>
@@ -30,9 +30,9 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="name"><span jhiTranslate="itehProjectApp.schoolYear.name">Name</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="startDate"><span jhiTranslate="itehProjectApp.schoolYear.startDate">Start Date</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="endDate"><span jhiTranslate="itehProjectApp.schoolYear.endDate">End Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="name"><span jhiTranslate="app.schoolYear.name">Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="startDate"><span jhiTranslate="app.schoolYear.startDate">Start Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="endDate"><span jhiTranslate="app.schoolYear.endDate">End Date</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>

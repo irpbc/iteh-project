@@ -1,28 +1,28 @@
 
 <div *ngIf="studentExam">
-    <h2><span jhiTranslate="itehProjectApp.studentExam.detail.title">Student Exam</span> {{studentExam.id}}</h2>
+    <h2><span jhiTranslate="app.studentExam.detail.title">Student Exam</span> {{studentExam.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="itehProjectApp.studentExam.attended">Attended</span></dt>
+        <dt><span jhiTranslate="app.studentExam.attended">Attended</span></dt>
         <dd>
             <span>{{studentExam.attended}}</span>
         </dd>
-        <dt><span jhiTranslate="itehProjectApp.studentExam.grade">Grade</span></dt>
+        <dt><span jhiTranslate="app.studentExam.grade">Grade</span></dt>
         <dd>
             <span>{{studentExam.grade}}</span>
         </dd>
-        <dt><span jhiTranslate="itehProjectApp.studentExam.student">Student</span></dt>
+        <dt><span jhiTranslate="app.studentExam.student">Student</span></dt>
         <dd>
             {{studentExam.studentFullName}}
         </dd>
-        <dt><span jhiTranslate="itehProjectApp.studentExam.exam">Exam</span></dt>
+        <dt><span jhiTranslate="app.studentExam.exam">Exam</span></dt>
         <dd>
             <div *ngIf="studentExam.examId">
                 <a [routerLink]="['/exam', studentExam.examId]">{{studentExam.examId}}</a>
             </div>
         </dd>
-        <dt><span jhiTranslate="itehProjectApp.studentExam.evaluatedBy">Evaluated By</span></dt>
+        <dt><span jhiTranslate="app.studentExam.evaluatedBy">Evaluated By</span></dt>
         <dd>
             {{studentExam.evaluatedByFullName}}
         </dd>

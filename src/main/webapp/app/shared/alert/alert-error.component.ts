@@ -55,7 +55,7 @@ export class JhiAlertErrorComponent implements OnDestroy {
                             const fieldError = fieldErrors[i];
                             // convert 'something[14].other[4].id' to 'something[].other[].id' so translations can be written to it
                             const convertedField = fieldError.field.replace(/\[\d*\]/g, '[]');
-                            const fieldName = translateService.instant('itehProjectApp.' +
+                            const fieldName = translateService.instant('app.' +
                                 fieldError.objectName + '.' + convertedField);
                             this.addErrorAlert(
                                 'Error on field "' + fieldName + '"', 'error.' + fieldError.message, { fieldName });

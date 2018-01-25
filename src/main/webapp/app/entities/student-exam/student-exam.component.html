@@ -1,9 +1,9 @@
 <div>
     <h2>
-        <span jhiTranslate="itehProjectApp.studentExam.home.title">Student Exams</span>
+        <span jhiTranslate="app.studentExam.home.title">Student Exams</span>
         <button class="btn btn-primary float-right jh-create-entity create-student-exam" [routerLink]="['/', { outlets: { popup: ['student-exam-new'] } }]">
             <span class="fa fa-plus"></span>
-            <span class="hidden-sm-down"  jhiTranslate="itehProjectApp.studentExam.home.createLabel">
+            <span class="hidden-sm-down"  jhiTranslate="app.studentExam.home.createLabel">
             Create new Student Exam
             </span>
         </button>
@@ -13,7 +13,7 @@
         <div class="col-sm-12">
             <form name="searchForm" class="form-inline">
                 <div class="input-group w-100 mt-3">
-                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'itehProjectApp.studentExam.home.search' | translate }}">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'app.studentExam.home.search' | translate }}">
                     <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
                         <span class="fa fa-search"></span>
                     </button>
@@ -30,11 +30,11 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="attended"><span jhiTranslate="itehProjectApp.studentExam.attended">Attended</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="grade"><span jhiTranslate="itehProjectApp.studentExam.grade">Grade</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="studentFullName"><span jhiTranslate="itehProjectApp.studentExam.student">Student</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="examId"><span jhiTranslate="itehProjectApp.studentExam.exam">Exam</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="evaluatedByFullName"><span jhiTranslate="itehProjectApp.studentExam.evaluatedBy">Evaluated By</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="attended"><span jhiTranslate="app.studentExam.attended">Attended</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="grade"><span jhiTranslate="app.studentExam.grade">Grade</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="studentFullName"><span jhiTranslate="app.studentExam.student">Student</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="examId"><span jhiTranslate="app.studentExam.exam">Exam</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="evaluatedByFullName"><span jhiTranslate="app.studentExam.evaluatedBy">Evaluated By</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>

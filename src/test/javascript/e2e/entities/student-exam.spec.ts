@@ -18,14 +18,14 @@ describe('StudentExam e2e test', () => {
     it('should load StudentExams', () => {
         navBarPage.goToEntity('student-exam');
         studentExamComponentsPage = new StudentExamComponentsPage();
-        expect(studentExamComponentsPage.getTitle()).toMatch(/itehProjectApp.studentExam.home.title/);
+        expect(studentExamComponentsPage.getTitle()).toMatch(/app.studentExam.home.title/);
 
     });
 
     it('should load create StudentExam dialog', () => {
         studentExamComponentsPage.clickOnCreateButton();
         studentExamDialogPage = new StudentExamDialogPage();
-        expect(studentExamDialogPage.getModalTitle()).toMatch(/itehProjectApp.studentExam.home.createOrEditLabel/);
+        expect(studentExamDialogPage.getModalTitle()).toMatch(/app.studentExam.home.createOrEditLabel/);
         studentExamDialogPage.close();
     });
 

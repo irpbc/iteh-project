@@ -33,7 +33,7 @@ export const courseRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.course.home.title'
+            pageTitle: 'app.course.home.title'
         },
         canActivate: [UserRouteAccessService]
     }, {
@@ -41,7 +41,7 @@ export const courseRoute: Routes = [
         component: CourseDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.course.home.title'
+            pageTitle: 'app.course.home.title'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -53,7 +53,7 @@ export const coursePopupRoute: Routes = [
         component: CoursePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.course.home.title'
+            pageTitle: 'app.course.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -63,7 +63,7 @@ export const coursePopupRoute: Routes = [
         component: CoursePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.course.home.title'
+            pageTitle: 'app.course.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -73,7 +73,7 @@ export const coursePopupRoute: Routes = [
         component: CourseDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.course.home.title'
+            pageTitle: 'app.course.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

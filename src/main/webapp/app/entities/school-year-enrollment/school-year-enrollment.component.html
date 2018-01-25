@@ -1,9 +1,9 @@
 <div>
     <h2>
-        <span jhiTranslate="itehProjectApp.schoolYearEnrollment.home.title">School Year Enrollments</span>
+        <span jhiTranslate="app.schoolYearEnrollment.home.title">School Year Enrollments</span>
         <button class="btn btn-primary float-right jh-create-entity create-school-year-enrollment" [routerLink]="['/', { outlets: { popup: ['school-year-enrollment-new'] } }]">
             <span class="fa fa-plus"></span>
-            <span class="hidden-sm-down"  jhiTranslate="itehProjectApp.schoolYearEnrollment.home.createLabel">
+            <span class="hidden-sm-down"  jhiTranslate="app.schoolYearEnrollment.home.createLabel">
             Create new School Year Enrollment
             </span>
         </button>
@@ -13,7 +13,7 @@
         <div class="col-sm-12">
             <form name="searchForm" class="form-inline">
                 <div class="input-group w-100 mt-3">
-                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'itehProjectApp.schoolYearEnrollment.home.search' | translate }}">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'app.schoolYearEnrollment.home.search' | translate }}">
                     <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
                         <span class="fa fa-search"></span>
                     </button>
@@ -30,11 +30,11 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="averageGrade"><span jhiTranslate="itehProjectApp.schoolYearEnrollment.averageGrade">Average Grade</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="espbPointsDeclared"><span jhiTranslate="itehProjectApp.schoolYearEnrollment.espbPointsDeclared">Espb Points Declared</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="espbPointsAttained"><span jhiTranslate="itehProjectApp.schoolYearEnrollment.espbPointsAttained">Espb Points Attained</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="studentFullName"><span jhiTranslate="itehProjectApp.schoolYearEnrollment.student">Student</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="yearName"><span jhiTranslate="itehProjectApp.schoolYearEnrollment.year">Year</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="averageGrade"><span jhiTranslate="app.schoolYearEnrollment.averageGrade">Average Grade</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="espbPointsDeclared"><span jhiTranslate="app.schoolYearEnrollment.espbPointsDeclared">Espb Points Declared</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="espbPointsAttained"><span jhiTranslate="app.schoolYearEnrollment.espbPointsAttained">Espb Points Attained</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="studentFullName"><span jhiTranslate="app.schoolYearEnrollment.student">Student</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="yearName"><span jhiTranslate="app.schoolYearEnrollment.year">Year</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>

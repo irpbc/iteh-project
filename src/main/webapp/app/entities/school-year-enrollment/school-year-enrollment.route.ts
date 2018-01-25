@@ -15,7 +15,7 @@ export const schoolYearEnrollmentRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.schoolYearEnrollment.home.title'
+            pageTitle: 'app.schoolYearEnrollment.home.title'
         },
         canActivate: [UserRouteAccessService]
     }, {
@@ -23,7 +23,7 @@ export const schoolYearEnrollmentRoute: Routes = [
         component: SchoolYearEnrollmentDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.schoolYearEnrollment.home.title'
+            pageTitle: 'app.schoolYearEnrollment.home.title'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -35,7 +35,7 @@ export const schoolYearEnrollmentPopupRoute: Routes = [
         component: SchoolYearEnrollmentPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.schoolYearEnrollment.home.title'
+            pageTitle: 'app.schoolYearEnrollment.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -45,7 +45,7 @@ export const schoolYearEnrollmentPopupRoute: Routes = [
         component: SchoolYearEnrollmentPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.schoolYearEnrollment.home.title'
+            pageTitle: 'app.schoolYearEnrollment.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -55,7 +55,7 @@ export const schoolYearEnrollmentPopupRoute: Routes = [
         component: SchoolYearEnrollmentDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.schoolYearEnrollment.home.title'
+            pageTitle: 'app.schoolYearEnrollment.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

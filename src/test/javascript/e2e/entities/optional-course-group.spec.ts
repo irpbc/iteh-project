@@ -18,14 +18,14 @@ describe('OptionalCourseGroup e2e test', () => {
     it('should load OptionalCourseGroups', () => {
         navBarPage.goToEntity('optional-course-group');
         optionalCourseGroupComponentsPage = new OptionalCourseGroupComponentsPage();
-        expect(optionalCourseGroupComponentsPage.getTitle()).toMatch(/itehProjectApp.optionalCourseGroup.home.title/);
+        expect(optionalCourseGroupComponentsPage.getTitle()).toMatch(/app.optionalCourseGroup.home.title/);
 
     });
 
     it('should load create OptionalCourseGroup dialog', () => {
         optionalCourseGroupComponentsPage.clickOnCreateButton();
         optionalCourseGroupDialogPage = new OptionalCourseGroupDialogPage();
-        expect(optionalCourseGroupDialogPage.getModalTitle()).toMatch(/itehProjectApp.optionalCourseGroup.home.createOrEditLabel/);
+        expect(optionalCourseGroupDialogPage.getModalTitle()).toMatch(/app.optionalCourseGroup.home.createOrEditLabel/);
         optionalCourseGroupDialogPage.close();
     });
 

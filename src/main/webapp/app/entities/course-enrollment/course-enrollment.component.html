@@ -1,9 +1,9 @@
 <div>
     <h2>
-        <span jhiTranslate="itehProjectApp.courseEnrollment.home.title">Course Enrollments</span>
+        <span jhiTranslate="app.courseEnrollment.home.title">Course Enrollments</span>
         <button class="btn btn-primary float-right jh-create-entity create-course-enrollment" [routerLink]="['/', { outlets: { popup: ['course-enrollment-new'] } }]">
             <span class="fa fa-plus"></span>
-            <span class="hidden-sm-down"  jhiTranslate="itehProjectApp.courseEnrollment.home.createLabel">
+            <span class="hidden-sm-down"  jhiTranslate="app.courseEnrollment.home.createLabel">
             Create new Course Enrollment
             </span>
         </button>
@@ -13,7 +13,7 @@
         <div class="col-sm-12">
             <form name="searchForm" class="form-inline">
                 <div class="input-group w-100 mt-3">
-                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'itehProjectApp.courseEnrollment.home.search' | translate }}">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'app.courseEnrollment.home.search' | translate }}">
                     <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
                         <span class="fa fa-search"></span>
                     </button>
@@ -30,11 +30,11 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="totalPoints"><span jhiTranslate="itehProjectApp.courseEnrollment.totalPoints">Total Points</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="grade"><span jhiTranslate="itehProjectApp.courseEnrollment.grade">Grade</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="completed"><span jhiTranslate="itehProjectApp.courseEnrollment.completed">Completed</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="yearEnrollmentId"><span jhiTranslate="itehProjectApp.courseEnrollment.yearEnrollment">Year Enrollment</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="courseName"><span jhiTranslate="itehProjectApp.courseEnrollment.course">Course</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="totalPoints"><span jhiTranslate="app.courseEnrollment.totalPoints">Total Points</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="grade"><span jhiTranslate="app.courseEnrollment.grade">Grade</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="completed"><span jhiTranslate="app.courseEnrollment.completed">Completed</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="yearEnrollmentId"><span jhiTranslate="app.courseEnrollment.yearEnrollment">Year Enrollment</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="courseName"><span jhiTranslate="app.courseEnrollment.course">Course</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>

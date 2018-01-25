@@ -1,28 +1,28 @@
 
 <div *ngIf="courseEnrollment">
-    <h2><span jhiTranslate="itehProjectApp.courseEnrollment.detail.title">Course Enrollment</span> {{courseEnrollment.id}}</h2>
+    <h2><span jhiTranslate="app.courseEnrollment.detail.title">Course Enrollment</span> {{courseEnrollment.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="itehProjectApp.courseEnrollment.totalPoints">Total Points</span></dt>
+        <dt><span jhiTranslate="app.courseEnrollment.totalPoints">Total Points</span></dt>
         <dd>
             <span>{{courseEnrollment.totalPoints}}</span>
         </dd>
-        <dt><span jhiTranslate="itehProjectApp.courseEnrollment.grade">Grade</span></dt>
+        <dt><span jhiTranslate="app.courseEnrollment.grade">Grade</span></dt>
         <dd>
             <span>{{courseEnrollment.grade}}</span>
         </dd>
-        <dt><span jhiTranslate="itehProjectApp.courseEnrollment.completed">Completed</span></dt>
+        <dt><span jhiTranslate="app.courseEnrollment.completed">Completed</span></dt>
         <dd>
             <span>{{courseEnrollment.completed}}</span>
         </dd>
-        <dt><span jhiTranslate="itehProjectApp.courseEnrollment.yearEnrollment">Year Enrollment</span></dt>
+        <dt><span jhiTranslate="app.courseEnrollment.yearEnrollment">Year Enrollment</span></dt>
         <dd>
             <div *ngIf="courseEnrollment.yearEnrollmentId">
                 <a [routerLink]="['/school-year-enrollment', courseEnrollment.yearEnrollmentId]">{{courseEnrollment.yearEnrollmentId}}</a>
             </div>
         </dd>
-        <dt><span jhiTranslate="itehProjectApp.courseEnrollment.course">Course</span></dt>
+        <dt><span jhiTranslate="app.courseEnrollment.course">Course</span></dt>
         <dd>
             <div *ngIf="courseEnrollment.courseId">
                 <a [routerLink]="['/course', courseEnrollment.courseId]">{{courseEnrollment.courseName}}</a>

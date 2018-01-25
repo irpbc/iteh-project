@@ -18,14 +18,14 @@ describe('SchoolYear e2e test', () => {
     it('should load SchoolYears', () => {
         navBarPage.goToEntity('school-year');
         schoolYearComponentsPage = new SchoolYearComponentsPage();
-        expect(schoolYearComponentsPage.getTitle()).toMatch(/itehProjectApp.schoolYear.home.title/);
+        expect(schoolYearComponentsPage.getTitle()).toMatch(/app.schoolYear.home.title/);
 
     });
 
     it('should load create SchoolYear dialog', () => {
         schoolYearComponentsPage.clickOnCreateButton();
         schoolYearDialogPage = new SchoolYearDialogPage();
-        expect(schoolYearDialogPage.getModalTitle()).toMatch(/itehProjectApp.schoolYear.home.createOrEditLabel/);
+        expect(schoolYearDialogPage.getModalTitle()).toMatch(/app.schoolYear.home.createOrEditLabel/);
         schoolYearDialogPage.close();
     });
 

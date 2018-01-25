@@ -18,14 +18,14 @@ describe('Lecturer e2e test', () => {
     it('should load Lecturers', () => {
         navBarPage.goToEntity('lecturer');
         lecturerComponentsPage = new LecturerComponentsPage();
-        expect(lecturerComponentsPage.getTitle()).toMatch(/itehProjectApp.lecturer.home.title/);
+        expect(lecturerComponentsPage.getTitle()).toMatch(/app.lecturer.home.title/);
 
     });
 
     it('should load create Lecturer dialog', () => {
         lecturerComponentsPage.clickOnCreateButton();
         lecturerDialogPage = new LecturerDialogPage();
-        expect(lecturerDialogPage.getModalTitle()).toMatch(/itehProjectApp.lecturer.home.createOrEditLabel/);
+        expect(lecturerDialogPage.getModalTitle()).toMatch(/app.lecturer.home.createOrEditLabel/);
         lecturerDialogPage.close();
     });
 

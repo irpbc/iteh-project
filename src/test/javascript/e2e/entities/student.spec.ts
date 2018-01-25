@@ -18,14 +18,14 @@ describe('Student e2e test', () => {
     it('should load Students', () => {
         navBarPage.goToEntity('student');
         studentComponentsPage = new StudentComponentsPage();
-        expect(studentComponentsPage.getTitle()).toMatch(/itehProjectApp.student.home.title/);
+        expect(studentComponentsPage.getTitle()).toMatch(/app.student.home.title/);
 
     });
 
     it('should load create Student dialog', () => {
         studentComponentsPage.clickOnCreateButton();
         studentDialogPage = new StudentDialogPage();
-        expect(studentDialogPage.getModalTitle()).toMatch(/itehProjectApp.student.home.createOrEditLabel/);
+        expect(studentDialogPage.getModalTitle()).toMatch(/app.student.home.createOrEditLabel/);
         studentDialogPage.close();
     });
 

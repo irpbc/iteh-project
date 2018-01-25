@@ -1,5 +1,5 @@
 {
-    "itehProjectApp": {
+    "app": {
         "courseEnrollment" : {
             "home": {
                 "title": "Course Enrollments",

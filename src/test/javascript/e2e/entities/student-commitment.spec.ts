@@ -18,14 +18,14 @@ describe('StudentCommitment e2e test', () => {
     it('should load StudentCommitments', () => {
         navBarPage.goToEntity('student-commitment');
         studentCommitmentComponentsPage = new StudentCommitmentComponentsPage();
-        expect(studentCommitmentComponentsPage.getTitle()).toMatch(/itehProjectApp.studentCommitment.home.title/);
+        expect(studentCommitmentComponentsPage.getTitle()).toMatch(/app.studentCommitment.home.title/);
 
     });
 
     it('should load create StudentCommitment dialog', () => {
         studentCommitmentComponentsPage.clickOnCreateButton();
         studentCommitmentDialogPage = new StudentCommitmentDialogPage();
-        expect(studentCommitmentDialogPage.getModalTitle()).toMatch(/itehProjectApp.studentCommitment.home.createOrEditLabel/);
+        expect(studentCommitmentDialogPage.getModalTitle()).toMatch(/app.studentCommitment.home.createOrEditLabel/);
         studentCommitmentDialogPage.close();
     });
 

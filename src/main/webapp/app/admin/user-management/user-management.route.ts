@@ -26,14 +26,14 @@ export const userMgmtRoute: Routes = [
             'pagingParams': ResolvePagingParams
         },
         data: {
-            pageTitle: 'itehProjectApp.user.home.title'
+            pageTitle: 'app.user.home.title'
         }
     },
     {
         path: 'user-management/:login',
         component: UserMgmtDetailComponent,
         data: {
-            pageTitle: 'itehProjectApp.user.home.title'
+            pageTitle: 'app.user.home.title'
         }
     }
 ];

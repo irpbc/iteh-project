@@ -15,7 +15,7 @@ export const studentCommitmentRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.studentCommitment.home.title'
+            pageTitle: 'app.studentCommitment.home.title'
         },
         canActivate: [UserRouteAccessService]
     }, {
@@ -23,7 +23,7 @@ export const studentCommitmentRoute: Routes = [
         component: StudentCommitmentDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.studentCommitment.home.title'
+            pageTitle: 'app.studentCommitment.home.title'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -35,7 +35,7 @@ export const studentCommitmentPopupRoute: Routes = [
         component: StudentCommitmentPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.studentCommitment.home.title'
+            pageTitle: 'app.studentCommitment.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -45,7 +45,7 @@ export const studentCommitmentPopupRoute: Routes = [
         component: StudentCommitmentPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.studentCommitment.home.title'
+            pageTitle: 'app.studentCommitment.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -55,7 +55,7 @@ export const studentCommitmentPopupRoute: Routes = [
         component: StudentCommitmentDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.studentCommitment.home.title'
+            pageTitle: 'app.studentCommitment.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

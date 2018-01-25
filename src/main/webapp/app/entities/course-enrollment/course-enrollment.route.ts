@@ -15,7 +15,7 @@ export const courseEnrollmentRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.courseEnrollment.home.title'
+            pageTitle: 'app.courseEnrollment.home.title'
         },
         canActivate: [UserRouteAccessService]
     }, {
@@ -23,7 +23,7 @@ export const courseEnrollmentRoute: Routes = [
         component: CourseEnrollmentDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.courseEnrollment.home.title'
+            pageTitle: 'app.courseEnrollment.home.title'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -35,7 +35,7 @@ export const courseEnrollmentPopupRoute: Routes = [
         component: CourseEnrollmentPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.courseEnrollment.home.title'
+            pageTitle: 'app.courseEnrollment.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -45,7 +45,7 @@ export const courseEnrollmentPopupRoute: Routes = [
         component: CourseEnrollmentPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.courseEnrollment.home.title'
+            pageTitle: 'app.courseEnrollment.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -55,7 +55,7 @@ export const courseEnrollmentPopupRoute: Routes = [
         component: CourseEnrollmentDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'itehProjectApp.courseEnrollment.home.title'
+            pageTitle: 'app.courseEnrollment.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

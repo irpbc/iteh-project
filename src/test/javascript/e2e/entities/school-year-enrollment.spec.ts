@@ -18,14 +18,14 @@ describe('SchoolYearEnrollment e2e test', () => {
     it('should load SchoolYearEnrollments', () => {
         navBarPage.goToEntity('school-year-enrollment');
         schoolYearEnrollmentComponentsPage = new SchoolYearEnrollmentComponentsPage();
-        expect(schoolYearEnrollmentComponentsPage.getTitle()).toMatch(/itehProjectApp.schoolYearEnrollment.home.title/);
+        expect(schoolYearEnrollmentComponentsPage.getTitle()).toMatch(/app.schoolYearEnrollment.home.title/);
 
     });
 
     it('should load create SchoolYearEnrollment dialog', () => {
         schoolYearEnrollmentComponentsPage.clickOnCreateButton();
         schoolYearEnrollmentDialogPage = new SchoolYearEnrollmentDialogPage();
-        expect(schoolYearEnrollmentDialogPage.getModalTitle()).toMatch(/itehProjectApp.schoolYearEnrollment.home.createOrEditLabel/);
+        expect(schoolYearEnrollmentDialogPage.getModalTitle()).toMatch(/app.schoolYearEnrollment.home.createOrEditLabel/);
         schoolYearEnrollmentDialogPage.close();
     });
 

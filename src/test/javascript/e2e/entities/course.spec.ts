@@ -18,14 +18,14 @@ describe('Course e2e test', () => {
     it('should load Courses', () => {
         navBarPage.goToEntity('course');
         courseComponentsPage = new CourseComponentsPage();
-        expect(courseComponentsPage.getTitle()).toMatch(/itehProjectApp.course.home.title/);
+        expect(courseComponentsPage.getTitle()).toMatch(/app.course.home.title/);
 
     });
 
     it('should load create Course dialog', () => {
         courseComponentsPage.clickOnCreateButton();
         courseDialogPage = new CourseDialogPage();
-        expect(courseDialogPage.getModalTitle()).toMatch(/itehProjectApp.course.home.createOrEditLabel/);
+        expect(courseDialogPage.getModalTitle()).toMatch(/app.course.home.createOrEditLabel/);
         courseDialogPage.close();
     });
 
