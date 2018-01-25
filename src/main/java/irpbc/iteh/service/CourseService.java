@@ -3,7 +3,9 @@ package irpbc.iteh.service;
 import irpbc.iteh.domain.Course;
 import irpbc.iteh.repository.CourseRepository;
 import irpbc.iteh.repository.search.CourseSearchRepository;
+import irpbc.iteh.security.SecurityUtils;
 import irpbc.iteh.service.dto.CourseDTO;
+import irpbc.iteh.service.dto.StudentCourseDTO;
 import irpbc.iteh.service.mapper.CourseMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -100,5 +102,10 @@ public class CourseService {
         log.debug("Request to search for a page of Courses for query {}", query);
         Page<Course> result = courseSearchRepository.search(queryStringQuery(query), pageable);
         return result.map(courseMapper::toDto);
+    }
+
+    public Page<StudentCourseDTO> getStudentCourses(Pageable pageable) {
+        Long studentId = SecurityUtils.getCurrentUserId();
+        return courseRepository.findPassedCourses(studentId, pageable);
     }
 }

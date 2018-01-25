@@ -24,7 +24,7 @@ export class UserMgmtComponent implements OnInit, OnDestroy {
     previousPage: any;
     reverse: any;
 
-    private _userType: UserType;
+    private _userType: UserType = null;
 
     constructor(private userService: UserService,
                 private alertService: JhiAlertService,
@@ -99,7 +99,6 @@ export class UserMgmtComponent implements OnInit, OnDestroy {
     }
 
     set userType(value: UserType) {
-        console.log('--- userType promenjen u ' + value);
         this._userType = value;
         this.loadAll();
     }

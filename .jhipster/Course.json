@@ -59,6 +59,6 @@
     "dto": "mapstruct",
     "service": "serviceClass",
     "entityTableName": "course",
-    "jpaMetamodelFiltering": false,
+    "jpaMetamodelFiltering": true,
     "pagination": "pagination"
 }

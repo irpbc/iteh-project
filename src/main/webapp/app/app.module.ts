@@ -27,6 +27,8 @@ import {
     ErrorComponent
 } from './layouts';
 
+import { PagesModule } from './pages';
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -37,8 +39,9 @@ import {
         ItehProjectAdminModule,
         ItehProjectAccountModule,
         ItehProjectEntityModule,
-        BrowserAnimationsModule,
         ItehProjectprimengModule,
+        PagesModule,
+        BrowserAnimationsModule,
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [

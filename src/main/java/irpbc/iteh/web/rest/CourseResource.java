@@ -2,10 +2,13 @@ package irpbc.iteh.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import irpbc.iteh.service.CourseService;
+import irpbc.iteh.service.dto.StudentCourseDTO;
 import irpbc.iteh.web.rest.errors.BadRequestAlertException;
 import irpbc.iteh.web.rest.util.HeaderUtil;
 import irpbc.iteh.web.rest.util.PaginationUtil;
 import irpbc.iteh.service.dto.CourseDTO;
+import irpbc.iteh.service.dto.CourseCriteria;
+import irpbc.iteh.service.CourseQueryService;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,8 +42,11 @@ public class CourseResource {
 
     private final CourseService courseService;
 
-    public CourseResource(CourseService courseService) {
+    private final CourseQueryService courseQueryService;
+
+    public CourseResource(CourseService courseService, CourseQueryService courseQueryService) {
         this.courseService = courseService;
+        this.courseQueryService = courseQueryService;
     }
 
     /**
@@ -89,14 +95,29 @@ public class CourseResource {
      * GET  /courses : get all the courses.
      *
      * @param pageable the pagination information
+     * @param criteria the criterias which the requested entities should match
      * @return the ResponseEntity with status 200 (OK) and the list of courses in body
      */
     @GetMapping("/courses")
     @Timed
-    public ResponseEntity<List<CourseDTO>> getAllCourses(Pageable pageable) {
-        log.debug("REST request to get a page of Courses");
-        Page<CourseDTO> page = courseService.findAll(pageable);
+    public ResponseEntity<List<CourseDTO>> getAllCourses(CourseCriteria criteria, Pageable pageable) {
+        log.debug("REST request to get Courses by criteria: {}", criteria);
+        Page<CourseDTO> page = courseQueryService.findByCriteria(criteria, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/courses");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
+    /**
+     * GET  /courses : get all the courses.
+     *
+     * @param pageable the pagination informationted entities should match
+     * @return the ResponseEntity with status 200 (OK) and the list of courses in body
+     */
+    @GetMapping("/student-courses")
+    @Timed
+    public ResponseEntity<List<StudentCourseDTO>> getStudentCourses(Pageable pageable) {
+        Page<StudentCourseDTO> page = courseService.getStudentCourses(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/student-courses");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 

@@ -173,29 +173,23 @@ public class UserService {
      * @return updated user
      */
     public Optional<UserDTO> updateUser(UserDTO userDTO) {
-        return Optional.of(userRepository
-            .findOne(userDTO.getId()))
-            .map(user -> {
-                user.setUserType(userDTO.getUserType());
-                user.setLogin(userDTO.getLogin());
-                user.setFirstName(userDTO.getFirstName());
-                user.setLastName(userDTO.getLastName());
-                user.fullName(userDTO.getFirstName() + ' ' + userDTO.getLastName());
-                user.setEmail(userDTO.getEmail());
-                user.setImageUrl(userDTO.getImageUrl());
-                user.setActivated(userDTO.isActivated());
-                user.setLangKey(userDTO.getLangKey());
-                Set<Authority> managedAuthorities = user.getAuthorities();
-                managedAuthorities.clear();
-                userDTO.getAuthorities().stream()
-                    .map(authorityRepository::findOne)
-                    .forEach(managedAuthorities::add);
-                userSearchRepository.save(user);
-                cacheManager.getCache(USERS_CACHE).evict(user.getLogin());
-                log.debug("Changed Information for User: {}", user);
-                return user;
-            })
-            .map(userMapper::toDto);
+        User user = userRepository.findOne(userDTO.getId());
+        if (user != null) {
+            user.setUserType(userDTO.getUserType());
+            user.setLogin(userDTO.getLogin());
+            user.setFirstName(userDTO.getFirstName());
+            user.setLastName(userDTO.getLastName());
+            user.fullName(userDTO.getFirstName() + ' ' + userDTO.getLastName());
+            user.setEmail(userDTO.getEmail());
+            user.setImageUrl(userDTO.getImageUrl());
+            user.setActivated(userDTO.isActivated());
+            user.setLangKey(userDTO.getLangKey());
+            userSearchRepository.save(user);
+            cacheManager.getCache(USERS_CACHE).evict(user.getLogin());
+            log.debug("Changed Information for User: {}", user);
+            return Optional.of(userMapper.toDto(user));
+        }
+        return Optional.empty();
     }
 
     public void deleteUser(String login) {
