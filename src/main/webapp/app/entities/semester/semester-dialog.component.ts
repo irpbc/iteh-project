@@ -22,7 +22,7 @@ export class SemesterDialogComponent implements OnInit {
     fields: FieldDef[];
 
     constructor(private jhiAlertService: JhiAlertService,
-                private semesterService: SemesterService,
+                public semesterService: SemesterService,
                 private schoolYearService: SchoolYearService) {
     }
 

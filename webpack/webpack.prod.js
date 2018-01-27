@@ -100,7 +100,7 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
             minimize: true,
             debug: false
         }),
-        new WorkboxPlugin({
+        new WorkboxPlugin.GenerateSW({
           // to cache all under build/www
           globDirectory: utils.root('build/www'),
           // find these files and cache them
