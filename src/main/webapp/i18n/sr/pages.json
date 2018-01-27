@@ -1,0 +1,12 @@
+{
+    "app": {
+        "page": {
+            "passedCourses": {
+                "title": "Položeni predmeti"
+            },
+            "dueCourses": {
+                "title": "Aktuelni predmeti"
+            }
+        }
+    }
+}

@@ -1,16 +1,27 @@
 import { Routes } from '@angular/router';
-import { StudentCoursesComponent } from './student-courses/student-courses.component';
 import { ResolvePagingParams } from '../shared';
+import { PassedCoursesComponent } from './passed-courses/passed-courses.component';
+import { DueCoursesComponent } from './due-courses/due-courses.component';
 
 export const pageRoutes: Routes = [
     {
-        path: 'student-courses',
-        component: StudentCoursesComponent,
+        path: 'passed-courses',
+        component: PassedCoursesComponent,
         data: {
-            pageTitle: 'TODO'
+            pageTitle: 'app.page.passedCourses.title'
         },
         resolve: {
-            'pagingParams': ResolvePagingParams
+            pagingParams: ResolvePagingParams
+        }
+    },
+    {
+        path: 'due-courses',
+        component: DueCoursesComponent,
+        data: {
+            pageTitle: 'app.page.dueCourses.title'
+        },
+        resolve: {
+            pagingParams: ResolvePagingParams
         }
     }
 ];

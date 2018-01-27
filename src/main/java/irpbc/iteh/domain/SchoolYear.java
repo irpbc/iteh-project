@@ -29,6 +29,10 @@ public class SchoolYear extends AbstractEntity {
     @Column(name = "end_date", nullable = false)
     private LocalDate endDate;
 
+    @NotNull
+    @Column(name = "is_current", nullable = false)
+    private Boolean isCurrent;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public String getName() {
         return name;
@@ -68,6 +72,20 @@ public class SchoolYear extends AbstractEntity {
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
+
+    public Boolean getCurrent() {
+        return isCurrent;
+    }
+
+    public SchoolYear current(Boolean current) {
+        isCurrent = current;
+        return this;
+    }
+
+    public void setCurrent(Boolean current) {
+        isCurrent = current;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override

@@ -1,9 +1,13 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { ItehProjectSharedModule } from '../shared';
-import { StudentCoursesComponent } from './student-courses/student-courses.component';
-import { pageRoutes } from './pages.route';
+
+import {
+    PassedCoursesComponent,
+    DueCoursesComponent,
+    pageRoutes
+} from './';
 
 @NgModule({
     imports: [
@@ -11,12 +15,13 @@ import { pageRoutes } from './pages.route';
         RouterModule.forChild(pageRoutes)
     ],
     declarations: [
-        StudentCoursesComponent
+        PassedCoursesComponent,
+        DueCoursesComponent
     ],
     entryComponents: [
-        StudentCoursesComponent
-    ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+        PassedCoursesComponent,
+        DueCoursesComponent
+    ]
 })
 export class PagesModule {
 }

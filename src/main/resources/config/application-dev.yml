@@ -30,6 +30,7 @@ spring:
             enabled: false # we use gulp + BrowserSync for livereload
     jackson:
         serialization.indent_output: true
+        default-property-inclusion: non_null
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:mysql://localhost:3306/iteh_project?useUnicode=true&characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull

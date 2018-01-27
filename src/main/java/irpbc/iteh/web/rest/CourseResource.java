@@ -25,9 +25,6 @@ import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * REST controller for managing Course.
@@ -107,17 +104,19 @@ public class CourseResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
-    /**
-     * GET  /courses : get all the courses.
-     *
-     * @param pageable the pagination informationted entities should match
-     * @return the ResponseEntity with status 200 (OK) and the list of courses in body
-     */
-    @GetMapping("/student-courses")
+    @GetMapping("/passed-courses")
     @Timed
-    public ResponseEntity<List<StudentCourseDTO>> getStudentCourses(Pageable pageable) {
-        Page<StudentCourseDTO> page = courseService.getStudentCourses(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/student-courses");
+    public ResponseEntity<List<StudentCourseDTO>> getPassedCourses(Pageable pageable) {
+        Page<StudentCourseDTO> page = courseService.getPassedCourses(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/passed-courses");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/due-courses")
+    @Timed
+    public ResponseEntity<List<StudentCourseDTO>> getDueCourses(Pageable pageable) {
+        Page<StudentCourseDTO> page = courseService.getDueCourses(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/due-courses");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 

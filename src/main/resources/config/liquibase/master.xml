@@ -28,4 +28,8 @@
     <include file="config/liquibase/changelog/20180105115305_added_entity_constraints_Semester.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180105115306_added_entity_constraints_OptionalCourseGroup.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+
+    <include file="config/liquibase/changelog/20180126170000_SchoolYear_isCurrent.xml"
+             relativeToChangelogFile="false"/>
+
 </databaseChangeLog>

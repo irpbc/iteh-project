@@ -104,8 +104,13 @@ public class CourseService {
         return result.map(courseMapper::toDto);
     }
 
-    public Page<StudentCourseDTO> getStudentCourses(Pageable pageable) {
+    public Page<StudentCourseDTO> getPassedCourses(Pageable pageable) {
         Long studentId = SecurityUtils.getCurrentUserId();
         return courseRepository.findPassedCourses(studentId, pageable);
+    }
+
+    public Page<StudentCourseDTO> getDueCourses(Pageable pageable) {
+        Long studentId = SecurityUtils.getCurrentUserId();
+        return courseRepository.findDueCourses(studentId, pageable);
     }
 }

@@ -20,6 +20,8 @@ public class SchoolYearDTO extends AbstractEntityDTO {
     @NotNull
     private LocalDate endDate;
 
+    private Boolean isCurrent;
+
     public String getName() {
         return name;
     }
@@ -42,6 +44,14 @@ public class SchoolYearDTO extends AbstractEntityDTO {
 
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
+    }
+
+    public Boolean getCurrent() {
+        return isCurrent;
+    }
+
+    public void setCurrent(Boolean current) {
+        isCurrent = current;
     }
 
     @Override

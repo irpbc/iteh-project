@@ -1,6 +1,7 @@
 package irpbc.iteh.repository;
 
 import irpbc.iteh.domain.User;
+import irpbc.iteh.domain.UserType;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -32,4 +33,6 @@ public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificat
     User findOneWithAuthoritiesByLogin(String login);
 
     Page<User> findAllByLoginNot(Pageable pageable, String login);
+
+    Page<User> findByUserType(UserType userType, Pageable pageable);
 }

@@ -163,6 +163,7 @@ public class UserResource {
      */
     @GetMapping("/users")
     @Timed
+    @Secured(AuthoritiesConstants.ADMIN)
     public ResponseEntity<List<UserDTO>> getAllUsers(UserCriteria criteria, Pageable pageable) {
         log.debug("REST request to get Users by criteria: {}", criteria);
         Page<UserDTO> page = userQueryService.findByCriteria(criteria, pageable);
@@ -218,6 +219,7 @@ public class UserResource {
      */
     @GetMapping("/_search/users/{query}")
     @Timed
+    @Secured(AuthoritiesConstants.ADMIN)
     public List<User> search(@PathVariable String query) {
         return StreamSupport
             .stream(userSearchRepository.search(queryStringQuery(query)).spliterator(), false)

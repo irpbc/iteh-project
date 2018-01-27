@@ -24,6 +24,12 @@ public class StudentCourseDTO {
         this.schoolYear = schoolYear;
     }
 
+    public StudentCourseDTO(String name, Integer espbPoints, Integer yearOfStudies) {
+        this.name = name;
+        this.espbPoints = espbPoints;
+        this.yearOfStudies = yearOfStudies;
+    }
+
     public String getName() {
         return name;
     }

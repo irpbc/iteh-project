@@ -7,12 +7,12 @@ import { Course } from '../../entities/course';
 import { Headers, Http, Response } from '@angular/http';
 
 @Component({
-    selector: 'app-student-courses',
-    templateUrl: './student-courses.component.html'
+    selector: 'app-due-courses',
+    templateUrl: './due-courses.component.html'
 })
-export class StudentCoursesComponent implements OnInit {
+export class DueCoursesComponent implements OnInit {
 
-    courses: StudentCourse[];
+    courses: DueCourse[];
     error: any;
     success: any;
     routeData: any;
@@ -34,7 +34,7 @@ export class StudentCoursesComponent implements OnInit {
     }
 
     loadAll() {
-        this.http.get('/api/student-courses', {
+        this.http.get('/api/due-courses', {
             params: {
                 page: (this.page - 1).toString(),
                 size: this.itemsPerPage.toString()
@@ -53,7 +53,7 @@ export class StudentCoursesComponent implements OnInit {
     }
 
     transition() {
-        this.router.navigate(['/student-courses'], {
+        this.router.navigate(['/due-courses'], {
             queryParams: {
                 page: this.page,
                 size: this.itemsPerPage
@@ -70,7 +70,7 @@ export class StudentCoursesComponent implements OnInit {
         return item.id;
     }
 
-    private onSuccess(data: StudentCourse[], headers: Headers) {
+    private onSuccess(data: DueCourse[], headers: Headers) {
         this.totalItems = +headers.get('X-Total-Count');
         // this.page = pagingParams.page;
         this.courses = data;
@@ -81,10 +81,8 @@ export class StudentCoursesComponent implements OnInit {
     }
 }
 
-interface StudentCourse {
+interface DueCourse {
     name: string;
     espbPoints: number;
-    grade: number;
     yearOfStudies: number;
-    schoolYear: string;
 }
