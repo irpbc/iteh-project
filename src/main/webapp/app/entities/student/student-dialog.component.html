@@ -1,0 +1,49 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myUserLabel" jhiTranslate="app.student.home.createOrEditLabel">
+            Create or edit a User</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;
+        </button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!student.id">
+            <label jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" name="id"
+                   [ngModel]="student.id" readonly>
+        </div>
+
+        <field-input [field]="'login'" [type]="'STRING'" [entityName]="'student'" [form]="editForm"
+                     [object]="student" [required]="true"
+                     [minLength]="1" [maxLength]="50" [pattern]="'^[_\'.@A-Za-z0-9-]*$'"></field-input>
+
+        <field-input [field]="'firstName'" [type]="'STRING'" [entityName]="'student'" [form]="editForm"
+                     [object]="student" [required]="true" [minLength]="1" [maxLength]="50"></field-input>
+
+        <field-input [field]="'lastName'" [type]="'STRING'" [entityName]="'student'" [form]="editForm"
+                     [object]="student" [required]="true" [minLength]="1" [maxLength]="50"></field-input>
+
+        <field-input [field]="'email'" [type]="'STRING'" [entityName]="'student'" [form]="editForm"
+                     [object]="student" [required]="true" [minLength]="5" [maxLength]="100" [email]="true">
+        </field-input>
+
+        <field-input [field]="'code'" [type]="'STRING'" [entityName]="'student'" [form]="editForm"
+                     [object]="student" [required]="true" [minLength]="5" [maxLength]="50"></field-input>
+
+        <field-input [field]="'langKey'" [type]="'ENUM'" [entityName]="'student'" [form]="editForm"
+                     [object]="student" required="true" [options]="languages" [getEnumName]="translateLang">
+        </field-input>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span
+                jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-floppy-o"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

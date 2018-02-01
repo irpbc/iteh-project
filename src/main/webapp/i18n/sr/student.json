@@ -1,0 +1,27 @@
+{
+    "app": {
+        "student": {
+            "home": {
+                "title": "Studenti",
+                "createLabel": "Kreiraj novog studenta",
+                "createOrEditLabel": "Kreiraj ili izmeni studenta"
+            },
+            "created": "Kreiran je novi Student {{ param }}",
+            "updated": "Student {{ param }} je izmenjen",
+            "deleted": "Student {{ param }} je obrisan",
+            "delete": {
+                "question": "Da li ste sigurni da želite da obrišite studenta {{ login }}?"
+            },
+            "detail": {
+                "title": "Student"
+            },
+            "login": "Korisničko ime",
+            "code": "Broj indeksa",
+            "firstName": "Ime",
+            "lastName": "Prezime",
+            "fullName": "Puno ime",
+            "email": "Email",
+            "langKey": "Jezik"
+        }
+    }
+}

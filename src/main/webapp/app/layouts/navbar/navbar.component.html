@@ -16,9 +16,10 @@
                     </span>
                 </a>
             </li>
-            <li ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active"
+            <li *jhiHasAnyAuthority="'ROLE_STUDENT'" ngbDropdown class="nav-item dropdown pointer"
+                routerLinkActive="active"
                 [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="courses-menu">
+                <a class="nav-link dropdown-toggle" ngbDropdownToggle id="courses-menu">
                     Predmeti
                 </a>
                 <ul class="dropdown-menu" ngbDropdownMenu>
@@ -32,14 +33,30 @@
                     <li>
                         <a class="dropdown-item" routerLink="due-courses" routerLinkActive="active"
                            [routerLinkActiveOptions]="{exact: true}" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-check" aria-hidden="true"></i>
+                            <i class="fa fa-fw fa-exclamation" aria-hidden="true"></i>
                             <span jhiTranslate="app.page.dueCourses.title"></span>
                         </a>
                     </li>
                 </ul>
             </li>
+            <li *jhiHasAnyAuthority="'ROLE_STUDENT'" ngbDropdown class="nav-item dropdown pointer"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link dropdown-toggle" ngbDropdownToggle id="exam-menu">
+                    Ispiti
+                </a>
+                <ul class="dropdown-menu" ngbDropdownMenu>
+                    <li>
+                        <a class="dropdown-item" routerLink="exam-applications" routerLinkActive="active"
+                           [routerLinkActiveOptions]="{exact: true}" (click)="collapseNavbar()">
+                            <span jhiTranslate="app.page.examApplications.title"></span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
-            <li ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active"
+            <li *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_SERVICE', 'ROLE_LECTURER']" ngbDropdown class="nav-item dropdown pointer"
+                routerLinkActive="active"
                 [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
                     <span>
@@ -50,84 +67,91 @@
                     </span>
                 </a>
                 <ul class="dropdown-menu" ngbDropdownMenu>
-                    <li>
+                    <li *jhiHasAnyAuthority="'ROLE_SERVICE'">
+                        <a class="dropdown-item" routerLink="student" routerLinkActive="active"
+                           [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.student">Student</span>
+                        </a>
+                    </li>
+                    <li *jhiHasAnyAuthority="'ROLE_SERVICE'">
                         <a class="dropdown-item" routerLink="course" routerLinkActive="active"
                            [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
                             <span jhiTranslate="global.menu.entities.course">Course</span>
                         </a>
                     </li>
-                    <li>
+                    <li *jhiHasAnyAuthority="'ROLE_SERVICE'">
                         <a class="dropdown-item" routerLink="school-year" routerLinkActive="active"
                            [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
                             <span jhiTranslate="global.menu.entities.schoolYear">School Year</span>
                         </a>
                     </li>
-                    <li>
+                    <li *jhiHasAnyAuthority="'ROLE_SERVICE'">
                         <a class="dropdown-item" routerLink="course-enrollment" routerLinkActive="active"
                            [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
                             <span jhiTranslate="global.menu.entities.courseEnrollment">Course Enrollment</span>
                         </a>
                     </li>
-                    <li>
+                    <li *jhiHasAnyAuthority="'ROLE_SERVICE'">
                         <a class="dropdown-item" routerLink="school-year-enrollment" routerLinkActive="active"
                            [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
                             <span jhiTranslate="global.menu.entities.schoolYearEnrollment">School Year Enrollment</span>
                         </a>
                     </li>
-                    <li>
+                    <li *jhiHasAnyAuthority="'ROLE_LECTURER'">
                         <a class="dropdown-item" routerLink="commitment" routerLinkActive="active"
                            [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
                             <span jhiTranslate="global.menu.entities.commitment">Commitment</span>
                         </a>
                     </li>
-                    <li>
+                    <li *jhiHasAnyAuthority="'ROLE_LECTURER'">
                         <a class="dropdown-item" routerLink="student-commitment" routerLinkActive="active"
                            [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
                             <span jhiTranslate="global.menu.entities.studentCommitment">Student Commitment</span>
                         </a>
                     </li>
-                    <li>
+                    <li *jhiHasAnyAuthority="'ROLE_SERVICE'">
                         <a class="dropdown-item" routerLink="lecturer" routerLinkActive="active"
                            [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
                             <span jhiTranslate="global.menu.entities.lecturer">Lecturer</span>
                         </a>
                     </li>
-                    <li>
+                    <li *jhiHasAnyAuthority="'ROLE_SERVICE'">
                         <a class="dropdown-item" routerLink="exam-period" routerLinkActive="active"
                            [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
                             <span jhiTranslate="global.menu.entities.examPeriod">Exam Period</span>
                         </a>
                     </li>
-                    <li>
+                    <li *jhiHasAnyAuthority="'ROLE_SERVICE'">
                         <a class="dropdown-item" routerLink="exam" routerLinkActive="active"
                            [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
                             <span jhiTranslate="global.menu.entities.exam">Exam</span>
                         </a>
                     </li>
-                    <li>
+                    <li *jhiHasAnyAuthority="'ROLE_LECTURER'">
                         <a class="dropdown-item" routerLink="student-exam" routerLinkActive="active"
                            [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
                             <span jhiTranslate="global.menu.entities.studentExam">Student Exam</span>
                         </a>
                     </li>
-                    <li>
+                    <li *jhiHasAnyAuthority="'ROLE_SERVICE'">
                         <a class="dropdown-item" routerLink="semester" routerLinkActive="active"
                            [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
                             <span jhiTranslate="global.menu.entities.semester">Semester</span>
                         </a>
                     </li>
-                    <li>
+                    <li *jhiHasAnyAuthority="'ROLE_SERVICE'">
                         <a class="dropdown-item" routerLink="optional-course-group" routerLinkActive="active"
                            [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
@@ -221,15 +245,13 @@
             <li ngbDropdown class="nav-item dropdown pointer" placement="bottom-right" routerLinkActive="active"
                 [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="account-menu">
-                  <span *ngIf="!getImageUrl()">
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                    <span jhiTranslate="global.menu.account.main">
-                      Account
+                    <span *ngIf="!getImageUrl()">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <span jhiTranslate="global.menu.account.main">Account</span>
                     </span>
-                  </span>
                     <span *ngIf="getImageUrl()">
-                      <img [src]="getImageUrl()" class="profile-image img-circle" alt="Avatar">
-                  </span>
+                        <img [src]="getImageUrl()" class="profile-image img-circle" alt="Avatar">
+                    </span>
                 </a>
                 <ul class="dropdown-menu" ngbDropdownMenu>
                     <li>

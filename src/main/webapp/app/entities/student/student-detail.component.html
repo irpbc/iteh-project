@@ -1,0 +1,31 @@
+<div *ngIf="student">
+    <h2>
+        <span jhiTranslate="app.student.detail.title">User</span> [<b>{{student.login}}</b>]
+    </h2>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="app.student.login">Login</span></dt>
+        <dd>
+            <span>{{student.login}}</span>
+            <jhi-boolean
+                [value]="student.activated"
+                [textTrue]="'app.user.activated' | translate"
+                [textFalse]="'app.user.deactivated' | translate">
+            </jhi-boolean>
+        </dd>
+        <dt><span jhiTranslate="app.student.firstName">First Name</span></dt>
+        <dd>{{student.firstName}}</dd>
+        <dt><span jhiTranslate="app.student.lastName">Last Name</span></dt>
+        <dd>{{student.lastName}}</dd>
+        <dt><span jhiTranslate="app.student.email">Email</span></dt>
+        <dd>{{student.email}}</dd>
+        <dt><span jhiTranslate="app.student.code">Email</span></dt>
+        <dd>{{student.code}}</dd>
+        <dt><span jhiTranslate="app.student.langKey">Lang Key</span></dt>
+        <dd>{{student.langKey}}</dd>
+    </dl>
+
+    <button type="button" [routerLink]="['/', { outlets: { popup: 'student/'+ student.login + '/edit'} }]"
+            replaceUrl="true" queryParamsHandling="merge" class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+    </button>
+</div>
