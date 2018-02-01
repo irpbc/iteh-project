@@ -23,6 +23,7 @@ import {
     ],
     providers: [
         JhiLanguageHelper,
+        FindLanguageFromKeyPipe,
         WindowRef,
         Title,
         {

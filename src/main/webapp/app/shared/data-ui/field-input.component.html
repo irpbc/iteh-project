@@ -39,12 +39,21 @@
                [(ngModel)]="object[field]" [required]="required"/>
     </div>
 
+    <!-- Enum -->
+    <select *ngSwitchCase="'ENUM'" class="form-control" id="field_{{field}}"
+            [name]="field" [(ngModel)]="object[field]" [required]="required">
+        <option *ngIf="!form.value[field]" [ngValue]="null" selected></option>
+        <option *ngFor="let option of options" [ngValue]="option">
+            {{_getEnumName(option)}}
+        </option>
+    </select>
+
     <!-- Relationship to one -->
     <select *ngSwitchCase="'REL_TO_ONE'" class="form-control" id="field_{{field}}"
             [name]="field" [(ngModel)]="object[field + 'Id']" [required]="required">
         <option *ngIf="!form.value[field]" [ngValue]="null" selected></option>
         <option *ngFor="let option of options; trackBy: trackById" [ngValue]="option.id">
-            {{getOptionName(option)}}
+            {{_getOptionName(option)}}
         </option>
     </select>
 
@@ -52,7 +61,7 @@
     <select *ngSwitchCase="'REL_TO_MANY'" class="form-control" id="field_{{field}}" multiple
             [name]="field" [(ngModel)]="object[field]" [required]="required">
         <option *ngFor="let option of options; trackBy: trackById" [ngValue]="getSelected(object[field], option)">
-            {{getOptionName(option)}}
+            {{_getOptionName(option)}}
         </option>
     </select>
 

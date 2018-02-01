@@ -26,6 +26,7 @@ export class FieldInputComponent implements OnInit {
 
     @Input() public options: any[];
     @Input() public optionNameField: string;
+    @Input() public getEnumName: (option: any) => string;
 
     @Input() public object: any;
 
@@ -40,8 +41,12 @@ export class FieldInputComponent implements OnInit {
         return option.id;
     }
 
-    getOptionName(option: any): string {
+    _getOptionName(option: any): string {
         return option[this.optionNameField];
+    }
+
+    _getEnumName(option: any): string {
+        return this.getEnumName(option);
     }
 
     getSelected(selectedVals: Array<any>, option: any) {

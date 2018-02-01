@@ -4,6 +4,7 @@ export enum FieldType {
     DECIMAL = 'DECIMAL',
     DATE = 'DATE',
     DATETIME = 'DATETIME',
+    ENUM = 'ENUM',
     REL_TO_ONE = 'REL_TO_ONE',
     REL_TO_MANY = 'REL_TO_MANY',
 }
