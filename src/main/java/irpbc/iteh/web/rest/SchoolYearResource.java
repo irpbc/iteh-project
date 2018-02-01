@@ -128,6 +128,12 @@ public class SchoolYearResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
+    @PutMapping("/school-years/{id}/set-current")
+    public ResponseEntity<Void> setCerrentSchoolYear(@PathVariable Long id) {
+        schoolYearService.setCurrent(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     /**
      * SEARCH  /_search/school-years?query=:query : search for the schoolYear corresponding
      * to the query.

@@ -11,7 +11,7 @@ public final class HeaderUtil {
 
     private static final Logger log = LoggerFactory.getLogger(HeaderUtil.class);
 
-    private static final String APPLICATION_NAME = "itehProjectApp";
+    private static final String I18N_PREFIX = "app";
 
     private HeaderUtil() {
     }
@@ -24,15 +24,15 @@ public final class HeaderUtil {
     }
 
     public static HttpHeaders createEntityCreationAlert(String entityName, String param) {
-        return createAlert(APPLICATION_NAME + "." + entityName + ".created", param);
+        return createAlert(I18N_PREFIX + "." + entityName + ".created", param);
     }
 
     public static HttpHeaders createEntityUpdateAlert(String entityName, String param) {
-        return createAlert(APPLICATION_NAME + "." + entityName + ".updated", param);
+        return createAlert(I18N_PREFIX + "." + entityName + ".updated", param);
     }
 
     public static HttpHeaders createEntityDeletionAlert(String entityName, String param) {
-        return createAlert(APPLICATION_NAME + "." + entityName + ".deleted", param);
+        return createAlert(I18N_PREFIX + "." + entityName + ".deleted", param);
     }
 
     public static HttpHeaders createFailureAlert(String entityName, String errorKey, String defaultMessage) {

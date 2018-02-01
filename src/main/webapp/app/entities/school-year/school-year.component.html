@@ -34,6 +34,7 @@
             <th jhiSortBy="startDate"><span jhiTranslate="app.schoolYear.startDate">Start Date</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="endDate"><span jhiTranslate="app.schoolYear.endDate">End Date</span> <span class="fa fa-sort"></span></th>
             <th></th>
+            <th></th>
             </tr>
             </thead>
             <tbody>
@@ -42,6 +43,16 @@
                 <td>{{schoolYear.name}}</td>
                 <td>{{schoolYear.startDate | date:'mediumDate'}}</td>
                 <td>{{schoolYear.endDate | date:'mediumDate'}}</td>
+                <td>
+                    <button *ngIf="!schoolYear.current" class="btn btn-outline-success btn-sm" (click)="setCurrent(schoolYear)">
+                        <span jhiTranslate="app.schoolYear.current"></span>
+                    </button>
+                    <button *ngIf="schoolYear.current" class="btn btn-success btn-sm"
+                            disabled jhiTranslate="app.schoolYear.current">
+                        <i class="fa fa-check"></i>
+                        <span jhiTranslate="app.schoolYear.notCurrent"></span>
+                    </button>
+                </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
@@ -77,7 +88,8 @@
             <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
         </div>
         <div class="row justify-content-center">
-            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5"
+                            [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)" ></ngb-pagination>
         </div>
     </div>
 </div>

@@ -42,7 +42,7 @@ describe('Component Tests', () => {
                 // GIVEN
 
                 spyOn(service, 'find').and
-                    .returnValue(Observable.of(new User(1, UserType.AD, 'user', 'first', 'last', 'first@last.com', true, 'en', ['ROLE_USER'], 'admin', null, null, null)));
+                    .returnValue(Observable.of(new User(1, UserType.AD, 'user', 'first', 'last', 'first@last.com', true, 'en', ['ROLE_USER'])));
 
                 // WHEN
                 comp.ngOnInit();

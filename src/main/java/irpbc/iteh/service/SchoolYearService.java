@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
 
@@ -45,6 +46,9 @@ public class SchoolYearService {
     public SchoolYearDTO save(SchoolYearDTO schoolYearDTO) {
         log.debug("Request to save SchoolYear : {}", schoolYearDTO);
         SchoolYear schoolYear = schoolYearMapper.toEntity(schoolYearDTO);
+        if (schoolYear.getId() == null) {
+            schoolYear.setCurrent(false);
+        }
         schoolYear = schoolYearRepository.save(schoolYear);
         SchoolYearDTO result = schoolYearMapper.toDto(schoolYear);
         schoolYearSearchRepository.save(schoolYear);
@@ -75,6 +79,18 @@ public class SchoolYearService {
         log.debug("Request to get SchoolYear : {}", id);
         SchoolYear schoolYear = schoolYearRepository.findOne(id);
         return schoolYearMapper.toDto(schoolYear);
+    }
+
+    public void setCurrent(Long scId) {
+        List<SchoolYear> prev = schoolYearRepository.findByCurrentTrue();
+        for (SchoolYear year : prev) {
+            year.setCurrent(false);
+        }
+        schoolYearRepository.save(prev);
+
+        SchoolYear year = schoolYearRepository.findOne(scId);
+        year.setCurrent(true);
+        schoolYearRepository.save(year);
     }
 
     /**

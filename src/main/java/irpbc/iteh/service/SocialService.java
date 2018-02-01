@@ -52,8 +52,8 @@ public class SocialService {
         this.userSearchRepository = userSearchRepository;
     }
 
-    public void deleteUserSocialConnection(String login) {
-        ConnectionRepository connectionRepository = usersConnectionRepository.createConnectionRepository(login);
+    public void deleteUserSocialConnection(Long userId) {
+        ConnectionRepository connectionRepository = usersConnectionRepository.createConnectionRepository(userId.toString());
         connectionRepository.findAllConnections().keySet().stream()
             .forEach(providerId -> {
                 connectionRepository.removeConnections(providerId);

@@ -6,6 +6,7 @@ export class SchoolYear implements BaseEntity {
         public name?: string,
         public startDate?: any,
         public endDate?: any,
+        public current?: boolean,
     ) {
     }
 }

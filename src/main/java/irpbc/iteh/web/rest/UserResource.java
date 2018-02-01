@@ -1,11 +1,11 @@
 package irpbc.iteh.web.rest;
 
-import irpbc.iteh.config.Constants;
 import com.codahale.metrics.annotation.Timed;
+import io.github.jhipster.web.util.ResponseUtil;
+import irpbc.iteh.config.Constants;
 import irpbc.iteh.domain.User;
 import irpbc.iteh.repository.UserRepository;
 import irpbc.iteh.repository.search.UserSearchRepository;
-import irpbc.iteh.security.AuthoritiesConstants;
 import irpbc.iteh.service.MailService;
 import irpbc.iteh.service.UserQueryService;
 import irpbc.iteh.service.UserService;
@@ -16,8 +16,6 @@ import irpbc.iteh.web.rest.errors.EmailAlreadyUsedException;
 import irpbc.iteh.web.rest.errors.LoginAlreadyUsedException;
 import irpbc.iteh.web.rest.util.HeaderUtil;
 import irpbc.iteh.web.rest.util.PaginationUtil;
-import io.github.jhipster.web.util.ResponseUtil;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -32,11 +30,13 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import static irpbc.iteh.security.AuthoritiesConstants.*;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 /**
  * REST controller for managing users.
@@ -106,7 +106,7 @@ public class UserResource {
      */
     @PostMapping("/users")
     @Timed
-    @Secured({AuthoritiesConstants.ADMIN, AuthoritiesConstants.SERVICE})
+    @Secured({ADMIN, SERVICE})
     public ResponseEntity<User> createUser(@Valid @RequestBody UserDTO userDTO) throws URISyntaxException {
         log.debug("REST request to save User : {}", userDTO);
 
@@ -119,9 +119,9 @@ public class UserResource {
             throw new EmailAlreadyUsedException();
         } else {
             User newUser = userService.createUser(userDTO);
-            mailService.sendCreationEmail(newUser);
+            //mailService.sendCreationEmail(newUser);
             return ResponseEntity.created(new URI("/api/users/" + newUser.getLogin()))
-                .headers(HeaderUtil.createAlert("itehProjectApp.user.created", newUser.getLogin()))
+                .headers(HeaderUtil.createAlert("app.user.created", newUser.getLogin()))
                 .body(newUser);
         }
     }
@@ -136,7 +136,7 @@ public class UserResource {
      */
     @PutMapping("/users")
     @Timed
-    @Secured(AuthoritiesConstants.ADMIN)
+    @Secured({ADMIN, SERVICE})
     @Transactional
     public ResponseEntity<UserDTO> updateUser(@Valid @RequestBody UserDTO userDTO) {
         log.debug("REST request to update User : {}", userDTO);
@@ -151,7 +151,7 @@ public class UserResource {
         Optional<UserDTO> updatedUser = userService.updateUser(userDTO);
 
         return ResponseUtil.wrapOrNotFound(updatedUser,
-            HeaderUtil.createAlert("itehProjectApp.user.updated", userDTO.getLogin()));
+            HeaderUtil.createAlert("app.user.updated", userDTO.getLogin()));
     }
 
     /**
@@ -163,7 +163,7 @@ public class UserResource {
      */
     @GetMapping("/users")
     @Timed
-    @Secured(AuthoritiesConstants.ADMIN)
+    @Secured({ADMIN, SERVICE, LECTURER})
     public ResponseEntity<List<UserDTO>> getAllUsers(UserCriteria criteria, Pageable pageable) {
         log.debug("REST request to get Users by criteria: {}", criteria);
         Page<UserDTO> page = userQueryService.findByCriteria(criteria, pageable);
@@ -176,7 +176,7 @@ public class UserResource {
      */
     @GetMapping("/users/authorities")
     @Timed
-    @Secured(AuthoritiesConstants.ADMIN)
+    @Secured(ADMIN)
     public List<String> getAuthorities() {
         return userService.getAuthorities();
     }
@@ -203,11 +203,11 @@ public class UserResource {
      */
     @DeleteMapping("/users/{login:" + Constants.LOGIN_REGEX + "}")
     @Timed
-    @Secured(AuthoritiesConstants.ADMIN)
+    @Secured(ADMIN)
     public ResponseEntity<Void> deleteUser(@PathVariable String login) {
         log.debug("REST request to delete User: {}", login);
         userService.deleteUser(login);
-        return ResponseEntity.ok().headers(HeaderUtil.createAlert("itehProjectApp.user.deleted", login)).build();
+        return ResponseEntity.ok().headers(HeaderUtil.createAlert("app.user.deleted", login)).build();
     }
 
     /**
@@ -219,7 +219,7 @@ public class UserResource {
      */
     @GetMapping("/_search/users/{query}")
     @Timed
-    @Secured(AuthoritiesConstants.ADMIN)
+    @Secured(ADMIN)
     public List<User> search(@PathVariable String query) {
         return StreamSupport
             .stream(userSearchRepository.search(queryStringQuery(query)).spliterator(), false)

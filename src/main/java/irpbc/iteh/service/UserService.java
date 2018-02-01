@@ -117,6 +117,7 @@ public class UserService {
 
         User user = new User();
         user.setUserType(userDTO.getUserType());
+        user.setCode(userDTO.getCode());
         user.setLogin(userDTO.getLogin());
         user.setFirstName(userDTO.getFirstName());
         user.setLastName(userDTO.getLastName());
@@ -134,7 +135,8 @@ public class UserService {
                 .collect(Collectors.toSet());
             user.setAuthorities(authorities);
         }
-        String encryptedPassword = passwordEncoder.encode(RandomUtil.generatePassword());
+        //String encryptedPassword = passwordEncoder.encode(RandomUtil.generatePassword());
+        String encryptedPassword = passwordEncoder.encode(userDTO.getLogin());
         user.setPassword(encryptedPassword);
         user.setResetKey(RandomUtil.generateResetKey());
         user.setResetDate(Instant.now());
@@ -177,6 +179,7 @@ public class UserService {
         if (user != null) {
             user.setUserType(userDTO.getUserType());
             user.setLogin(userDTO.getLogin());
+            user.setCode(userDTO.getCode());
             user.setFirstName(userDTO.getFirstName());
             user.setLastName(userDTO.getLastName());
             user.fullName(userDTO.getFirstName() + ' ' + userDTO.getLastName());
@@ -194,7 +197,7 @@ public class UserService {
 
     public void deleteUser(String login) {
         User user = userRepository.findOneByLogin(login);
-        socialService.deleteUserSocialConnection(user.getLogin());
+        socialService.deleteUserSocialConnection(user.getId());
         userRepository.delete(user);
         userSearchRepository.delete(user);
         cacheManager.getCache(USERS_CACHE).evict(login);

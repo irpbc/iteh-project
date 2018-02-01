@@ -85,6 +85,9 @@ public class User extends AbstractEntity {
     @Column(name = "reset_date")
     private Instant resetDate = null;
 
+    @Column(name = "code")
+    private String code;
+
     @ManyToMany(mappedBy = "lecturers")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -267,6 +270,14 @@ public class User extends AbstractEntity {
     public User resetDate(Instant resetDate) {
         this.resetDate = resetDate;
         return this;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public Set<Authority> getAuthorities() {

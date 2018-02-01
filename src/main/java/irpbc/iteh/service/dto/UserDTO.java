@@ -46,6 +46,8 @@ public class UserDTO extends AbstractEntityDTO {
     @Size(min = 2, max = 6)
     private String langKey;
 
+    private String code;
+
     private Set<String> authorities;
 
     public UserType getUserType() {
@@ -118,6 +120,14 @@ public class UserDTO extends AbstractEntityDTO {
 
     public void setLangKey(String langKey) {
         this.langKey = langKey;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public Set<String> getAuthorities() {

@@ -31,5 +31,7 @@
 
     <include file="config/liquibase/changelog/20180126170000_SchoolYear_isCurrent.xml"
              relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180127190000_User_code.xml"
+             relativeToChangelogFile="false"/>
 
 </databaseChangeLog>

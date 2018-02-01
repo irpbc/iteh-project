@@ -31,7 +31,7 @@ public class SchoolYear extends AbstractEntity {
 
     @NotNull
     @Column(name = "is_current", nullable = false)
-    private Boolean isCurrent;
+    private Boolean current;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public String getName() {
@@ -74,16 +74,16 @@ public class SchoolYear extends AbstractEntity {
     }
 
     public Boolean getCurrent() {
-        return isCurrent;
+        return current;
     }
 
     public SchoolYear current(Boolean current) {
-        isCurrent = current;
+        this.current = current;
         return this;
     }
 
     public void setCurrent(Boolean current) {
-        isCurrent = current;
+        this.current = current;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove

@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Http, Response } from '@angular/http';
 import { Subscription } from 'rxjs/Rx';
 import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
@@ -13,7 +14,7 @@ import { ITEMS_PER_PAGE, Principal, ResponseWrapper } from '../../shared';
 })
 export class SchoolYearComponent implements OnInit, OnDestroy {
 
-currentAccount: any;
+    currentAccount: any;
     schoolYears: SchoolYear[];
     error: any;
     success: any;
@@ -29,15 +30,15 @@ currentAccount: any;
     previousPage: any;
     reverse: any;
 
-    constructor(
-        private schoolYearService: SchoolYearService,
-        private parseLinks: JhiParseLinks,
-        private jhiAlertService: JhiAlertService,
-        private principal: Principal,
-        private activatedRoute: ActivatedRoute,
-        private router: Router,
-        private eventManager: JhiEventManager
-    ) {
+    constructor(private schoolYearService: SchoolYearService,
+                private parseLinks: JhiParseLinks,
+                private jhiAlertService: JhiAlertService,
+                private principal: Principal,
+                private activatedRoute: ActivatedRoute,
+                private router: Router,
+                private eventManager: JhiEventManager,
+                private http: Http) {
+
         this.itemsPerPage = ITEMS_PER_PAGE;
         this.routeData = this.activatedRoute.data.subscribe((data) => {
             this.page = data.pagingParams.page;
@@ -55,20 +56,30 @@ currentAccount: any;
                 page: this.page - 1,
                 query: this.currentSearch,
                 size: this.itemsPerPage,
-                sort: this.sort()}).subscribe(
-                    (res: ResponseWrapper) => this.onSuccess(res.json, res.headers),
-                    (res: ResponseWrapper) => this.onError(res.json)
-                );
+                sort: this.sort()
+            }).subscribe(
+                (res: ResponseWrapper) => this.onSuccess(res.json, res.headers),
+                (res: ResponseWrapper) => this.onError(res.json)
+            );
             return;
         }
         this.schoolYearService.query({
             page: this.page - 1,
             size: this.itemsPerPage,
-            sort: this.sort()}).subscribe(
+            sort: this.sort()
+        }).subscribe(
             (res: ResponseWrapper) => this.onSuccess(res.json, res.headers),
             (res: ResponseWrapper) => this.onError(res.json)
         );
     }
+
+    setCurrent(s: SchoolYear) {
+        this.http.put('/api/school-years/' + s.id + '/set-current', '').subscribe(
+            (res: Response) => this.loadAll(),
+            (res: Response) => this.onError(res.json())
+        );
+    }
+
     loadPage(page: number) {
         if (page !== this.previousPage) {
             this.previousPage = page;
@@ -76,8 +87,8 @@ currentAccount: any;
         }
     }
     transition() {
-        this.router.navigate(['/school-year'], {queryParams:
-            {
+        this.router.navigate(['/school-year'], {
+            queryParams: {
                 page: this.page,
                 size: this.itemsPerPage,
                 search: this.currentSearch,
@@ -96,6 +107,7 @@ currentAccount: any;
         }]);
         this.loadAll();
     }
+
     search(query) {
         if (!query) {
             return this.clear();
@@ -109,6 +121,7 @@ currentAccount: any;
         }]);
         this.loadAll();
     }
+
     ngOnInit() {
         this.loadAll();
         this.principal.identity().then((account) => {
@@ -124,6 +137,7 @@ currentAccount: any;
     trackId(index: number, item: SchoolYear) {
         return item.id;
     }
+
     registerChangeInSchoolYears() {
         this.eventSubscriber = this.eventManager.subscribe('schoolYearListModification', (response) => this.loadAll());
     }
@@ -143,6 +157,7 @@ currentAccount: any;
         // this.page = pagingParams.page;
         this.schoolYears = data;
     }
+
     private onError(error) {
         this.jhiAlertService.error(error.message, null, null);
     }
