@@ -2,25 +2,25 @@
     "app": {
         "schoolYearEnrollment" : {
             "home": {
-                "title": "School Year Enrollments",
-                "createLabel": "Kreiraj novi School Year Enrollment",
-                "createOrEditLabel": "Kreirajte ili izmenite School Year Enrollment",
-                "search": "Potražite School Year Enrollment"
+                "title": "Upisi Godina",
+                "createLabel": "Kreiraj novi Upis Godine",
+                "createOrEditLabel": "Kreirajte ili izmenite Upis",
+                "search": "Potražite Upise"
             },
-            "created": "Kreiran je novi School Year Enrollment pod nazivom {{ param }}",
-            "updated": "School Year Enrollment pod nazivom {{ param }} je ažuriran",
-            "deleted": "School Year Enrollment pod nazivom {{ param }} je obrisan",
+            "created": "Kreiran je novi Upis pod nazivom {{ param }}",
+            "updated": "Upis pod nazivom {{ param }} je ažuriran",
+            "deleted": "Upis pod nazivom {{ param }} je obrisan",
             "delete": {
-                "question": "Da li ste sigurni da želite da obrišete School Year Enrollment pod nazivom {{ id }}?"
+                "question": "Da li ste sigurni da želite da obrišete Upis pod nazivom {{ id }}?"
             },
             "detail": {
-                "title": "School Year Enrollment"
+                "title": "Upis godine"
             },
-            "averageGrade": "Average Grade",
-            "espbPointsDeclared": "Espb Points Declared",
-            "espbPointsAttained": "Espb Points Attained",
+            "averageGrade": "Prosečna ocena",
+            "espbPointsDeclared": "ESPB Najava",
+            "espbPointsAttained": "ESPB Ostvareno",
             "student": "Student",
-            "year": "Year"
+            "year": "Godina"
         }
     }
 }

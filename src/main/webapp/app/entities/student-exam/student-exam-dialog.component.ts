@@ -12,6 +12,7 @@ import { StudentExamService } from './student-exam.service';
 import { User, UserService } from '../../shared';
 import { Exam, ExamService } from '../exam';
 import { ResponseWrapper } from '../../shared';
+import { UserType } from '../../shared/user/user.model';
 
 @Component({
     selector: 'jhi-student-exam-dialog',
@@ -26,22 +27,24 @@ export class StudentExamDialogComponent implements OnInit {
 
     exams: Exam[];
 
-    constructor(
-        public activeModal: NgbActiveModal,
-        private jhiAlertService: JhiAlertService,
-        private studentExamService: StudentExamService,
-        private userService: UserService,
-        private examService: ExamService,
-        private eventManager: JhiEventManager
-    ) {
+    constructor(public activeModal: NgbActiveModal,
+                private jhiAlertService: JhiAlertService,
+                private studentExamService: StudentExamService,
+                private userService: UserService,
+                private examService: ExamService,
+                private eventManager: JhiEventManager) {
     }
 
     ngOnInit() {
         this.isSaving = false;
-        this.userService.query()
-            .subscribe((res: ResponseWrapper) => { this.users = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
-        this.examService.query()
-            .subscribe((res: ResponseWrapper) => { this.exams = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.userService.query({ filter: { 'userType.equals': UserType.LC } }).subscribe(
+            (res: ResponseWrapper) => this.users = res.json,
+            (res: ResponseWrapper) => this.onError(res.json)
+        );
+        this.examService.query().subscribe(
+            (res: ResponseWrapper) => this.exams = res.json,
+            (res: ResponseWrapper) => this.onError(res.json)
+        );
     }
 
     clear() {
@@ -65,7 +68,7 @@ export class StudentExamDialogComponent implements OnInit {
     }
 
     private onSaveSuccess(result: StudentExam) {
-        this.eventManager.broadcast({ name: 'studentExamListModification', content: 'OK'});
+        this.eventManager.broadcast({ name: 'studentExamListModification', content: 'OK' });
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
@@ -95,14 +98,13 @@ export class StudentExamPopupComponent implements OnInit, OnDestroy {
 
     routeSub: any;
 
-    constructor(
-        private route: ActivatedRoute,
-        private studentExamPopupService: StudentExamPopupService
-    ) {}
+    constructor(private route: ActivatedRoute,
+                private studentExamPopupService: StudentExamPopupService) {
+    }
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
-            if ( params['id'] ) {
+            if (params['id']) {
                 this.studentExamPopupService
                     .open(StudentExamDialogComponent as Component, params['id']);
             } else {

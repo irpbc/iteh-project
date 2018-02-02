@@ -17,7 +17,7 @@ export class DeleteDialogComponent implements OnInit, OnDestroy {
 
     @ViewChild('content') template: TemplateRef<any>;
 
-    public id: number;
+    public id: any;
     private routeSub: Subscription;
     private modalRef: NgbModalRef;
 

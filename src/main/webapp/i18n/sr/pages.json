@@ -6,6 +6,14 @@
             },
             "dueCourses": {
                 "title": "Aktuelni predmeti"
+            },
+            "examApplications": {
+                "title": "Prijava ispita",
+                "nextPeriod": "Sledeći ispitni rok",
+                "apply": "Prijavi",
+                "cancel": "Odjavi",
+                "unapplied": "Neprijavljeni ispiti",
+                "applied": "Prijavljeni ispiti"
             }
         }
     }

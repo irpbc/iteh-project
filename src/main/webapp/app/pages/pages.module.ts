@@ -6,6 +6,7 @@ import { ItehProjectSharedModule } from '../shared';
 import {
     PassedCoursesComponent,
     DueCoursesComponent,
+    ExamApplicationComponent,
     pageRoutes
 } from './';
 
@@ -16,11 +17,13 @@ import {
     ],
     declarations: [
         PassedCoursesComponent,
-        DueCoursesComponent
+        DueCoursesComponent,
+        ExamApplicationComponent
     ],
     entryComponents: [
         PassedCoursesComponent,
-        DueCoursesComponent
+        DueCoursesComponent,
+        ExamApplicationComponent
     ]
 })
 export class PagesModule {

@@ -1,0 +1,16 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "userType",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180105115254",
+    "dto": "mapstruct",
+    "service": "serviceClass",
+    "entityTableName": "course",
+    "jpaMetamodelFiltering": true,
+    "pagination": "pagination"
+}

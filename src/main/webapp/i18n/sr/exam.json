@@ -16,9 +16,9 @@
             "detail": {
                 "title": "Ispit"
             },
-            "time": "Time",
-            "period": "Period",
-            "course": "Course"
+            "time": "Vreme",
+            "period": "Ispitni rok",
+            "course": "Predmet"
         }
     }
 }

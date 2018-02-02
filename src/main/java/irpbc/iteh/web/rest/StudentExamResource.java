@@ -1,12 +1,13 @@
 package irpbc.iteh.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import io.github.jhipster.web.util.ResponseUtil;
 import irpbc.iteh.service.StudentExamService;
+import irpbc.iteh.service.dto.ExamApplicationPageData;
+import irpbc.iteh.service.dto.StudentExamDTO;
 import irpbc.iteh.web.rest.errors.BadRequestAlertException;
 import irpbc.iteh.web.rest.util.HeaderUtil;
 import irpbc.iteh.web.rest.util.PaginationUtil;
-import irpbc.iteh.service.dto.StudentExamDTO;
-import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -19,12 +20,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * REST controller for managing StudentExam.
@@ -47,7 +44,8 @@ public class StudentExamResource {
      * POST  /student-exams : Create a new studentExam.
      *
      * @param studentExamDTO the studentExamDTO to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new studentExamDTO, or with status 400 (Bad Request) if the studentExam has already an ID
+     * @return the ResponseEntity with status 201 (Created) and with body the new studentExamDTO, or with status 400
+     * (Bad Request) if the studentExam has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/student-exams")
@@ -132,7 +130,7 @@ public class StudentExamResource {
      * SEARCH  /_search/student-exams?query=:query : search for the studentExam corresponding
      * to the query.
      *
-     * @param query the query of the studentExam search
+     * @param query    the query of the studentExam search
      * @param pageable the pagination information
      * @return the result of the search
      */
@@ -145,4 +143,21 @@ public class StudentExamResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
+    @GetMapping("/exam-application-data")
+    public ResponseEntity<ExamApplicationPageData> examApplicationPageData() {
+        ExamApplicationPageData data = studentExamService.getApplicationPageData();
+        return new ResponseEntity<>(data, HttpStatus.OK);
+    }
+
+    @PutMapping("/apply-for-exam")
+    public ResponseEntity<ExamApplicationPageData> applyForExam(@RequestParam(name = "exam") Long examId) {
+        studentExamService.applyForExam(examId);
+        return examApplicationPageData();
+    }
+
+    @PutMapping("/cancel-exam-application")
+    public ResponseEntity<ExamApplicationPageData> cancelExamApplication(@RequestParam(name = "exam") Long examId) {
+        studentExamService.cancelExamApplication(examId);
+        return examApplicationPageData();
+    }
 }

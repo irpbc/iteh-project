@@ -18,7 +18,8 @@
             },
             "name": "Ime",
             "startDate": "Datum početka",
-            "endDate": "Datum završetka"
+            "endDate": "Datum završetka",
+            "current": "Aktuelna"
         }
     }
 }

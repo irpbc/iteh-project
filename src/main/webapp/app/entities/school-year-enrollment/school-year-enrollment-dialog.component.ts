@@ -1,17 +1,16 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
+import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
 
 import { SchoolYearEnrollment } from './school-year-enrollment.model';
 import { SchoolYearEnrollmentPopupService } from './school-year-enrollment-popup.service';
 import { SchoolYearEnrollmentService } from './school-year-enrollment.service';
-import { User, UserService } from '../../shared';
+import { ResponseWrapper, User, UserService, UserType } from '../../shared';
 import { SchoolYear, SchoolYearService } from '../school-year';
-import { ResponseWrapper } from '../../shared';
 
 @Component({
     selector: 'jhi-school-year-enrollment-dialog',
@@ -26,22 +25,24 @@ export class SchoolYearEnrollmentDialogComponent implements OnInit {
 
     schoolyears: SchoolYear[];
 
-    constructor(
-        public activeModal: NgbActiveModal,
-        private jhiAlertService: JhiAlertService,
-        private schoolYearEnrollmentService: SchoolYearEnrollmentService,
-        private userService: UserService,
-        private schoolYearService: SchoolYearService,
-        private eventManager: JhiEventManager
-    ) {
+    constructor(public activeModal: NgbActiveModal,
+                private jhiAlertService: JhiAlertService,
+                private schoolYearEnrollmentService: SchoolYearEnrollmentService,
+                private userService: UserService,
+                private schoolYearService: SchoolYearService,
+                private eventManager: JhiEventManager) {
     }
 
     ngOnInit() {
         this.isSaving = false;
-        this.userService.query()
-            .subscribe((res: ResponseWrapper) => { this.users = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
-        this.schoolYearService.query()
-            .subscribe((res: ResponseWrapper) => { this.schoolyears = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.userService.query({ filter: { 'userType.equals': UserType.ST } }).subscribe(
+            (res: ResponseWrapper) => this.users = res.json,
+            (res: ResponseWrapper) => this.onError(res.json)
+        );
+        this.schoolYearService.query().subscribe(
+            (res: ResponseWrapper) => this.schoolyears = res.json,
+            (res: ResponseWrapper) => this.onError(res.json)
+        );
     }
 
     clear() {
@@ -65,7 +66,7 @@ export class SchoolYearEnrollmentDialogComponent implements OnInit {
     }
 
     private onSaveSuccess(result: SchoolYearEnrollment) {
-        this.eventManager.broadcast({ name: 'schoolYearEnrollmentListModification', content: 'OK'});
+        this.eventManager.broadcast({ name: 'schoolYearEnrollmentListModification', content: 'OK' });
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
@@ -95,14 +96,13 @@ export class SchoolYearEnrollmentPopupComponent implements OnInit, OnDestroy {
 
     routeSub: any;
 
-    constructor(
-        private route: ActivatedRoute,
-        private schoolYearEnrollmentPopupService: SchoolYearEnrollmentPopupService
-    ) {}
+    constructor(private route: ActivatedRoute,
+                private schoolYearEnrollmentPopupService: SchoolYearEnrollmentPopupService) {
+    }
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
-            if ( params['id'] ) {
+            if (params['id']) {
                 this.schoolYearEnrollmentPopupService
                     .open(SchoolYearEnrollmentDialogComponent as Component, params['id']);
             } else {

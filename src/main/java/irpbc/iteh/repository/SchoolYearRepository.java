@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import org.springframework.data.jpa.repository.*;
 
+import java.util.List;
 
 /**
  * Spring Data JPA repository for the SchoolYear entity.
@@ -13,4 +14,5 @@ import org.springframework.data.jpa.repository.*;
 @Repository
 public interface SchoolYearRepository extends JpaRepository<SchoolYear, Long> {
 
+    List<SchoolYear> findByCurrentTrue();
 }

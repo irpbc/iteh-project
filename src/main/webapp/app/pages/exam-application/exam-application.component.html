@@ -1,0 +1,62 @@
+<p> {{'app.page.examApplications.nextPeriod' | translate}}: {{data.nextPeriod.name}} </p>
+
+<p> {{'app.page.examApplications.unapplied' | translate}} </p>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th><span jhiTranslate="app.exam.course">Course</span></th>
+            <th><span jhiTranslate="app.exam.period">Period</span></th>
+            <th><span jhiTranslate="app.exam.time">Time</span></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let exam of data.exams ;trackBy: trackId">
+            <td>{{exam.courseName}}</td>
+            <td>{{exam.periodName}}</td>
+            <td>{{exam.time | date:'medium'}}</td>
+            <td class="text-right">
+                <div class="btn-group flex-btn-group-container">
+                    <button (click)="apply(exam)"
+                            class="btn btn-primary btn-sm">
+                        <span class="fa fa-pencil"></span>
+                        <span class="d-none d-md-inline" jhiTranslate="app.page.examApplications.apply"></span>
+                    </button>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<p> {{'app.page.examApplications.applied' | translate}} </p>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th><span jhiTranslate="app.exam.course">Course</span></th>
+            <th><span jhiTranslate="app.exam.period">Period</span></th>
+            <th><span jhiTranslate="app.exam.time">Time</span></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let exam of data.appliedExams ;trackBy: trackId">
+            <td>{{exam.courseName}}</td>
+            <td>{{exam.periodName}}</td>
+            <td>{{exam.time | date:'medium'}}</td>
+            <td class="text-right">
+                <div class="btn-group flex-btn-group-container">
+                    <button (click)="cancel(exam)"
+                            class="btn btn-outline-primary btn-sm">
+                        <span class="fa fa-remove"></span>
+                        <span class="d-none d-md-inline" jhiTranslate="app.page.examApplications.cancel"></span>
+                    </button>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
