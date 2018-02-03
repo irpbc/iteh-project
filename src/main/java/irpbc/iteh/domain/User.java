@@ -2,6 +2,7 @@ package irpbc.iteh.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import irpbc.iteh.config.Constants;
+import irpbc.iteh.domain.enumeration.UserType;
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;

@@ -2,17 +2,12 @@ package irpbc.iteh.service.dto;
 
 import irpbc.iteh.config.Constants;
 
-import irpbc.iteh.domain.Authority;
-import irpbc.iteh.domain.User;
-
-import irpbc.iteh.domain.UserType;
+import irpbc.iteh.domain.enumeration.UserType;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.validation.constraints.*;
-import java.time.Instant;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * A DTO representing a user, with his authorities.

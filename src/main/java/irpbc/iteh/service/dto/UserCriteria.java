@@ -1,7 +1,7 @@
 package irpbc.iteh.service.dto;
 
 import io.github.jhipster.service.filter.Filter;
-import irpbc.iteh.domain.UserType;
+import irpbc.iteh.domain.enumeration.UserType;
 
 import java.io.Serializable;
 

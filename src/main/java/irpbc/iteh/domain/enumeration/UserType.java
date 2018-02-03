@@ -1,4 +1,4 @@
-package irpbc.iteh.domain;
+package irpbc.iteh.domain.enumeration;
 
 /**
  * Created by ivan on 9.1.18..

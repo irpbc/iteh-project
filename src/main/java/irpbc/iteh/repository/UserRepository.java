@@ -1,7 +1,7 @@
 package irpbc.iteh.repository;
 
 import irpbc.iteh.domain.User;
-import irpbc.iteh.domain.UserType;
+import irpbc.iteh.domain.enumeration.UserType;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
