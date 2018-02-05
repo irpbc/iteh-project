@@ -17,7 +17,7 @@
             </thead>
             <tbody>
             <tr *ngFor="let course of courses; trackBy: trackId; let index=index">
-                <td>{{index}}.</td>
+                <td>{{index + 1}}.</td>
                 <td>{{course.name}}</td>
                 <td>{{course.espbPoints}}</td>
                 <td>{{course.grade}}</td>

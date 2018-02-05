@@ -32,6 +32,6 @@ public interface CourseRepository extends JpaRepository<Course, Long>, JpaSpecif
 
     @Query("select new irpbc.iteh.service.dto.StudentCourseDTO(c.name, c.espbPoints, c.yearOfStudies) " +
         "from CourseEnrollment cr join cr.course c join cr.yearEnrollment ye join ye.year y " +
-        "where ye.student.id = ?1 and cr.completed = true ")
+        "where ye.student.id = ?1 and cr.completed <> true ")
     Page<StudentCourseDTO> findDueCourses(Long studentId, Pageable pageable);
 }
