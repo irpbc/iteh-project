@@ -103,7 +103,7 @@ public class SocialConfiguration implements SocialConfigurer {
         ProviderSignInController providerSignInController =
             new ProviderSignInController(connectionFactoryLocator, usersConnectionRepository, signInAdapter);
         providerSignInController.setSignUpUrl("/social/signup");
-        providerSignInController.setApplicationUrl(environment.getProperty("spring.application.url"));
+        providerSignInController.setApplicationUrl(environment.getProperty("spring.social.facebook.redirect-url"));
         return providerSignInController;
     }
 

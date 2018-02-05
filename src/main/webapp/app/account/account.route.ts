@@ -14,7 +14,7 @@ const ACCOUNT_ROUTES = [
     passwordRoute,
     passwordResetFinishRoute,
     passwordResetInitRoute,
-    socialAuthRoute,
+    ...socialAuthRoute,
     settingsRoute
 ];
 

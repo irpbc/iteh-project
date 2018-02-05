@@ -15,6 +15,7 @@ import {
     PasswordResetFinishComponent,
     SettingsComponent,
     SocialAuthComponent,
+    UnknownFacebookProfileComponent,
     accountState
 } from './';
 
@@ -25,12 +26,16 @@ import {
     ],
     declarations: [
         SocialAuthComponent,
+        UnknownFacebookProfileComponent,
         ActivateComponent,
         PasswordComponent,
         PasswordStrengthBarComponent,
         PasswordResetInitComponent,
         PasswordResetFinishComponent,
         SettingsComponent
+    ],
+    entryComponents: [
+        UnknownFacebookProfileComponent
     ],
     providers: [
         ActivateService,

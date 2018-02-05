@@ -74,8 +74,10 @@ spring:
         cache: false
     social:
         facebook:
-            client-id: 1982107162003069
-            client-secret: 4b3709b423796de0e3d219d75efd9901
+            # codes for "Društveni fax - Test 1"
+            client-id: 146176679417761
+            client-secret: 923d179feb9a30496d95c2c1127b18d4
+            redirect-url: http://localhost:8080
 
 liquibase:
     contexts: dev
