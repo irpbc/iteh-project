@@ -1,0 +1,38 @@
+
+<div *ngIf="facebookPostProposal">
+    <h2><span jhiTranslate="app.facebookPostProposal.detail.title">Facebook Post Proposal</span> {{facebookPostProposal.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="app.facebookPostProposal.kind">Kind</span></dt>
+        <dd>
+            <span jhiTranslate="{{'app.FacebookPostKind.' + facebookPostProposal.kind}}">{{facebookPostProposal.kind}}</span>
+        </dd>
+        <dt><span jhiTranslate="app.facebookPostProposal.data">Data</span></dt>
+        <dd>
+            <span>{{facebookPostProposal.data}}</span>
+        </dd>
+        <dt><span jhiTranslate="app.facebookPostProposal.time">Time</span></dt>
+        <dd>
+            <span>{{facebookPostProposal.time | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="app.facebookPostProposal.student">Student</span></dt>
+        <dd>
+            {{facebookPostProposal.studentName}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'facebook-post-proposal/'+ facebookPostProposal.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

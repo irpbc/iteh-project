@@ -1,0 +1,25 @@
+{
+    "app": {
+        "facebookPostProposal" : {
+            "home": {
+                "title": "Facebook Post Proposals",
+                "createLabel": "Create a new Facebook Post Proposal",
+                "createOrEditLabel": "Create or edit a Facebook Post Proposal",
+                "search": "Search for Facebook Post Proposal"
+            },
+            "created": "A new Facebook Post Proposal is created with identifier {{ param }}",
+            "updated": "A Facebook Post Proposal is updated with identifier {{ param }}",
+            "deleted": "A Facebook Post Proposal is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Facebook Post Proposal {{ id }}?"
+            },
+            "detail": {
+                "title": "Facebook Post Proposal"
+            },
+            "kind": "Kind",
+            "data": "Data",
+            "time": "Time",
+            "student": "Student"
+        }
+    }
+}

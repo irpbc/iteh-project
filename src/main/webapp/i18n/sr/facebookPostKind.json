@@ -1,0 +1,9 @@
+{
+    "app": {
+        "FacebookPostKind" : {
+            "null": "",
+            "EXAM_PASSED": "Položen ispit",
+            "EXAM_FAILED": "Pao ispit"
+        }
+    }
+}

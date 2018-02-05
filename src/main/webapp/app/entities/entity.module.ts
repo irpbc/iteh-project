@@ -12,6 +12,7 @@ import { ItehProjectStudentExamModule } from './student-exam/student-exam.module
 import { ItehProjectSemesterModule } from './semester/semester.module';
 import { ItehProjectOptionalCourseGroupModule } from './optional-course-group/optional-course-group.module';
 import { ItehProjectStudentModule } from './student/student.module';
+import { ItehProjectFacebookPostProposalModule } from './facebook-post-proposal/facebook-post-proposal.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -27,7 +28,8 @@ import { ItehProjectStudentModule } from './student/student.module';
         ItehProjectStudentExamModule,
         ItehProjectSemesterModule,
         ItehProjectOptionalCourseGroupModule,
-        ItehProjectStudentModule
+        ItehProjectStudentModule,
+        ItehProjectFacebookPostProposalModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

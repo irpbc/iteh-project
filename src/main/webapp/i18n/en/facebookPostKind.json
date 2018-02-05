@@ -1,0 +1,9 @@
+{
+    "app": {
+        "FacebookPostKind" : {
+            "null": "",
+            "EXAM_PASSED": "EXAM_PASSED",
+            "EXAM_FAILED": "EXAM_FAILED"
+        }
+    }
+}

@@ -19,9 +19,8 @@
             <li *jhiHasAnyAuthority="'ROLE_STUDENT'" ngbDropdown class="nav-item dropdown pointer"
                 routerLinkActive="active"
                 [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link dropdown-toggle" ngbDropdownToggle id="courses-menu">
-                    Predmeti
-                </a>
+                <a class="nav-link dropdown-toggle" ngbDropdownToggle id="courses-menu"
+                   jhiTranslate="global.menu.courses"></a>
                 <ul class="dropdown-menu" ngbDropdownMenu>
                     <li>
                         <a class="dropdown-item" routerLink="passed-courses" routerLinkActive="active"
@@ -42,8 +41,8 @@
             <li *jhiHasAnyAuthority="'ROLE_STUDENT'" ngbDropdown class="nav-item dropdown pointer"
                 routerLinkActive="active"
                 [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link dropdown-toggle" ngbDropdownToggle id="exam-menu">
-                    Ispiti
+                <a class="nav-link dropdown-toggle" ngbDropdownToggle id="exam-menu"
+                   jhiTranslate="global.menu.exams">
                 </a>
                 <ul class="dropdown-menu" ngbDropdownMenu>
                     <li>
@@ -54,8 +53,22 @@
                     </li>
                 </ul>
             </li>
+            <li *jhiHasAnyAuthority="'ROLE_STUDENT'" ngbDropdown class="nav-item dropdown pointer"
+                routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link dropdown-toggle" ngbDropdownToggle id="social-menu"
+                   jhiTranslate="global.menu.social"></a>
+                <ul class="dropdown-menu" ngbDropdownMenu>
+                    <li>
+                        <a class="dropdown-item" routerLink="facebook-post-proposal" routerLinkActive="active"
+                           [routerLinkActiveOptions]="{exact: true}" (click)="collapseNavbar()"
+                           jhiTranslate="global.menu.entities.facebookPostProposal">
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
-            <li *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_SERVICE', 'ROLE_LECTURER']" ngbDropdown class="nav-item dropdown pointer"
+            <li *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_SERVICE', 'ROLE_LECTURER']" ngbDropdown
+                class="nav-item dropdown pointer"
                 routerLinkActive="active"
                 [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
@@ -156,6 +169,13 @@
                            [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
                             <span jhiTranslate="global.menu.entities.optionalCourseGroup">Optional Course Group</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="facebook-post-proposal" routerLinkActive="active"
+                           [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.facebookPostProposal">Facebook Post Proposal</span>
                         </a>
                     </li>
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->

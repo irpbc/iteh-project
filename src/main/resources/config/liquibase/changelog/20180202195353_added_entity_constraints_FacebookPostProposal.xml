@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity FacebookPostProposal.
+    -->
+    <changeSet id="20180202195353-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="student_id"
+                                 baseTableName="facebook_post_proposal"
+                                 constraintName="fk_facebook_post_proposal_student_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user"/>
+
+    </changeSet>
+</databaseChangeLog>

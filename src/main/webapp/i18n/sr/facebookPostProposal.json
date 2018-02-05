@@ -1,0 +1,24 @@
+{
+    "app": {
+        "facebookPostProposal" : {
+            "home": {
+                "title": "Predlozi objava za Facebook",
+                "createLabel": "Kreiraj novi Predlog objave",
+                "createOrEditLabel": "Kreirajte ili izmenite Predlog objave"
+            },
+            "created": "Kreiran je novi Facebook Post Proposal pod nazivom {{ param }}",
+            "updated": "Facebook Post Proposal pod nazivom {{ param }} je ažuriran",
+            "deleted": "Facebook Post Proposal pod nazivom {{ param }} je obrisan",
+            "delete": {
+                "question": "Da li ste sigurni da želite da obrišete Facebook Post Proposal pod nazivom {{ id }}?"
+            },
+            "detail": {
+                "title": "Predlog objave za Facebook"
+            },
+            "kind": "Vrsta",
+            "data": "Podaci",
+            "time": "Vreme",
+            "student": "Student"
+        }
+    }
+}

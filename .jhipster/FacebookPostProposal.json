@@ -1,0 +1,46 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "student",
+            "otherEntityName": "user",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "login",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "facebookPostProposal"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "kind",
+            "fieldType": "FacebookPostKind",
+            "fieldValues": "EXAM_PASSED, EXAM_FAILED",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "data",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "time",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20180202195353",
+    "dto": "mapstruct",
+    "service": "serviceClass",
+    "entityTableName": "facebook_post_proposal",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}
