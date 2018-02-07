@@ -30,10 +30,10 @@
             <tr *ngFor="let facebookPostProposal of facebookPostProposals ;trackBy: trackId">
                 <td>{{facebookPostProposal.time | date:'medium'}}</td>
                 <td>{{facebookPostProposal.studentName}}</td>
-                <td jhiTranslate="{{'app.FacebookPostKind.' + facebookPostProposal.kind}}">
-                    {{facebookPostProposal.kind}}
+                <td [jhiTranslate]="'app.FacebookPostKind.' + facebookPostProposal.kind"></td>
+                <td [jhiTranslate]="'app.facebookPostProposal.dataDesc.'+facebookPostProposal.kind"
+                    [translateValues]="facebookPostProposal.data">
                 </td>
-                <td>{{facebookPostProposal.data}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

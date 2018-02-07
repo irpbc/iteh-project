@@ -43,7 +43,7 @@ public class StudentExamService {
     private final ExamMapper examMapper;
     private final ExamRepository examRepository;
     private final UserRepository userRepository;
-    private final CourseEnrollmentRepository courseEnrollmentRepository;
+    private final FacebookPostProposalService facebookPostProposalService;
 
     public StudentExamService(StudentExamRepository studentExamRepository,
                               StudentExamMapper studentExamMapper,
@@ -53,7 +53,7 @@ public class StudentExamService {
                               ExamMapper examMapper,
                               ExamRepository examRepository,
                               UserRepository userRepository,
-                              CourseEnrollmentRepository courseEnrollmentRepository) {
+                              FacebookPostProposalService facebookPostProposalService) {
         this.studentExamRepository = studentExamRepository;
         this.studentExamMapper = studentExamMapper;
         this.studentExamSearchRepository = studentExamSearchRepository;
@@ -62,7 +62,7 @@ public class StudentExamService {
         this.examMapper = examMapper;
         this.examRepository = examRepository;
         this.userRepository = userRepository;
-        this.courseEnrollmentRepository = courseEnrollmentRepository;
+        this.facebookPostProposalService = facebookPostProposalService;
     }
 
     /**

@@ -1,13 +1,10 @@
 package irpbc.iteh.service.dto;
 
-
-import java.time.Instant;
-import javax.validation.constraints.*;
-import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonRawValue;
 import irpbc.iteh.domain.enumeration.FacebookPostKind;
+
+import javax.validation.constraints.NotNull;
+import java.time.Instant;
 
 /**
  * A DTO for the FacebookPostProposal entity.
@@ -18,6 +15,7 @@ public class FacebookPostProposalDTO extends AbstractEntityDTO {
     private FacebookPostKind kind;
 
     @NotNull
+    @JsonRawValue
     private String data;
 
     @NotNull

@@ -1,6 +1,8 @@
 package irpbc.iteh.repository;
 
 import irpbc.iteh.domain.FacebookPostProposal;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import org.springframework.data.jpa.repository.*;
@@ -13,5 +15,5 @@ import java.util.List;
 @Repository
 public interface FacebookPostProposalRepository extends JpaRepository<FacebookPostProposal, Long> {
 
-    List<FacebookPostProposal> findByStudent_Id(Long studentId);
+    Page<FacebookPostProposal> findByStudent_Id(Long studentId, Pageable pageable);
 }

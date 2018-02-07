@@ -1,7 +1,10 @@
 package irpbc.iteh.service;
 
 import irpbc.iteh.domain.FacebookPostProposal;
+import irpbc.iteh.domain.StudentExam;
+import irpbc.iteh.domain.enumeration.FacebookPostKind;
 import irpbc.iteh.repository.FacebookPostProposalRepository;
+import irpbc.iteh.security.SecurityUtils;
 import irpbc.iteh.service.dto.FacebookPostProposalDTO;
 import irpbc.iteh.service.mapper.FacebookPostProposalMapper;
 import org.slf4j.Logger;
@@ -10,6 +13,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.Instant;
 
 /**
  * Service Implementation for managing FacebookPostProposal.
@@ -43,6 +48,22 @@ public class FacebookPostProposalService {
         return result;
     }
 
+    public void saveExamProposal(StudentExam studentExam, FacebookPostKind kind) {
+        String data =
+            "{\"course\":\"" + studentExam.getExam().getCourse().getName() + "\"," +
+                "\"evaluatedBy\":\"" + studentExam.getEvaluatedBy().getFullName() + "\"," +
+                "\"period\":\"" + studentExam.getExam().getPeriod().getName() + "\"," +
+                "\"grade\":" + studentExam.getGrade() + "}";
+
+        FacebookPostProposal proposal = new FacebookPostProposal()
+            .kind(kind)
+            .time(Instant.now())
+            .data(data)
+            .student(studentExam.getStudent());
+
+        facebookPostProposalRepository.save(proposal);
+    }
+
     /**
      * Get all the facebookPostProposals.
      *
@@ -52,7 +73,8 @@ public class FacebookPostProposalService {
     @Transactional(readOnly = true)
     public Page<FacebookPostProposalDTO> findAll(Pageable pageable) {
         log.debug("Request to get all FacebookPostProposals");
-        return facebookPostProposalRepository.findAll(pageable)
+        Long studentId = SecurityUtils.getCurrentUserId();
+        return facebookPostProposalRepository.findByStudent_Id(studentId, pageable)
             .map(facebookPostProposalMapper::toDto);
     }
 

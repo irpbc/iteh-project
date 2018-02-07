@@ -9,7 +9,12 @@ export class FacebookPostProposal implements BaseEntity {
     constructor(
         public id?: number,
         public kind?: FacebookPostKind,
-        public data?: string,
+        public data?: {
+            course?: string;
+            evaluatedBy?: string;
+            period?: string;
+            grade?: number;
+        },
         public time?: any,
         public studentId?: number,
         public studentName?: string,

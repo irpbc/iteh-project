@@ -16,9 +16,14 @@
                 "title": "Predlog objave za Facebook"
             },
             "kind": "Vrsta",
-            "data": "Podaci",
+            "data": "Opis",
             "time": "Vreme",
-            "student": "Student"
+            "student": "Student",
+
+            "dataDesc": {
+                "EXAM_PASSED": "Položili ste {{course}} u roku {{period}} kod {{evaluatedBy}} sa ocenom {{grade}}",
+                "EXAM_FAILED": "Pali ste {{course}} u roku {{period}} kod {{evaluatedBy}}"
+            }
         }
     }
 }
