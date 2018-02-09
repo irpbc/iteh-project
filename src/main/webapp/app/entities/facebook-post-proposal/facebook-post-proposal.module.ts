@@ -11,9 +11,11 @@ import {
     FacebookPostProposalDialogComponent,
     FacebookPostProposalPopupComponent,
     FacebookPostProposalDeleteDialogComponent,
+    PublishFacebookPostComponent,
     facebookPostProposalRoute,
     facebookPostProposalPopupRoute,
 } from './';
+import { FacebookModule, FacebookService } from 'ngx-facebook';
 
 const ENTITY_STATES = [
     ...facebookPostProposalRoute,
@@ -24,7 +26,8 @@ const ENTITY_STATES = [
     imports: [
         ItehProjectSharedModule,
         ItehProjectAdminModule,
-        RouterModule.forChild(ENTITY_STATES)
+        RouterModule.forChild(ENTITY_STATES),
+        FacebookModule.forRoot(),
     ],
     declarations: [
         FacebookPostProposalComponent,
@@ -32,12 +35,14 @@ const ENTITY_STATES = [
         FacebookPostProposalDialogComponent,
         FacebookPostProposalDeleteDialogComponent,
         FacebookPostProposalPopupComponent,
+        PublishFacebookPostComponent,
     ],
     entryComponents: [
         FacebookPostProposalComponent,
         FacebookPostProposalDialogComponent,
         FacebookPostProposalPopupComponent,
         FacebookPostProposalDeleteDialogComponent,
+        PublishFacebookPostComponent
     ],
     providers: [
         FacebookPostProposalService,

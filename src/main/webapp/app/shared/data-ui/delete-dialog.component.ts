@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EntityService } from '../../shared';
 import { JhiEventManager } from 'ng-jhipster';
+import { setTimeout } from 'timers';
 
 @Component({
     selector: 'delete-dialog',
@@ -21,28 +22,29 @@ export class DeleteDialogComponent implements OnInit, OnDestroy {
     private routeSub: Subscription;
     private modalRef: NgbModalRef;
 
-    constructor(
-        private route: ActivatedRoute,
-        private router: Router,
-        private modalService: NgbModal,
-        private eventManager: JhiEventManager) {
+    constructor(private route: ActivatedRoute,
+                private router: Router,
+                private modalService: NgbModal,
+                private eventManager: JhiEventManager) {
     }
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
             this.id = params['id'];
-            this.openModal();
+            setTimeout(() => {
+                this.openModal();
+            }, 0);
         });
     }
 
     openModal(): NgbModalRef {
-        const modalRef: NgbModalRef = this.modalService.open(this.template, { size: 'lg', backdrop: 'static'});
+        const modalRef: NgbModalRef = this.modalService.open(this.template, { size: 'lg', backdrop: 'static' });
         this.modalRef = modalRef;
         modalRef.result.then((result) => {
-            this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true, queryParamsHandling: 'merge' });
+            this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true, queryParamsHandling: 'merge' });
             this.modalRef = null;
         }, (reason) => {
-            this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true, queryParamsHandling: 'merge' });
+            this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true, queryParamsHandling: 'merge' });
             this.modalRef = null;
         });
         return modalRef;

@@ -1,0 +1,35 @@
+<ng-template #template>
+    <form name="postForm" role="form" novalidate (ngSubmit)="continue()" #postForm="ngForm">
+
+        <div class="modal-header">
+            <h4 class="modal-title" id="myFacebookPostProposalLabel"
+                jhiTranslate="app.facebookPostProposal.createPostTitle"></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="cancel()">&times;
+            </button>
+        </div>
+        <div class="modal-body">
+            <jhi-alert-error></jhi-alert-error>
+            <div class="form-group">
+                <label class="form-control-label" jhiTranslate="app.facebookPostProposal.postText" for="text"></label>
+                <textarea class="form-control" name="text" id="text" [(ngModel)]="text"
+                          required minlength="10"></textarea>
+                <div [hidden]="!(postForm.controls.text?.dirty && postForm.controls.text?.invalid)">
+                    <small class="form-text text-danger" [hidden]="!postForm.controls.text?.errors?.required"
+                           jhiTranslate="entity.validation.required">
+                    </small>
+                    <small class="form-text text-danger" [hidden]="!postForm.controls.text?.errors?.minlength"
+                           jhiTranslate="entity.validation.minlength" translateValues="{min:10}">
+                    </small>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">
+                <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+            </button>
+            <button type="submit" [disabled]="postForm.form.invalid" class="btn btn-primary">
+                <span class="fa fa-save"></span>&nbsp;Objavi
+            </button>
+        </div>
+    </form>
+</ng-template>

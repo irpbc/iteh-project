@@ -1,13 +1,6 @@
 <div>
     <h2>
         <span jhiTranslate="app.facebookPostProposal.home.title">Facebook Post Proposals</span>
-        <button class="btn btn-primary float-right jh-create-entity create-facebook-post-proposal"
-                [routerLink]="['/', { outlets: { popup: ['facebook-post-proposal-new'] } }]">
-            <span class="fa fa-plus"></span>
-            <span class="hidden-sm-down" jhiTranslate="app.facebookPostProposal.home.createLabel">
-            Create new Facebook Post Proposal
-            </span>
-        </button>
     </h2>
     <jhi-alert></jhi-alert>
     <div class="table-responsive" *ngIf="facebookPostProposals">
@@ -16,9 +9,6 @@
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
                 <th jhiSortBy="time"><span jhiTranslate="app.facebookPostProposal.time">Time</span> <span
                         class="fa fa-sort"></span></th>
-                <th jhiSortBy="studentLogin">
-                    <span jhiTranslate="app.facebookPostProposal.student">Student</span>
-                    <span class="fa fa-sort"></span></th>
                 <th jhiSortBy="kind"><span jhiTranslate="app.facebookPostProposal.kind">Kind</span> <span
                         class="fa fa-sort"></span></th>
                 <th jhiSortBy="data"><span jhiTranslate="app.facebookPostProposal.data">Data</span> <span
@@ -29,7 +19,6 @@
             <tbody>
             <tr *ngFor="let facebookPostProposal of facebookPostProposals ;trackBy: trackId">
                 <td>{{facebookPostProposal.time | date:'medium'}}</td>
-                <td>{{facebookPostProposal.studentName}}</td>
                 <td [jhiTranslate]="'app.FacebookPostKind.' + facebookPostProposal.kind"></td>
                 <td [jhiTranslate]="'app.facebookPostProposal.dataDesc.'+facebookPostProposal.kind"
                     [translateValues]="facebookPostProposal.data">

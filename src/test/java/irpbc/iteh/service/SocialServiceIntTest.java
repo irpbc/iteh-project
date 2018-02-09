@@ -72,7 +72,7 @@ public class SocialServiceIntTest {
             "LAST_NAME",
             "IMAGE_URL",
             "PROVIDER");
-        socialService.createSocialUser(connection, "fr");
+        socialService.tryConnectSocialAccountToUser(connection, "fr");
         MultiValueMap<String, Connection<?>> connectionsByProviderId = new LinkedMultiValueMap<>();
         connectionsByProviderId.put("PROVIDER", null);
         when(mockConnectionRepository.findAllConnections()).thenReturn(connectionsByProviderId);
@@ -87,7 +87,7 @@ public class SocialServiceIntTest {
     @Test(expected = IllegalArgumentException.class)
     public void testCreateSocialUserShouldThrowExceptionIfConnectionIsNull() {
         // Exercise
-        socialService.createSocialUser(null, "fr");
+        socialService.tryConnectSocialAccountToUser(null, "fr");
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -101,7 +101,7 @@ public class SocialServiceIntTest {
             "PROVIDER");
 
         // Exercise
-        socialService.createSocialUser(connection, "fr");
+        socialService.tryConnectSocialAccountToUser(connection, "fr");
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -122,7 +122,7 @@ public class SocialServiceIntTest {
         // Exercise
         try {
             // Exercise
-            socialService.createSocialUser(connection, "fr");
+            socialService.tryConnectSocialAccountToUser(connection, "fr");
         } finally {
             // Teardown
             userRepository.delete(user);
@@ -140,7 +140,7 @@ public class SocialServiceIntTest {
             "PROVIDER");
 
         // Exercise
-        socialService.createSocialUser(connection, "fr");
+        socialService.tryConnectSocialAccountToUser(connection, "fr");
 
         // Verify
         final User user = userRepository.findOneByEmailIgnoreCase("mail@mail.com");
@@ -161,7 +161,7 @@ public class SocialServiceIntTest {
             "PROVIDER");
 
         // Exercise
-        socialService.createSocialUser(connection, "fr");
+        socialService.tryConnectSocialAccountToUser(connection, "fr");
 
         //Verify
         User user = userRepository.findOneByEmailIgnoreCase("mail@mail.com");
@@ -184,7 +184,7 @@ public class SocialServiceIntTest {
             "PROVIDER");
 
         // Exercise
-        socialService.createSocialUser(connection, "fr");
+        socialService.tryConnectSocialAccountToUser(connection, "fr");
 
         //Verify
         User user = userRepository.findOneByEmailIgnoreCase("mail@mail.com");
@@ -208,7 +208,7 @@ public class SocialServiceIntTest {
             "PROVIDER");
 
         // Exercise
-        socialService.createSocialUser(connection, "fr");
+        socialService.tryConnectSocialAccountToUser(connection, "fr");
 
         //Verify
         final User user = userRepository.findOneByEmailIgnoreCase("mail@mail.com");
@@ -229,7 +229,7 @@ public class SocialServiceIntTest {
             "PROVIDER_OTHER_THAN_TWITTER");
 
         // Exercise
-        socialService.createSocialUser(connection, "fr");
+        socialService.tryConnectSocialAccountToUser(connection, "fr");
 
         //Verify
         User user = userRepository.findOneByEmailIgnoreCase("mail@mail.com");
@@ -250,7 +250,7 @@ public class SocialServiceIntTest {
             "twitter");
 
         // Exercise
-        socialService.createSocialUser(connection, "fr");
+        socialService.tryConnectSocialAccountToUser(connection, "fr");
 
         //Verify
         User user = userRepository.findOneByEmailIgnoreCase("mail@mail.com");
@@ -271,7 +271,7 @@ public class SocialServiceIntTest {
             "PROVIDER");
 
         // Exercise
-        socialService.createSocialUser(connection, "fr");
+        socialService.tryConnectSocialAccountToUser(connection, "fr");
 
         //Verify
         verify(mockConnectionRepository, times(1)).addConnection(connection);
@@ -298,7 +298,7 @@ public class SocialServiceIntTest {
             "PROVIDER");
 
         // Exercise
-        socialService.createSocialUser(connection, "fr");
+        socialService.tryConnectSocialAccountToUser(connection, "fr");
 
         //Verify
         assertThat(userRepository.count()).isEqualTo(initialUserCount);
@@ -324,7 +324,7 @@ public class SocialServiceIntTest {
             "PROVIDER");
 
         // Exercise
-        socialService.createSocialUser(connection, "fr");
+        socialService.tryConnectSocialAccountToUser(connection, "fr");
 
         //Verify
         User userToVerify = userRepository.findOneByEmailIgnoreCase("mail@mail.com");
@@ -347,7 +347,7 @@ public class SocialServiceIntTest {
             "PROVIDER");
 
         // Exercise
-        socialService.createSocialUser(connection, "fr");
+        socialService.tryConnectSocialAccountToUser(connection, "fr");
 
         //Verify
         verify(mockMailService, times(1)).sendSocialRegistrationValidationEmail(anyObject(), anyString());

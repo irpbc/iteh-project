@@ -6,3 +6,4 @@ export * from './facebook-post-proposal-delete-dialog.component';
 export * from './facebook-post-proposal-detail.component';
 export * from './facebook-post-proposal.component';
 export * from './facebook-post-proposal.route';
+export * from './publish-facebook-post.component';

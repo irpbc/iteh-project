@@ -3,6 +3,8 @@ package irpbc.iteh.config.social;
 import io.github.jhipster.config.JHipsterProperties;
 import irpbc.iteh.repository.CustomSocialUsersConnectionRepository;
 import irpbc.iteh.repository.SocialUserConnectionRepository;
+import irpbc.iteh.security.AppUserDetailsService;
+import irpbc.iteh.security.DomainUserDetailsService;
 import irpbc.iteh.security.jwt.TokenProvider;
 import irpbc.iteh.security.social.CustomSignInAdapter;
 import org.slf4j.Logger;
@@ -22,6 +24,7 @@ import org.springframework.social.connect.web.ConnectController;
 import org.springframework.social.connect.web.ProviderSignInController;
 import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.social.connect.web.SignInAdapter;
+import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.connect.FacebookConnectionFactory;
 import org.springframework.social.security.AuthenticationNameUserIdSource;
 // jhipster-needle-add-social-connection-factory-import-package
@@ -90,7 +93,7 @@ public class SocialConfiguration implements SocialConfigurer {
     }
 
     @Bean
-    public SignInAdapter signInAdapter(UserDetailsService userDetailsService,
+    public SignInAdapter signInAdapter(AppUserDetailsService userDetailsService,
                                        JHipsterProperties jHipsterProperties,
                                        TokenProvider tokenProvider) {
         return new CustomSignInAdapter(userDetailsService, jHipsterProperties, tokenProvider);

@@ -77,4 +77,10 @@ public class FacebookPostProposalResource {
         facebookPostProposalService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
+    @PostMapping("/facebook-post-proposals/{id}/post")
+    public ResponseEntity<Void> postToFacebook(@PathVariable Long id, @RequestBody String text) {
+        facebookPostProposalService.postToFacebook(id, text);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

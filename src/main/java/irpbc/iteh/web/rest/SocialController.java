@@ -32,10 +32,11 @@ public class SocialController {
     public RedirectView signUp(WebRequest webRequest, @CookieValue(name = "NG_TRANSLATE_LANG_KEY", required = false, defaultValue = Constants.DEFAULT_LANGUAGE) String langKey) {
         try {
             Connection<?> connection = providerSignInUtils.getConnectionFromSession(webRequest);
-            socialService.createSocialUser(connection, langKey.replace("\"", ""));
-            return new RedirectView(URIBuilder.fromUri("/#/social-register/" + connection.getKey().getProviderId())
-                .queryParam("success", "true")
-                .build().toString(), true);
+            if (socialService.tryConnectSocialAccountToUser(connection, langKey.replace("\"", ""))) {
+                return new RedirectView("/", true);
+            } else {
+                return new RedirectView("/#/cannot-connect-facebook-profile", true);
+            }
         } catch (Exception e) {
             log.error("Exception creating social user: ", e);
             return new RedirectView(URIBuilder.fromUri("/#/social-register/no-provider")

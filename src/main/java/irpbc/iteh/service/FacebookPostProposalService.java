@@ -27,11 +27,14 @@ public class FacebookPostProposalService {
 
     private final FacebookPostProposalRepository facebookPostProposalRepository;
     private final FacebookPostProposalMapper facebookPostProposalMapper;
+    private final SocialService socialService;
 
     public FacebookPostProposalService(FacebookPostProposalRepository facebookPostProposalRepository,
-                                       FacebookPostProposalMapper facebookPostProposalMapper) {
+                                       FacebookPostProposalMapper facebookPostProposalMapper,
+                                       SocialService socialService) {
         this.facebookPostProposalRepository = facebookPostProposalRepository;
         this.facebookPostProposalMapper = facebookPostProposalMapper;
+        this.socialService = socialService;
     }
 
     /**
@@ -99,5 +102,10 @@ public class FacebookPostProposalService {
     public void delete(Long id) {
         log.debug("Request to delete FacebookPostProposal : {}", id);
         facebookPostProposalRepository.delete(id);
+    }
+
+    public void postToFacebook(Long id, String text) {
+        socialService.postToFacebook(text);
+        //facebookPostProposalRepository.delete(id);
     }
 }

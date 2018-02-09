@@ -23,7 +23,14 @@
             "dataDesc": {
                 "EXAM_PASSED": "Položili ste {{course}} u roku {{period}} kod {{evaluatedBy}} sa ocenom {{grade}}",
                 "EXAM_FAILED": "Pali ste {{course}} u roku {{period}} kod {{evaluatedBy}}"
-            }
+            },
+
+            "dataToText": {
+                "EXAM_PASSED": "Pokoren {{course}}. {{grade}} ko kuća. {{evaluatedBy}} u šoku."
+            },
+
+            "createPostTitle": "Facebook objava",
+            "postText": "Tekst objeve"
         }
     }
 }

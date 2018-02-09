@@ -1,5 +1,7 @@
 package irpbc.iteh.security.social;
 
+import irpbc.iteh.security.AppUserDetailsService;
+import irpbc.iteh.security.DomainUserDetailsService;
 import irpbc.iteh.security.jwt.TokenProvider;
 
 import io.github.jhipster.config.JHipsterProperties;
@@ -24,15 +26,13 @@ public class CustomSignInAdapter implements SignInAdapter {
     @SuppressWarnings("unused")
     private final Logger log = LoggerFactory.getLogger(CustomSignInAdapter.class);
 
-    private final UserDetailsService userDetailsService;
-
+    private final AppUserDetailsService userDetailsService;
     private final JHipsterProperties jHipsterProperties;
-
     private final TokenProvider tokenProvider;
 
-
-    public CustomSignInAdapter(UserDetailsService userDetailsService, JHipsterProperties jHipsterProperties,
-            TokenProvider tokenProvider) {
+    public CustomSignInAdapter(AppUserDetailsService userDetailsService,
+                               JHipsterProperties jHipsterProperties,
+                               TokenProvider tokenProvider) {
         this.userDetailsService = userDetailsService;
         this.jHipsterProperties = jHipsterProperties;
         this.tokenProvider = tokenProvider;
@@ -41,7 +41,7 @@ public class CustomSignInAdapter implements SignInAdapter {
     @Override
     public String signIn(String userId, Connection<?> connection, NativeWebRequest request){
         try {
-            UserDetails user = userDetailsService.loadUserByUsername(userId);
+            UserDetails user = userDetailsService.loadUserById(Long.parseLong(userId));
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                 user,
                 null,

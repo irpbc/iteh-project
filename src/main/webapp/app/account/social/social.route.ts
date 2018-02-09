@@ -1,19 +1,8 @@
-import { Route, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 
 import { UserRouteAccessService } from '../../shared';
-// import { SocialRegisterComponent } from './social-register.component';
 import { SocialAuthComponent } from './social-auth.component';
 import { UnknownFacebookProfileComponent } from './unknown-facebook-profile.component';
-
-// export const socialRegisterRoute: Route = {
-//     path: 'social-register/:provider?{success:boolean}',
-//     component: SocialRegisterComponent,
-//     data: {
-//         authorities: [],
-//         pageTitle: 'social.register.title'
-//     },
-//     canActivate: [UserRouteAccessService]
-// };
 
 export const socialAuthRoute: Routes = [
     {
@@ -26,7 +15,7 @@ export const socialAuthRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'unknown-facebook-profile',
+        path: 'cannot-connect-facebook-profile',
         component: UnknownFacebookProfileComponent,
         canActivate: [UserRouteAccessService]
     }

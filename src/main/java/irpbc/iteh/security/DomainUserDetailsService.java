@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
  * Authenticate a user from the database.
  */
 @Component("userDetailsService")
-public class DomainUserDetailsService implements UserDetailsService {
+public class DomainUserDetailsService implements AppUserDetailsService {
 
     private final Logger log = LoggerFactory.getLogger(DomainUserDetailsService.class);
 
@@ -35,9 +35,20 @@ public class DomainUserDetailsService implements UserDetailsService {
         log.debug("Authenticating {}", login);
         String lowercaseLogin = login.toLowerCase();
         User user = userRepository.findOneWithAuthoritiesByLogin(lowercaseLogin);
+        return getUserDetails(lowercaseLogin, user);
+    }
+
+    @Override
+    @Transactional
+    public UserDetails loadUserById(final Long userId) {
+        User user = userRepository.findOne(userId);
+        return getUserDetails(userId, user);
+    }
+
+    private UserDetails getUserDetails(Object logName, User user) {
         if (user != null) {
             if (!user.getActivated()) {
-                throw new UserNotActivatedException("User " + lowercaseLogin + " was not activated");
+                throw new UserNotActivatedException("User " + logName + " was not activated");
             }
 
             List<GrantedAuthority> grantedAuthorities = user.getAuthorities().stream()
@@ -47,7 +58,7 @@ public class DomainUserDetailsService implements UserDetailsService {
             return new MyUserDetails(user.getId(), user.getLogin(), user.getPassword(), grantedAuthorities);
 
         } else {
-            throw new UsernameNotFoundException("User " + lowercaseLogin + " was not found in the " + "database");
+            throw new UsernameNotFoundException("User " + logName + " was not found in the " + "database");
         }
     }
 }

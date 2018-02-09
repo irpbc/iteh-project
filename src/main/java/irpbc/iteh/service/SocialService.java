@@ -1,30 +1,22 @@
 package irpbc.iteh.service;
 
-import irpbc.iteh.domain.Authority;
 import irpbc.iteh.domain.User;
 import irpbc.iteh.repository.AuthorityRepository;
 import irpbc.iteh.repository.UserRepository;
-import irpbc.iteh.security.AuthoritiesConstants;
 import irpbc.iteh.repository.search.UserSearchRepository;
 
-import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.social.connect.Connection;
-import org.springframework.social.connect.ConnectionRepository;
-import org.springframework.social.connect.UserProfile;
-import org.springframework.social.connect.UsersConnectionRepository;
+import org.springframework.social.connect.*;
+import org.springframework.social.facebook.api.Facebook;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.util.HashSet;
 import java.util.Locale;
-import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class SocialService {
@@ -32,27 +24,27 @@ public class SocialService {
     private final Logger log = LoggerFactory.getLogger(SocialService.class);
 
     private final UsersConnectionRepository usersConnectionRepository;
-
     private final AuthorityRepository authorityRepository;
-
     private final PasswordEncoder passwordEncoder;
-
     private final UserRepository userRepository;
-
     private final MailService mailService;
-
     private final UserSearchRepository userSearchRepository;
+    private final ConnectionRepository connectionRepository;
 
-    public SocialService(UsersConnectionRepository usersConnectionRepository, AuthorityRepository authorityRepository,
-                         PasswordEncoder passwordEncoder, UserRepository userRepository,
-                         MailService mailService, UserSearchRepository userSearchRepository) {
-
+    public SocialService(UsersConnectionRepository usersConnectionRepository,
+                         AuthorityRepository authorityRepository,
+                         PasswordEncoder passwordEncoder,
+                         UserRepository userRepository,
+                         MailService mailService,
+                         UserSearchRepository userSearchRepository,
+                         ConnectionRepository connectionRepository) {
         this.usersConnectionRepository = usersConnectionRepository;
         this.authorityRepository = authorityRepository;
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
         this.mailService = mailService;
         this.userSearchRepository = userSearchRepository;
+        this.connectionRepository = connectionRepository;
     }
 
     @PostConstruct
@@ -97,20 +89,22 @@ public class SocialService {
             });
     }
 
-    public void createSocialUser(Connection<?> connection, String langKey) {
+    public boolean tryConnectSocialAccountToUser(Connection<?> connection, String langKey) {
         if (connection == null) {
             log.error("Cannot create social user because connection is null");
             throw new IllegalArgumentException("Connection cannot be null");
         }
         UserProfile userProfile = connection.fetchUserProfile();
-        String providerId = connection.getKey().getProviderId();
-        String imageUrl = connection.getImageUrl();
-        User user = createUserIfNotExist(userProfile, langKey, providerId, imageUrl);
-        createSocialConnection(user.getLogin(), connection);
-        //mailService.sendSocialRegistrationValidationEmail(user, providerId);
+        User user = findUserForSocialAccount(userProfile);
+        if (user != null) {
+            createSocialConnection(user.getId(), connection);
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    private User createUserIfNotExist(UserProfile userProfile, String langKey, String providerId, String imageUrl) {
+    private User findUserForSocialAccount(UserProfile userProfile) {
         String email = userProfile.getEmail();
         String userName = userProfile.getUsername();
         if (!StringUtils.isBlank(userName)) {
@@ -131,42 +125,17 @@ public class SocialService {
                 return user;
             }
         }
-
-        String login = getLoginDependingOnProviderId(userProfile, providerId);
-        String encryptedPassword = passwordEncoder.encode(RandomStringUtils.random(10));
-        Set<Authority> authorities = new HashSet<>(1);
-        authorities.add(authorityRepository.findOne(AuthoritiesConstants.USER));
-
-        User newUser = new User();
-        newUser.setLogin(login);
-        newUser.setPassword(encryptedPassword);
-        newUser.setFirstName(userProfile.getFirstName());
-        newUser.setLastName(userProfile.getLastName());
-        newUser.setEmail(email);
-        newUser.setActivated(true);
-        newUser.setAuthorities(authorities);
-        newUser.setLangKey(langKey);
-        newUser.setImageUrl(imageUrl);
-
-        userSearchRepository.save(newUser);
-        return userRepository.save(newUser);
+        return null;
     }
 
-    /**
-     * @return login if provider manage a login like Twitter or GitHub otherwise email address. Because provider like
-     * Google or Facebook didn't provide login or login like "12099388847393"
-     */
-    private String getLoginDependingOnProviderId(UserProfile userProfile, String providerId) {
-        switch (providerId) {
-            case "twitter":
-                return userProfile.getUsername().toLowerCase();
-            default:
-                return userProfile.getEmail();
-        }
-    }
-
-    private void createSocialConnection(String login, Connection<?> connection) {
-        ConnectionRepository connectionRepository = usersConnectionRepository.createConnectionRepository(login);
+    private void createSocialConnection(Long userId, Connection<?> connection) {
+        ConnectionRepository connectionRepository = usersConnectionRepository
+            .createConnectionRepository(userId.toString());
         connectionRepository.addConnection(connection);
+    }
+
+    public void postToFacebook(String postText) {
+        Facebook facebook = connectionRepository.getPrimaryConnection(Facebook.class).getApi();
+        facebook.feedOperations().updateStatus(postText);
     }
 }
