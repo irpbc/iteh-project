@@ -3,6 +3,7 @@ package irpbc.iteh.service;
 import irpbc.iteh.domain.Exam;
 import irpbc.iteh.domain.ExamPeriod;
 import irpbc.iteh.domain.StudentExam;
+import irpbc.iteh.domain.enumeration.FacebookPostKind;
 import irpbc.iteh.repository.*;
 import irpbc.iteh.repository.search.StudentExamSearchRepository;
 import irpbc.iteh.security.SecurityUtils;
@@ -73,7 +74,31 @@ public class StudentExamService {
      */
     public StudentExamDTO save(StudentExamDTO studentExamDTO) {
         log.debug("Request to save StudentExam : {}", studentExamDTO);
-        StudentExam studentExam = studentExamMapper.toEntity(studentExamDTO);
+        return studentExamDTO.getId() == null
+            ? create(studentExamDTO)
+            : update(studentExamDTO);
+    }
+
+    private StudentExamDTO create(StudentExamDTO studentExamDTO) {
+        StudentExam studentExam = studentExamMapper.toStudentExam(studentExamDTO);
+        studentExam = studentExamRepository.save(studentExam);
+        StudentExamDTO result = studentExamMapper.toDto(studentExam);
+        studentExamSearchRepository.save(studentExam);
+        return result;
+    }
+
+    private StudentExamDTO update(StudentExamDTO studentExamDTO) {
+        StudentExam studentExam = studentExamRepository.findOne(studentExamDTO.getId());
+
+        boolean shouldPropose = studentExam.getEvaluatedBy() == null && studentExamDTO.getEvaluatedById() != null;
+        studentExamMapper.toStudentExam(studentExamDTO, studentExam);
+        if (shouldPropose) {
+            FacebookPostKind postKind = studentExamDTO.getGrade() > 5
+                ? FacebookPostKind.EXAM_PASSED
+                : FacebookPostKind.EXAM_FAILED;
+            facebookPostProposalService.saveExamProposal(studentExam, postKind);
+        }
+
         studentExam = studentExamRepository.save(studentExam);
         StudentExamDTO result = studentExamMapper.toDto(studentExam);
         studentExamSearchRepository.save(studentExam);

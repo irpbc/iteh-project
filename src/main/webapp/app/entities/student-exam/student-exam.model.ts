@@ -8,6 +8,7 @@ export class StudentExam implements BaseEntity {
         public studentId?: number,
         public studentFullName?: number,
         public examId?: number,
+        public examName?: number,
         public evaluatedById?: number,
         public evaluatedByFullName?: number,
     ) {

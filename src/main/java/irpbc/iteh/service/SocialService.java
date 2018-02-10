@@ -67,7 +67,7 @@ public class SocialService {
                 "website", "work"
             };
 
-            Field field = Class.forName("org.springframework.social.facebook.api.UserOperations")
+            Field field = org.springframework.social.facebook.api.UserOperations.class
                 .getDeclaredField("PROFILE_FIELDS");
             field.setAccessible(true);
 

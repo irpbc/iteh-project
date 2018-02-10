@@ -19,6 +19,7 @@ public class StudentExamDTO extends AbstractEntityDTO {
     private String studentFullName;
 
     private Long examId;
+    private String examName;
 
     private Long evaluatedById;
 
@@ -62,6 +63,14 @@ public class StudentExamDTO extends AbstractEntityDTO {
 
     public void setExamId(Long examId) {
         this.examId = examId;
+    }
+
+    public String getExamName() {
+        return examName;
+    }
+
+    public void setExamName(String examName) {
+        this.examName = examName;
     }
 
     public Long getEvaluatedById() {

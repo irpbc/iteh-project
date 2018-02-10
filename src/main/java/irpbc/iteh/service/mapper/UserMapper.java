@@ -2,11 +2,13 @@ package irpbc.iteh.service.mapper;
 
 import irpbc.iteh.domain.Authority;
 import irpbc.iteh.domain.User;
+import irpbc.iteh.repository.UserRepository;
 import irpbc.iteh.service.dto.UserDTO;
 import org.mapstruct.InheritConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+import javax.inject.Inject;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -17,7 +19,10 @@ import java.util.stream.Collectors;
  * support is still in beta, and requires a manual step with an IDE.
  */
 @Mapper(componentModel = "spring")
-public interface UserMapper extends EntityMapper<UserDTO, User> {
+public abstract class UserMapper implements EntityMapper<UserDTO, User> {
+
+    @Inject
+    private UserRepository userRepository;
 
     @Mapping(target = "password", ignore = true)
     @Mapping(target = "activationKey", ignore = true)
@@ -28,24 +33,19 @@ public interface UserMapper extends EntityMapper<UserDTO, User> {
     @Mapping(target = "fullName",
         expression = "java(userDTO.getFirstName() + \" \" + userDTO.getLastName())")
     @InheritConfiguration
-    User toEntity(UserDTO userDTO);
+    public abstract User toEntity(UserDTO userDTO);
 
-    default User fromId(Long id) {
-        if (id == null) {
-            return null;
-        }
-        User user = new User();
-        user.setId(id);
-        return user;
+    public User fromId(Long id) {
+        return id == null ? null : userRepository.findOne(id);
     }
 
-    default Set<Authority> authoritiesFromStrings(Set<String> strings) {
+    public Set<Authority> authoritiesFromStrings(Set<String> strings) {
         return strings.stream()
             .map(string -> new Authority().name(string))
             .collect(Collectors.toSet());
     }
 
-    default Set<String> authoritiesToStrings(Set<Authority> authorities) {
+    public Set<String> authoritiesToStrings(Set<Authority> authorities) {
         return authorities.stream()
             .map(Authority::getName)
             .collect(Collectors.toSet());

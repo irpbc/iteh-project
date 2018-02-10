@@ -19,7 +19,7 @@
         <dt><span jhiTranslate="app.studentExam.exam">Exam</span></dt>
         <dd>
             <div *ngIf="studentExam.examId">
-                <a [routerLink]="['/exam', studentExam.examId]">{{studentExam.examId}}</a>
+                <a [routerLink]="['/exam', studentExam.examId]">{{studentExam.examName}}</a>
             </div>
         </dd>
         <dt><span jhiTranslate="app.studentExam.evaluatedBy">Evaluated By</span></dt>

@@ -10,19 +10,23 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring", config = EntityMapperConfig.class,
     uses = {UserMapper.class, ExamMapper.class})
-public interface StudentExamMapper extends EntityMapper<StudentExamDTO, StudentExam> {
+public interface StudentExamMapper {
 
     @Mapping(source = "student.id", target = "studentId")
     @Mapping(source = "student.fullName", target = "studentFullName")
     @Mapping(source = "exam.id", target = "examId")
+    @Mapping(source = "exam.course.name", target = "examName")
     @Mapping(source = "evaluatedBy.id", target = "evaluatedById")
     @Mapping(source = "evaluatedBy.fullName", target = "evaluatedByFullName")
-    StudentExamDTO toDto(StudentExam studentExam); 
+    StudentExamDTO toDto(StudentExam studentExam);
 
     @Mapping(source = "studentId", target = "student")
     @Mapping(source = "examId", target = "exam")
     @Mapping(source = "evaluatedById", target = "evaluatedBy")
-    StudentExam toEntity(StudentExamDTO studentExamDTO);
+    StudentExam toStudentExam(StudentExamDTO studentExamDTO);
+
+    @InheritConfiguration(name = "toStudentExam")
+    void toStudentExam(StudentExamDTO dto, @MappingTarget StudentExam entity);
 
     default StudentExam fromId(Long id) {
         if (id == null) {

@@ -38,10 +38,6 @@ export class StudentExamDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
-        this.userService.query({ filter: { 'userType.equals': UserType.ST } }).subscribe(
-            (res: ResponseWrapper) => this.students = res.json,
-            (res: ResponseWrapper) => this.onError(res.json)
-        );
         this.userService.query({ filter: { 'userType.equals': UserType.LC } }).subscribe(
             (res: ResponseWrapper) => this.lecturers = res.json,
             (res: ResponseWrapper) => this.onError(res.json)
