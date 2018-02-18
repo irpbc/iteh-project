@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { JhiEventManager } from 'ng-jhipster';
 
-import { Account, Principal } from '../shared';
+import { Principal, User } from '../shared';
 
 @Component({
     selector: 'jhi-home',
@@ -9,7 +9,7 @@ import { Account, Principal } from '../shared';
     styleUrls: ['home.scss']
 })
 export class HomeComponent implements OnInit {
-    account: Account;
+    account: User;
 
     constructor(private principal: Principal,
                 private eventManager: JhiEventManager) {

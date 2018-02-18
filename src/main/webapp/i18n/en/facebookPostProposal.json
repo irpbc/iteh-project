@@ -19,7 +19,19 @@
             "kind": "Kind",
             "data": "Data",
             "time": "Time",
-            "student": "Student"
+            "student": "Student",
+
+            "dataDesc": {
+                "EXAM_PASSED": "You passed {{course}} in period {{period}} with grade {{grade}} by {{evaluatedBy}}",
+                "EXAM_FAILED": "You failed {{course}} in period {{period}} by {{evaluatedBy}}"
+            },
+
+            "dataToText": {
+                "EXAM_PASSED": "{{course}} conquered. {{grade}} as a house. {{evaluatedBy}} is in shock."
+            },
+
+            "createPostTitle": "Facebook post",
+            "postText": "Post text"
         }
     }
 }

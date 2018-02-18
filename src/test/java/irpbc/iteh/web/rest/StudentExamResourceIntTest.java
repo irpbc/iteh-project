@@ -6,6 +6,7 @@ import irpbc.iteh.domain.StudentExam;
 import irpbc.iteh.domain.User;
 import irpbc.iteh.domain.Exam;
 import irpbc.iteh.repository.StudentExamRepository;
+import irpbc.iteh.service.StudentExamQueryService;
 import irpbc.iteh.service.StudentExamService;
 import irpbc.iteh.repository.search.StudentExamSearchRepository;
 import irpbc.iteh.service.dto.StudentExamDTO;
@@ -60,6 +61,9 @@ public class StudentExamResourceIntTest {
     private StudentExamService studentExamService;
 
     @Autowired
+    private StudentExamQueryService studentExamQueryService;
+
+    @Autowired
     private StudentExamSearchRepository studentExamSearchRepository;
 
     @Autowired
@@ -81,7 +85,8 @@ public class StudentExamResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final StudentExamResource studentExamResource = new StudentExamResource(studentExamService);
+        final StudentExamResource studentExamResource = new StudentExamResource(studentExamService,
+            studentExamQueryService);
         this.restStudentExamMockMvc = MockMvcBuilders.standaloneSetup(studentExamResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

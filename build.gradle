@@ -10,6 +10,12 @@ buildscript {
     dependencies {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:${spring_boot_version}"
         classpath "io.spring.gradle:propdeps-plugin:0.0.9.RELEASE"
+
+        classpath 'org.asciidoctor:asciidoctor-gradle-plugin:1.5.3'
+        classpath 'org.asciidoctor:asciidoctorj-pdf:1.5.0-alpha.10.1'
+        classpath 'io.github.swagger2markup:swagger2markup-spring-restdocs-ext:1.2.0'
+        classpath 'io.github.swagger2markup:swagger2markup-gradle-plugin:1.2.0'
+
         //jhipster-needle-gradle-buildscript-dependency - JHipster will add additional gradle build script plugins here
     }
 }
@@ -19,12 +25,13 @@ plugins {
     id "net.ltgt.apt" version "0.13"
     id "io.spring.dependency-management" version "1.0.3.RELEASE"
     id "com.moowork.node" version "1.2.0"
+
     //jhipster-needle-gradle-plugins - JHipster will add additional gradle plugins here
 }
 
 apply plugin: 'java'
-sourceCompatibility=1.8
-targetCompatibility=1.8
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 // Until JHipster supports JDK 9
 assert System.properties['java.specification.version'] == '1.8'
 
@@ -36,6 +43,42 @@ apply plugin: 'com.moowork.node'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'idea'
 
+apply plugin: 'org.asciidoctor.convert'
+apply plugin: 'io.github.swagger2markup'
+
+ext {
+    asciiDocOutputDir = file("${rootDir}/docs/asciidoc/generated")
+    swaggerOutputDir = file("${rootDir}/docs/swagger")
+    snippetsOutputDir = file("${rootDir}/docs/asciidoc/snippets")
+}
+
+convertSwagger2markup {
+//    dependsOn test
+    outputs.upToDateWhen { false }
+    swaggerInput "${swaggerOutputDir}/swagger.json"
+    outputFile = file("${asciiDocOutputDir}/index")
+    config = [
+            'swagger2markup.pathsGroupedBy' : 'TAGS',
+            'swagger2markup.extensions.springRestDocs.snippetBaseUri': snippetsOutputDir.getAbsolutePath()
+    ]
+}
+
+asciidoctor {
+    dependsOn convertSwagger2markup
+    sourceDir = asciiDocOutputDir
+    backends = ['html5', 'pdf']
+    attributes = [
+            doctype: 'book',
+            toc: 'left',
+            toclevels: '3',
+            numbered: '',
+            sectlinks: '',
+            sectanchors: '',
+            hardbreaks: '',
+            generated: asciiDocOutputDir
+    ]
+}
+
 idea {
     module {
         File dir = file("$buildDir/generated/source/apt")
@@ -45,10 +88,10 @@ idea {
 }
 
 dependencyManagement {
-  imports {
-    mavenBom 'io.github.jhipster:jhipster-dependencies:' + jhipster_dependencies_version
-    //jhipster-needle-gradle-dependency-management - JHipster will add additional dependencies management here
-  }
+    imports {
+        mavenBom 'io.github.jhipster:jhipster-dependencies:' + jhipster_dependencies_version
+        //jhipster-needle-gradle-dependency-management - JHipster will add additional dependencies management here
+    }
 }
 
 defaultTasks 'bootRun'
@@ -59,7 +102,7 @@ version = '0.0.1-SNAPSHOT'
 description = ''
 
 bootRepackage {
-   mainClass = 'irpbc.iteh.ItehProjectApp'
+    mainClass = 'irpbc.iteh.ItehProjectApp'
 }
 
 war {
@@ -186,7 +229,7 @@ dependencies {
     // https://github.com/elastic/elasticsearch/issues/13245
     compile "net.java.dev.jna:jna"
     compile "org.springframework.boot:spring-boot-starter-security"
-    compile ("org.springframework.boot:spring-boot-starter-web") {
+    compile("org.springframework.boot:spring-boot-starter-web") {
         exclude module: 'spring-boot-starter-tomcat'
     }
     compile "org.springframework.boot:spring-boot-starter-undertow"
@@ -200,7 +243,7 @@ dependencies {
     compile "org.springframework.security:spring-security-web"
     compile "org.springframework.security:spring-security-messaging"
     compile "io.jsonwebtoken:jjwt"
-    compile ("io.springfox:springfox-swagger2") {
+    compile("io.springfox:springfox-swagger2") {
         exclude module: 'mapstruct'
     }
     compile "io.springfox:springfox-bean-validators"
@@ -212,7 +255,7 @@ dependencies {
     compile "org.springframework.social:spring-social-facebook"
     compile "org.springframework.social:spring-social-twitter"
     testCompile "com.jayway.jsonpath:json-path"
-    testCompile ("org.springframework.boot:spring-boot-starter-test") {
+    testCompile("org.springframework.boot:spring-boot-starter-test") {
         exclude group: 'com.vaadin.external.google', module: 'android-json'
     }
     testCompile "org.springframework.security:spring-security-test"
@@ -223,7 +266,7 @@ dependencies {
     testCompile "com.mattbertolini:liquibase-slf4j"
     testCompile "org.hamcrest:hamcrest-library"
     testCompile "com.h2database:h2"
-    optional ("org.springframework.boot:spring-boot-configuration-processor") {
+    optional("org.springframework.boot:spring-boot-configuration-processor") {
         exclude group: 'com.vaadin.external.google', module: 'android-json'
     }
     //jhipster-needle-gradle-dependency - JHipster will add additional dependencies here
@@ -250,5 +293,5 @@ if (project.hasProperty('nodeInstall')) {
 }
 
 compileJava.dependsOn processResources
-processResources.dependsOn cleanResources,bootBuildInfo
+processResources.dependsOn cleanResources, bootBuildInfo
 bootBuildInfo.mustRunAfter cleanResources

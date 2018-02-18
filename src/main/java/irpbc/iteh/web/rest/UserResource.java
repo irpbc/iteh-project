@@ -19,6 +19,7 @@ import irpbc.iteh.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -191,8 +192,9 @@ public class UserResource {
     @Timed
     public ResponseEntity<UserDTO> getUser(@PathVariable String login) {
         log.debug("REST request to get User : {}", login);
-        return ResponseUtil.wrapOrNotFound(
-            Optional.ofNullable(userService.getUserWithAuthoritiesByLogin(login)));
+        UserDTO user = userService.getUserWithAuthoritiesByLogin(login);
+        return user != null ? ResponseEntity.ok(user)
+            : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     /**
@@ -207,7 +209,7 @@ public class UserResource {
     public ResponseEntity<Void> deleteUser(@PathVariable String login) {
         log.debug("REST request to delete User: {}", login);
         userService.deleteUser(login);
-        return ResponseEntity.ok().headers(HeaderUtil.createAlert("app.user.deleted", login)).build();
+        return new ResponseEntity<>(HeaderUtil.createAlert("app.user.deleted", login), HttpStatus.OK);
     }
 
     /**
@@ -221,8 +223,7 @@ public class UserResource {
     @Timed
     @Secured(ADMIN)
     public List<User> search(@PathVariable String query) {
-        return StreamSupport
-            .stream(userSearchRepository.search(queryStringQuery(query)).spliterator(), false)
-            .collect(Collectors.toList());
+        return userSearchRepository.search(queryStringQuery(query), new PageRequest(0, 20))
+            .getContent();
     }
 }

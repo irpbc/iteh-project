@@ -13,7 +13,6 @@ import { ITEMS_PER_PAGE, Principal, ResponseWrapper } from '../../shared';
 })
 export class StudentExamComponent implements OnInit, OnDestroy {
 
-currentAccount: any;
     studentExams: StudentExam[];
     error: any;
     success: any;
@@ -29,15 +28,13 @@ currentAccount: any;
     previousPage: any;
     reverse: any;
 
-    constructor(
-        private studentExamService: StudentExamService,
-        private parseLinks: JhiParseLinks,
-        private jhiAlertService: JhiAlertService,
-        private principal: Principal,
-        private activatedRoute: ActivatedRoute,
-        private router: Router,
-        private eventManager: JhiEventManager
-    ) {
+    constructor(private studentExamService: StudentExamService,
+                private parseLinks: JhiParseLinks,
+                private jhiAlertService: JhiAlertService,
+                private principal: Principal,
+                private activatedRoute: ActivatedRoute,
+                private router: Router,
+                private eventManager: JhiEventManager) {
         this.itemsPerPage = ITEMS_PER_PAGE;
         this.routeData = this.activatedRoute.data.subscribe((data) => {
             this.page = data.pagingParams.page;
@@ -55,34 +52,39 @@ currentAccount: any;
                 page: this.page - 1,
                 query: this.currentSearch,
                 size: this.itemsPerPage,
-                sort: this.sort()}).subscribe(
-                    (res: ResponseWrapper) => this.onSuccess(res.json, res.headers),
-                    (res: ResponseWrapper) => this.onError(res.json)
-                );
+                sort: this.sort()
+            }).subscribe(
+                (res: ResponseWrapper) => this.onSuccess(res.json, res.headers),
+                (res: ResponseWrapper) => this.onError(res.json)
+            );
             return;
         }
         this.studentExamService.query({
             page: this.page - 1,
             size: this.itemsPerPage,
-            sort: this.sort()}).subscribe(
+            sort: this.sort()
+        }).subscribe(
             (res: ResponseWrapper) => this.onSuccess(res.json, res.headers),
             (res: ResponseWrapper) => this.onError(res.json)
         );
     }
+
     loadPage(page: number) {
         if (page !== this.previousPage) {
             this.previousPage = page;
             this.transition();
         }
     }
+
     transition() {
-        this.router.navigate(['/student-exam'], {queryParams:
-            {
-                page: this.page,
-                size: this.itemsPerPage,
-                search: this.currentSearch,
-                sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
-            }
+        this.router.navigate(['/student-exam'], {
+            queryParams:
+                {
+                    page: this.page,
+                    size: this.itemsPerPage,
+                    search: this.currentSearch,
+                    sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
+                }
         });
         this.loadAll();
     }
@@ -96,6 +98,7 @@ currentAccount: any;
         }]);
         this.loadAll();
     }
+
     search(query) {
         if (!query) {
             return this.clear();
@@ -109,11 +112,9 @@ currentAccount: any;
         }]);
         this.loadAll();
     }
+
     ngOnInit() {
         this.loadAll();
-        this.principal.identity().then((account) => {
-            this.currentAccount = account;
-        });
         this.registerChangeInStudentExams();
     }
 
@@ -124,6 +125,7 @@ currentAccount: any;
     trackId(index: number, item: StudentExam) {
         return item.id;
     }
+
     registerChangeInStudentExams() {
         this.eventSubscriber = this.eventManager.subscribe('studentExamListModification', (response) => this.loadAll());
     }
@@ -143,6 +145,7 @@ currentAccount: any;
         // this.page = pagingParams.page;
         this.studentExams = data;
     }
+
     private onError(error) {
         this.jhiAlertService.error(error.message, null, null);
     }

@@ -41,7 +41,7 @@ export class StudentExamPopupService {
 
     studentExamModalRef(component: Component, studentExam: StudentExam): NgbModalRef {
         const modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
-        modalRef.componentInstance.studentExam = studentExam;
+        modalRef.componentInstance.object = studentExam;
         modalRef.result.then((result) => {
             this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true, queryParamsHandling: 'merge' });
             this.ngbModalRef = null;

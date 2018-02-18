@@ -1,0 +1,4306 @@
+= ItehProject API
+
+
+[[_overview]]
+== Overview
+ItehProject API documentation
+
+
+=== Version information
+[%hardbreaks]
+__Version__ : 0.0.1
+
+
+=== URI scheme
+[%hardbreaks]
+__Host__ : localhost:9060
+__BasePath__ : /
+
+
+=== Tags
+
+* account-resource : Account Resource
+* commitment-resource : Commitment Resource
+* course-enrollment-resource : Course Enrollment Resource
+* course-resource : Course Resource
+* exam-period-resource : Exam Period Resource
+* exam-resource : Exam Resource
+* facebook-post-proposal-resource : Facebook Post Proposal Resource
+* optional-course-group-resource : Optional Course Group Resource
+* profile-info-resource : Profile Info Resource
+* school-year-enrollment-resource : School Year Enrollment Resource
+* school-year-resource : School Year Resource
+* semester-resource : Semester Resource
+* student-commitment-resource : Student Commitment Resource
+* student-exam-resource : Student Exam Resource
+* user-jwt-controller : User JWT Controller
+* user-resource : User Resource
+
+
+
+
+[[_paths]]
+== Resources
+
+[[_account-resource_resource]]
+=== Account-resource
+Account Resource
+
+
+[[_saveaccountusingpost]]
+==== saveAccount
+....
+POST /api/account
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**userDTO** +
+__required__|userDTO|<<_userdto,UserDTO>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|No Content
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getaccountusingget]]
+==== getAccount
+....
+GET /api/account
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_userdto,UserDTO>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_changepasswordusingpost]]
+==== changePassword
+....
+POST /api/account/change-password
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**password** +
+__required__|password|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|No Content
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_finishpasswordresetusingpost]]
+==== finishPasswordReset
+....
+POST /api/account/reset-password/finish
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**keyAndPassword** +
+__required__|keyAndPassword|<<_keyandpasswordvm,KeyAndPasswordVM>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|No Content
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_requestpasswordresetusingpost]]
+==== requestPasswordReset
+....
+POST /api/account/reset-password/init
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**mail** +
+__required__|mail|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|No Content
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_isauthenticatedusingget]]
+==== isAuthenticated
+....
+GET /api/authenticate
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_commitment-resource_resource]]
+=== Commitment-resource
+Commitment Resource
+
+
+[[_searchcommitmentsusingget]]
+==== searchCommitments
+....
+GET /api/_search/commitments
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**page** +
+__optional__|Page number of the requested page|integer(int32)
+|**Query**|**query** +
+__required__|query|string
+|**Query**|**size** +
+__optional__|Size of a page|integer(int32)
+|**Query**|**sort** +
+__optional__|Sorting criteria in the format: property(,asc\|desc). Default sort order is ascending. Multiple sort criteria are supported.|< string > array(multi)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_commitmentdto,CommitmentDTO>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_createcommitmentusingpost]]
+==== createCommitment
+....
+POST /api/commitments
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**commitmentDTO** +
+__required__|commitmentDTO|<<_commitmentdto,CommitmentDTO>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_commitmentdto,CommitmentDTO>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getallcommitmentsusingget]]
+==== getAllCommitments
+....
+GET /api/commitments
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**page** +
+__optional__|Page number of the requested page|integer(int32)
+|**Query**|**size** +
+__optional__|Size of a page|integer(int32)
+|**Query**|**sort** +
+__optional__|Sorting criteria in the format: property(,asc\|desc). Default sort order is ascending. Multiple sort criteria are supported.|< string > array(multi)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_commitmentdto,CommitmentDTO>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_updatecommitmentusingput]]
+==== updateCommitment
+....
+PUT /api/commitments
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**commitmentDTO** +
+__required__|commitmentDTO|<<_commitmentdto,CommitmentDTO>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_commitmentdto,CommitmentDTO>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getcommitmentusingget]]
+==== getCommitment
+....
+GET /api/commitments/{id}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|id|integer(int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_commitmentdto,CommitmentDTO>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_deletecommitmentusingdelete]]
+==== deleteCommitment
+....
+DELETE /api/commitments/{id}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|id|integer(int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|No Content
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_course-enrollment-resource_resource]]
+=== Course-enrollment-resource
+Course Enrollment Resource
+
+
+[[_searchcourseenrollmentsusingget]]
+==== searchCourseEnrollments
+....
+GET /api/_search/course-enrollments
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**page** +
+__optional__|Page number of the requested page|integer(int32)
+|**Query**|**query** +
+__required__|query|string
+|**Query**|**size** +
+__optional__|Size of a page|integer(int32)
+|**Query**|**sort** +
+__optional__|Sorting criteria in the format: property(,asc\|desc). Default sort order is ascending. Multiple sort criteria are supported.|< string > array(multi)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_courseenrollmentdto,CourseEnrollmentDTO>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_createcourseenrollmentusingpost]]
+==== createCourseEnrollment
+....
+POST /api/course-enrollments
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**courseEnrollmentDTO** +
+__required__|courseEnrollmentDTO|<<_courseenrollmentdto,CourseEnrollmentDTO>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_courseenrollmentdto,CourseEnrollmentDTO>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getallcourseenrollmentsusingget]]
+==== getAllCourseEnrollments
+....
+GET /api/course-enrollments
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**page** +
+__optional__|Page number of the requested page|integer(int32)
+|**Query**|**size** +
+__optional__|Size of a page|integer(int32)
+|**Query**|**sort** +
+__optional__|Sorting criteria in the format: property(,asc\|desc). Default sort order is ascending. Multiple sort criteria are supported.|< string > array(multi)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_courseenrollmentdto,CourseEnrollmentDTO>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_updatecourseenrollmentusingput]]
+==== updateCourseEnrollment
+....
+PUT /api/course-enrollments
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**courseEnrollmentDTO** +
+__required__|courseEnrollmentDTO|<<_courseenrollmentdto,CourseEnrollmentDTO>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_courseenrollmentdto,CourseEnrollmentDTO>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getcourseenrollmentusingget]]
+==== getCourseEnrollment
+....
+GET /api/course-enrollments/{id}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|id|integer(int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_courseenrollmentdto,CourseEnrollmentDTO>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_deletecourseenrollmentusingdelete]]
+==== deleteCourseEnrollment
+....
+DELETE /api/course-enrollments/{id}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|id|integer(int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|No Content
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_course-resource_resource]]
+=== Course-resource
+Course Resource
+
+
+[[_searchcoursesusingget]]
+==== searchCourses
+....
+GET /api/_search/courses
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**page** +
+__optional__|Page number of the requested page|integer(int32)
+|**Query**|**query** +
+__required__|query|string
+|**Query**|**size** +
+__optional__|Size of a page|integer(int32)
+|**Query**|**sort** +
+__optional__|Sorting criteria in the format: property(,asc\|desc). Default sort order is ascending. Multiple sort criteria are supported.|< string > array(multi)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_coursedto,CourseDTO>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_createcourseusingpost]]
+==== createCourse
+....
+POST /api/courses
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**courseDTO** +
+__required__|courseDTO|<<_coursedto,CourseDTO>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_coursedto,CourseDTO>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getallcoursesusingget]]
+==== getAllCourses
+....
+GET /api/courses
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**espbPoints.equals** +
+__optional__||integer(int32)
+|**Query**|**espbPoints.greaterOrEqualThan** +
+__optional__||integer(int32)
+|**Query**|**espbPoints.greaterThan** +
+__optional__||integer(int32)
+|**Query**|**espbPoints.in** +
+__optional__||< integer(int32) > array(multi)
+|**Query**|**espbPoints.lessOrEqualThan** +
+__optional__||integer(int32)
+|**Query**|**espbPoints.lessThan** +
+__optional__||integer(int32)
+|**Query**|**espbPoints.specified** +
+__optional__||boolean
+|**Query**|**id.equals** +
+__optional__||integer(int64)
+|**Query**|**id.greaterOrEqualThan** +
+__optional__||integer(int64)
+|**Query**|**id.greaterThan** +
+__optional__||integer(int64)
+|**Query**|**id.in** +
+__optional__||< integer(int64) > array(multi)
+|**Query**|**id.lessOrEqualThan** +
+__optional__||integer(int64)
+|**Query**|**id.lessThan** +
+__optional__||integer(int64)
+|**Query**|**id.specified** +
+__optional__||boolean
+|**Query**|**name.contains** +
+__optional__||string
+|**Query**|**name.equals** +
+__optional__||string
+|**Query**|**name.in** +
+__optional__||< string > array(multi)
+|**Query**|**name.specified** +
+__optional__||boolean
+|**Query**|**optional.equals** +
+__optional__||boolean
+|**Query**|**optional.in** +
+__optional__||< boolean > array(multi)
+|**Query**|**optional.specified** +
+__optional__||boolean
+|**Query**|**page** +
+__optional__|Page number of the requested page|integer(int32)
+|**Query**|**size** +
+__optional__|Size of a page|integer(int32)
+|**Query**|**sort** +
+__optional__|Sorting criteria in the format: property(,asc\|desc). Default sort order is ascending. Multiple sort criteria are supported.|< string > array(multi)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_coursedto,CourseDTO>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_updatecourseusingput]]
+==== updateCourse
+....
+PUT /api/courses
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**courseDTO** +
+__required__|courseDTO|<<_coursedto,CourseDTO>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_coursedto,CourseDTO>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getcourseusingget]]
+==== getCourse
+....
+GET /api/courses/{id}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|id|integer(int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_coursedto,CourseDTO>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_deletecourseusingdelete]]
+==== deleteCourse
+....
+DELETE /api/courses/{id}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|id|integer(int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|No Content
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getduecoursesusingget]]
+==== getDueCourses
+....
+GET /api/due-courses
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**page** +
+__optional__|Page number of the requested page|integer(int32)
+|**Query**|**size** +
+__optional__|Size of a page|integer(int32)
+|**Query**|**sort** +
+__optional__|Sorting criteria in the format: property(,asc\|desc). Default sort order is ascending. Multiple sort criteria are supported.|< string > array(multi)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_studentcoursedto,StudentCourseDTO>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getpassedcoursesusingget]]
+==== getPassedCourses
+....
+GET /api/passed-courses
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**page** +
+__optional__|Page number of the requested page|integer(int32)
+|**Query**|**size** +
+__optional__|Size of a page|integer(int32)
+|**Query**|**sort** +
+__optional__|Sorting criteria in the format: property(,asc\|desc). Default sort order is ascending. Multiple sort criteria are supported.|< string > array(multi)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_studentcoursedto,StudentCourseDTO>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_exam-period-resource_resource]]
+=== Exam-period-resource
+Exam Period Resource
+
+
+[[_searchexamperiodsusingget]]
+==== searchExamPeriods
+....
+GET /api/_search/exam-periods
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**page** +
+__optional__|Page number of the requested page|integer(int32)
+|**Query**|**query** +
+__required__|query|string
+|**Query**|**size** +
+__optional__|Size of a page|integer(int32)
+|**Query**|**sort** +
+__optional__|Sorting criteria in the format: property(,asc\|desc). Default sort order is ascending. Multiple sort criteria are supported.|< string > array(multi)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_examperioddto,ExamPeriodDTO>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_createexamperiodusingpost]]
+==== createExamPeriod
+....
+POST /api/exam-periods
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**examPeriodDTO** +
+__required__|examPeriodDTO|<<_examperioddto,ExamPeriodDTO>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_examperioddto,ExamPeriodDTO>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getallexamperiodsusingget]]
+==== getAllExamPeriods
+....
+GET /api/exam-periods
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**page** +
+__optional__|Page number of the requested page|integer(int32)
+|**Query**|**size** +
+__optional__|Size of a page|integer(int32)
+|**Query**|**sort** +
+__optional__|Sorting criteria in the format: property(,asc\|desc). Default sort order is ascending. Multiple sort criteria are supported.|< string > array(multi)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_examperioddto,ExamPeriodDTO>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_updateexamperiodusingput]]
+==== updateExamPeriod
+....
+PUT /api/exam-periods
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**examPeriodDTO** +
+__required__|examPeriodDTO|<<_examperioddto,ExamPeriodDTO>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_examperioddto,ExamPeriodDTO>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getexamperiodusingget]]
+==== getExamPeriod
+....
+GET /api/exam-periods/{id}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|id|integer(int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_examperioddto,ExamPeriodDTO>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_deleteexamperiodusingdelete]]
+==== deleteExamPeriod
+....
+DELETE /api/exam-periods/{id}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|id|integer(int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|No Content
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_exam-resource_resource]]
+=== Exam-resource
+Exam Resource
+
+
+[[_searchexamsusingget]]
+==== searchExams
+....
+GET /api/_search/exams
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**page** +
+__optional__|Page number of the requested page|integer(int32)
+|**Query**|**query** +
+__required__|query|string
+|**Query**|**size** +
+__optional__|Size of a page|integer(int32)
+|**Query**|**sort** +
+__optional__|Sorting criteria in the format: property(,asc\|desc). Default sort order is ascending. Multiple sort criteria are supported.|< string > array(multi)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_examdto,ExamDTO>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_createexamusingpost]]
+==== createExam
+....
+POST /api/exams
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**examDTO** +
+__required__|examDTO|<<_examdto,ExamDTO>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_examdto,ExamDTO>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getallexamsusingget]]
+==== getAllExams
+....
+GET /api/exams
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**page** +
+__optional__|Page number of the requested page|integer(int32)
+|**Query**|**size** +
+__optional__|Size of a page|integer(int32)
+|**Query**|**sort** +
+__optional__|Sorting criteria in the format: property(,asc\|desc). Default sort order is ascending. Multiple sort criteria are supported.|< string > array(multi)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_examdto,ExamDTO>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_updateexamusingput]]
+==== updateExam
+....
+PUT /api/exams
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**examDTO** +
+__required__|examDTO|<<_examdto,ExamDTO>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_examdto,ExamDTO>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getexamusingget]]
+==== getExam
+....
+GET /api/exams/{id}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|id|integer(int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_examdto,ExamDTO>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_deleteexamusingdelete]]
+==== deleteExam
+....
+DELETE /api/exams/{id}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|id|integer(int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|No Content
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_facebook-post-proposal-resource_resource]]
+=== Facebook-post-proposal-resource
+Facebook Post Proposal Resource
+
+
+[[_getallfacebookpostproposalsusingget]]
+==== getAllFacebookPostProposals
+....
+GET /api/facebook-post-proposals
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**page** +
+__optional__|Page number of the requested page|integer(int32)
+|**Query**|**size** +
+__optional__|Size of a page|integer(int32)
+|**Query**|**sort** +
+__optional__|Sorting criteria in the format: property(,asc\|desc). Default sort order is ascending. Multiple sort criteria are supported.|< string > array(multi)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_facebookpostproposaldto,FacebookPostProposalDTO>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getfacebookpostproposalusingget]]
+==== getFacebookPostProposal
+....
+GET /api/facebook-post-proposals/{id}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|id|integer(int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_facebookpostproposaldto,FacebookPostProposalDTO>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_deletefacebookpostproposalusingdelete]]
+==== deleteFacebookPostProposal
+....
+DELETE /api/facebook-post-proposals/{id}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|id|integer(int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|No Content
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_posttofacebookusingpost]]
+==== postToFacebook
+....
+POST /api/facebook-post-proposals/{id}/post
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|id|integer(int64)
+|**Body**|**text** +
+__required__|text|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|No Content
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_optional-course-group-resource_resource]]
+=== Optional-course-group-resource
+Optional Course Group Resource
+
+
+[[_searchoptionalcoursegroupsusingget]]
+==== searchOptionalCourseGroups
+....
+GET /api/_search/optional-course-groups
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**page** +
+__optional__|Page number of the requested page|integer(int32)
+|**Query**|**query** +
+__required__|query|string
+|**Query**|**size** +
+__optional__|Size of a page|integer(int32)
+|**Query**|**sort** +
+__optional__|Sorting criteria in the format: property(,asc\|desc). Default sort order is ascending. Multiple sort criteria are supported.|< string > array(multi)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_optionalcoursegroupdto,OptionalCourseGroupDTO>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_createoptionalcoursegroupusingpost]]
+==== createOptionalCourseGroup
+....
+POST /api/optional-course-groups
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**optionalCourseGroupDTO** +
+__required__|optionalCourseGroupDTO|<<_optionalcoursegroupdto,OptionalCourseGroupDTO>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_optionalcoursegroupdto,OptionalCourseGroupDTO>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getalloptionalcoursegroupsusingget]]
+==== getAllOptionalCourseGroups
+....
+GET /api/optional-course-groups
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**page** +
+__optional__|Page number of the requested page|integer(int32)
+|**Query**|**size** +
+__optional__|Size of a page|integer(int32)
+|**Query**|**sort** +
+__optional__|Sorting criteria in the format: property(,asc\|desc). Default sort order is ascending. Multiple sort criteria are supported.|< string > array(multi)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_optionalcoursegroupdto,OptionalCourseGroupDTO>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_updateoptionalcoursegroupusingput]]
+==== updateOptionalCourseGroup
+....
+PUT /api/optional-course-groups
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**optionalCourseGroupDTO** +
+__required__|optionalCourseGroupDTO|<<_optionalcoursegroupdto,OptionalCourseGroupDTO>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_optionalcoursegroupdto,OptionalCourseGroupDTO>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getoptionalcoursegroupusingget]]
+==== getOptionalCourseGroup
+....
+GET /api/optional-course-groups/{id}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|id|integer(int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_optionalcoursegroupdto,OptionalCourseGroupDTO>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_deleteoptionalcoursegroupusingdelete]]
+==== deleteOptionalCourseGroup
+....
+DELETE /api/optional-course-groups/{id}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|id|integer(int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|No Content
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_profile-info-resource_resource]]
+=== Profile-info-resource
+Profile Info Resource
+
+
+[[_getactiveprofilesusingget]]
+==== getActiveProfiles
+....
+GET /api/profile-info
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_profileinfovm,ProfileInfoVM>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_school-year-enrollment-resource_resource]]
+=== School-year-enrollment-resource
+School Year Enrollment Resource
+
+
+[[_searchschoolyearenrollmentsusingget]]
+==== searchSchoolYearEnrollments
+....
+GET /api/_search/school-year-enrollments
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**page** +
+__optional__|Page number of the requested page|integer(int32)
+|**Query**|**query** +
+__required__|query|string
+|**Query**|**size** +
+__optional__|Size of a page|integer(int32)
+|**Query**|**sort** +
+__optional__|Sorting criteria in the format: property(,asc\|desc). Default sort order is ascending. Multiple sort criteria are supported.|< string > array(multi)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_schoolyearenrollmentdto,SchoolYearEnrollmentDTO>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_createschoolyearenrollmentusingpost]]
+==== createSchoolYearEnrollment
+....
+POST /api/school-year-enrollments
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**schoolYearEnrollmentDTO** +
+__required__|schoolYearEnrollmentDTO|<<_schoolyearenrollmentdto,SchoolYearEnrollmentDTO>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_schoolyearenrollmentdto,SchoolYearEnrollmentDTO>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getallschoolyearenrollmentsusingget]]
+==== getAllSchoolYearEnrollments
+....
+GET /api/school-year-enrollments
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**page** +
+__optional__|Page number of the requested page|integer(int32)
+|**Query**|**size** +
+__optional__|Size of a page|integer(int32)
+|**Query**|**sort** +
+__optional__|Sorting criteria in the format: property(,asc\|desc). Default sort order is ascending. Multiple sort criteria are supported.|< string > array(multi)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_schoolyearenrollmentdto,SchoolYearEnrollmentDTO>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_updateschoolyearenrollmentusingput]]
+==== updateSchoolYearEnrollment
+....
+PUT /api/school-year-enrollments
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**schoolYearEnrollmentDTO** +
+__required__|schoolYearEnrollmentDTO|<<_schoolyearenrollmentdto,SchoolYearEnrollmentDTO>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_schoolyearenrollmentdto,SchoolYearEnrollmentDTO>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getschoolyearenrollmentusingget]]
+==== getSchoolYearEnrollment
+....
+GET /api/school-year-enrollments/{id}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|id|integer(int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_schoolyearenrollmentdto,SchoolYearEnrollmentDTO>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_deleteschoolyearenrollmentusingdelete]]
+==== deleteSchoolYearEnrollment
+....
+DELETE /api/school-year-enrollments/{id}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|id|integer(int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|No Content
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_school-year-resource_resource]]
+=== School-year-resource
+School Year Resource
+
+
+[[_searchschoolyearsusingget]]
+==== searchSchoolYears
+....
+GET /api/_search/school-years
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**page** +
+__optional__|Page number of the requested page|integer(int32)
+|**Query**|**query** +
+__required__|query|string
+|**Query**|**size** +
+__optional__|Size of a page|integer(int32)
+|**Query**|**sort** +
+__optional__|Sorting criteria in the format: property(,asc\|desc). Default sort order is ascending. Multiple sort criteria are supported.|< string > array(multi)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_schoolyeardto,SchoolYearDTO>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_createschoolyearusingpost]]
+==== createSchoolYear
+....
+POST /api/school-years
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**schoolYearDTO** +
+__required__|schoolYearDTO|<<_schoolyeardto,SchoolYearDTO>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_schoolyeardto,SchoolYearDTO>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getallschoolyearsusingget]]
+==== getAllSchoolYears
+....
+GET /api/school-years
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**page** +
+__optional__|Page number of the requested page|integer(int32)
+|**Query**|**size** +
+__optional__|Size of a page|integer(int32)
+|**Query**|**sort** +
+__optional__|Sorting criteria in the format: property(,asc\|desc). Default sort order is ascending. Multiple sort criteria are supported.|< string > array(multi)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_schoolyeardto,SchoolYearDTO>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_updateschoolyearusingput]]
+==== updateSchoolYear
+....
+PUT /api/school-years
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**schoolYearDTO** +
+__required__|schoolYearDTO|<<_schoolyeardto,SchoolYearDTO>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_schoolyeardto,SchoolYearDTO>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getschoolyearusingget]]
+==== getSchoolYear
+....
+GET /api/school-years/{id}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|id|integer(int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_schoolyeardto,SchoolYearDTO>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_deleteschoolyearusingdelete]]
+==== deleteSchoolYear
+....
+DELETE /api/school-years/{id}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|id|integer(int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|No Content
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_setcerrentschoolyearusingput]]
+==== setCerrentSchoolYear
+....
+PUT /api/school-years/{id}/set-current
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|id|integer(int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|No Content
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_semester-resource_resource]]
+=== Semester-resource
+Semester Resource
+
+
+[[_searchsemestersusingget]]
+==== searchSemesters
+....
+GET /api/_search/semesters
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**page** +
+__optional__|Page number of the requested page|integer(int32)
+|**Query**|**query** +
+__required__|query|string
+|**Query**|**size** +
+__optional__|Size of a page|integer(int32)
+|**Query**|**sort** +
+__optional__|Sorting criteria in the format: property(,asc\|desc). Default sort order is ascending. Multiple sort criteria are supported.|< string > array(multi)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_semesterdto,SemesterDTO>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_createsemesterusingpost]]
+==== createSemester
+....
+POST /api/semesters
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**semesterDTO** +
+__required__|semesterDTO|<<_semesterdto,SemesterDTO>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_semesterdto,SemesterDTO>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getallsemestersusingget]]
+==== getAllSemesters
+....
+GET /api/semesters
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**page** +
+__optional__|Page number of the requested page|integer(int32)
+|**Query**|**size** +
+__optional__|Size of a page|integer(int32)
+|**Query**|**sort** +
+__optional__|Sorting criteria in the format: property(,asc\|desc). Default sort order is ascending. Multiple sort criteria are supported.|< string > array(multi)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_semesterdto,SemesterDTO>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_updatesemesterusingput]]
+==== updateSemester
+....
+PUT /api/semesters
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**semesterDTO** +
+__required__|semesterDTO|<<_semesterdto,SemesterDTO>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_semesterdto,SemesterDTO>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getsemesterusingget]]
+==== getSemester
+....
+GET /api/semesters/{id}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|id|integer(int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_semesterdto,SemesterDTO>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_deletesemesterusingdelete]]
+==== deleteSemester
+....
+DELETE /api/semesters/{id}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|id|integer(int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|No Content
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_student-commitment-resource_resource]]
+=== Student-commitment-resource
+Student Commitment Resource
+
+
+[[_searchstudentcommitmentsusingget]]
+==== searchStudentCommitments
+....
+GET /api/_search/student-commitments
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**page** +
+__optional__|Page number of the requested page|integer(int32)
+|**Query**|**query** +
+__required__|query|string
+|**Query**|**size** +
+__optional__|Size of a page|integer(int32)
+|**Query**|**sort** +
+__optional__|Sorting criteria in the format: property(,asc\|desc). Default sort order is ascending. Multiple sort criteria are supported.|< string > array(multi)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_studentcommitmentdto,StudentCommitmentDTO>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_createstudentcommitmentusingpost]]
+==== createStudentCommitment
+....
+POST /api/student-commitments
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**studentCommitmentDTO** +
+__required__|studentCommitmentDTO|<<_studentcommitmentdto,StudentCommitmentDTO>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_studentcommitmentdto,StudentCommitmentDTO>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getallstudentcommitmentsusingget]]
+==== getAllStudentCommitments
+....
+GET /api/student-commitments
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**page** +
+__optional__|Page number of the requested page|integer(int32)
+|**Query**|**size** +
+__optional__|Size of a page|integer(int32)
+|**Query**|**sort** +
+__optional__|Sorting criteria in the format: property(,asc\|desc). Default sort order is ascending. Multiple sort criteria are supported.|< string > array(multi)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_studentcommitmentdto,StudentCommitmentDTO>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_updatestudentcommitmentusingput]]
+==== updateStudentCommitment
+....
+PUT /api/student-commitments
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**studentCommitmentDTO** +
+__required__|studentCommitmentDTO|<<_studentcommitmentdto,StudentCommitmentDTO>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_studentcommitmentdto,StudentCommitmentDTO>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getstudentcommitmentusingget]]
+==== getStudentCommitment
+....
+GET /api/student-commitments/{id}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|id|integer(int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_studentcommitmentdto,StudentCommitmentDTO>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_deletestudentcommitmentusingdelete]]
+==== deleteStudentCommitment
+....
+DELETE /api/student-commitments/{id}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|id|integer(int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|No Content
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_student-exam-resource_resource]]
+=== Student-exam-resource
+Student Exam Resource
+
+
+[[_searchstudentexamsusingget]]
+==== searchStudentExams
+....
+GET /api/_search/student-exams
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**page** +
+__optional__|Page number of the requested page|integer(int32)
+|**Query**|**query** +
+__required__|query|string
+|**Query**|**size** +
+__optional__|Size of a page|integer(int32)
+|**Query**|**sort** +
+__optional__|Sorting criteria in the format: property(,asc\|desc). Default sort order is ascending. Multiple sort criteria are supported.|< string > array(multi)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_studentexamdto,StudentExamDTO>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_applyforexamusingput]]
+==== Apply for exam
+....
+PUT /api/apply-for-exam
+....
+
+
+===== Description
+Creates an exam application for the next period identified by examId. Returns the page data again
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**exam** +
+__required__|exam|integer(int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_examapplicationpagedata,ExamApplicationPageData>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_cancelexamapplicationusingput]]
+==== Cancel exam application
+....
+PUT /api/cancel-exam-application
+....
+
+
+===== Description
+Cancels the exam application identified by examId. Returns the page data again.
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**exam** +
+__required__|exam|integer(int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_examapplicationpagedata,ExamApplicationPageData>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_examapplicationpagedatausingget]]
+==== Return data for exam applications page
+....
+GET /api/exam-application-data
+....
+
+
+===== Description
+Returns all data for the exam application page for the logged in student, which is all exams enrolled, not passed, not applied for and exams applied for the next period.
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_examapplicationpagedata,ExamApplicationPageData>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_createstudentexamusingpost]]
+==== createStudentExam
+....
+POST /api/student-exams
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**studentExamDTO** +
+__required__|studentExamDTO|<<_studentexamdto,StudentExamDTO>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_studentexamdto,StudentExamDTO>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getallstudentexamsusingget]]
+==== getAllStudentExams
+....
+GET /api/student-exams
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**attended.equals** +
+__optional__||boolean
+|**Query**|**attended.in** +
+__optional__||< boolean > array(multi)
+|**Query**|**attended.specified** +
+__optional__||boolean
+|**Query**|**grade.equals** +
+__optional__||integer(int32)
+|**Query**|**grade.greaterOrEqualThan** +
+__optional__||integer(int32)
+|**Query**|**grade.greaterThan** +
+__optional__||integer(int32)
+|**Query**|**grade.in** +
+__optional__||< integer(int32) > array(multi)
+|**Query**|**grade.lessOrEqualThan** +
+__optional__||integer(int32)
+|**Query**|**grade.lessThan** +
+__optional__||integer(int32)
+|**Query**|**grade.specified** +
+__optional__||boolean
+|**Query**|**id.equals** +
+__optional__||integer(int64)
+|**Query**|**id.greaterOrEqualThan** +
+__optional__||integer(int64)
+|**Query**|**id.greaterThan** +
+__optional__||integer(int64)
+|**Query**|**id.in** +
+__optional__||< integer(int64) > array(multi)
+|**Query**|**id.lessOrEqualThan** +
+__optional__||integer(int64)
+|**Query**|**id.lessThan** +
+__optional__||integer(int64)
+|**Query**|**id.specified** +
+__optional__||boolean
+|**Query**|**page** +
+__optional__|Page number of the requested page|integer(int32)
+|**Query**|**size** +
+__optional__|Size of a page|integer(int32)
+|**Query**|**sort** +
+__optional__|Sorting criteria in the format: property(,asc\|desc). Default sort order is ascending. Multiple sort criteria are supported.|< string > array(multi)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_studentexamdto,StudentExamDTO>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_updatestudentexamusingput]]
+==== Update exam application (grade)
+....
+PUT /api/student-exams
+....
+
+
+===== Description
+Updates the exam application. If the grade has changed it will initiate Facebook post proposal creation.
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**studentExamDTO** +
+__required__|studentExamDTO|<<_studentexamdto,StudentExamDTO>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_studentexamdto,StudentExamDTO>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getstudentexamusingget]]
+==== getStudentExam
+....
+GET /api/student-exams/{id}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|id|integer(int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_studentexamdto,StudentExamDTO>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_deletestudentexamusingdelete]]
+==== deleteStudentExam
+....
+DELETE /api/student-exams/{id}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|id|integer(int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|No Content
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_user-jwt-controller_resource]]
+=== User-jwt-controller
+User JWT Controller
+
+
+[[_authorizeusingpost]]
+==== authorize
+....
+POST /api/authenticate
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**loginVM** +
+__required__|loginVM|<<_loginvm,LoginVM>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_jwttoken,JWTToken>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_user-resource_resource]]
+=== User-resource
+User Resource
+
+
+[[_searchusingget]]
+==== search
+....
+GET /api/_search/users/{query}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**query** +
+__required__|query|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_user,User>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_createuserusingpost]]
+==== createUser
+....
+POST /api/users
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**userDTO** +
+__required__|userDTO|<<_userdto,UserDTO>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_user,User>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getallusersusingget]]
+==== getAllUsers
+....
+GET /api/users
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**page** +
+__optional__|Page number of the requested page|integer(int32)
+|**Query**|**size** +
+__optional__|Size of a page|integer(int32)
+|**Query**|**sort** +
+__optional__|Sorting criteria in the format: property(,asc\|desc). Default sort order is ascending. Multiple sort criteria are supported.|< string > array(multi)
+|**Query**|**userType.equals** +
+__optional__||string
+|**Query**|**userType.in** +
+__optional__||< enum (ST, LC, SR, AD, SY) > array(multi)
+|**Query**|**userType.specified** +
+__optional__||boolean
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< <<_userdto,UserDTO>> > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_updateuserusingput]]
+==== updateUser
+....
+PUT /api/users
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**userDTO** +
+__required__|userDTO|<<_userdto,UserDTO>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_userdto,UserDTO>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getauthoritiesusingget]]
+==== getAuthorities
+....
+GET /api/users/authorities
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< string > array
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_getuserusingget]]
+==== getUser
+....
+GET /api/users/{login}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**login** +
+__required__|login|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_userdto,UserDTO>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+[[_deleteuserusingdelete]]
+==== deleteUser
+....
+DELETE /api/users/{login}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**login** +
+__required__|login|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|No Content
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `*/*`
+
+
+
+
+[[_definitions]]
+== Definitions
+
+[[_commitmentdto]]
+=== CommitmentDTO
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**courseId** +
+__optional__||integer(int64)
+|**courseName** +
+__optional__||string
+|**id** +
+__optional__||integer(int64)
+|**maxPoints** +
+__required__||number
+|**name** +
+__required__|**Length** : `0 - 255`|string
+|===
+
+
+[[_coursedto]]
+=== CourseDTO
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**espbPoints** +
+__required__||integer(int32)
+|**id** +
+__optional__||integer(int64)
+|**lecturers** +
+__optional__||< <<_userdto,UserDTO>> > array
+|**name** +
+__required__|**Length** : `0 - 255`|string
+|**optional** +
+__required__||boolean
+|**optionalGroupId** +
+__optional__||integer(int64)
+|**optionalGroupName** +
+__optional__||string
+|**semesterId** +
+__optional__||integer(int64)
+|**semesterName** +
+__optional__||string
+|**yearOfStudies** +
+__required__||integer(int32)
+|===
+
+
+[[_courseenrollmentdto]]
+=== CourseEnrollmentDTO
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**completed** +
+__required__||boolean
+|**courseId** +
+__optional__||integer(int64)
+|**courseName** +
+__optional__||string
+|**grade** +
+__optional__|**Minimum value** : `6` +
+**Maximum value** : `10`|integer(int32)
+|**id** +
+__optional__||integer(int64)
+|**totalPoints** +
+__required__||number
+|**yearEnrollmentId** +
+__optional__||integer(int64)
+|===
+
+
+[[_examapplicationpagedata]]
+=== ExamApplicationPageData
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**appliedExams** +
+__optional__|< <<_examdto,ExamDTO>> > array
+|**exams** +
+__optional__|< <<_examdto,ExamDTO>> > array
+|**nextPeriod** +
+__optional__|<<_examperioddto,ExamPeriodDTO>>
+|===
+
+
+[[_examdto]]
+=== ExamDTO
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**courseId** +
+__optional__|integer(int64)
+|**courseName** +
+__optional__|string
+|**id** +
+__optional__|integer(int64)
+|**periodId** +
+__optional__|integer(int64)
+|**periodName** +
+__optional__|string
+|**time** +
+__required__|string(date-time)
+|===
+
+
+[[_examperioddto]]
+=== ExamPeriodDTO
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**endDate** +
+__required__||string(date)
+|**id** +
+__optional__||integer(int64)
+|**name** +
+__required__|**Length** : `0 - 100`|string
+|**startDate** +
+__required__||string(date)
+|**yearId** +
+__optional__||integer(int64)
+|===
+
+
+[[_facebookpostproposaldto]]
+=== FacebookPostProposalDTO
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**data** +
+__required__|string
+|**id** +
+__optional__|integer(int64)
+|**kind** +
+__required__|enum (EXAM_PASSED, EXAM_FAILED)
+|**studentId** +
+__optional__|integer(int64)
+|**studentName** +
+__optional__|string
+|**time** +
+__required__|string(date-time)
+|===
+
+
+[[_jwttoken]]
+=== JWTToken
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**id_token** +
+__optional__|string
+|===
+
+
+[[_keyandpasswordvm]]
+=== KeyAndPasswordVM
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**key** +
+__optional__|string
+|**newPassword** +
+__optional__|string
+|===
+
+
+[[_loginvm]]
+=== LoginVM
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**password** +
+__required__|**Length** : `4 - 100`|string
+|**rememberMe** +
+__optional__||boolean
+|**username** +
+__required__|**Length** : `1 - 50` +
+**Pattern** : `"^[_'.@A-Za-z0-9-]*$"`|string
+|===
+
+
+[[_optionalcoursegroupdto]]
+=== OptionalCourseGroupDTO
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**id** +
+__optional__||integer(int64)
+|**name** +
+__required__|**Length** : `0 - 100`|string
+|**semesterId** +
+__optional__||integer(int64)
+|===
+
+
+[[_profileinfovm]]
+=== ProfileInfoVM
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**activeProfiles** +
+__optional__|< string > array
+|**ribbonEnv** +
+__optional__|string
+|===
+
+
+[[_schoolyeardto]]
+=== SchoolYearDTO
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**current** +
+__optional__|boolean
+|**endDate** +
+__required__|string(date)
+|**id** +
+__optional__|integer(int64)
+|**name** +
+__required__|string
+|**startDate** +
+__required__|string(date)
+|===
+
+
+[[_schoolyearenrollmentdto]]
+=== SchoolYearEnrollmentDTO
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**averageGrade** +
+__optional__|**Minimum value** : `6.0` +
+**Maximum value** : `10.0`|number
+|**espbPointsAttained** +
+__required__||integer(int32)
+|**espbPointsDeclared** +
+__required__||integer(int32)
+|**id** +
+__optional__||integer(int64)
+|**studentFullName** +
+__optional__||string
+|**studentId** +
+__optional__||integer(int64)
+|**yearId** +
+__optional__||integer(int64)
+|**yearName** +
+__optional__||string
+|===
+
+
+[[_semesterdto]]
+=== SemesterDTO
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**id** +
+__optional__||integer(int64)
+|**name** +
+__required__|**Length** : `0 - 100`|string
+|**yearId** +
+__optional__||integer(int64)
+|**yearName** +
+__optional__||string
+|===
+
+
+[[_studentcommitmentdto]]
+=== StudentCommitmentDTO
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**commitmentId** +
+__optional__|integer(int64)
+|**commitmentName** +
+__optional__|string
+|**enrollmentId** +
+__optional__|integer(int64)
+|**evaluatedByFullName** +
+__optional__|string
+|**evaluatedById** +
+__optional__|integer(int64)
+|**id** +
+__optional__|integer(int64)
+|**points** +
+__optional__|number
+|===
+
+
+[[_studentcoursedto]]
+=== StudentCourseDTO
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**espbPoints** +
+__optional__|integer(int32)
+|**grade** +
+__optional__|integer(int32)
+|**name** +
+__optional__|string
+|**schoolYear** +
+__optional__|string
+|**yearOfStudies** +
+__optional__|integer(int32)
+|===
+
+
+[[_studentexamdto]]
+=== StudentExamDTO
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**attended** +
+__optional__||boolean
+|**evaluatedByFullName** +
+__optional__||string
+|**evaluatedById** +
+__optional__||integer(int64)
+|**examId** +
+__optional__||integer(int64)
+|**examName** +
+__optional__||string
+|**grade** +
+__optional__|**Minimum value** : `6` +
+**Maximum value** : `10`|integer(int32)
+|**id** +
+__optional__||integer(int64)
+|**studentFullName** +
+__optional__||string
+|**studentId** +
+__optional__||integer(int64)
+|===
+
+
+[[_user]]
+=== User
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**activated** +
+__required__||boolean
+|**code** +
+__optional__||string
+|**email** +
+__optional__|**Length** : `5 - 100`|string
+|**firstName** +
+__optional__|**Length** : `0 - 50`|string
+|**fullName** +
+__required__|**Length** : `0 - 100`|string
+|**id** +
+__optional__||integer(int64)
+|**imageUrl** +
+__optional__|**Length** : `0 - 256`|string
+|**langKey** +
+__optional__|**Length** : `2 - 6`|string
+|**lastName** +
+__optional__|**Length** : `0 - 50`|string
+|**login** +
+__required__|**Length** : `1 - 100` +
+**Pattern** : `"^[_'.@A-Za-z0-9-]*$"`|string
+|**resetDate** +
+__optional__||string(date-time)
+|**userType** +
+__required__||enum (ST, LC, SR, AD, SY)
+|===
+
+
+[[_userdto]]
+=== UserDTO
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**activated** +
+__optional__||boolean
+|**authorities** +
+__optional__||< string > array
+|**code** +
+__optional__||string
+|**email** +
+__optional__|**Length** : `5 - 100`|string
+|**firstName** +
+__optional__|**Length** : `0 - 50`|string
+|**fullName** +
+__optional__||string
+|**id** +
+__optional__||integer(int64)
+|**imageUrl** +
+__optional__|**Length** : `0 - 256`|string
+|**langKey** +
+__optional__|**Length** : `2 - 6`|string
+|**lastName** +
+__optional__|**Length** : `0 - 50`|string
+|**login** +
+__required__|**Length** : `1 - 100` +
+**Pattern** : `"^[_'.@A-Za-z0-9-]*$"`|string
+|**userType** +
+__optional__||enum (ST, LC, SR, AD, SY)
+|===
+
+
+
+
+

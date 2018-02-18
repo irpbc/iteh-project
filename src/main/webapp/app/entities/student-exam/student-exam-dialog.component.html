@@ -13,17 +13,20 @@
                    [(ngModel)]="studentExam.id" readonly />
         </div>
 
+        <field-input [field]="'examName'" [type]="'STRING'" [entityName]="'studentExam'" [object]="studentExam"
+                     [form]="editForm" [disabled]="true"></field-input>
+
+        <field-input [field]="'studentFullName'" [type]="'STRING'" [entityName]="'studentExam'"
+                     [object]="studentExam" [form]="editForm" [disabled]="true"></field-input>
+
+        <field-input [field]="'evaluatedByFullName'" [type]="'STRING'" [entityName]="'studentExam'" [object]="studentExam"
+                     [form]="editForm" [disabled]="true"></field-input>
+
         <checkbox-input [field]="'attended'" [entityName]="'studentExam'"
                         [object]="studentExam" [form]="editForm"></checkbox-input>
 
         <field-input [field]="'grade'" [type]="'INTEGER'" [entityName]="'studentExam'" [object]="studentExam"
                      [form]="editForm" [min]="5" [max]="10"></field-input>
-
-        <field-input [field]="'exam'" [type]="'REL_TO_ONE'" [entityName]="'studentExam'" [object]="studentExam"
-                     [form]="editForm" [optionNameField]="'courseName'" [options]="exams" [required]="true"></field-input>
-
-        <field-input [field]="'evaluatedBy'" [type]="'REL_TO_ONE'" [entityName]="'studentExam'" [object]="studentExam"
-                     [form]="editForm" [optionNameField]="'fullName'" [options]="lecturers"></field-input>
 
     </div>
     <div class="modal-footer">

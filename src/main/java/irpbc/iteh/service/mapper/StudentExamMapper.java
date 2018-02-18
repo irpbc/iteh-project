@@ -5,6 +5,8 @@ import irpbc.iteh.service.dto.StudentExamDTO;
 
 import org.mapstruct.*;
 
+import java.util.List;
+
 /**
  * Mapper for the entity StudentExam and its DTO StudentExamDTO.
  */
@@ -19,6 +21,8 @@ public interface StudentExamMapper {
     @Mapping(source = "evaluatedBy.id", target = "evaluatedById")
     @Mapping(source = "evaluatedBy.fullName", target = "evaluatedByFullName")
     StudentExamDTO toDto(StudentExam studentExam);
+
+    List<StudentExamDTO> toDto(List<StudentExam> studentExams);
 
     @Mapping(source = "studentId", target = "student")
     @Mapping(source = "examId", target = "exam")

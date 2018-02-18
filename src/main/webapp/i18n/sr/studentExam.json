@@ -2,25 +2,28 @@
     "app": {
         "studentExam" : {
             "home": {
-                "title": "Student Exams",
-                "createLabel": "Kreiraj novi Student Exam",
-                "createOrEditLabel": "Kreirajte ili izmenite Student Exam",
+                "title": "Prijave ispita",
+                "createLabel": "Kreiraj novu Prijavu ispita",
+                "createOrEditLabel": "Kreirajte ili izmenite Prijavu ispita",
                 "search": "Potražite Student Exam"
             },
-            "created": "Kreiran je novi Student Exam pod nazivom {{ param }}",
-            "updated": "Student Exam pod nazivom {{ param }} je ažuriran",
-            "deleted": "Student Exam pod nazivom {{ param }} je obrisan",
+            "created": "Kreirana je nova Prijava ispita pod nazivom {{ param }}",
+            "updated": "Prijava ispita pod nazivom {{ param }} je ažuriran",
+            "deleted": "Prijava ispita pod nazivom {{ param }} je obrisan",
             "delete": {
-                "question": "Da li ste sigurni da želite da obrišete Student Exam pod nazivom {{ id }}?"
+                "question": "Da li ste sigurni da želite da obrišete Prijavu ispita pod nazivom {{ id }}?"
             },
             "detail": {
-                "title": "Student Exam"
+                "title": "Prijava ispita"
             },
-            "attended": "Attended",
-            "grade": "Grade",
+            "attended": "Prisustvovao",
+            "grade": "Ocena",
             "student": "Student",
-            "exam": "Exam",
-            "evaluatedBy": "Evaluated By"
+            "studentFullName": "Student",
+            "exam": "Predmet",
+            "examName": "Predmet",
+            "evaluatedBy": "Ocenio",
+            "evaluatedByFullName": "Ocenio"
         }
     }
 }

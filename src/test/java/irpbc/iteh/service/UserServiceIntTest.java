@@ -127,46 +127,4 @@ public class UserServiceIntTest {
 
         userRepository.delete(user);
     }
-
-    @Test
-    @Transactional
-    public void testFindNotActivatedUsersByCreationDateBefore() {
-        Instant now = Instant.now();
-        user.setActivated(false);
-        User dbUser = userRepository.saveAndFlush(user);
-        userRepository.saveAndFlush(user);
-        List<User> users = userRepository.findAllByActivatedIsFalseAndCreatedAtBefore(now.minus(3, ChronoUnit.DAYS));
-        assertThat(users).isNotEmpty();
-        userService.removeNotActivatedUsers();
-        users = userRepository.findAllByActivatedIsFalseAndCreatedAtBefore(now.minus(3, ChronoUnit.DAYS));
-        assertThat(users).isEmpty();
-    }
-
-    @Test
-    @Transactional
-    public void assertThatAnonymousUserIsNotGet() {
-        user.setLogin(Constants.ANONYMOUS_USER);
-        if (userRepository.findOneByLogin(Constants.ANONYMOUS_USER) == null) {
-            userRepository.saveAndFlush(user);
-        }
-        final PageRequest pageable = new PageRequest(0, (int) userRepository.count());
-        final Page<UserDTO> allManagedUsers = userService.getAllManagedUsers(pageable);
-        assertThat(allManagedUsers.getContent().stream()
-            .noneMatch(user -> Constants.ANONYMOUS_USER.equals(user.getLogin())))
-            .isTrue();
-    }
-
-    @Test
-    @Transactional
-    public void testRemoveNotActivatedUsers() {
-        user.setActivated(false);
-        userRepository.saveAndFlush(user);
-        // Let the audit first set the creation date but then update it
-        userRepository.saveAndFlush(user);
-
-        assertThat(userRepository.findOneByLogin("johndoe")).isNotNull();
-        userService.removeNotActivatedUsers();
-        assertThat(userRepository.findOneByLogin("johndoe")).isNull();
-    }
-
 }

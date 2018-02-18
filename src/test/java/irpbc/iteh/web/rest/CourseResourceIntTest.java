@@ -5,6 +5,7 @@ import irpbc.iteh.ItehProjectApp;
 import irpbc.iteh.domain.Course;
 import irpbc.iteh.domain.Semester;
 import irpbc.iteh.repository.CourseRepository;
+import irpbc.iteh.service.CourseQueryService;
 import irpbc.iteh.service.CourseService;
 import irpbc.iteh.repository.search.CourseSearchRepository;
 import irpbc.iteh.service.dto.CourseDTO;
@@ -65,6 +66,9 @@ public class CourseResourceIntTest {
     private CourseService courseService;
 
     @Autowired
+    private CourseQueryService courseQueryService;
+
+    @Autowired
     private CourseSearchRepository courseSearchRepository;
 
     @Autowired
@@ -86,7 +90,7 @@ public class CourseResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final CourseResource courseResource = new CourseResource(courseService);
+        final CourseResource courseResource = new CourseResource(courseService, courseQueryService);
         this.restCourseMockMvc = MockMvcBuilders.standaloneSetup(courseResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

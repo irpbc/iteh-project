@@ -160,6 +160,7 @@ public class UserService {
         User user = userRepository.findOne(SecurityUtils.getCurrentUserId());
         user.setFirstName(firstName);
         user.setLastName(lastName);
+        user.setFullName(firstName + "" + lastName);
         user.setEmail(email);
         user.setLangKey(langKey);
         user.setImageUrl(imageUrl);

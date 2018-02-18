@@ -19,8 +19,9 @@ export class User {
     public activated?: Boolean;
     public langKey?: string;
     public code?: string;
-    public authorities?: any[];
+    public authorities?: string[];
     public password?: string;
+    public imageUrl?: string;
 
     constructor(id?: number,
                 userType?: UserType,
@@ -30,8 +31,9 @@ export class User {
                 email?: string,
                 activated?: Boolean,
                 langKey?: string,
-                authorities?: any[],
-                password?: string) {
+                authorities?: string[],
+                password?: string,
+                imageUrl?: string) {
         this.id = id ? id : null;
         this.userType = userType ? userType : null;
         this.login = login ? login : null;
@@ -42,5 +44,6 @@ export class User {
         this.langKey = langKey ? langKey : null;
         this.authorities = authorities ? authorities : null;
         this.password = password ? password : null;
+        this.imageUrl = imageUrl ? imageUrl : null;
     }
 }

@@ -7,7 +7,7 @@
     <!-- Text input -->
     <input *ngSwitchCase="'STRING'"
            type="text" class="form-control" [name]="field" id="field_{{field}}"
-           [(ngModel)]="object[field]"
+           [(ngModel)]="object[field]" [disabled]="disabled"
            [required]="required" [minlength]="minLength" [maxlength]="maxLength"
            [email]="email" [pattern]="pattern"/>
 

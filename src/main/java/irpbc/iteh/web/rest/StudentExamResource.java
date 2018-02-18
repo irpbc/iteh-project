@@ -2,8 +2,11 @@ package irpbc.iteh.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import io.github.jhipster.web.util.ResponseUtil;
+import io.swagger.annotations.ApiOperation;
+import irpbc.iteh.service.StudentExamQueryService;
 import irpbc.iteh.service.StudentExamService;
 import irpbc.iteh.service.dto.ExamApplicationPageData;
+import irpbc.iteh.service.dto.StudentExamCriteria;
 import irpbc.iteh.service.dto.StudentExamDTO;
 import irpbc.iteh.web.rest.errors.BadRequestAlertException;
 import irpbc.iteh.web.rest.util.HeaderUtil;
@@ -36,8 +39,11 @@ public class StudentExamResource {
 
     private final StudentExamService studentExamService;
 
-    public StudentExamResource(StudentExamService studentExamService) {
+    private final StudentExamQueryService studentExamQueryService;
+
+    public StudentExamResource(StudentExamService studentExamService, StudentExamQueryService studentExamQueryService) {
         this.studentExamService = studentExamService;
+        this.studentExamQueryService = studentExamQueryService;
     }
 
     /**
@@ -72,6 +78,11 @@ public class StudentExamResource {
      */
     @PutMapping("/student-exams")
     @Timed
+    @ApiOperation(
+        value = "Update exam application (grade)",
+        notes = "Updates the exam application. If the grade has changed it " +
+            "will initiate Facebook post proposal creation."
+    )
     public ResponseEntity<StudentExamDTO> updateStudentExam(@Valid @RequestBody StudentExamDTO studentExamDTO) throws URISyntaxException {
         log.debug("REST request to update StudentExam : {}", studentExamDTO);
         if (studentExamDTO.getId() == null) {
@@ -87,13 +98,14 @@ public class StudentExamResource {
      * GET  /student-exams : get all the studentExams.
      *
      * @param pageable the pagination information
+     * @param criteria the criterias which the requested entities should match
      * @return the ResponseEntity with status 200 (OK) and the list of studentExams in body
      */
     @GetMapping("/student-exams")
     @Timed
-    public ResponseEntity<List<StudentExamDTO>> getAllStudentExams(Pageable pageable) {
-        log.debug("REST request to get a page of StudentExams");
-        Page<StudentExamDTO> page = studentExamService.findAll(pageable);
+    public ResponseEntity<List<StudentExamDTO>> getAllStudentExams(StudentExamCriteria criteria, Pageable pageable) {
+        log.debug("REST request to get StudentExams by criteria: {}", criteria);
+        Page<StudentExamDTO> page = studentExamQueryService.findByCriteria(criteria, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/student-exams");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -144,18 +156,31 @@ public class StudentExamResource {
     }
 
     @GetMapping("/exam-application-data")
+    @ApiOperation(
+        value = "Return data for exam applications page",
+        notes = "Returns all data for the exam application page for the logged in student, " +
+        "which is all exams enrolled, not passed, not applied for and exams applied for the next period."
+    )
     public ResponseEntity<ExamApplicationPageData> examApplicationPageData() {
         ExamApplicationPageData data = studentExamService.getApplicationPageData();
         return new ResponseEntity<>(data, HttpStatus.OK);
     }
 
     @PutMapping("/apply-for-exam")
+    @ApiOperation(
+        value = "Apply for exam",
+        notes = "Creates an exam application for the next period identified by examId. Returns the page data again"
+    )
     public ResponseEntity<ExamApplicationPageData> applyForExam(@RequestParam(name = "exam") Long examId) {
         studentExamService.applyForExam(examId);
         return examApplicationPageData();
     }
 
     @PutMapping("/cancel-exam-application")
+    @ApiOperation(
+        value = "Cancel exam application",
+        notes = "Cancels the exam application identified by examId. Returns the page data again."
+    )
     public ResponseEntity<ExamApplicationPageData> cancelExamApplication(@RequestParam(name = "exam") Long examId) {
         studentExamService.cancelExamApplication(examId);
         return examApplicationPageData();

@@ -1,4 +1,4 @@
-import { BaseEntity } from './../../shared';
+import { BaseEntity } from '../../shared';
 
 export class StudentExam implements BaseEntity {
     constructor(
@@ -6,11 +6,11 @@ export class StudentExam implements BaseEntity {
         public attended?: boolean,
         public grade?: number,
         public studentId?: number,
-        public studentFullName?: number,
+        public studentFullName?: string,
         public examId?: number,
-        public examName?: number,
+        public examName?: string,
         public evaluatedById?: number,
-        public evaluatedByFullName?: number,
+        public evaluatedByFullName?: string,
     ) {
         this.attended = false;
     }

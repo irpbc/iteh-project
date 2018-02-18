@@ -3,12 +3,13 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { AccountService } from './account.service';
 import { JhiTrackerService } from '../tracker/tracker.service'; // Barrel doesn't work here. No idea why!
+import { User } from '../user/user.model';
 
 @Injectable()
 export class Principal {
-    private userIdentity: any;
+    private userIdentity: User;
     private authenticated = false;
-    private authenticationState = new Subject<any>();
+    private authenticationState = new Subject<User>();
 
     constructor(
         private account: AccountService,
@@ -51,7 +52,7 @@ export class Principal {
         });
     }
 
-    identity(force?: boolean): Promise<any> {
+    identity(force?: boolean): Promise<User> {
         if (force === true) {
             this.userIdentity = undefined;
         }
@@ -93,7 +94,7 @@ export class Principal {
         return this.userIdentity !== undefined;
     }
 
-    getAuthenticationState(): Observable<any> {
+    getAuthenticationState(): Observable<User> {
         return this.authenticationState.asObservable();
     }
 

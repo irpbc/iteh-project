@@ -1,18 +1,16 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
+import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
 
 import { StudentExam } from './student-exam.model';
 import { StudentExamPopupService } from './student-exam-popup.service';
 import { StudentExamService } from './student-exam.service';
-import { User, UserService } from '../../shared';
+import { Principal, ResponseWrapper, User, UserService, UserType } from '../../shared';
 import { Exam, ExamService } from '../exam';
-import { ResponseWrapper } from '../../shared';
-import { UserType } from '../../shared/user/user.model';
 
 @Component({
     selector: 'jhi-student-exam-dialog',
@@ -23,7 +21,6 @@ export class StudentExamDialogComponent implements OnInit {
     studentExam: StudentExam;
     isSaving: boolean;
 
-    students: User[];
     lecturers: User[];
 
     exams: Exam[];
@@ -33,19 +30,24 @@ export class StudentExamDialogComponent implements OnInit {
                 private studentExamService: StudentExamService,
                 private userService: UserService,
                 private examService: ExamService,
-                private eventManager: JhiEventManager) {
+                private eventManager: JhiEventManager,
+                private principal: Principal) {
     }
 
     ngOnInit() {
         this.isSaving = false;
-        this.userService.query({ filter: { 'userType.equals': UserType.LC } }).subscribe(
-            (res: ResponseWrapper) => this.lecturers = res.json,
-            (res: ResponseWrapper) => this.onError(res.json)
-        );
         this.examService.query().subscribe(
             (res: ResponseWrapper) => this.exams = res.json,
             (res: ResponseWrapper) => this.onError(res.json)
         );
+    }
+
+    set object(studentExam: StudentExam) {
+        this.studentExam = studentExam;
+        this.principal.identity().then((lect) => {
+            this.studentExam.evaluatedById = lect.id;
+            this.studentExam.evaluatedByFullName = lect.fullName;
+        });
     }
 
     clear() {

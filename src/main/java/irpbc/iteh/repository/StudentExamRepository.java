@@ -3,6 +3,7 @@ package irpbc.iteh.repository;
 import irpbc.iteh.domain.Exam;
 import irpbc.iteh.domain.StudentExam;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -14,7 +15,7 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface StudentExamRepository extends JpaRepository<StudentExam, Long> {
+public interface StudentExamRepository extends JpaRepository<StudentExam, Long>, JpaSpecificationExecutor<StudentExam> {
 
     @Query("select e from Exam e \n" +
         "join CourseEnrollment ce on (ce.course = e.course)" +

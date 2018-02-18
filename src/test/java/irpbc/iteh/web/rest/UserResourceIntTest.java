@@ -7,6 +7,7 @@ import irpbc.iteh.repository.UserRepository;
 import irpbc.iteh.repository.search.UserSearchRepository;
 import irpbc.iteh.security.AuthoritiesConstants;
 import irpbc.iteh.service.MailService;
+import irpbc.iteh.service.UserQueryService;
 import irpbc.iteh.service.UserService;
 import irpbc.iteh.service.dto.UserDTO;
 import irpbc.iteh.service.mapper.UserMapper;
@@ -77,6 +78,9 @@ public class UserResourceIntTest {
     private UserSearchRepository userSearchRepository;
 
     @Autowired
+    private UserQueryService userQueryService;
+
+    @Autowired
     private MailService mailService;
 
     @Autowired
@@ -104,7 +108,8 @@ public class UserResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        UserResource userResource = new UserResource(userRepository, userService, mailService, userSearchRepository);
+        UserResource userResource = new UserResource(userRepository, userService, mailService,
+            userSearchRepository, userQueryService);
         this.restUserMockMvc = MockMvcBuilders.standaloneSetup(userResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
